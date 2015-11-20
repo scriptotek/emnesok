@@ -1,0 +1,29 @@
+{
+  "name": "emnesok",
+  "homepage": "https://github.com/scriptotek/emnesok",
+  "authors": [
+    "Kyrre T. Låberg <k.t.laberg@ub.uio.no>",
+    "Dan Michael O. Heggø <d.m.heggo@ub.uio.no>"
+  ],
+  "description": "Realfagsbibliotekets emnesøk",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angucomplete-alt": "~2.1.0",
+    "angular-ui-router": "ui-router#~0.2.15",
+    "bootstrap": "~3.3.5",
+    "angular-bootstrap": "~0.14.3",
+    "angular-touch": "~1.4.8",
+    "ngtouch": "~1.0.1"
+  }
+}

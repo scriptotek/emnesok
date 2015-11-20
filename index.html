@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html ng-app="app">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+		<title>Nytt Emnesøk</title>
+		<style>
+			html,body{
+				height:100%;
+				width:100%;
+				padding:0 !important;
+				margin:0 !important;
+			}
+			h1,h2,h3,h4{
+				margin:0 !important;
+				padding:0 !important;
+				//border:1px red solid;
+			}
+
+		
+			.highlight {
+				color: #3A8EC4;
+			}
+
+			#search_dropdown {
+			  overflow-y: auto;
+			  max-height: 150px;
+			  background:white;
+			  cursor:pointer;
+			  color:black;
+			}
+			#search{
+
+				width:400px;
+			}
+
+			
+			#header{
+				border-bottom: 1px #EAEAEA solid;
+				margin:0 !important;
+				padding: 10px !important;
+				height:60px;
+			}
+
+			#left{
+				border-right: 1px #EAEAEA solid;
+				margin:0 !important;
+				padding: 10px !important;
+				height:400px;
+			}
+
+			#right{
+				border-bottom: 1px #EAEAEA solid;
+				margin:0 !important;
+				padding: 10px !important;
+			}
+
+			#subject{
+				padding:5px;
+				margin-top:10px;
+				border: 1px #EAEAEA solid
+			}
+			
+			#term{
+				font-size:120%;
+				font-weight:bolder;
+				color:#0075B0;
+			}
+	
+
+		</style>
+
+
+		<link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="lib/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+		<link href="lib/angucomplete-alt/angucomplete-alt.css" rel="stylesheet">
+		<script src="lib/angular/angular.min.js"></script>
+		<script src="lib/angular-touch/angular-touch.js"></script>
+		<script src="lib/angucomplete-alt/dist/angucomplete-alt.min.js"></script>
+		<script src="lib/angular-ui-router/release/angular-ui-router.min.js"></script>
+		<script src="lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+		<script src="app/home/search.controller.js"></script>
+		<script src="app/home/subject.controller.js"></script>
+		<script src="app/home/catalogue.controller.js"></script>
+		<script src="app/app.module.js"></script>
+		<script src="assets/js/grunnstoffene.js"></script>
+
+	</head>
+	<body>
+		<div class="container-fluid">
+
+			<div ui-view="header"></div>
+		
+			<div class="row">
+				<div id="left" class="col-md-5">
+					<div ui-view="search"></div>
+					<div ui-view="subject"></div>
+				</div>
+				<div id="right" class="col-md-7">
+					<div ui-view="catalogue"></div>
+				</div>
+			</div>
+		</div>
+
+	</body>
+</html>
