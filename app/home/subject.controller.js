@@ -36,12 +36,10 @@ angular.module('app.controllers.subject', ['app.services.config']).controller('S
 		console.log('[SubjectController] Init');
 
 		that = this;
-		that.lang = $stateParams.lang;
+		that.lang = $stateParams.lang || Config.defaultLanguage;
 		that.relatedSubjects = [];
 		that.otherLangSubjects = [];
 		that.altSubjects = [];
-
-		if (!that.lang) that.lang ="nb";
 
 		that.uri = 'http://data.ub.uio.no/'+$stateParams.vocab+'/'+$stateParams.id;
 

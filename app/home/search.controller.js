@@ -60,9 +60,8 @@ WHERE
 
 		this.formatRequest = function(str) {
 
-			var lang = $state.params.lang;
+			var lang = $state.params.lang || Config.defaultLanguage;
 
-			if (!lang) language ="nb";
 			var vocab = $state.params.vocab;
 
 			var query = (str.length == 2) ? str : '*' + str + '*';
