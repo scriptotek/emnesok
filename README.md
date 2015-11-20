@@ -1,4 +1,5 @@
-Realfagsbibliotekets emnesøk
+# Realfagsbibliotekets emnesøk
 
-Run `bower install` to fetch dependencies.
+Frontend for emnesøk mot Realfagstermer, Humord, Tekord og Menneskerettighetstermer
 
+For å hente avhengigheter: Kjør `bower install`.
