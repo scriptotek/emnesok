@@ -57,21 +57,19 @@ WHERE
 */
 
 		this.searchUrl = Config.skosmos.searchUrl;
+		this.lang = $state.params.lang || Config.defaultLanguage;
+		this.vocab = $state.params.vocab;
 
-		this.formatRequest = function(str) {
-
-			var lang = $state.params.lang || Config.defaultLanguage;
-
-			var vocab = $state.params.vocab;
+		this.formatRequest = angular.bind(this, function(str) {
 
 			var query = (str.length == 2) ? str : '*' + str + '*';
 
 			return {
 				query: query,
-				labellang: lang,
-				vocab: vocab
+				labellang: this.lang,
+				vocab: this.vocab
 			};
-		};
+		});
 
 		this.formatResult = function(response) {
 
