@@ -47,7 +47,7 @@ angular.module('app.controllers.subject', []).controller('SubjectController', ['
 
 		$http({
 		  method: 'GET',
-		  url: 'http://li148-205.members.linode.com/rest/v1/data?uri=' + that.uri
+		  url: 'https://skosmos.biblionaut.net/rest/v1/data?uri=' + that.uri
 		}).
 		success(function(data){
 			
