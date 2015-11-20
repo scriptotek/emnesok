@@ -23,7 +23,7 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider',
 			}
 		})
 		.state('home.subject', {
-			url: ':vocab/:id/:subject/:lang',
+			url: 'show?lang&subjects',
 			views: {
 				'subject@': { 
 					templateUrl: './templates/subject.html?' + Math.random(),

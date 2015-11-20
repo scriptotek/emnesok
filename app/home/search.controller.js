@@ -82,16 +82,21 @@ WHERE
 
 		};
 
+		function shortIdFromUri(uri) {
+			var s = uri.split('/'),
+				id = s.pop(),
+				vocab = s.pop();
+			return vocab + ':' + id;
+		}
+
 		this.selectSubject = function(item) {
-			console.log('[SearchController] Selecting subject');
+			if (item) {
+				var subjects = shortIdFromUri(item.originalObject.uri);
+				console.log('[SearchController] Selecting subject(s): ' + subjects);
 
-			if (item !== undefined) {
 				$state.go('home.subject', {
-					subject:	item.title,
-					vocab:		item.originalObject.vocab,
-					id:			item.originalObject.localname,
-					itemlang:	item.originalObject.lang,
-
+					lang:		item.originalObject.lang,
+					subjects:   subjects
 				});
 			}
 		};

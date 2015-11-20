@@ -41,7 +41,10 @@ angular.module('app.controllers.subject', ['app.services.config']).controller('S
 		that.otherLangSubjects = [];
 		that.altSubjects = [];
 
-		that.uri = 'http://data.ub.uio.no/'+$stateParams.vocab+'/'+$stateParams.id;
+		// @TODO: Support multiple subjects and boolean logic. Currently we just fetch the first subject.
+		var subject = $stateParams.subjects.split(':');
+
+		that.uri = 'http://data.ub.uio.no/'+subject[0]+'/'+subject[1];
 
 		$http({
 		  method: 'GET',
