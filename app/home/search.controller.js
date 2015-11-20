@@ -1,5 +1,5 @@
-angular.module('app.controllers.search', []).controller('SearchController', ['$state', '$scope', '$rootScope', '$timeout',
-    function SearchController($state, $scope, $rootScope, $timeout) {
+angular.module('app.controllers.search', ['app.services.config']).controller('SearchController', ['$state', '$scope', '$rootScope', '$timeout', 'Config',
+    function SearchController($state, $scope, $rootScope, $timeout, Config) {
 		console.log('[SearchController] Init');
 /*
 $timeout(function() {
@@ -55,6 +55,8 @@ WHERE
 }
 
 */
+
+		this.searchUrl = Config.skosmos.searchUrl;
 
 		this.formatRequest = function(str) {
 

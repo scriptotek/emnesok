@@ -1,5 +1,5 @@
-angular.module('app.controllers.subject', []).controller('SubjectController', ['$http', '$stateParams', '$filter',
-	function SubjectController($http, $stateParams, $filter) {
+angular.module('app.controllers.subject', ['app.services.config']).controller('SubjectController', ['$http', '$stateParams', '$filter', 'Config',
+	function SubjectController($http, $stateParams, $filter, Config) {
 
 		function arrayifyJSONLD(arrayornot) {
 
@@ -47,7 +47,7 @@ angular.module('app.controllers.subject', []).controller('SubjectController', ['
 
 		$http({
 		  method: 'GET',
-		  url: 'https://skosmos.biblionaut.net/rest/v1/data?uri=' + that.uri
+		  url: Config.skosmos.dataUrl.replace('{uri}', that.uri)
 		}).
 		success(function(data){
 

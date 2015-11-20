@@ -19,7 +19,7 @@
 <div angucomplete-alt id="search" class="btn-group" placeholder="Søk i emneord" maxlength="50" 
 	pause="600"
 	selected-object="vm.selectSubject" 
-	remote-url="https://skosmos.biblionaut.net/rest/v1/search"
+	remote-url="{{vm.searchUrl}}"
 	remote-url-request-formatter="vm.formatRequest"
 	remote-url-response-formatter="vm.formatResult"
 	title-field="prefLabel"
