@@ -1,17 +1,17 @@
-<!-- SUBJECT.HTML 
+<!-- SUBJECT.HTML
 Includes search history
 
 -->
 
 <div id="subject" ng-cloak ng-show="vm.subject">
 	<div id="term">
-		{{vm.subject}} <span ng-show="vm.chem"><b>({{vm.chem}})</b></span> 
+		{{vm.subject}} <span ng-show="vm.chem"><b>({{vm.chem}})</b></span>
 	</div>
 	<div ng-show="vm.otherLangSubjects" ng-repeat="otherLangSubject in vm.otherLangSubjects">
 		{{otherLangSubject.value}} ({{otherLangSubject.lang}})
 	</div>
 	<div id="term" style="margin-top:7px">
-		Se også 
+		Se også
 	</div>
 	<div ng-show="vm.relatedSubjects" ng-repeat="relatedSubject in vm.relatedSubjects | orderBy:'value'">
 

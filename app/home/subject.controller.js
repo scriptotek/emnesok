@@ -4,7 +4,7 @@ angular.module('app.controllers.subject', []).controller('SubjectController', ['
 		function arrayifyJSONLD(arrayornot) {
 
 			if (arrayornot===undefined) return false;
-			
+
 			var arr = [];
 
 			if (arrayornot[0]!==undefined && typeof arrayornot === "object") {
@@ -34,13 +34,13 @@ angular.module('app.controllers.subject', []).controller('SubjectController', ['
 		}
 
 		console.log('[SubjectController] Init');
-		
+
 		that = this;
 		that.lang = $stateParams.lang;
 		that.relatedSubjects = [];
 		that.otherLangSubjects = [];
 		that.altSubjects = [];
-	
+
 		if (!that.lang) that.lang ="nb";
 
 		that.uri = 'http://data.ub.uio.no/'+$stateParams.vocab+'/'+$stateParams.id;
@@ -50,7 +50,7 @@ angular.module('app.controllers.subject', []).controller('SubjectController', ['
 		  url: 'https://skosmos.biblionaut.net/rest/v1/data?uri=' + that.uri
 		}).
 		success(function(data){
-			
+
 			//Organize resources by uri key
 			var resources = {};
 			data.graph.forEach(function(graph) {
@@ -58,44 +58,44 @@ angular.module('app.controllers.subject', []).controller('SubjectController', ['
 			});
 
 			console.log(resources);
-	
+
 			var relatedUris = arrayifyJSONLD(resources[that.uri].related);
 
 			angular.forEach(resources, function(value, key) {
 
-	
+
 				//Find preferred terms
 				if (that.uri==key) {
 					var lang = that.lang
 					var prefLabel = arrayifyJSONLD(value.prefLabel);
-					
+
 					//Main term
 					var subject = $filter('filter')(prefLabel, {lang: lang}, true);
-					
+
 					//In case of main term not existing in chosen language, default to nb
 					if (subject[0]===undefined) {
 						var lang = 'nb'
 						var subject = $filter('filter')(prefLabel, {lang: lang}, true);
-	
+
 					}
-	
+
 					that.subject = subject[0].value;
-					
+
 					//Term in other languages
 					var otherterm  = $filter('filter')(prefLabel, {lang: '!'+lang}, true);
 
 					if (otherterm[0]!==undefined) {
 
 						otherterm.forEach(function(ot) {
-				
-						
+
+
 							that.otherLangSubjects.push(
 								{'value':ot.value, 'uri': key, 'lang':ot.lang}
 							);
-							
+
 						});
 					}
-					
+
 				}
 
 				//Find related terms if any
@@ -103,7 +103,7 @@ angular.module('app.controllers.subject', []).controller('SubjectController', ['
 
 					//Find if uri of preflabels is in related
 					var filtered = $filter('filter')(relatedUris, {uri: key}, true);
-		
+
 					if (filtered[0]!==undefined) {
 
 						//Find related terms in current language
@@ -122,7 +122,7 @@ angular.module('app.controllers.subject', []).controller('SubjectController', ['
 
 				if (altLabel) {
 
-			
+
 					//Find alternate terms in current language
 					var altterm = $filter('filter')(altLabel, {lang: lang}, true);
 					if (altterm[0]!==undefined) {
@@ -136,10 +136,10 @@ angular.module('app.controllers.subject', []).controller('SubjectController', ['
 
 				//Chemical element test///////////// MUST BE FIXED
 				/*
-				if (data.graph[1].altLabel!==undefined) { 
-				
-					if (that.subject=="Kopper") that.subject = "Kobber"; 
-			
+				if (data.graph[1].altLabel!==undefined) {
+
+					if (that.subject=="Kopper") that.subject = "Kobber";
+
 					if (data.graph[1].altLabel[0]!==undefined && typeof data.graph[1].altLabel === "object" ) {
 						console.log('array!',data.graph[1].altLabel);
 						var akronym = data.graph[1].altLabel[0];
@@ -153,7 +153,7 @@ angular.module('app.controllers.subject', []).controller('SubjectController', ['
 					console.log("akronym",akronym);
 
 					if (isPeriodicalElement(that.subject,akronym)) {
-					
+
 						that.chem = akronym;
 					}
 				}
