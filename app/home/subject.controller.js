@@ -35,7 +35,7 @@ angular.module('app.controllers.subject', ['app.services.config']).controller('S
 
 		console.log('[SubjectController] Init');
 
-		that = this;
+		var that = this;
 		that.lang = $stateParams.lang || Config.defaultLanguage;
 		that.relatedSubjects = [];
 		that.otherLangSubjects = [];
