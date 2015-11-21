@@ -1,5 +1,18 @@
 <div class="row">
 	<div id="header" class="col-md-12">
-		<h1><a ui-sref="home">Emnesøk</a></h1>
+		<h1>
+			<a ui-sref="home">Emnesøk</a>
+
+			<div class="btn-group" uib-dropdown uib-keyboard-nav style="float:right;">
+				<button id="simple-btn-keyboard-nav" type="button" class="btn btn-default" uib-dropdown-toggle>
+					<span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+					{{ vm.langNames[vm.lang] }} <span class="caret"></span>
+				</button>
+				<ul class="uib-dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="simple-btn-keyboard-nav">
+					<li role="menuitem" ng-repeat="lang in vm.languages"><a href ng-click="vm.setLanguage(lang)">{{ vm.langNames[lang] }}</a></li>
+				</ul>
+			</div>
+
+		</h1>
 	</div>
 </div>

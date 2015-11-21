@@ -1,5 +1,6 @@
 
 angular.module('app', ["ngTouch", "angucomplete-alt", "ui.router", "ui.bootstrap",
+	"app.controllers.header",
 	"app.controllers.search",
 	"app.controllers.subject",
 	"app.controllers.catalogue"
@@ -10,10 +11,12 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider',
 		$urlRouterProvider.otherwise('/');
 		$stateProvider
 		.state('home', {
-			url: '/',
+			url: '/?lang',
 			views: {
 				'header': { 
-					templateUrl: './templates/header.html?' + Math.random()
+					templateUrl: './templates/header.html?' + Math.random(),
+					controller: 'HeaderController',
+					controllerAs: 'vm'
 				},
 				'search': { 
 					templateUrl: './templates/search.html?' + Math.random(),
@@ -23,7 +26,7 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider',
 			}
 		})
 		.state('home.subject', {
-			url: 'show?lang&subjects',
+			url: 'show?subjects',
 			views: {
 				'subject@': { 
 					templateUrl: './templates/subject.html?' + Math.random(),

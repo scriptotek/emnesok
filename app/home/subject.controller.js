@@ -1,5 +1,5 @@
-angular.module('app.controllers.subject', ['app.services.config']).controller('SubjectController', ['$http', '$stateParams', '$filter', 'Config',
-	function SubjectController($http, $stateParams, $filter, Config) {
+angular.module('app.controllers.subject', ['app.services.config', 'app.services.lang']).controller('SubjectController', ['$http', '$stateParams', '$filter', 'Config', 'Lang',
+	function SubjectController($http, $stateParams, $filter, Config, Lang) {
 
 		function arrayifyJSONLD(arrayornot) {
 
@@ -36,7 +36,7 @@ angular.module('app.controllers.subject', ['app.services.config']).controller('S
 		console.log('[SubjectController] Init');
 
 		var that = this;
-		that.lang = $stateParams.lang || Config.defaultLanguage;
+		that.lang = Lang.language;
 		that.relatedSubjects = [];
 		that.otherLangSubjects = [];
 		that.altSubjects = [];
