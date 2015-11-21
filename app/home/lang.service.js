@@ -1,9 +1,13 @@
 
-angular.module('app.services.lang', ['app.services.config', 'ui.router'])
-.factory('Lang', ['$state', '$stateParams', 'Config', function Lang($state, $stateParams, Config) {
+angular.module('app.services.lang', ['app.services.config', 'ui.router', 'gettext'])
+.factory('Lang', ['$state', '$stateParams', 'gettextCatalog', 'Config', function Lang($state, $stateParams, gettextCatalog, Config) {
 
 	var lang = $stateParams.lang || Config.defaultLanguage;
 	console.log('[Lang] Init. Current lang is ' + lang);
+	gettextCatalog.setCurrentLanguage(lang);
+
+	// Highlight untranslated strings
+	// gettextCatalog.debug = true;
 
 	return {
 		language: lang,
@@ -15,6 +19,7 @@ angular.module('app.services.lang', ['app.services.config', 'ui.router'])
 			}
 			console.log('[Lang] Changing language to: ' + code);
 			this.language = code;
+			gettextCatalog.setCurrentLanguage(code);
 			$state.go($state.current.name, {lang: code});
 		}
 	};

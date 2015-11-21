@@ -16,7 +16,7 @@
 	</ul>
 </div>
 
-<div angucomplete-alt id="search" class="btn-group" placeholder="Søk i emneord" maxlength="50" 
+<div angucomplete-alt id="search" class="btn-group" placeholder="{{'Enter a subject' | translate}}" maxlength="50" 
 	pause="600"
 	selected-object="vm.selectSubject" 
 	remote-url="{{vm.searchUrl}}"
@@ -27,6 +27,6 @@
 	minlength="2" 
 	input-class="form-control form-control-small"
 	match-class="highlight"
-	text-no-results="Ingen treff"
-	text-searching="Leter..."
+	text-no-results="{{'No hits :(' | translate}}"
+	text-searching="{{'Looking…' | translate}}"
 ></div>

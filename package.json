@@ -1,0 +1,27 @@
+{
+  "name": "emnesok",
+  "version": "0.1.0",
+  "description": "Realfagsbibliotekets emnesøk",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-angular-gettext": "^2.1.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scriptotek/emnesok.git"
+  },
+  "author": [
+    "Kyrre T. Låberg <k.t.laberg@ub.uio.no>",
+    "Dan Michael O. Heggø <d.m.heggo@ub.uio.no>"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/scriptotek/emnesok/issues"
+  },
+  "homepage": "https://github.com/scriptotek/emnesok#readme"
+}

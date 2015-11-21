@@ -1,0 +1,25 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: \n"
+
+#: catalogue.html:1
+msgid "Catalogue results"
+msgstr ""
+
+#: search.html:19
+msgid "Enter a subject"
+msgstr ""
+
+#: search.html:31
+msgid "Looking…"
+msgstr ""
+
+#: search.html:30
+msgid "No hits :("
+msgstr ""
+
+#: header.html:4
+msgid "Subject search"
+msgstr ""

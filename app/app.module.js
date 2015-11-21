@@ -1,5 +1,5 @@
 
-angular.module('app', ["ngTouch", "angucomplete-alt", "ui.router", "ui.bootstrap",
+angular.module('app', ["ngTouch", "angucomplete-alt", "ui.router", "ui.bootstrap", "gettext",
 	"app.controllers.header",
 	"app.controllers.search",
 	"app.controllers.subject",
