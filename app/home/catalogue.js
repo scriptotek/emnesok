@@ -1,19 +1,28 @@
-angular.module('app.modules.catalogue', [])
-.directive('appCatalogue', ['$http', '$stateParams','$rootScope',
-function CatalogueController($http, $stateParams, $rootScope) {
+(function() {
+    'use strict';
 
-	console.log('[Catalogue] Init');
+    angular
+        .module('app.modules.catalogue', [])
+        .directive('appCatalogue', CatalogueModule);
 
-	function controller() {
-		// @TODO
-	}
+    function CatalogueModule() {
+    	console.log('[Catalogue] Init');
 
-	return {
-        restrict: 'A',
-        templateUrl: './templates/catalogue.html?' + Math.random(),
-        replace: true,
-        scope: {},
-        controllerAs: 'vm',
-        controller: controller
-    };
-}]);
+    	var directive = {
+            restrict: 'A',
+            templateUrl: './templates/catalogue.html?' + Math.random(),
+            replace: true,
+            scope: {},
+            controllerAs: 'vm',
+            controller: ['$http', '$stateParams', '$rootScope', controller]
+        };
+
+        return directive;
+    }
+
+    function controller($http, $stateParams, $rootScope) {
+        /*jshint validthis: true */
+        // @TODO
+    }
+
+})();

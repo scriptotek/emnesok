@@ -1,13 +1,30 @@
-angular.module('app.modules.header', ['app.services.lang', 'app.services.config'])
-.directive('modHeader', ['$state', '$stateParams', 'Lang', 'Config',
-function HeaderModule($state, $stateParams, Lang, Config) {
+(function() {
+	'use strict';
 
-	console.log('[Header] Init');
+	angular
+		.module('app.modules.header', ['app.services.lang', 'app.services.config'])
+		.directive('modHeader', HeaderModule);
 
-	function controller() {
+	function HeaderModule() {
+		console.log('[Header] Init');
+
+		var directive = {
+	        restrict: 'A',
+	        templateUrl: './templates/header.html?' + Math.random(),
+	        replace: true,
+	        scope: {},
+	        controllerAs: 'vm',
+	        controller: ['$state', '$stateParams', 'Lang', 'Config', controller]
+	    };
+
+	    return directive;
+	}
+
+	function controller($state, $stateParams, Lang, Config) {
+		/*jshint validthis: true */
 		var vm = this;
 
-		vm.langNames = Config.languageLabels;
+		vm.languageLabels = Config.languageLabels;
 		vm.lang = Lang.language;
 		vm.languages = Lang.languages;
 		vm.vocab = $stateParams.vocab ? Config.vocabularies[$stateParams.vocab] : null;
@@ -17,12 +34,4 @@ function HeaderModule($state, $stateParams, Lang, Config) {
 		};
 	}
 
-	return {
-        restrict: 'A',
-        templateUrl: './templates/header.html?' + Math.random(),
-        replace: true,
-        scope: {},
-        controllerAs: 'vm',
-        controller: controller
-    };
-}]);
+})();

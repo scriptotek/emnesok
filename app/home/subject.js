@@ -1,13 +1,31 @@
-angular.module('app.modules.subject', ['app.services.config', 'app.services.lang', 'app.services.subject'])
-.directive('modSubject', ['$stateParams', '$filter', 'Config', 'Lang', 'SubjectService',
-function SubjectModule($stateParams, $filter, Config, Lang, SubjectService) {
+(function() {
+    'use strict';
 
-	console.log('[Subject] Init');
+	angular
+		.module('app.modules.subject', ['app.services.config', 'app.services.lang', 'app.services.subject'])
+		.directive('modSubject', SubjectModule);
 
-	function controller() {
+	function SubjectModule() {
+
+		var directive = {
+	        restrict: 'A',
+	        templateUrl: './templates/subject.html?' + Math.random(),
+	        replace: false,
+	        scope: {},
+	        controllerAs: 'vm',
+	        controller: ['$stateParams', '$filter', 'Config', 'Lang', 'SubjectService', controller]
+	    };
+
+    	return directive;
+    }
+
+	function controller($stateParams, $filter, Config, Lang, SubjectService) {
+		/*jshint validthis: true */
 		var vm = this;
 		vm.subject = null;
 		vm.error = null;
+
+		console.log('[Subject] Init');
 
 		activate();
 
@@ -73,12 +91,4 @@ function SubjectModule($stateParams, $filter, Config, Lang, SubjectService) {
 		}
 	}
 
-	return {
-        restrict: 'A',
-        templateUrl: './templates/subject.html?' + Math.random(),
-        replace: false,
-        scope: {},
-        controllerAs: 'vm',
-        controller: controller
-    };
-}]);
+})();

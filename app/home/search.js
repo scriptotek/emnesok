@@ -1,11 +1,28 @@
-angular.module('app.modules.search', ['app.services.config'])
-.directive('modSearch', ['$state', '$stateParams', '$timeout', 'Config',
-function SearchModule($state, $stateParams, $timeout, Config) {
+(function() {
+	'use strict';
 
-	console.log('[Search] Init');
+	angular
+		.module('app.modules.search', ['app.services.config'])
+		.directive('modSearch', SearchModule);
 
-	function controller($rootScope) {
+	function SearchModule() {
+
+		var directive = {
+	        restrict: 'A',
+	        templateUrl: './templates/search.html?' + Math.random(),
+	        replace: false,
+	        scope: {},
+	        controllerAs: 'vm',
+	        controller: ['$state', '$stateParams', '$timeout', '$rootScope', 'Config', controller]
+	    };
+
+		return directive;
+	}
+
+	function controller($state, $stateParams, $timeout, $rootScope, Config) {
+		/*jshint validthis: true */
 		var vm = this;
+		console.log(vm);
 
 		vm.searchUrl = Config.skosmos.searchUrl;
 		vm.lang = $stateParams.lang || Config.defaultLanguage;
@@ -13,6 +30,8 @@ function SearchModule($state, $stateParams, $timeout, Config) {
 		vm.formatRequest = formatRequest;
 		vm.formatResult = formatResult;
 		vm.selectSubject = selectSubject;
+
+		console.log('[Search] Init');
 
 		////////////
 
@@ -53,16 +72,7 @@ function SearchModule($state, $stateParams, $timeout, Config) {
 		}
 	}
 
-	return {
-        restrict: 'A',
-        templateUrl: './templates/search.html?' + Math.random(),
-        replace: false,
-        scope: {},
-        controllerAs: 'vm',
-        controller: ['$rootScope', controller]
-    };
-}]);
-
+})();
 
 /*
 $timeout(function() {

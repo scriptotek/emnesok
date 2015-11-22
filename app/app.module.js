@@ -1,12 +1,21 @@
+(function() {
+    'use strict';
 
-angular.module('app', ["ngTouch", "angucomplete-alt", "ui.router", "ui.bootstrap", "gettext",
-	"app.modules.header",
-	"app.modules.search",
-	"app.modules.subject",
-	"app.modules.catalogue"
-]);
-angular.module('app').config(['$stateProvider', '$urlRouterProvider',
-	function($stateProvider, $urlRouterProvider) {
+	angular
+		.module('app', [
+			'ngTouch',
+			'angucomplete-alt',
+			'ui.router',
+			'ui.bootstrap',
+			'gettext',
+			'app.modules.header',
+			'app.modules.search',
+			'app.modules.subject',
+			'app.modules.catalogue'
+		])
+		.config(['$stateProvider', '$urlRouterProvider', configure]);
+
+	function configure($stateProvider, $urlRouterProvider) {
 
 		$urlRouterProvider.otherwise('/');
 		$stateProvider
@@ -22,7 +31,7 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider',
 			}
 		})
 		.state('subject', {
-			url: '/:vocab',
+			url: '/:vocab?lang',
 			views: {
 				'header': {
 					template: '<div mod-header></div>'
@@ -56,4 +65,5 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider',
 			}
 		});
 	}
-]);
+
+})();

@@ -26,11 +26,11 @@
 
           <a id="language-dropdown-button" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" uib-dropdown-toggle>
             <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
-            {{ vm.langNames[vm.lang] }} <span class="caret"></span>
+            {{ vm.languageLabels[vm.lang] }} <span class="caret"></span>
           </a>
 
           <ul class="uib-dropdown-menu" role="menu" aria-labelledby="language-dropdown-button">
-            <li role="menuitem" ng-repeat="lang in vm.languages"><a href ng-click="vm.setLanguage(lang)">{{ vm.langNames[lang] }}</a></li>
+            <li role="menuitem" ng-repeat="lang in vm.languages"><a href ng-click="vm.setLanguage(lang)">{{ vm.languageLabels[lang] }}</a></li>
           </ul>
 
         </li>
