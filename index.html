@@ -7,7 +7,12 @@
 		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 		<title translate>Subject search</title>
 		<style>
-			html,body{
+
+			body {
+				/* Make space for navbar */
+				padding-top: 70px;
+			}
+			/*html,body{
 				height:100%;
 				width:100%;
 				padding:0 !important;
@@ -17,7 +22,7 @@
 				margin:0 !important;
 				padding:0 !important;
 				//border:1px red solid;
-			}
+			}*/
 
 
 			.highlight {
@@ -26,13 +31,13 @@
 
 			#search_dropdown {
 			  overflow-y: auto;
-			  max-height: 150px;
+			  max-height: 200px;
+			  width: 400px;         /* @TODO: Responsiveness... */
 			  background:white;
 			  cursor:pointer;
 			  color:black;
 			}
 			#search{
-
 				width:400px;
 			}
 
@@ -48,7 +53,6 @@
 				border-right: 1px #EAEAEA solid;
 				margin:0 !important;
 				padding: 10px !important;
-				height:400px;
 			}
 
 			#right{
@@ -57,16 +61,22 @@
 				padding: 10px !important;
 			}
 
-			#subject{
+			.subject{
 				padding:5px;
 				margin-top:10px;
-				border: 1px #EAEAEA solid
+				border: 1px #EAEAEA solid;
 			}
 
-			#term{
+			.subject .prefLabel {
 				font-size:120%;
 				font-weight:bolder;
-				color:#0075B0;
+			}
+
+			.subject .term {
+
+			}
+			.subject .term_separator:not(:last-child)::after {
+				content: ' • ';
 			}
 
 
@@ -82,11 +92,12 @@
 		<script src="lib/angular-ui-router/release/angular-ui-router.min.js"></script>
 		<script src="lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 		<script src="lib/angular-gettext/dist/angular-gettext.min.js"></script>
-		<script src="app/home/search.controller.js"></script>
-		<script src="app/home/subject.controller.js"></script>
-		<script src="app/home/catalogue.controller.js"></script>
-		<script src="app/home/header.controller.js"></script>
+		<script src="app/home/search.js"></script>
+		<script src="app/home/subject.js"></script>
+		<script src="app/home/catalogue.js"></script>
+		<script src="app/home/header.js"></script>
 		<script src="app/home/config.service.js"></script>
+		<script src="app/home/subject.service.js"></script>
 		<script src="app/home/lang.service.js"></script>
 		<script src="dist/translations/nb.js"></script>
 		<script src="app/app.module.js"></script>
@@ -94,20 +105,9 @@
 
 	</head>
 	<body>
-		<div class="container-fluid">
 
-			<div ui-view="header"></div>
-
-			<div class="row">
-				<div id="left" class="col-md-5">
-					<div ui-view="search"></div>
-					<div ui-view="subject"></div>
-				</div>
-				<div id="right" class="col-md-7">
-					<div ui-view="catalogue"></div>
-				</div>
-			</div>
-		</div>
+		<div ui-view="header"></div>
+		<div ui-view="main"></div>
 
 	</body>
 </html>

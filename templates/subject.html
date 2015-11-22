@@ -3,19 +3,38 @@ Includes search history
 
 -->
 
-<div id="subject" ng-cloak ng-show="vm.subject">
-	<div id="term">
-		{{vm.subject}} <span ng-show="vm.chem"><b>({{vm.chem}})</b></span>
+<div class="subject" ng-show="vm.subject">
+
+	<div>
+		<span class="term prefLabel">{{vm.subject.prefLabel}}</span>
+		<span ng-show="vm.subject.chem"><b>({{vm.subject.chem}})</b></span>
 	</div>
-	<div ng-show="vm.otherLangSubjects" ng-repeat="otherLangSubject in vm.otherLangSubjects">
-		{{otherLangSubject.value}} ({{otherLangSubject.lang}})
+
+	<div ng-show="vm.subject.altLabel.length">
+		Brukt for:
+		<span class="term" ng-repeat-start="label in vm.subject.altLabel">{{ label }}</span>
+		<span class="term_separator" ng-repeat-end></span>
 	</div>
-	<div id="term" style="margin-top:7px">
-		Se også
+
+	<div ng-show="vm.subject.related.length">
+		Se også:
+		<a class="term" ng-repeat-start="related in vm.subject.related | orderBy:'prefLabel'" ui-sref="home.subject({ subjects: related.prefLabel })">{{ related.prefLabel }}</a>
+		<span class="term_separator" ng-repeat-end></span>
 	</div>
-	<div ng-show="vm.relatedSubjects" ng-repeat="relatedSubject in vm.relatedSubjects | orderBy:'value'">
+
+	<div ng-repeat="translation in vm.subject.translations">
+		{{ translation.language.name }}: {{ translation.prefLabel }}
+		<span ng-repeat="label in translation.altLabel">{{ label }}</span>
+	</div>
+
+<!--	<div ng-show="vm.relatedSubjects" ng-repeat="relatedSubject in vm.relatedSubjects | orderBy:'value'">
 
 		{{relatedSubject.value}}
+	</div>
+
+
+	<div ng-show="vm.otherLangSubjects" ng-repeat="otherLangSubject in vm.otherLangSubjects">
+		{{otherLangSubject.value}} ({{otherLangSubject.lang}})
 	</div>
 	<div id="term" style="margin-top:7px">
 		Brukt for
@@ -24,5 +43,5 @@ Includes search history
 	<div ng-show="vm.altSubjects" ng-repeat="altSubject in vm.altSubjects | orderBy:'value'">
 		{{altSubject.value}}
 	</div>
-
+-->
 </div>

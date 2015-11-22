@@ -1,42 +1,57 @@
 
 angular.module('app', ["ngTouch", "angucomplete-alt", "ui.router", "ui.bootstrap", "gettext",
-	"app.controllers.header",
-	"app.controllers.search",
-	"app.controllers.subject",
-	"app.controllers.catalogue"
+	"app.modules.header",
+	"app.modules.search",
+	"app.modules.subject",
+	"app.modules.catalogue"
 ]);
-angular.module('app').config(['$stateProvider', '$urlRouterProvider', 
+angular.module('app').config(['$stateProvider', '$urlRouterProvider',
 	function($stateProvider, $urlRouterProvider) {
-		
+
 		$urlRouterProvider.otherwise('/');
 		$stateProvider
 		.state('home', {
 			url: '/?lang',
 			views: {
-				'header': { 
-					templateUrl: './templates/header.html?' + Math.random(),
-					controller: 'HeaderController',
-					controllerAs: 'vm'
+				'header': {
+					template: '<div mod-header></div>'
 				},
-				'search': { 
-					templateUrl: './templates/search.html?' + Math.random(),
-					controller: 'SearchController',
-					controllerAs: 'vm'
+				'main': {
+					templateUrl: './templates/home.html?' + Math.random()
 				}
 			}
 		})
-		.state('home.subject', {
-			url: 'show?subjects',
+		.state('subject', {
+			url: '/:vocab',
 			views: {
-				'subject@': { 
-					templateUrl: './templates/subject.html?' + Math.random(),
-					controller: 'SubjectController',
-					controllerAs: 'vm'
+				'header': {
+					template: '<div mod-header></div>'
 				},
-				'catalogue@': { 
-					templateUrl: './templates/catalogue.html?' + Math.random(),
-					controller: 'CatalogueController',
-					controllerAs: 'vm'
+				'main': {
+					template: [
+						'<div class="container-fluid">',
+						'<div class="row">',
+						'	<div id="left" class="col-md-5">',
+						'		<div mod-search></div>',
+						'		<div ui-view="subject"></div>',
+						'	</div>',
+						'	<div id="right" class="col-md-7">',
+						'		<div ui-view="catalogue"></div>',
+						'	</div>',
+						'</div>',
+						'</div>'
+					].join('')
+				},
+			}
+		})
+		.state('subject.search', {
+			url: '/search?subjects',
+			views: {
+				'subject': {
+					template: '<div mod-subject></div>'
+				},
+				'catalogue': {
+					template: '<div mod-catalogue></div>'
 				}
 			}
 		});

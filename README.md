@@ -23,3 +23,11 @@ and [angular-gulp-gettext](https://github.com/gabegorelick/gulp-angular-gettext)
 
 * Run `gulp translations` to compile JavaScript files in
   `dist/translations` from PO files in the `po` folder.
+
+
+## Code style
+
+This project tries to adher to:
+
+* [Y033](https://github.com/johnpapa/angular-styleguide#style-y033): Controllers: Place bindable members at the top of the controller, alphabetized
+* [Y052](https://github.com/johnpapa/angular-styleguide#style-y052): Factories: Expose the callable members of the service (its interface) at the top (Revealing Module Pattern)

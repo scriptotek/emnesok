@@ -1,6 +1,69 @@
-angular.module('app.controllers.search', ['app.services.config']).controller('SearchController', ['$state', '$scope', '$rootScope', '$timeout', 'Config',
-    function SearchController($state, $scope, $rootScope, $timeout, Config) {
-		console.log('[SearchController] Init');
+angular.module('app.modules.search', ['app.services.config'])
+.directive('modSearch', ['$state', '$stateParams', '$timeout', 'Config',
+function SearchModule($state, $stateParams, $timeout, Config) {
+
+	console.log('[Search] Init');
+
+	function controller($rootScope) {
+		var vm = this;
+
+		vm.searchUrl = Config.skosmos.searchUrl;
+		vm.lang = $stateParams.lang || Config.defaultLanguage;
+		vm.vocab = ($stateParams.vocab && $stateParams.vocab != 'all') ? $stateParams.vocab : null;
+		vm.formatRequest = formatRequest;
+		vm.formatResult = formatResult;
+		vm.selectSubject = selectSubject;
+
+		////////////
+
+		function formatRequest(str) {
+			var query = (str.length == 2) ? str : '*' + str + '*';
+
+			return {
+				query: query,
+				labellang: vm.lang,
+				vocab: vm.vocab
+			};
+		}
+
+		function formatResult(response) {
+
+			return response.results.map(function(result) {
+				result.description = result.matchedPrefLabel ? ' (' +result.matchedPrefLabel + ')' : '';
+				return result;
+			});
+		}
+
+		function shortIdFromUri(uri) {
+			var s = uri.split('/'),
+				id = s.pop(),
+				vocab = s.pop();
+			return vocab + ':' + id;
+		}
+
+		function selectSubject(item) {
+			if (item) {
+				var subjects = shortIdFromUri(item.originalObject.uri);
+				console.log('[SearchController] Selecting subject(s): ' + subjects);
+
+				$state.go('subject.search', {
+					subjects:   subjects
+				});
+			}
+		}
+	}
+
+	return {
+        restrict: 'A',
+        templateUrl: './templates/search.html?' + Math.random(),
+        replace: false,
+        scope: {},
+        controllerAs: 'vm',
+        controller: ['$rootScope', controller]
+    };
+}]);
+
+
 /*
 $timeout(function() {
 	console.log("Men nå da?");
@@ -55,48 +118,3 @@ WHERE
 }
 
 */
-
-		this.searchUrl = Config.skosmos.searchUrl;
-		this.lang = $state.params.lang || Config.defaultLanguage;
-		this.vocab = $state.params.vocab;
-
-		this.formatRequest = angular.bind(this, function(str) {
-
-			var query = (str.length == 2) ? str : '*' + str + '*';
-
-			return {
-				query: query,
-				labellang: this.lang,
-				vocab: this.vocab
-			};
-		});
-
-		this.formatResult = function(response) {
-
-			return response.results.map(function(result) {
-				result.description = result.matchedPrefLabel ? ' (' +result.matchedPrefLabel + ')' : '';
-				return result;
-			});
-
-		};
-
-		function shortIdFromUri(uri) {
-			var s = uri.split('/'),
-				id = s.pop(),
-				vocab = s.pop();
-			return vocab + ':' + id;
-		}
-
-		this.selectSubject = function(item) {
-			if (item) {
-				var subjects = shortIdFromUri(item.originalObject.uri);
-				console.log('[SearchController] Selecting subject(s): ' + subjects);
-
-				$state.go('home.subject', {
-					lang:		item.originalObject.lang,
-					subjects:   subjects
-				});
-			}
-		};
-    }
-]);

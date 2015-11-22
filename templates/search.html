@@ -1,6 +1,6 @@
 <!-- SEARCH.HTML -->
 
-<div class="btn-group" uib-dropdown uib-keyboard-nav>
+<!--<div class="btn-group" uib-dropdown uib-keyboard-nav>
 	<button id="simple-btn-keyboard-nav" type="button" class="btn btn-primary" uib-dropdown-toggle>
 		Vokabular <span class="caret"></span>
 	</button>
@@ -14,10 +14,10 @@
 		<li class="divider"></li>
 		<li role="menuitem"><a href="#">Alle</a></li>
 	</ul>
-</div>
+</div>-->
 
 <div angucomplete-alt id="search" class="btn-group" placeholder="{{'Enter a subject' | translate}}" maxlength="50" 
-	pause="600"
+	pause="300"
 	selected-object="vm.selectSubject" 
 	remote-url="{{vm.searchUrl}}"
 	remote-url-request-formatter="vm.formatRequest"
