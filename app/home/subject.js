@@ -18,13 +18,14 @@ function SubjectModule($stateParams, $filter, Config, Lang, SubjectService) {
 
 			SubjectService.get(uri).then(function(subject) {
 				var displayLang = lang;
+				var defaultLang = Lang.defaultLanguage;
 				var translations = [];
 
 				console.log('[Subject] Hooray, got a subject:');
 				console.log(subject);
 
 				if (!subject.prefLabel[lang]) {
-					displayLang = Lang.defaultLanguage;
+					displayLang = defaultLang;
 				}
 				Object.keys(subject.prefLabel).forEach(function(langCode) {
 					if (langCode !== displayLang) {
@@ -39,9 +40,10 @@ function SubjectModule($stateParams, $filter, Config, Lang, SubjectService) {
 				vm.subject = {
 					prefLabel: subject.prefLabel[displayLang],
 					altLabel: subject.altLabel[displayLang],
+					definition: subject.definition[displayLang] || subject.definition[defaultLang],
 					related: subject.related.map(function(k) {
 						return {
-							prefLabel: k.prefLabel[displayLang] || k.prefLabel[Lang.defaultLanguage]
+							prefLabel: k.prefLabel[displayLang] || k.prefLabel[defaultLang]
 						};
 					}),
 					translations: translations

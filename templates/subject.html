@@ -10,6 +10,10 @@ Includes search history
 		<span ng-show="vm.subject.chem"><b>({{vm.subject.chem}})</b></span>
 	</div>
 
+	<div ng-show="vm.subject.definition">
+		{{ vm.subject.definition }}
+	</div>
+
 	<div ng-show="vm.subject.altLabel.length">
 		Brukt for:
 		<span class="term" ng-repeat-start="label in vm.subject.altLabel">{{ label }}</span>

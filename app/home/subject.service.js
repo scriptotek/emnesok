@@ -56,7 +56,8 @@ factory('SubjectService', function SubjectService($http, $stateParams, $filter, 
 		return {
 			prefLabel: indexByLanguage(arrayify(resources[uri].prefLabel), false),
 			altLabel: indexByLanguage(arrayify(resources[uri].altLabel), true),
-			related: arrayify(resources[uri].related)
+			related: arrayify(resources[uri].related),
+			definition: indexByLanguage(arrayify(resources[uri]['skos:definition']))
 		};
 	}
 
