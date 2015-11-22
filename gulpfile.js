@@ -3,7 +3,7 @@ var gettext = require('gulp-angular-gettext');
 
 gulp.task('pot', function () {
     return gulp.src(['templates/**/*.html', 'app/**/*.js'])
-        .pipe(gettext.extract('template.pot', {
+        .pipe(gettext.extract('emnesok.pot', {
             // options to pass to angular-gettext-tools...
         }))
         .pipe(gulp.dest('po/'));
