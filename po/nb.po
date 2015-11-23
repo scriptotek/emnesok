@@ -32,9 +32,17 @@ msgstr "Leter…"
 msgid "No hits :("
 msgstr "Ingen treff :("
 
+#: subject.html:24
+msgid "See also:"
+msgstr "Se også:"
+
 #: header.html:14
 msgid "Subject search"
 msgstr "Emnesøk"
+
+#: subject.html:18
+msgid "Used for:"
+msgstr "Brukt for:"
 
 #: header.html:46
 msgid ""

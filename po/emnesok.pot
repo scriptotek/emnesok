@@ -24,8 +24,16 @@ msgstr ""
 msgid "No hits :("
 msgstr ""
 
+#: subject.html:24
+msgid "See also:"
+msgstr ""
+
 #: header.html:14
 msgid "Subject search"
+msgstr ""
+
+#: subject.html:18
+msgid "Used for:"
 msgstr ""
 
 #: header.html:46

@@ -3,32 +3,40 @@ Includes search history
 
 -->
 
-<div class="subject" ng-show="vm.subject">
+<div class="subject panel panel-info" ng-show="vm.subject">
 
-	<div>
-		<span class="term prefLabel">{{vm.subject.prefLabel}}</span>
-		<span ng-show="vm.subject.chem"><b>({{vm.subject.chem}})</b></span>
+	<div class="panel-heading">
+		<div class="term pref_label panel_heading">{{vm.subject.prefLabel}}</div>
+		<!--<span ng-show="vm.subject.chem"><b>({{vm.subject.chem}})</b></span>-->
 	</div>
 
-	<div ng-show="vm.subject.definition">
-		{{ vm.subject.definition }}
-	</div>
+	<div class="info">
 
-	<div ng-show="vm.subject.altLabel.length">
-		Brukt for:
-		<span class="term" ng-repeat-start="label in vm.subject.altLabel">{{ label }}</span>
-		<span class="term_separator" ng-repeat-end></span>
-	</div>
+		<div class="block definition" ng-show="vm.subject.definition">
+			{{ vm.subject.definition }}
+		</div>
 
-	<div ng-show="vm.subject.related.length">
-		Se også:
-		<a class="term" ng-repeat-start="related in vm.subject.related | orderBy:'prefLabel'" ui-sref="home.subject({ subjects: related.prefLabel })">{{ related.prefLabel }}</a>
-		<span class="term_separator" ng-repeat-end></span>
-	</div>
+		<div class="block" ng-show="vm.subject.altLabel.length">
+			<span translate>Used for:</span>
+			<span class="term" ng-repeat-start="label in vm.subject.altLabel">{{ label }}</span>
+			<span class="term_separator" ng-repeat-end></span>
+		</div>
+		<div class="block"> 
+			<div ng-repeat="translation in vm.subject.translations">
+				{{ translation.language.name }}: {{ translation.prefLabel }}
+				<span ng-show="translation.altLabel.length" class="alt_trans">
+					<span translate>(Used for:</span>
+					<span class="term_separator" ng-repeat="label in translation.altLabel">{{label}}</span>)
+				</span>
+			</div>
+		</div>
 
-	<div ng-repeat="translation in vm.subject.translations">
-		{{ translation.language.name }}: {{ translation.prefLabel }}
-		<span ng-repeat="label in translation.altLabel">{{ label }}</span>
+		<div class="block" ng-show="vm.subject.related.length">
+			<span translate>See also:</span>
+			<a class="term" ng-repeat-start="related in vm.subject.related | orderBy:'prefLabel'" ui-sref="home.subject({ subjects: related.prefLabel })">{{ related.prefLabel }}</a>
+			<span class="term_separator" ng-repeat-end></span>
+		</div>
+
 	</div>
 
 <!--	<div ng-show="vm.relatedSubjects" ng-repeat="relatedSubject in vm.relatedSubjects | orderBy:'value'">
