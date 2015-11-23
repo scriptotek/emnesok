@@ -16,6 +16,17 @@
 				la: 'Latin'
 			},
 			defaultLanguage: 'nb',
+			libraries: [
+	            {id: '', label: 'Hele Norge'},
+	            {id: 'ubo', label: 'UiO'},
+	            {id: 'ureal* OR ubonett', label: '    UiO Realfagsbiblioteket'},
+	            {id: 'urealinf OR ubonett', label: '    UiO Informatikkbiblioteket'},
+	            {id: 'urealnhm OR ubonett', label: '    UiO NHM'},
+	            {id: 'ubb', label: 'UiB'},
+	            {id: 'ntnub', label: 'NTNU'},
+	            {id: 'ubt', label: 'UiT'},
+	            {id: '??', label: 'NMBU'}
+	        ],
 			vocabularies: {
 				realfagstermer: {
 					name: 'Realfagstermer',

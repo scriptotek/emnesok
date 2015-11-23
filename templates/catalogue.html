@@ -5,7 +5,20 @@ Next: {{ vm.next }}
 </span>
 
 <div style="margin-bottom:200px;">
-	<h2 translate>Catalogue results</h2>
+
+	 <!-- Single button with keyboard nav -->
+	 <div style="float:right;">
+	    <div class="btn-group" uib-dropdown uib-keyboard-nav>
+	        <button id="simple-btn-keyboard-nav" type="button" class="btn btn-default" uib-dropdown-toggle>
+	            {{ vm.libraries[vm.selectedLibrary].label.trim() }} <span class="caret"></span>
+	        </button>
+	        <ul class="uib-dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="simple-btn-keyboard-nav">
+	            <li role="menuitem" ng-repeat="library in vm.libraries"><a href ng-click="vm.selectLibrary($index)">{{ library.label }}</a></li>
+	        </ul>
+	    </div>
+	</div>
+
+	<h2 translate>Catalogue results <span ng-show="vm.busy">(WORKING...)</span></h2>
 
 	<p ng-show="vm.start"
 	   translate translate-n="vm.total_results"

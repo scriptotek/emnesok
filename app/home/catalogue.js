@@ -55,13 +55,13 @@
             replace: false,
             scope: {},
             controllerAs: 'vm',
-            controller: ['$stateParams', '$scope', '$window', 'Lang', 'Catalogue', 'Config', controller]
+            controller: ['$stateParams', '$scope', '$window', '$timeout', 'Lang', 'Catalogue', 'Config', controller]
         };
 
         return directive;
     }
 
-    function controller($stateParams, $scope, $window, Lang, Catalogue, Config) {
+    function controller($stateParams, $scope, $window, $timeout, Lang, Catalogue, Config) {
         /*jshint validthis: true */
         var vm = this;
         vm.vocab = '';
@@ -74,6 +74,9 @@
         vm.results = [];
         vm.expandGroup = expandGroup;
         vm.getMoreRecords = getMoreRecords;
+        vm.selectLibrary = selectLibrary;
+        vm.selectedLibrary = 0;
+        vm.libraries = Config.libraries;
 
         activate();
 
@@ -92,18 +95,16 @@
             //     return target.off('scroll', handler);
             // });
 
-            angular.element($window).on('scroll', checkScrollPos);
+            angular.element($window).bind('scroll', function() { $scope.$apply(checkScrollPos); });
         }
 
         function checkScrollPos() {
             var scrollPosition = window.pageYOffset;
-            var windowHeight     = window.innerHeight;
+            var windowHeight   = window.innerHeight;
             var bodyHeight     = document.body.offsetHeight;
-
             var body = document.body,
                 html = document.documentElement;
-
-            var height = Math.max( body.scrollHeight, body.offsetHeight, 
+            var height = Math.max( body.scrollHeight, body.offsetHeight,
                                    html.clientHeight, html.scrollHeight, html.offsetHeight );
 
             vm.distanceFromBottom = height - scrollPosition - windowHeight;
@@ -111,13 +112,10 @@
             if (vm.distanceFromBottom < 500) {
                 getMoreRecords();
             }
-
-            $scope.$apply();
         }
 
         function expandGroup(id) {
             var url = Config.catalogue.groupUrl.replace('{id}', id);
-            console.log(url);
         }
 
         function gotResults(response) {
@@ -130,7 +128,7 @@
             vm.last = vm.next ? vm.next - 1 : vm.total_results;
             vm.results = vm.results.concat(response.results);
             vm.busy = false;
-            checkScrollPos();
+            $timeout(checkScrollPos, 500);
         }
 
         function getMoreRecords() {
@@ -141,12 +139,19 @@
 
         function search() {
             vm.busy = true;
-            Catalogue.search(vm.vocab, vm.term, vm.next).then(
+            Catalogue.search(vm.vocab, vm.term, vm.next, vm.libraries[vm.selectedLibrary].id).then(
                 gotResults,
                 function(error) {
                     // @TODO Handle error
                 }
             );
+        }
+
+        function selectLibrary(idx) {
+            vm.selectedLibrary = idx;
+            vm.results = [];
+            vm.next = 1;
+            search();
         }
 
     }

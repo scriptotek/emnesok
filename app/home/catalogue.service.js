@@ -17,22 +17,26 @@
 
 		////////////
 
-		function search(vocab, term, start) {
+		function search(vocab, term, start, library) {
 			var deferred = $q.defer();
 
-			if (!start) {
-				start = 1;
+			var params = {
+				vocab: vocab,
+				subject: term
+			};
+
+			if (start) {
+				params.start = start;
+			}
+			if (library) {
+				params.library = library;
 			}
 
 			$http({
 			  method: 'GET',
 			  cache: true,
 			  url: Config.catalogue.searchUrl,
-			  params: {
-			  	vocab: vocab,
-			  	subject: term,
-			  	start: start
-			  }
+			  params: params
 			}).
 			then(function(data){
 				deferred.resolve(data.data);
