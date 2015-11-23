@@ -17,8 +17,12 @@
 
 		////////////
 
-		function search(vocab, term) {
+		function search(vocab, term, start) {
 			var deferred = $q.defer();
+
+			if (!start) {
+				start = 1;
+			}
 
 			$http({
 			  method: 'GET',
@@ -26,7 +30,8 @@
 			  url: Config.catalogue.searchUrl,
 			  params: {
 			  	vocab: vocab,
-			  	subject: term
+			  	subject: term,
+			  	start: start
 			  }
 			}).
 			then(function(data){

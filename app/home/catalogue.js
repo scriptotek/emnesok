@@ -55,22 +55,25 @@
             replace: false,
             scope: {},
             controllerAs: 'vm',
-            controller: ['$stateParams', '$scope', 'Lang', 'Catalogue', 'Config', controller]
+            controller: ['$stateParams', '$scope', '$window', 'Lang', 'Catalogue', 'Config', controller]
         };
 
         return directive;
     }
 
-    function controller($stateParams, $scope, Lang, Catalogue, Config) {
+    function controller($stateParams, $scope, $window, Lang, Catalogue, Config) {
         /*jshint validthis: true */
         var vm = this;
-        vm.uri = null;
-        vm.first = 0;
+        vm.vocab = '';
+        vm.term = '';
+        vm.start = 0;
         vm.last = 0;
-        vm.next = 0;
+        vm.next = 1;
+        vm.busy = true;
         vm.total_results = 0;
         vm.results = [];
         vm.expandGroup = expandGroup;
+        vm.getMoreRecords = getMoreRecords;
 
         activate();
 
@@ -79,34 +82,71 @@
         function activate() {
             var defaultLang = Lang.defaultLanguage;
             $scope.$on('SubjectReady', function(evt, data) {
-                console.log('Subject ready');
-                console.log(data);
-                vm.uri = data.uri;
-                search(data.vocab, data.data.prefLabel[defaultLang]);
+                console.log('[CatalogueController] Got subject');
+                vm.vocab = data.vocab;
+                vm.term = data.data.prefLabel[defaultLang];
+                search();
             });
+
+            // scope.$on('$destroy', function() {
+            //     return target.off('scroll', handler);
+            // });
+
+            angular.element($window).on('scroll', checkScrollPos);
+        }
+
+        function checkScrollPos() {
+            var scrollPosition = window.pageYOffset;
+            var windowHeight     = window.innerHeight;
+            var bodyHeight     = document.body.offsetHeight;
+
+            var body = document.body,
+                html = document.documentElement;
+
+            var height = Math.max( body.scrollHeight, body.offsetHeight, 
+                                   html.clientHeight, html.scrollHeight, html.offsetHeight );
+
+            vm.distanceFromBottom = height - scrollPosition - windowHeight;
+
+            if (vm.distanceFromBottom < 500) {
+                getMoreRecords();
+            }
+
+            $scope.$apply();
         }
 
         function expandGroup(id) {
             var url = Config.catalogue.groupUrl.replace('{id}', id);
             console.log(url);
-
         }
 
-        function search(vocab, term) {
-            vm.vocab = vocab;
-            vm.term = term;
-            Catalogue.search(vocab, term).then(function(response) {
-                console.log('Got results from CatalogueService:');
-                console.log(response);
-                vm.total_results = response.total_results;
-                vm.first = response.first;
-                vm.next = response.next;
-                vm.last = vm.next - 1;
+        function gotResults(response) {
+            console.log('Got results from CatalogueService:');
+            console.log(response);
 
-                vm.results = response.results;
-            }, function(error) {
-                // @TODO Handle error
-            });
+            vm.total_results = response.total_results;
+            vm.start = response.first;
+            vm.next = response.next;
+            vm.last = vm.next ? vm.next - 1 : vm.total_results;
+            vm.results = vm.results.concat(response.results);
+            vm.busy = false;
+            checkScrollPos();
+        }
+
+        function getMoreRecords() {
+            if (vm.vocab && vm.term && vm.next && !vm.busy) {
+                search();
+            }
+        }
+
+        function search() {
+            vm.busy = true;
+            Catalogue.search(vm.vocab, vm.term, vm.next).then(
+                gotResults,
+                function(error) {
+                    // @TODO Handle error
+                }
+            );
         }
 
     }

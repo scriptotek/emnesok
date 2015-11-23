@@ -1,12 +1,27 @@
-<h2 translate>Catalogue results</h2>
 
-<p ng-show="vm.first" translate>
-	Showing {{ vm.first }} to {{ vm.last }} of {{ vm.total_results }} results.
-</p>
-<ul>
-	<li ng-repeat="result in vm.results">
+<span style="position:fixed; z-index: 9999; bottom: 0; right: 0; background:rgba(0,0,0,0.5); font-size: 10px; padding:3px; color: white;">
+Bottom: {{ vm.distanceFromBottom}} Busy: {{ vm.busy }}
+Next: {{ vm.next }}
+</span>
 
-		<mod-catalogue-result record="result"></mod-catalogue-result>
+<div style="margin-bottom:200px;">
+	<h2 translate>Catalogue results</h2>
 
-	</li>
-</ul>
+	<p ng-show="vm.start"
+	   translate translate-n="vm.total_results"
+	   translate translate-n="msgCount" translate-plural="Found {{$count}} documents.">Found one document.
+	</p>
+
+	<ul>
+		<li ng-repeat="result in vm.results">
+			<mod-catalogue-result record="result"></mod-catalogue-result>
+		</li>
+	</ul>
+
+	<p ng-show="vm.start && vm.last != vm.total_results" translate>
+		Loaded {{ vm.last }} records so far, {{ vm.total_results - vm.last }} to go, hold on…
+	</p>
+	<p ng-show="vm.start && vm.last == vm.total_results" translate>
+		You've reached the end, my friend!
+	</p>
+</div>
