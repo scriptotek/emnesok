@@ -13,13 +13,13 @@
 	        replace: false,
 	        scope: {},
 	        controllerAs: 'vm',
-	        controller: ['$state', '$stateParams', '$timeout', '$rootScope', '$q', '$http', '$document', 'Config', controller]
+	        controller: ['$state', '$stateParams', '$timeout', '$rootScope', '$q', '$http', 'gettext', 'Config', controller]
 	    };
 
 		return directive;
 	}
 
-	function controller($state, $stateParams, $timeout, $rootScope, $q, $http, $document, Config) {
+	function controller($state, $stateParams, $timeout, $rootScope, $q, $http, gettext, Config) {
 		/*jshint validthis: true */
 		var vm = this;
 		console.log(vm);
@@ -70,9 +70,11 @@
 				var processed = formatResult(data.data);
 				deferred.resolve(processed);
 			}, function(error, q){
-				vm.errorMsg = error.status + ' ' + error.statusText;
-				// To hide the result list
-				$document[0].activeElement.blur();
+				if (error.status == -1) {
+					vm.errorMsg = gettext('No network connection');
+				} else {
+					vm.errorMsg = error.statusText;
+				}
 				deferred.resolve({results: []});
 			});
 

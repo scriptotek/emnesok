@@ -16,6 +16,11 @@
 	</ul>
 </div>-->
 
+<uib-alert type="danger" ng-show="vm.errorMsg">
+	<span translate>An error occured:</span>
+	{{ vm.errorMsg | translate }}
+</uib-alert>
+
 <div angucomplete-alt id="search" class="btn-group" placeholder="{{'Enter a subject' | translate}}" maxlength="50"
 	pause="300"
 	selected-object="vm.selectSubject"
@@ -28,8 +33,4 @@
 	text-no-results="{{'No hits :(' | translate}}"
 	text-searching="{{'Looking…' | translate}}"
 ></div>
-<div id="myError" ng-show="vm.errorMsg" class="alert alert-danger">
-	<span translate>An error occured:</span>
-	{{ vm.errorMsg }}
-</div>
 
