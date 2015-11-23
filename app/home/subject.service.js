@@ -3,9 +3,9 @@
 
 	angular
 		.module('app.services.subject', ['app.services.config'])
-		.factory('SubjectService', ['$http', '$stateParams', '$filter', '$q', 'Config', SubjectService]);
+		.factory('SubjectService', ['$http', '$stateParams', '$filter', '$q', '$rootScope', 'Config', SubjectService]);
 
-	function SubjectService($http, $stateParams, $filter, $q, Config) {
+	function SubjectService($http, $stateParams, $filter, $q, $rootScope, Config) {
 		console.log('[SubjectService] Init');
 
 		var service = {
@@ -126,7 +126,12 @@
 			  url: Config.skosmos.dataUrl.replace('{uri}', uri)
 			}).
 			then(function(data){
-				deferred.resolve(processSubject(uri, data.data));
+				var processed = processSubject(uri, data.data);
+				$rootScope.$broadcast('SubjectReady', {
+					uri: uri,
+					data: processed
+				});
+				deferred.resolve(processed);
 			}, function(error){
 				deferred.reject(error);
 			});

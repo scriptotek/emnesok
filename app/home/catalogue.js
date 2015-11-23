@@ -2,8 +2,8 @@
     'use strict';
 
     angular
-        .module('app.modules.catalogue', [])
-        .directive('appCatalogue', CatalogueModule);
+        .module('app.modules.catalogue', ['app.services.subject'])
+        .directive('modCatalogue', CatalogueModule);
 
     function CatalogueModule() {
     	console.log('[Catalogue] Init');
@@ -11,18 +11,31 @@
     	var directive = {
             restrict: 'A',
             templateUrl: './templates/catalogue.html?' + Math.random(),
-            replace: true,
+            replace: false,
             scope: {},
             controllerAs: 'vm',
-            controller: ['$http', '$stateParams', '$rootScope', controller]
+            controller: ['$stateParams', '$scope', controller]
         };
 
         return directive;
     }
 
-    function controller($http, $stateParams, $rootScope) {
+    function controller($stateParams, $scope) {
         /*jshint validthis: true */
-        // @TODO
+        var vm = this;
+        vm.uri = null;
+
+        activate();
+
+        ////////////
+
+        function activate() {
+            $scope.$on('SubjectReady', function(evt, data) {
+                console.log('Subject ready');
+                vm.uri = data.uri;
+            });
+        }
+
     }
 
 })();
