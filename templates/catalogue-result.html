@@ -1,0 +1,26 @@
+<div class="catalogue-result">
+	<a href="#">{{ record.title }}</a>
+	<span ng-show="record.edition">{{ record.edition }}</span>
+	{{ record.date }}
+
+	<div ng-bind-html="record.creator_string"></div>
+
+	<div>
+		{{ record.material }}
+	</div>
+
+	<div ng-show="record.type == 'group' && !recordExpanded">
+		<a href ng-click="expandGroup()">+ Flere utgaver</a>
+		<span ng-show="busy">Henter...</span>
+	</div>
+
+	<div ng-show="recordExpanded">
+		{{ versions.length }} utgaver:
+		<div ng-repeat="version in versions">
+			{{ version.edition }}
+			{{ version.date }}
+			{{ version.material }}
+		</div>
+	</div>
+
+</div>

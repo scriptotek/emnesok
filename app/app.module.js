@@ -4,6 +4,7 @@
 	angular
 		.module('app', [
 			'ngTouch',
+			'ngSanitize',
 			'angucomplete-alt',
 			'ui.router',
 			'ui.bootstrap',

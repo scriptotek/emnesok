@@ -45,6 +45,10 @@
 			skosmos: {
 				dataUrl: 'https://skosmos.biblionaut.net/rest/v1/data?uri={uri}',
 				searchUrl: 'https://skosmos.biblionaut.net/rest/v1/search'
+			},
+			catalogue: {
+				searchUrl: 'https://scs.biblionaut.net/primo/search',
+				groupUrl: 'https://scs.biblionaut.net/primo/groups/{id}'
 			}
 		};
 		return factory;

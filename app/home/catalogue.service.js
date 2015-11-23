@@ -9,7 +9,8 @@
 		console.log('[CatalogueService] Init');
 
 		var service = {
-			search: search
+			search: search,
+			expandGroup: expandGroup
 		};
 
 		return service;
@@ -19,18 +20,37 @@
 		function search(vocab, term) {
 			var deferred = $q.defer();
 
-			console.log('[CatalogueService] @TODO: Search for "' + term + '" in "' + vocab + '"');
+			$http({
+			  method: 'GET',
+			  cache: true,
+			  url: Config.catalogue.searchUrl,
+			  params: {
+			  	vocab: vocab,
+			  	subject: term
+			  }
+			}).
+			then(function(data){
+				deferred.resolve(data.data);
+			}, function(error){
+				deferred.reject(error);
+			});
 
-			// $http({
-			//   method: 'GET',
-			//   cache: true,
-			//   url: Config.skosmos.dataUrl.replace('{uri}', uri)
-			// }).
-			// then(function(data){
-			// 	deferred.resolve(processSubject(uri, data.data));
-			// }, function(error){
-			// 	deferred.reject(error);
-			// });
+			return deferred.promise;
+		}
+
+		function expandGroup(id) {
+			var deferred = $q.defer();
+
+			$http({
+			  method: 'GET',
+			  cache: true,
+			  url: Config.catalogue.groupUrl.replace('{id}', id)
+			}).
+			then(function(data){
+				deferred.resolve(data.data);
+			}, function(error){
+				deferred.reject(error);
+			});
 
 			return deferred.promise;
 		}

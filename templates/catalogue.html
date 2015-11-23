@@ -1,8 +1,12 @@
 <h2 translate>Catalogue results</h2>
 
-<p>
-	{{ vm.uri }}
+<p ng-show="vm.first" translate>
+	Showing {{ vm.first }} to {{ vm.last }} of {{ vm.total_results }} results.
 </p>
-<p>
-	Søker etter «{{ vm.term }}» i «{{ vm.vocab}}»...
-</p>
+<ul>
+	<li ng-repeat="result in vm.results">
+
+		<mod-catalogue-result record="result"></mod-catalogue-result>
+
+	</li>
+</ul>
