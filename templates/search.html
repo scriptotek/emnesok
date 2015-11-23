@@ -16,17 +16,20 @@
 	</ul>
 </div>-->
 
-<div angucomplete-alt id="search" class="btn-group" placeholder="{{'Enter a subject' | translate}}" maxlength="50" 
+<div angucomplete-alt id="search" class="btn-group" placeholder="{{'Enter a subject' | translate}}" maxlength="50"
 	pause="300"
-	selected-object="vm.selectSubject" 
-	remote-url="{{vm.searchUrl}}"
-	remote-url-request-formatter="vm.formatRequest"
-	remote-url-response-formatter="vm.formatResult"
+	selected-object="vm.selectSubject"
+	remote-api-handler="vm.search"
 	title-field="prefLabel"
 	description-field="description"
-	minlength="2" 
+	minlength="2"
 	input-class="form-control form-control-small"
 	match-class="highlight"
 	text-no-results="{{'No hits :(' | translate}}"
 	text-searching="{{'Looking…' | translate}}"
 ></div>
+<div id="myError" ng-show="vm.errorMsg" class="alert alert-danger">
+	<span translate>An error occured:</span>
+	{{ vm.errorMsg }}
+</div>
+

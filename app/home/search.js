@@ -13,23 +13,25 @@
 	        replace: false,
 	        scope: {},
 	        controllerAs: 'vm',
-	        controller: ['$state', '$stateParams', '$timeout', '$rootScope', 'Config', controller]
+	        controller: ['$state', '$stateParams', '$timeout', '$rootScope', '$q', '$http', '$document', 'Config', controller]
 	    };
 
 		return directive;
 	}
 
-	function controller($state, $stateParams, $timeout, $rootScope, Config) {
+	function controller($state, $stateParams, $timeout, $rootScope, $q, $http, $document, Config) {
 		/*jshint validthis: true */
 		var vm = this;
 		console.log(vm);
 
-		vm.searchUrl = Config.skosmos.searchUrl;
+		// vm.searchUrl = Config.skosmos.searchUrl;
 		vm.lang = $stateParams.lang || Config.defaultLanguage;
 		vm.vocab = ($stateParams.vocab && $stateParams.vocab != 'all') ? $stateParams.vocab : null;
-		vm.formatRequest = formatRequest;
-		vm.formatResult = formatResult;
+		// vm.formatRequest = formatRequest;
+		// vm.formatResult = formatResult;
 		vm.selectSubject = selectSubject;
+		vm.search = search;
+		vm.errorMsg = '';
 
 		console.log('[Search] Init');
 
@@ -46,11 +48,35 @@
 		}
 
 		function formatResult(response) {
+			console.log('Got response');
 
 			return response.results.map(function(result) {
 				result.description = result.matchedPrefLabel ? ' (' +result.matchedPrefLabel + ')' : '';
 				return result;
 			});
+		}
+
+		function search(query) {
+			var deferred = $q.defer();
+			vm.errorMsg = '';
+			$http({
+			  method: 'GET',
+			  cache: true,
+			  url: Config.skosmos.searchUrl,
+			  params: formatRequest(query)
+			}).
+			then(function(data){
+				console.log('>> GOT DATA');
+				var processed = formatResult(data.data);
+				deferred.resolve(processed);
+			}, function(error, q){
+				vm.errorMsg = error.status + ' ' + error.statusText;
+				// To hide the result list
+				$document[0].activeElement.blur();
+				deferred.resolve({results: []});
+			});
+
+			return deferred.promise;
 		}
 
 		function shortIdFromUri(uri) {
