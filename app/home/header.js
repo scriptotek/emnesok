@@ -11,7 +11,7 @@
 		var directive = {
 	        restrict: 'A',
 	        templateUrl: './templates/header.html?' + Math.random(),
-	        replace: true,
+	        replace: false,
 	        scope: {},
 	        controllerAs: 'vm',
 	        controller: ['$state', '$stateParams', 'Lang', 'Config', controller]

@@ -12,6 +12,10 @@ msgstr ""
 msgid "Enter a subject"
 msgstr ""
 
+#: home.html:3
+msgid "Hei du!"
+msgstr ""
+
 #: search.html:31
 msgid "Looking…"
 msgstr ""
@@ -20,6 +24,15 @@ msgstr ""
 msgid "No hits :("
 msgstr ""
 
-#: header.html:4
+#: header.html:14
 msgid "Subject search"
+msgstr ""
+
+#: header.html:46
+msgid ""
+"Welcome to an early development version of Subject Search 2.0. Please go ahead and search, but be warned that\n"
+"    functionality is still missing and that everything may suddenly fail.\n"
+"    Until a stable Subject Search 2.0 is released, you'll also be able to use our\n"
+"    <a href=\"http://app.uio.no/ub/emnesok/test/oria/\">Experimental Subject Search against Oria</a>.\n"
+"    Do you have ideas for improving the subject search? We have a <a href=\"https://github.com/scriptotek/emnesok/issues\">list of issues we're working on</a>, where you can also contribute your own ideas (requires a free GitHub account)."
 msgstr ""
