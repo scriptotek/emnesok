@@ -3,7 +3,7 @@
 Frontend for subject search against the vocabularies
 Realfagstermer (Bokmål, Nynorsk, English), Humord (Bokmål), Tekord (Bokmål) and Menneskerettighetstermer (English).
 
-To setup, run `bower install` and `npm install` to fetch dependencies.
+To setup, run `bower install` and `npm install` to fetch dependencies. Then run `gulp watch` to start a development server.
 
 The frontend uses a [Skosmos](https://github.com/NatLibFi/Skosmos) instance to query for subjects, and the Primo Search API through [SCS](https://github.com/scriptotek/scs) to query for catalogue records.
 

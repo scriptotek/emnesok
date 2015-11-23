@@ -1,5 +1,6 @@
 var gulp = require('gulp');
 var gettext = require('gulp-angular-gettext');
+var browserSync = require('browser-sync');
 
 gulp.task('pot', function () {
     return gulp.src(['templates/**/*.html', 'app/**/*.js'])
@@ -16,4 +17,19 @@ gulp.task('translations', function () {
             format: 'javascript'
         }))
         .pipe(gulp.dest('dist/translations/'));
+});
+
+gulp.task('browserSync', function() {
+  browserSync({
+    server: {
+      baseDir: ''
+    },
+  });
+});
+
+gulp.task('watch', ['browserSync'], function (){
+  //gulp.watch('app/scss/**/*.scss', ['sass']);
+  // Reloads the browser whenever HTML or JS files change
+  gulp.watch('templates/*.html', browserSync.reload);
+  gulp.watch('app/**/*.js', browserSync.reload);
 });
