@@ -20,17 +20,26 @@
 				realfagstermer: {
 					name: 'Realfagstermer',
 					languages: ['nb', 'nn', 'en'],
-					defaultLanguage: 'nb'
+					defaultLanguage: 'nb',
+					uriPattern: 'http://data.ub.uio.no/realfagstermer/{id}'
 				},
 				humord: {
 					name: 'Humord',
 					languages: ['nb'],
-					defaultLanguage: 'nb'
+					defaultLanguage: 'nb',
+					uriPattern: 'http://data.ub.uio.no/humord/{id}'
+				},
+				tekord: {
+					name: 'Tekord',
+					languages: ['nb'],
+					defaultLanguage: 'nb',
+					uriPattern: 'http://data.ub.uio.no/tekord/{id}'
 				},
 				mrtermer: {
 					name: 'Human Rights Terms?',
 					languages: ['en'],
-					defaultLanguage: 'en'
+					defaultLanguage: 'en',
+					uriPattern: 'http://data.ub.uio.no/mrtermer/{id}'
 				}
 			},
 			skosmos: {

@@ -31,10 +31,10 @@
 
 		////////////
 
-		function getSubject(uri) {
+		function getSubject(vocab, subject_id) {
 			var lang = Lang.language;
 
-			SubjectService.get(uri).then(function(subject) {
+			SubjectService.get(vocab, subject_id).then(function(subject) {
 				var displayLang = lang;
 				var defaultLang = Lang.defaultLanguage;
 				var translations = [];
@@ -73,21 +73,13 @@
 		}
 
 		function activate() {
-			var subject;
-			var uri;
-
 			if ($stateParams.subjects) {
-				subject = $stateParams.subjects.split(':');
-				if (subject.length == 2) {
-					uri = 'http://data.ub.uio.no/' + subject[0] + '/' + subject[1];
+				var subjectParts = $stateParams.subjects.split(':');
+				if (subjectParts.length == 2) {
+					getSubject(subjectParts[0], subjectParts[1]);
 				}
 			}
-
 			// @TODO: Subject should probably be given to the directive as an argument
-
-			if (uri) {
-				getSubject(uri);
-			}
 		}
 	}
 

@@ -117,8 +117,14 @@
 			return out;
 		}
 
-		function get(uri) {
+		function get(vocab, id) {
+			if (!Config.vocabularies[vocab]) {
+				console.error('Unknown vocabulary ' + vocab + '!');
+				return;
+			}
 			var deferred = $q.defer();
+
+			var uri = Config.vocabularies[vocab].uriPattern.replace('{id}', id);
 
 			$http({
 			  method: 'GET',
@@ -129,6 +135,8 @@
 				var processed = processSubject(uri, data.data);
 				$rootScope.$broadcast('SubjectReady', {
 					uri: uri,
+					vocab: vocab,
+					id: id,
 					data: processed
 				});
 				deferred.resolve(processed);
