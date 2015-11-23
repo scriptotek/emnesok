@@ -8,9 +8,14 @@
 		<title translate>Subject search</title>
 		<style>
 
+			/* Hack to prevent horizontal scrollbar on navbar to flicker on state change */
+			.navbar * {
+				overflow: visible !important;
+			}
+
 			body {
-				/* Make space for navbar */
-				padding-top: 70px;
+				/* Prevents stuff from jumping around */
+				overflow-y: scroll;
 			}
 			/*html,body{
 				height:100%;
