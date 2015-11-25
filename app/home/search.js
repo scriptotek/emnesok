@@ -13,13 +13,13 @@
 	        replace: false,
 	        scope: {},
 	        controllerAs: 'vm',
-	        controller: ['$state', '$stateParams', '$timeout', '$rootScope', '$q', '$http', '$document', 'Config', controller]
+	        controller: ['$state', '$stateParams', '$timeout', '$rootScope','$q', '$http', '$filter', '$document', 'gettext', 'Config', controller]
 	    };
 
 		return directive;
 	}
 
-	function controller($state, $stateParams, $timeout, $rootScope, $q, $http, $document, Config) {
+	function controller($state, $stateParams, $timeout, $rootScope, $q, $http, $filter, $document, gettext, Config) {
 		/*jshint validthis: true */
 		var vm = this;
 		console.log(vm);
@@ -30,15 +30,50 @@
 		// vm.formatRequest = formatRequest;
 		// vm.formatResult = formatResult;
 		vm.selectSubject = selectSubject;
+		vm.focusIn = focusIn;
+		vm.truncate = 0;
+		vm.truncations = [gettext('Starting with'), gettext('Containing'), gettext('Ends with'), gettext('Exact match')];
 		vm.search = search;
 		vm.errorMsg = '';
 
 		console.log('[Search] Init');
 
 		////////////
+		
+		//Temporary solution until angucomplete gets a proper search-upon-focus behaviour
+		function focusIn () {
 
+			var query = document.getElementById('search_value');
+
+			console.log('query',query);
+			if (query.length<2) return false;
+
+
+			angular.element(query).triggerHandler('input');
+			angular.element(query).triggerHandler('keyup');
+		};
+			
 		function formatRequest(str) {
-			var query = (str.length == 2) ? str : '*' + str + '*';
+			var query;
+
+			switch(vm.truncate) {
+				//Starting
+				case 0:
+					query = str + '*';
+					break;
+				//Contains
+				case 1:
+					query = (str.length == 2) ? str : '*' + str + '*';
+					break;
+				//Ends
+				case 2:
+					query = '*' + str;
+					break;
+				//Exact
+				case 3:
+					query = str;
+					break;
+			}
 
 			return {
 				query: query,
@@ -47,17 +82,47 @@
 			};
 		}
 
-		function formatResult(response) {
+		function formatResult(response,query) {
 			console.log('Got response');
 
-			return response.results.map(function(result) {
-				result.description = result.matchedPrefLabel ? ' (' +result.matchedPrefLabel + ')' : '';
-				return result;
+			var result = [];
+	
+			//Remove duplicates and add matchedPreflabel where there is a match
+			response.results.forEach(function (value, key) {
+				
+				//Check if match is on prefLabel
+				if (value.prefLabel.toLocaleLowerCase().indexOf(query)>-1) {
+				
+					//PrefLabel might exist from before
+					if (!$filter('filter')(result, {uri : value.uri}, true).length){
+						result.push({prefLabel:value.prefLabel,uri:value.uri});
+					}	
+				}
+				//Or on matchedPrefLabel or altLabel
+				else {
+
+					if (value.matchedPrefLabel){
+						if (!$filter('filter')(result, {uri : value.uri}, true).length){
+							result.push({prefLabel:value.prefLabel+" <- "+value.matchedPrefLabel,uri:value.uri});
+						}
+					}
+					else if (value.altLabel){
+						if (!$filter('filter')(result, {uri : value.uri}, true).length){
+							result.push({prefLabel:value.prefLabel+" <- "+value.altLabel,uri:value.uri});
+						}
+					}
+				}
 			});
+			
+			return result;
 		}
 
 		function search(query) {
+
 			var deferred = $q.defer();
+
+			console.log('Searching with...',query);
+
 			vm.errorMsg = '';
 			$http({
 			  method: 'GET',
@@ -67,13 +132,15 @@
 			}).
 			then(function(data){
 				console.log('>> GOT DATA');
-				var processed = formatResult(data.data);
+				var processed = formatResult(data.data,query);
 				deferred.resolve(processed);
 			}, function(error, q){
 				vm.errorMsg = error.status + ' ' + error.statusText;
 				// To hide the result list
 				$document[0].activeElement.blur();
+						
 				deferred.resolve({results: []});
+				
 			});
 
 			return deferred.promise;

@@ -1,35 +1,27 @@
 <!-- SEARCH.HTML -->
 
-<!--<div class="btn-group" uib-dropdown uib-keyboard-nav>
-	<button id="simple-btn-keyboard-nav" type="button" class="btn btn-primary" uib-dropdown-toggle>
-		Vokabular <span class="caret"></span>
-	</button>
-	<ul class="uib-dropdown-menu" role="menu" aria-labelledby="simple-btn-keyboard-nav">
-		<li role="menuitem"><a ui-sref="home.subject({vocab: 'realfagstermer'})">Realfagstermer</a></li>
-		<li role="menuitem"><a ui-sref="home.subject({vocab: 'humord'})">Humord</a></li>
-		<li role="menuitem"><a href="#">Tekord</a></li>
-		<li role="menuitem"><a href="#">Menneskerettighetene</a></li>
+<div class="input-group">
+	<div class="input-group-btn" uib-dropdown uib-keyboard-nav>
+		<button id="simple-btn-keyboard-nav" type="button" class="truncate_button btn btn-default" uib-dropdown-toggle translate>
+			{{vm.truncations[vm.truncate]}} <span class="caret"></span>
+		</button>
+		<ul class="uib-dropdown-menu" role="menu" aria-labelledby="simple-btn-keyboard-nav">
+            <li role="menuitem" ng-repeat="truncation in vm.truncations"><a href ng-click="vm.truncate=$index" translate>{{truncation}}</a></li>
+		</ul>
+	</div>
 
+	<div id="search" angucomplete-alt placeholder="{{'Enter a subject' | translate}}" maxlength="50" 
+		pause="300"
+		selected-object="vm.selectSubject" 
+		remote-api-handler="vm.search"
+		focus-in="vm.focusIn"
+		title-field="prefLabel"
+		minlength="0" 
+		input-class="form-control form-control-small"
+		match-class="highlight"
+		text-no-results="{{'No hits :(' | translate}}"
+		text-searching="{{'Looking…' | translate}}"
+	></div>
 
-		<li class="divider"></li>
-		<li role="menuitem"><a href="#">Alle</a></li>
-	</ul>
-</div>-->
-
-<div angucomplete-alt id="search" class="btn-group" placeholder="{{'Enter a subject' | translate}}" maxlength="50"
-	pause="300"
-	selected-object="vm.selectSubject"
-	remote-api-handler="vm.search"
-	title-field="prefLabel"
-	description-field="description"
-	minlength="2"
-	input-class="form-control form-control-small"
-	match-class="highlight"
-	text-no-results="{{'No hits :(' | translate}}"
-	text-searching="{{'Looking…' | translate}}"
-></div>
-<div id="myError" ng-show="vm.errorMsg" class="alert alert-danger">
-	<span translate>An error occured:</span>
-	{{ vm.errorMsg }}
 </div>
 

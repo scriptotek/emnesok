@@ -34,16 +34,30 @@
 				color: #3A8EC4;
 			}
 
-			#search_dropdown {
-			  overflow-y: auto;
-			  max-height: 200px;
-			  width: 100%;         /* @TODO: Responsiveness... */
-			  background:white;
-			  cursor:pointer;
-			  color:black;
+			.angucomplete-row {
+				padding: 3px !important;
+				color: #000000;
+				margin-bottom: 2px !important;
+				clear: both;
 			}
+
 			#search{
 				width:100%;
+			}
+
+			#search_dropdown {
+				margin-top: 32px !important;
+				max-height:50vh;
+				width:80%;
+				overflow-y: auto;
+				background:white;
+				cursor:pointer;
+				color:black;
+			}
+	
+			.truncate_button{
+				width:120px;
+				text-align: left !important;
 			}
 
 			#header{
@@ -54,17 +68,14 @@
 
 			#left{
 				margin:0 !important;
-
 			}
 
 			#right{
 				margin:0 !important;
-		
 			}
 
 			.subject{
 				margin-top:10px;
-		
 			}
 
 			.subject .pref_label {
@@ -74,7 +85,6 @@
 			}
 			.subject .info {
 				padding:10px 10px 10px 10px;
-
 			}
 
 			.subject .definition{
@@ -94,9 +104,7 @@
 				margin-top:5px;
 			}
 
-
 		</style>
-
 
 		<link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 		<link href="lib/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
