@@ -12,29 +12,91 @@ msgstr ""
 "X-Generator: Poedit 1.8.6\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: catalogue.html:1
-msgid "Catalogue results"
-msgstr "Katalogresultater"
+#: subject.html:26
+msgid "(Used for:"
+msgstr "(Brukt for:"
 
-#: search.html:19
+#: search.html:9
+msgid "{{truncation}}"
+msgstr ""
+
+#: search.html:5
+msgid "{{vm.truncations[vm.truncate]}} <span class=\"caret\"></span>"
+msgstr ""
+
+#: catalogue.html:22
+msgid "All libraries"
+msgstr "Alle bibliotek"
+
+#: search.html:14
+msgid "An error occured:"
+msgstr "Søket gikk ut i feil:"
+
+#: catalogue.html:13
+msgid "Broad"
+msgstr "Bredt"
+
+#: catalogue.html:40
+msgid "Catalogue results <span ng-show=\"vm.busy\">(WORKING...)</span>"
+msgstr "Katalogresultater <span ng-show=\"vm.busy\">(HENTER...)</span>"
+
+#: home/search.js:37
+msgid "Containing"
+msgstr "Inneholder"
+
+#: home/search.js:37
+msgid "Ends with"
+msgstr "Slutter med"
+
+#: search.html:18
 msgid "Enter a subject"
 msgstr "Søk etter emne"
+
+#: home/search.js:37
+msgid "Exact match"
+msgstr "Eksakt lik"
+
+#: catalogue.html:42
+msgid "Found one document."
+msgid_plural "Found {{$count}} documents."
+msgstr[0] "Fant ett dokument"
+msgstr[1] "Fant {{$count}} dokumenter."
 
 #: home.html:3
 msgid "Hei du!"
 msgstr ""
 
-#: search.html:31
+#: catalogue.html:53
+msgid ""
+"Loaded {{ vm.last }} records so far, {{ vm.total_results - vm.last }} to go, "
+"hold on…"
+msgstr ""
+"{{ vm.last }} poster hentet foreløpig, {{ vm.total_results - vm.last }} "
+"gjenstår, vi skynder oss sakte…"
+
+#: search.html:29
 msgid "Looking…"
 msgstr "Leter…"
 
-#: search.html:30
+#: catalogue.html:14
+msgid "Narrow"
+msgstr "Snevert"
+
+#: search.html:28
 msgid "No hits :("
 msgstr "Ingen treff :("
 
-#: subject.html:24
+#: home/search.js:154
+msgid "No network connection"
+msgstr "Ingen nettverksforbindelse"
+
+#: subject.html:33
 msgid "See also:"
 msgstr "Se også:"
+
+#: home/search.js:37
+msgid "Starting with"
+msgstr "Begynner med"
 
 #: header.html:14
 msgid "Subject search"
@@ -66,3 +128,10 @@ msgstr ""
 "Har du ideer til Emnesøk 2.0? Vi har en <a href=\"https://github.com/"
 "scriptotek/emnesok/issues\">liste over ting vi jobber med</a> der du også "
 "kan sende inn forslag (du må registrere deg på GitHub, men det er gratis)."
+
+#: catalogue.html:56
+msgid "You've reached the end, my friend!"
+msgstr "Du er på enden av lista."
+
+#~ msgid "Catalogue results"
+#~ msgstr "Katalogresultater"

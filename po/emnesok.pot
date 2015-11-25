@@ -4,28 +4,86 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: \n"
 
-#: catalogue.html:1
-msgid "Catalogue results"
+#: subject.html:26
+msgid "(Used for:"
 msgstr ""
 
-#: search.html:19
+#: search.html:9
+msgid "{{truncation}}"
+msgstr ""
+
+#: search.html:5
+msgid "{{vm.truncations[vm.truncate]}} <span class=\"caret\"></span>"
+msgstr ""
+
+#: catalogue.html:22
+msgid "All libraries"
+msgstr ""
+
+#: search.html:14
+msgid "An error occured:"
+msgstr ""
+
+#: catalogue.html:13
+msgid "Broad"
+msgstr ""
+
+#: catalogue.html:40
+msgid "Catalogue results <span ng-show=\"vm.busy\">(WORKING...)</span>"
+msgstr ""
+
+#: home/search.js:37
+msgid "Containing"
+msgstr ""
+
+#: home/search.js:37
+msgid "Ends with"
+msgstr ""
+
+#: search.html:18
 msgid "Enter a subject"
 msgstr ""
+
+#: home/search.js:37
+msgid "Exact match"
+msgstr ""
+
+#: catalogue.html:42
+msgid "Found one document."
+msgid_plural "Found {{$count}} documents."
+msgstr[0] ""
+msgstr[1] ""
 
 #: home.html:3
 msgid "Hei du!"
 msgstr ""
 
-#: search.html:31
+#: catalogue.html:53
+msgid "Loaded {{ vm.last }} records so far, {{ vm.total_results - vm.last }} to go, hold on…"
+msgstr ""
+
+#: search.html:29
 msgid "Looking…"
 msgstr ""
 
-#: search.html:30
+#: catalogue.html:14
+msgid "Narrow"
+msgstr ""
+
+#: search.html:28
 msgid "No hits :("
 msgstr ""
 
-#: subject.html:24
+#: home/search.js:154
+msgid "No network connection"
+msgstr ""
+
+#: subject.html:33
 msgid "See also:"
+msgstr ""
+
+#: home/search.js:37
+msgid "Starting with"
 msgstr ""
 
 #: header.html:14
@@ -43,4 +101,8 @@ msgid ""
 "    Until a stable Subject Search 2.0 is released, you'll also be able to use our\n"
 "    <a href=\"http://app.uio.no/ub/emnesok/test/oria/\">Experimental Subject Search against Oria</a>.\n"
 "    Do you have ideas for improving the subject search? We have a <a href=\"https://github.com/scriptotek/emnesok/issues\">list of issues we're working on</a>, where you can also contribute your own ideas (requires a free GitHub account)."
+msgstr ""
+
+#: catalogue.html:56
+msgid "You've reached the end, my friend!"
 msgstr ""
