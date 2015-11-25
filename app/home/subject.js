@@ -66,6 +66,8 @@
 					}),
 					translations: translations
 				};
+	
+			
 			}, function (error) {
 				console.log('Uh oh');
 				vm.error = 'Oh noes!';

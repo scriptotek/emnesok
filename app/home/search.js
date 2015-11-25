@@ -30,47 +30,48 @@
 		// vm.formatRequest = formatRequest;
 		// vm.formatResult = formatResult;
 		vm.selectSubject = selectSubject;
-		vm.focusIn = focusIn;
+		vm.openSearcMenu = openSearcMenu;
+		vm.searchTruncation = searchTruncation;
 		vm.truncate = 0;
+		vm.query="";
 		vm.truncations = [gettext('Starting with'), gettext('Containing'), gettext('Ends with'), gettext('Exact match')];
 		vm.search = search;
 		vm.errorMsg = '';
+
+		searchTruncation
 
 		console.log('[Search] Init');
 
 		////////////
 		
-		//Temporary solution until angucomplete gets a proper search-upon-focus behaviour
-		function focusIn () {
+		//Temporary solution until angucomplete gets a proper search-on-focus behaviour
+		function openSearcMenu() {
 
 			var query = document.getElementById('search_value');
 
-			console.log('query',query);
-			if (query.length<2) return false;
-
-
 			angular.element(query).triggerHandler('input');
 			angular.element(query).triggerHandler('keyup');
-		};
+		}
+
+		function searchTruncation(truncate) {
+			vm.truncate  = truncate;
+			openSearcMenu();
+		}
 			
 		function formatRequest(str) {
 			var query;
 
 			switch(vm.truncate) {
-				//Starting
-				case 0:
+				case 0: //Starting
 					query = str + '*';
 					break;
-				//Contains
-				case 1:
+				case 1: //Contains
 					query = (str.length == 2) ? str : '*' + str + '*';
 					break;
-				//Ends
-				case 2:
+				case 2: //Ends
 					query = '*' + str;
 					break;
-				//Exact
-				case 3:
+				case 3: //Exact match
 					query = str;
 					break;
 			}
@@ -82,8 +83,20 @@
 			};
 		}
 
+		function matchResult(str,query) {
+	
+			if (vm.truncate==0 && query == str.substr(0,query.length)) return true; //Starting
+			if (vm.truncate==1 && str.indexOf(query)>-1) return true; //Contains
+			if (vm.truncate==2 && query == str.substr((str.length-query.length),query.length)) return true; //Ends
+			if (vm.truncate==3 && query == str) return true; //Exact match
+
+			return false;
+			
+		}
+
 		function formatResult(response,query) {
-			console.log('Got response');
+
+			console.log('Got response',response);
 
 			var result = [];
 	
@@ -91,7 +104,7 @@
 			response.results.forEach(function (value, key) {
 				
 				//Check if match is on prefLabel
-				if (value.prefLabel.toLocaleLowerCase().indexOf(query)>-1) {
+				if (matchResult(value.prefLabel.toLocaleLowerCase(),query.toLocaleLowerCase())) {
 				
 					//PrefLabel might exist from before
 					if (!$filter('filter')(result, {uri : value.uri}, true).length){
@@ -118,6 +131,8 @@
 		}
 
 		function search(query) {
+
+			vm.query=query;
 
 			var deferred = $q.defer();
 
@@ -154,9 +169,16 @@
 		}
 
 		function selectSubject(item) {
+			console.log('selectSubject');
 			if (item) {
+				console.log(item.originalObject.uri);
 				var subjects = shortIdFromUri(item.originalObject.uri);
 				console.log('[SearchController] Selecting subject(s): ' + subjects);
+
+				//Timeout required for reasons
+				$timeout(function(){
+					document.getElementById('search_value').value = vm.query;
+				});
 
 				$state.go('subject.search', {
 					subjects:   subjects
