@@ -44,10 +44,8 @@ Next: {{ vm.next }}
 	   translate translate-n="msgCount" translate-plural="Found {{$count}} documents.">Found one document.
 	</p>
 
-	<ul>
-		<li ng-repeat="result in vm.results">
-			<mod-catalogue-result record="result"></mod-catalogue-result>
-		</li>
+	<ul class="list-group">
+		<li class="list-group-item" ng-repeat="result in vm.results" mod-catalogue-result record="result"></li>
 	</ul>
 
 	<p ng-show="vm.start && vm.last != vm.total_results" translate>

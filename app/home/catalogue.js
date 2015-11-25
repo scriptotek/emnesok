@@ -10,9 +10,9 @@
         console.log('[CatalogueResultDirective] Init');
 
         var directive = {
-            restrict: 'E',
+            restrict: 'EA',
             templateUrl: './templates/catalogue-result.html?' + Math.random(),
-            replace: true,
+            replace: false,
             scope: {
                 record: '='
             },
