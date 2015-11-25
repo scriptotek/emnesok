@@ -22,6 +22,7 @@
 
 			var params = {
 				repr: 'full',
+				sort: 'date',
 				vocabulary: vocab,
 				subject: term
 			};
