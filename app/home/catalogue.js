@@ -14,7 +14,8 @@
             templateUrl: './templates/catalogue-result.html?' + Math.random(),
             replace: false,
             scope: {
-                record: '='
+                record: '=',
+                vocab: '='
             },
             controller: ['$scope', 'Lang', 'Catalogue', 'Config', resultController]
         };

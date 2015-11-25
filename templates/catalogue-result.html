@@ -24,4 +24,10 @@
 		</div>
 	</div>
 
+	<div ng-show="record.subjects[vocab]">
+		<span ng-repeat="subject in record.subjects[vocab]">
+			<span class="label label-success">{{ subject }}</span>
+		</span>
+	</div>
+
 </div>

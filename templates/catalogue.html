@@ -45,7 +45,7 @@ Next: {{ vm.next }}
 	</p>
 
 	<ul class="list-group">
-		<li class="list-group-item" ng-repeat="result in vm.results" mod-catalogue-result record="result"></li>
+		<li class="list-group-item" ng-repeat="result in vm.results" mod-catalogue-result record="result" vocab="vm.vocab"></li>
 	</ul>
 
 	<p ng-show="vm.start && vm.last != vm.total_results" translate>
