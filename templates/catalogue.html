@@ -16,10 +16,10 @@ Next: {{ vm.next }}
 
 	    <div class="btn-group" uib-dropdown uib-keyboard-nav>
 	        <button id="simple-btn-keyboard-nav" type="button" class="btn btn-default" uib-dropdown-toggle>
-	            {{ vm.selectedInstitution ? vm.selectedInstitution.label : 'Hele Norge' | translate }} <span class="caret"></span>
+	            {{ vm.selectedInstitution ? vm.selectedInstitution.label : 'All libraries' | translate }} <span class="caret"></span>
 	        </button>
 	        <ul class="uib-dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="simple-btn-keyboard-nav">
-	            <li role="menuitem"><a href ng-click="vm.selectInstitution(null)" translate>Hele Norge</a></li>
+	            <li role="menuitem"><a href ng-click="vm.selectInstitution(null)" translate>All libraries</a></li>
 	            <li class="divider"></li>
 	            <li role="menuitem" ng-repeat="institution in vm.institutions"><a href ng-click="vm.selectInstitution(institution)">{{ institution.label }}</a></li>
 	        </ul>

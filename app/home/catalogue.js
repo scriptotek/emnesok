@@ -93,7 +93,7 @@
             $scope.$on('SubjectReady', function(evt, data) {
                 vm.vocab = data.vocab;
                 vm.term = data.data.prefLabel[defaultLang];
-                search();
+                searchFromStart();
             });
 
             // scope.$on('$destroy', function() {
@@ -152,28 +152,29 @@
             );
         }
 
+        function searchFromStart() {
+            vm.results = [];
+            vm.start = 0;
+            vm.next = 1;
+            search();
+        }
+
         function selectInstitution(institution) {
             Session.selectInstitution(institution);
             vm.selectedInstitution = institution;
             vm.selectedLibrary = null;
-            vm.results = [];
-            vm.next = 1;
-            search();
+            searchFromStart();
         }
 
         function selectLibrary(library) {
             Session.selectLibrary(library);
             vm.selectedLibrary = library;
-            vm.results = [];
-            vm.next = 1;
-            search();
+            searchFromStart();
         }
 
         function updateControlledSearch() {
             Session.controlledSearch = vm.controlledSearch;
-            vm.results = [];
-            vm.next = 1;
-            search();
+            searchFromStart();
         }
 
     }
