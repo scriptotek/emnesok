@@ -16,16 +16,17 @@
 				la: 'Latin'
 			},
 			defaultLanguage: 'nb',
-			libraries: [
-	            {id: '', label: 'Hele Norge'},
-	            {id: 'ubo', label: 'UiO'},
-	            {id: 'ureal* OR ubonett', label: '    UiO Realfagsbiblioteket'},
-	            {id: 'urealinf OR ubonett', label: '    UiO Informatikkbiblioteket'},
-	            {id: 'urealnhm OR ubonett', label: '    UiO NHM'},
+			institutions: [
+	            {id: 'ubo', label: 'UiO', libraries: [
+		            {id: 'ubo1030310', label: 'Realfagsbiblioteket VB'},
+		            {id: 'ubo1030317', label: 'Informatikkbiblioteket'},
+		            {id: 'ubo1030500', label: 'NHM'},
+		            {id: 'ubo1030300,1030303', label: 'Humsam-biblioteket + Sophus Bugge'}
+		        ]},
 	            {id: 'ubb', label: 'UiB'},
-	            {id: 'ntnub', label: 'NTNU'},
-	            {id: 'ubt', label: 'UiT'},
-	            {id: '??', label: 'NMBU'}
+	            {id: 'ntnu_ub', label: 'NTNU'},
+	            {id: 'ubto', label: 'UiT'},
+	            {id: 'nmbu', label: 'NMBU'}
 	        ],
 			vocabularies: {
 				realfagstermer: {

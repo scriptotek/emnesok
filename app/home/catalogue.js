@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app.modules.catalogue', ['app.services.catalogue', 'app.services.subject', 'app.services.config'])
+        .module('app.modules.catalogue', ['app.services.catalogue', 'app.services.subject', 'app.services.config', 'app.services.session'])
         .directive('modCatalogue', CatalogueDirective)
         .directive('modCatalogueResult', CatalogueResultDirective);
 
@@ -55,13 +55,13 @@
             replace: false,
             scope: {},
             controllerAs: 'vm',
-            controller: ['$stateParams', '$scope', '$window', '$timeout', 'Lang', 'Catalogue', 'Config', controller]
+            controller: ['$stateParams', '$scope', '$window', '$timeout', 'Lang', 'Catalogue', 'Config', 'Session', controller]
         };
 
         return directive;
     }
 
-    function controller($stateParams, $scope, $window, $timeout, Lang, Catalogue, Config) {
+    function controller($stateParams, $scope, $window, $timeout, Lang, Catalogue, Config, Session) {
         /*jshint validthis: true */
         var vm = this;
         vm.vocab = '';
@@ -74,9 +74,12 @@
         vm.results = [];
         vm.expandGroup = expandGroup;
         vm.getMoreRecords = getMoreRecords;
+
+        vm.institutions = Config.institutions;
+        vm.selectedInstitution = Session.selectedInstitution;
+        vm.selectedLibrary = Session.selectedLibrary;
+        vm.selectInstitution = selectInstitution;
         vm.selectLibrary = selectLibrary;
-        vm.selectedLibrary = 0;
-        vm.libraries = Config.libraries;
 
         activate();
 
@@ -85,7 +88,6 @@
         function activate() {
             var defaultLang = Lang.defaultLanguage;
             $scope.$on('SubjectReady', function(evt, data) {
-                console.log('[CatalogueController] Got subject');
                 vm.vocab = data.vocab;
                 vm.term = data.data.prefLabel[defaultLang];
                 search();
@@ -119,9 +121,6 @@
         }
 
         function gotResults(response) {
-            console.log('Got results from CatalogueService:');
-            console.log(response);
-
             vm.total_results = response.total_results;
             vm.start = response.first;
             vm.next = response.next;
@@ -138,8 +137,10 @@
         }
 
         function search() {
+            var inst = vm.selectedInstitution ? vm.selectedInstitution.id : null;
+            var lib = vm.selectedLibrary ? vm.selectedLibrary.id : null;
             vm.busy = true;
-            Catalogue.search(vm.vocab, vm.term, vm.next, vm.libraries[vm.selectedLibrary].id).then(
+            Catalogue.search(vm.vocab, vm.term, vm.next, inst, lib).then(
                 gotResults,
                 function(error) {
                     // @TODO Handle error
@@ -147,8 +148,18 @@
             );
         }
 
-        function selectLibrary(idx) {
-            vm.selectedLibrary = idx;
+        function selectInstitution(institution) {
+            Session.selectInstitution(institution);
+            vm.selectedInstitution = institution;
+            vm.selectedLibrary = null;
+            vm.results = [];
+            vm.next = 1;
+            search();
+        }
+
+        function selectLibrary(library) {
+            Session.selectLibrary(library);
+            vm.selectedLibrary = library;
             vm.results = [];
             vm.next = 1;
             search();

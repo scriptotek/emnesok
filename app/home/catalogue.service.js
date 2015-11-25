@@ -17,7 +17,7 @@
 
 		////////////
 
-		function search(vocab, term, start, library) {
+		function search(vocab, term, start, institution, library) {
 			var deferred = $q.defer();
 
 			var params = {
@@ -27,6 +27,9 @@
 
 			if (start) {
 				params.start = start;
+			}
+			if (institution) {
+				params.institution = institution;
 			}
 			if (library) {
 				params.library = library;
