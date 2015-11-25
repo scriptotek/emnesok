@@ -14,6 +14,7 @@
 	        selectedLibrary: null,
 	        selectInstitution: selectInstitution,
 	        selectLibrary: selectLibrary,
+	        controlledSearch: false
 		};
 
 		return factory;

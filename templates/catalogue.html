@@ -8,6 +8,12 @@ Next: {{ vm.next }}
 
 	 <!-- Single button with keyboard nav -->
 	 <div style="float:right;">
+
+		<div class="btn-group" ng-show="vm.vocab">
+	        <label class="btn btn-default" ng-model="vm.controlledSearch" ng-change="vm.updateControlledSearch()" uib-btn-radio="false" uib-tooltip="Search all subject vocabularies" translate>Broad</label>
+	        <label class="btn btn-default" ng-model="vm.controlledSearch" ng-change="vm.updateControlledSearch()" uib-btn-radio="true" uib-tooltip="Search {{vm.vocab}} only." translate>Narrow</label>
+	    </div>
+
 	    <div class="btn-group" uib-dropdown uib-keyboard-nav>
 	        <button id="simple-btn-keyboard-nav" type="button" class="btn btn-default" uib-dropdown-toggle>
 	            {{ vm.selectedInstitution ? vm.selectedInstitution.label : 'Hele Norge' | translate }} <span class="caret"></span>

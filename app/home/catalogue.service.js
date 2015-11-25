@@ -21,7 +21,8 @@
 			var deferred = $q.defer();
 
 			var params = {
-				vocab: vocab,
+				repr: 'full',
+				vocabulary: vocab,
 				subject: term
 			};
 

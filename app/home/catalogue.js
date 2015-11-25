@@ -81,6 +81,9 @@
         vm.selectInstitution = selectInstitution;
         vm.selectLibrary = selectLibrary;
 
+        vm.controlledSearch = Session.controlledSearch;
+        vm.updateControlledSearch = updateControlledSearch;
+
         activate();
 
         ////////////
@@ -139,8 +142,9 @@
         function search() {
             var inst = vm.selectedInstitution ? vm.selectedInstitution.id : null;
             var lib = vm.selectedLibrary ? vm.selectedLibrary.id : null;
+            var vocab = vm.controlledSearch ? vm.vocab : '';
             vm.busy = true;
-            Catalogue.search(vm.vocab, vm.term, vm.next, inst, lib).then(
+            Catalogue.search(vocab, vm.term, vm.next, inst, lib).then(
                 gotResults,
                 function(error) {
                     // @TODO Handle error
@@ -160,6 +164,13 @@
         function selectLibrary(library) {
             Session.selectLibrary(library);
             vm.selectedLibrary = library;
+            vm.results = [];
+            vm.next = 1;
+            search();
+        }
+
+        function updateControlledSearch() {
+            Session.controlledSearch = vm.controlledSearch;
             vm.results = [];
             vm.next = 1;
             search();
