@@ -108,11 +108,14 @@
             vm.term = subject.data.prefLabel[defaultLang];
             searchFromStart();
 
-            // scope.$on('$destroy', function() {
-            //     return target.off('scroll', handler);
-            // });
+            angular.element($window).bind('scroll', onScroll);
+            $scope.$on('$destroy', function() {
+                angular.element($window).off('scroll', onScroll);
+            });
+        }
 
-            angular.element($window).bind('scroll', function() { $scope.$apply(checkScrollPos); });
+        function onScroll () {
+            $scope.$apply(checkScrollPos);
         }
 
         function checkScrollPos() {
