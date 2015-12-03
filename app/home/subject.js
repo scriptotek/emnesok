@@ -1,5 +1,5 @@
 (function() {
-    'use strict';
+	'use strict';
 
 	angular
 		.module('app.modules.subject', ['app.services.config', 'app.services.lang', 'app.services.subject'])
@@ -8,80 +8,75 @@
 	function SubjectModule() {
 
 		var directive = {
-	        restrict: 'A',
-	        templateUrl: './templates/subject.html?' + Math.random(),
-	        replace: false,
-	        scope: {},
-	        controllerAs: 'vm',
-	        controller: ['$stateParams', '$filter', 'Config', 'Lang', 'SubjectService', controller]
-	    };
+			restrict: 'E',
+			templateUrl: './templates/subject.html?' + Math.random(),
+			replace: true,
+			scope: {
+				subjectData: '='
+			},
+			controllerAs: 'vm',
+			controller: controller,
+			bindToController: true
+		};
 
-    	return directive;
-    }
+		return directive;
+	}
 
-	function controller($stateParams, $filter, Config, Lang, SubjectService) {
+	controller.$inject = ['$scope', 'Config', 'Lang'];
+
+	function controller($scope, Config, Lang) {
 		/*jshint validthis: true */
 		var vm = this;
-		vm.subject = null;
 		vm.error = null;
-
-		console.log('[Subject] Init');
 
 		activate();
 
 		////////////
 
-		function getSubject(vocab, subject_id) {
-			var lang = Lang.language;
-
-			SubjectService.get(vocab, subject_id).then(function(subject) {
-				var displayLang = lang;
-				var defaultLang = Lang.defaultLanguage;
-				var translations = [];
-
-				console.log('[Subject] Hooray, got a subject:');
-				console.log(subject);
-
-				if (!subject.prefLabel[lang]) {
-					displayLang = defaultLang;
+		function activate() {
+			$scope.$watch('vm.subjectData', function(newValue, oldValue) {
+				if (newValue != oldValue) {
+					update();
 				}
-				Object.keys(subject.prefLabel).forEach(function(langCode) {
-					if (langCode !== displayLang) {
-						translations.push({
-							language: {code: langCode, name: Config.languageLabels[langCode]},
-							prefLabel: subject.prefLabel[langCode],
-							altLabel: subject.altLabel[langCode]
-						});
-					}
-				});
-
-				vm.subject = {
-					prefLabel: subject.prefLabel[displayLang],
-					altLabel: subject.altLabel[displayLang],
-					definition: subject.definition[displayLang] || subject.definition[defaultLang],
-					related: subject.related.map(function(k) {
-						return {
-							prefLabel: k.prefLabel[displayLang] || k.prefLabel[defaultLang]
-						};
-					}),
-					translations: translations
-				};
-	
-			
-			}, function (error) {
-				console.log('Uh oh');
-				vm.error = 'Oh noes!';
 			});
+			update();
 		}
 
-		function activate() {
-			if ($stateParams.subjects) {
-				var subjectParts = $stateParams.subjects.split(':');
-				if (subjectParts.length == 2) {
-					getSubject(subjectParts[0], subjectParts[1]);
-				}
+		function update () {
+			// console.log('[Subject] update():', vm.subjectData.data.prefLabel.nb);
+			vm.subject = process(vm.subjectData);
+		}
+
+		function process(subject) {
+			var lang = Lang.language;
+			var displayLang = lang;
+			var defaultLang = Lang.defaultLanguage;
+			var translations = [];
+
+			if (!subject.data.prefLabel[lang]) {
+				displayLang = defaultLang;
 			}
-			// @TODO: Subject should probably be given to the directive as an argument
+			Object.keys(subject.data.prefLabel).forEach(function(langCode) {
+				if (langCode !== displayLang) {
+					translations.push({
+						language: {code: langCode, name: Config.languageLabels[langCode]},
+						prefLabel: subject.data.prefLabel[langCode],
+						altLabel: subject.data.altLabel[langCode]
+					});
+				}
+			});
+
+			return {
+				prefLabel: subject.data.prefLabel[displayLang],
+				altLabel: subject.data.altLabel[displayLang],
+				definition: subject.data.definition[displayLang] || subject.data.definition[defaultLang],
+				related: subject.data.related.map(function(k) {
+					return {
+						prefLabel: k.prefLabel[displayLang] || k.prefLabel[defaultLang]
+					};
+				}),
+				translations: translations
+			};
 		}
 	}
 

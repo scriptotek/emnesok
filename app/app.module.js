@@ -43,7 +43,6 @@
 						'<div class="row">',
 						'	<div id="left" class="col-md-5">',
 						'		<div mod-search></div>',
-						'		<div ui-view="subject"></div>',
 						'	</div>',
 						'	<div id="right" class="col-md-7">',
 						'		<div ui-view="catalogue"></div>',
@@ -57,12 +56,19 @@
 		.state('subject.search', {
 			url: '/search?subjects',
 			views: {
-				'subject': {
-					template: '<div mod-subject></div>'
-				},
 				'catalogue': {
-					template: '<div mod-catalogue></div>'
+					templateUrl: './templates/catalogue.html',
+					controller: 'CatalogueController',
+					controllerAs: 'vm'
 				}
+			},
+			resolve: {
+				subject: ['SubjectService', '$stateParams', function(SubjectService, $stateParams){
+					var subjectParts = $stateParams.subjects.split(':');
+					if (subjectParts.length == 2) {
+						return SubjectService.get(subjectParts[0], subjectParts[1]);
+					}
+				}]
 			}
 		});
 	}

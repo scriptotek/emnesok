@@ -3,8 +3,9 @@
 
     angular
         .module('app.modules.catalogue', ['app.services.catalogue', 'app.services.subject', 'app.services.lang', 'app.services.config', 'app.services.session'])
-        .directive('modCatalogue', CatalogueDirective)
-        .directive('modCatalogueResult', CatalogueResultDirective);
+        .controller('CatalogueController', ['$stateParams', '$scope', '$window', '$timeout', 'Lang', 'Catalogue', 'Config', 'Session', 'subject', controller])
+        .directive('modCatalogueResult', CatalogueResultDirective)
+        ;
 
     /* ------------------------------------------------------------------------------- */
 
@@ -74,22 +75,7 @@
 
     /* ------------------------------------------------------------------------------- */
 
-    function CatalogueDirective() {
-    	console.log('[Catalogue] Init');
-
-    	var directive = {
-            restrict: 'A',
-            templateUrl: './templates/catalogue.html?' + Math.random(),
-            replace: false,
-            scope: {},
-            controllerAs: 'vm',
-            controller: ['$stateParams', '$scope', '$window', '$timeout', 'Lang', 'Catalogue', 'Config', 'Session', controller]
-        };
-
-        return directive;
-    }
-
-    function controller($stateParams, $scope, $window, $timeout, Lang, Catalogue, Config, Session) {
+    function controller($stateParams, $scope, $window, $timeout, Lang, Catalogue, Config, Session, subject) {
         /*jshint validthis: true */
         var vm = this;
         vm.vocab = '';
@@ -118,11 +104,9 @@
 
         function activate() {
             var defaultLang = Lang.defaultLanguage;
-            $scope.$on('SubjectReady', function(evt, data) {
-                vm.vocab = data.vocab;
-                vm.term = data.data.prefLabel[defaultLang];
-                searchFromStart();
-            });
+            vm.vocab = subject.vocab;
+            vm.term = subject.data.prefLabel[defaultLang];
+            searchFromStart();
 
             // scope.$on('$destroy', function() {
             //     return target.off('scroll', handler);

@@ -2,7 +2,7 @@
 	'use strict';
 
 	angular
-		.module('app.modules.search', ['app.services.config'])
+		.module('app.modules.search', ['app.services.config', 'app.services.subject'])
 		.directive('modSearch', SearchModule);
 
 	function SearchModule() {
@@ -13,13 +13,13 @@
 	        replace: false,
 	        scope: {},
 	        controllerAs: 'vm',
-	        controller: ['$state', '$stateParams', '$timeout', '$rootScope', '$q', '$http', '$filter', 'gettext', 'Config', controller]
+	        controller: ['$scope', '$state', '$stateParams', '$timeout', '$rootScope', '$q', '$http', '$filter', 'gettext', 'Config', 'SubjectService', controller]
 	    };
 
 		return directive;
 	}
 
-	function controller($state, $stateParams, $timeout, $rootScope, $q, $http, $filter, gettext, Config) {
+	function controller($scope, $state, $stateParams, $timeout, $rootScope, $q, $http, $filter, gettext, Config, SubjectService) {
 		/*jshint validthis: true */
 		var vm = this;
 		console.log(vm);
@@ -37,13 +37,20 @@
 		vm.truncations = [gettext('Starting with'), gettext('Containing'), gettext('Ends with'), gettext('Exact match')];
 		vm.search = search;
 		vm.errorMsg = '';
+		vm.searchHistory = [];
 
-		searchTruncation
-
-		console.log('[Search] Init');
+		activate();
 
 		////////////
-		
+
+		function activate() {
+			console.log('[Search] Init');
+			vm.searchHistory = SubjectService.searchHistory;
+			SubjectService.onSubject($scope, function (subject) {
+				vm.searchHistory = SubjectService.searchHistory;
+			});
+		}
+
 		//Temporary solution until angucomplete gets a proper search-on-focus behaviour
 		function openSearcMenu() {
 

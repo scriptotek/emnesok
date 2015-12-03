@@ -1,5 +1,5 @@
 (function() {
-    'use strict';
+	'use strict';
 
 	angular
 		.module('app.services.subject', ['app.services.config'])
@@ -11,11 +11,31 @@
 		var service = {
 			search: search,
 			get: get,
+			onSubject: onSubject,
+			searchHistory: []
 		};
+
+		activate();
 
 		return service;
 
 		////////////
+
+		function activate() {
+			// $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
+
+			// });
+		}
+
+		function onSubject(scope, callback) {
+			var handler = $rootScope.$on('subject-service-new-subject-event', callback);
+			scope.$on('$destroy', handler);
+		}
+
+		function notify(subject) {
+			service.searchHistory.push(subject);
+			$rootScope.$emit('subject-service-new-subject-event', subject);
+		}
 
 		// Make value an array if not already
 		function arrayify(arrayornot) {
@@ -132,14 +152,14 @@
 			  url: Config.skosmos.dataUrl.replace('{uri}', uri)
 			}).
 			then(function(data){
-				var processed = processSubject(uri, data.data);
-				$rootScope.$broadcast('SubjectReady', {
+				var subject = {
 					uri: uri,
 					vocab: vocab,
 					id: id,
-					data: processed
-				});
-				deferred.resolve(processed);
+					data: processSubject(uri, data.data)
+				};
+				notify(subject);
+				deferred.resolve(subject);
 			}, function(error){
 				deferred.reject(error);
 			});
