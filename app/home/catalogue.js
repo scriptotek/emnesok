@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app.modules.catalogue', ['app.services.catalogue', 'app.services.subject', 'app.services.config', 'app.services.session'])
+        .module('app.modules.catalogue', ['app.services.catalogue', 'app.services.subject', 'app.services.lang', 'app.services.config', 'app.services.session'])
         .directive('modCatalogue', CatalogueDirective)
         .directive('modCatalogueResult', CatalogueResultDirective);
 
@@ -17,32 +17,37 @@
                 record: '=',
                 vocab: '='
             },
-            controller: ['$scope', 'Lang', 'Catalogue', 'Config', resultController]
+            controllerAs: 'vm',
+            controller: ['Lang', 'Catalogue', 'Config', resultController],
+            bindToController: true // because the scope is isolated
         };
 
         return directive;
     }
 
-    function resultController($scope, Lang, Catalogue, Config) {
+    function resultController(Lang, Catalogue, Config) {
+        /*jshint validthis: true */
+        var vm = this;
+
         // @TODO
-        $scope.recordExpanded = false;
-        $scope.expandGroup = expandGroup;
-        $scope.versions = [];
+        vm.recordExpanded = false;
+        vm.expandGroup = expandGroup;
+        vm.versions = [];
 
         ////////////
 
         function expandGroup() {
-            var groupId = $scope.record.id;
-            $scope.busy = true;
+            var groupId = vm.record.id;
+            vm.busy = true;
             Catalogue.expandGroup(groupId).then(function(response) {
                 console.log('Got response:');
                 console.log(response.result.records);
-                $scope.busy = false;
-                $scope.recordExpanded = true;
-                $scope.versions = response.result.records;
+                vm.busy = false;
+                vm.recordExpanded = true;
+                vm.versions = response.result.records;
             }, function(error) {
                 // @TODO: Handle error
-                $scope.busy = false;
+                vm.busy = false;
             });
         }
     }

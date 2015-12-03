@@ -1,32 +1,32 @@
 <div class="catalogue_result">
 
-	<a href="#">{{ record.title }}</a>
-	<span ng-show="record.edition">{{ record.edition }}</span>
-	{{ record.date }}
+	<a ng-href="{{ vm.record.links.primo }}">{{ vm.record.title }}</a>
+	<span ng-show="vm.record.edition">{{ vm.record.edition }}</span>
+	{{ vm.record.date }}
 
-	<div ng-bind-html="record.creator_string"></div>
+	<div ng-bind-html="vm.record.creator_string"></div>
 
-	<div>
-		{{ record.material }}
+	<div ng-show="vm.record.format != 'book'">
+		({{ vm.record.format }})
 	</div>
 
-	<div ng-show="record.type == 'group' && !recordExpanded">
-		<a href ng-click="expandGroup()">+ Flere utgaver</a>
+	<div ng-show="vm.record.type == 'group' && !vm.recordExpanded">
+		<a href ng-click="vm.expandGroup()">+ Flere utgaver</a>
 		<span ng-show="busy">Henter...</span>
 	</div>
 
-	<div ng-show="recordExpanded">
+	<div ng-show="vm.recordExpanded">
 		{{ versions.length }} utgaver:
-		<div ng-repeat="version in versions">
+		<div ng-repeat="version in vm.versions">
 			{{ version.edition }}
 			{{ version.date }}
 			{{ version.material }}
 		</div>
 	</div>
 
-	<div ng-show="record.subjects[vocab]">
-		<span ng-repeat="subject in record.subjects[vocab]">
-			<span class="label label-success">{{ subject }}</span>
+	<div ng-show="vm.record.subjects[vm.vocab]">
+		<span ng-repeat="subject in vm.record.subjects[vm.vocab]">
+			<span class="label label-primary">{{ subject }}</span>
 		</span>
 	</div>
 
