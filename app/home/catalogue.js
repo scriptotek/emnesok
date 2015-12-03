@@ -6,6 +6,8 @@
         .directive('modCatalogue', CatalogueDirective)
         .directive('modCatalogueResult', CatalogueResultDirective);
 
+    /* ------------------------------------------------------------------------------- */
+
     function CatalogueResultDirective() {
         console.log('[CatalogueResultDirective] Init');
 
@@ -33,6 +35,9 @@
         vm.recordExpanded = false;
         vm.expandGroup = expandGroup;
         vm.versions = [];
+        vm.filterPrint = filterPrint;
+        vm.filterElectronic = filterElectronic;
+        vm.getStatus = getStatus;
 
         ////////////
 
@@ -50,7 +55,24 @@
                 vm.busy = false;
             });
         }
+
+        function filterPrint(component) {
+            return component.category == 'Alma-P';
+        }
+
+        function filterElectronic(component) {
+            return component.category !== undefined && component.category !== 'Alma-P';
+        }
+
+        function getStatus(status) {
+            var statuses = {
+                'check_holdings': 'might be available'
+            };
+            return statuses[status] || status;
+        }
     }
+
+    /* ------------------------------------------------------------------------------- */
 
     function CatalogueDirective() {
     	console.log('[Catalogue] Init');

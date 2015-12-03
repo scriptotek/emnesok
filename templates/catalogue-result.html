@@ -30,4 +30,23 @@
 		</span>
 	</div>
 
+	<ul>
+
+		<li ng-repeat="component in vm.record.components | filter:vm.filterElectronic" style="font-size:90%;">
+			<a ng-href="{{ component.url }}">available online</a>
+		</li>
+	</ul>
+
+
+	<ul ng-repeat="component in vm.record.components | filter:vm.filterPrint" style="font-size:90%;">
+
+		<li ng-repeat="holding in component.holdings" style="font-size:90%;">
+			{{ vm.getStatus(holding.status) | translate }}
+			from
+			{{ holding.library }}
+			{{ holding.collection_name }}
+			{{ holding.callcode }}
+		</li>
+	</ul>
+
 </div>
