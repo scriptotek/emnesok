@@ -37,12 +37,12 @@
 
 <div class="alert alert-danger" ng-show="vm.error">{{vm.error}}</div>
 
-<div class="panel panel-success" ng-show="vm.searchHistory.length > 0">
+<div class="panel panel-success" ng-show="vm.searchHistory.length">
   <div class="panel-heading" translate><h3 class="panel-title">Active subject</h3></div>
   <ul class="list-group">
     <li class="list-group-item">
 
-	    <mod-subject ng-show="vm.searchHistory.length" subject-data="vm.searchHistory[vm.searchHistory.length-1]"></mod-subject>
+	    <mod-subject subject-data="vm.searchHistory[vm.searchHistory.length-1]"></mod-subject>
 
     </li>
   </ul>
