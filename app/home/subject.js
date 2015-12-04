@@ -45,7 +45,7 @@
 		/*jshint validthis: true */
 		var vm = this;
 		vm.error = null;
-		vm.expanded = $scope.expanded;
+		//vm.expanded = $scope.expanded;
 
 		activate();
 
@@ -63,7 +63,7 @@
 		function update () {
 			// console.log('[Subject] update():', vm.subjectData.data.prefLabel.nb);
 			vm.subject = process(vm.subjectData);
-			vm.subject.hasContent = setContentBool(vm.subject);
+			//vm.subject.hasContent = setContentBool(vm.subjectData);
 		}
 
 		function process(subject) {

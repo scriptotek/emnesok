@@ -11,7 +11,6 @@
 			'gettext',
 			'app.modules.header',
 			'app.modules.search',
-			'app.modules.search-history',
 			'app.modules.subject',
 			'app.modules.catalogue'
 		])
