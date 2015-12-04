@@ -22,23 +22,6 @@
 		return directive;
 	}
 
-	//Checks if subject contains anything else than prefLabel
-	function setContentBool(subject) {
-
-		console.log("altlabel",subject.altLabel);
-		console.log("definition",subject.definition);
-		console.log("related",subject.related);
-		console.log("translations",subject.translations);
-
-		if (subject.altLabel) return true;
-		if (subject.definition) return true;
-		if (subject.related.length) return true;
-		if (subject.translations.length) return true;
-
-		return false;
-
-	}
-
 	controller.$inject = ['$scope', 'Config', 'Lang'];
 
 	function controller($scope, Config, Lang) {
@@ -63,7 +46,6 @@
 		function update () {
 			// console.log('[Subject] update():', vm.subjectData.data.prefLabel.nb);
 			vm.subject = process(vm.subjectData);
-			//vm.subject.hasContent = setContentBool(vm.subjectData);
 		}
 
 		function process(subject) {
