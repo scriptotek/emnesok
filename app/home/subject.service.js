@@ -3,9 +3,9 @@
 
 	angular
 		.module('app.services.subject', ['app.services.config'])
-		.factory('SubjectService', ['$http', '$stateParams', '$filter', '$q', '$rootScope', 'Config', SubjectService]);
+		.factory('SubjectService', ['$http', '$stateParams', '$filter', '$q', '$rootScope', 'gettext', 'Config', SubjectService]);
 
-	function SubjectService($http, $stateParams, $filter, $q, $rootScope, Config) {
+	function SubjectService($http, $stateParams, $filter, $q, $rootScope, gettext, Config) {
 		console.log('[SubjectService] Init');
 
 		var service = {
@@ -85,13 +85,33 @@
 		//////////////////////////////////
 		*/
 
+		function preferredRdfType(arr) {
+			if (arr.indexOf('http://www.loc.gov/mads/rdf/v1#Geographic') !== -1) {
+				gettext('Geographic');
+				return 'Geographic';
+			}
+			if (arr.indexOf('http://www.loc.gov/mads/rdf/v1#Temporal') !== -1) {
+				gettext('Temporal');
+				return 'Temporal';
+			}
+			if (arr.indexOf('http://www.loc.gov/mads/rdf/v1#GenreForm') !== -1) {
+				gettext('GenreForm');
+				return 'GenreForm';
+			}
+			//gettext('Topic');
+			//return 'Topic';
+		}
+		
 		// Returns a normalized representation of a JSON LD resource for easier processing
 		function processResource(resources, uri) {
+
+			console.log("_______>",resources, uri);
 			return {
 				prefLabel: indexByLanguage(arrayify(resources[uri].prefLabel), false),
 				altLabel: indexByLanguage(arrayify(resources[uri].altLabel), true),
 				related: arrayify(resources[uri].related),
-				definition: indexByLanguage(arrayify(resources[uri]['skos:definition']))
+				definition: indexByLanguage(arrayify(resources[uri]['skos:definition'] || resources[uri].definition)),
+				type: preferredRdfType(arrayify(resources[uri].type))
 			};
 		}
 
@@ -133,12 +153,14 @@
 			}).
 			then(function(data){
 				var processed = processSubject(uri, data.data);
+
 				$rootScope.$broadcast('SubjectReady', {
 					uri: uri,
 					vocab: vocab,
 					id: id,
 					data: processed
 				});
+				
 				deferred.resolve(processed);
 			}, function(error){
 				deferred.reject(error);
@@ -150,7 +172,6 @@
 		function search(q) {
 			// @TODO
 		}
-
 	}
 
 })();
