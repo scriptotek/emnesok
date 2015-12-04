@@ -13,16 +13,16 @@
 	        replace: false,
 	        scope: {},
 	        controllerAs: 'vm',
-	        controller: ['$state', '$stateParams', '$timeout', '$rootScope', '$q', '$http', '$filter', 'gettext', 'Config', controller]
+	        controller: ['$state', '$stateParams', '$timeout', '$rootScope','$q', '$http', '$filter', 'gettext', 'gettextCatalog', 'Config', controller]
 	    };
 
 		return directive;
 	}
 
-	function controller($state, $stateParams, $timeout, $rootScope, $q, $http, $filter, gettext, Config) {
+	function controller($state, $stateParams, $timeout, $rootScope, $q, $http, $filter, gettext, gettextCatalog, Config) {
 		/*jshint validthis: true */
 		var vm = this;
-		console.log(vm);
+	
 
 		// vm.searchUrl = Config.skosmos.searchUrl;
 		vm.lang = $stateParams.lang || Config.defaultLanguage;
@@ -38,12 +38,11 @@
 		vm.search = search;
 		vm.errorMsg = '';
 
-		searchTruncation
 
 		console.log('[Search] Init');
 
-		////////////
-		
+		///////////
+
 		//Temporary solution until angucomplete gets a proper search-on-focus behaviour
 		function openSearcMenu() {
 
@@ -56,6 +55,21 @@
 		function searchTruncation(truncate) {
 			vm.truncate  = truncate;
 			openSearcMenu();
+		}
+
+		function isPeriodicalElement(subject,akronym) {
+
+			if (akronym===undefined) akronym="";
+			
+			if (akronym[0]!==undefined && typeof akronym === "object") return false;
+
+			for (var i=0; i<grunnstoff.length; i++){
+
+				if (subject.toLocaleLowerCase()==grunnstoff[i].name || akronym.toLocaleLowerCase()==grunnstoff[i].symbol) {
+					return true;
+				}
+			}
+			return false;
 		}
 			
 		function formatRequest(str) {
@@ -84,11 +98,11 @@
 		}
 
 		function matchResult(str,query) {
-	
-			if (vm.truncate==0 && query == str.substr(0,query.length)) return true; //Starting
-			if (vm.truncate==1 && str.indexOf(query)>-1) return true; //Contains
-			if (vm.truncate==2 && query == str.substr((str.length-query.length),query.length)) return true; //Ends
-			if (vm.truncate==3 && query == str) return true; //Exact match
+
+			if (vm.truncate==0 && query == str.substr(0,query.length)) return "Starting with"; 
+			if (vm.truncate==1 && str.indexOf(query)>-1) return "Containing"; 
+			if (vm.truncate==2 && query == str.substr((str.length-query.length),query.length)) return "Ends with"; 
+			if (vm.truncate==3 && query == str) return "Exact Match";
 
 			return false;
 			
@@ -97,31 +111,61 @@
 		function formatResult(response,query) {
 
 			console.log('Got response',response);
-
 			var result = [];
 	
-			//Remove duplicates and add matchedPreflabel where there is a match
+			//Remove duplicates and add matchedPreflabel and some notation where there is a match
 			response.results.forEach(function (value, key) {
-				
-				//Check if match is on prefLabel
-				if (matchResult(value.prefLabel.toLocaleLowerCase(),query.toLocaleLowerCase())) {
-				
-					//PrefLabel might exist from before
-					if (!$filter('filter')(result, {uri : value.uri}, true).length){
-						result.push({prefLabel:value.prefLabel,uri:value.uri});
-					}	
-				}
-				//Or on matchedPrefLabel or altLabel
-				else {
 
-					if (value.matchedPrefLabel){
-						if (!$filter('filter')(result, {uri : value.uri}, true).length){
-							result.push({prefLabel:value.prefLabel+" <- "+value.matchedPrefLabel,uri:value.uri});
-						}
+				console.log(value.prefLabel,value.altLabel);
+
+				var searchListIcon=""; 
+				// Add Geographics/Temporal/GenreForm to list
+				for (var i=0; i<value.type.length; i++) {
+					var str = value.type[i].split(":")[1];
+
+					if (str=="Geographic") {
+						searchListIcon ="<span><i class=\"glyphicon glyphicon-map-marker\"></i><em> "+gettextCatalog.getString(str)+"</em></span>";
+						break;
 					}
-					else if (value.altLabel){
+					else if (str=="Temporal") {
+						searchListIcon ="<span><i class=\"glyphicon glyphicon-time\"></i><em> "+gettextCatalog.getString(str)+"</em></span>";
+						break;	
+					}
+					else if (str=="GenreForm") {
+						searchListIcon ="<span><i class=\"glyphicon glyphicon-list-alt\"></i><em> "+gettextCatalog.getString(str)+"</em></span>";
+						break;
+					}
+				}
+			
+			
+				if (isPeriodicalElement(value.prefLabel,value.altLabel)) {
+			
+					searchListIcon ="<img src='assets/img/element.png' title="+gettextCatalog.getString('Grunnstoff')+">";
+				}
+					
+				if (value.prefLabel!==undefined) { 
+
+					//Check if match is on prefLabel
+					if (matchResult(value.prefLabel.toLocaleLowerCase(),query.toLocaleLowerCase())) {
+					
+						//PrefLabel might exist from before
 						if (!$filter('filter')(result, {uri : value.uri}, true).length){
-							result.push({prefLabel:value.prefLabel+" <- "+value.altLabel,uri:value.uri});
+							result.push({searchListIcon:searchListIcon,prefLabel:value.prefLabel,uri:value.uri});
+						}	
+					}
+					//Or on matchedPrefLabel or altLabel
+					else {
+		
+						if (value.matchedPrefLabel){
+							if (!$filter('filter')(result, {uri : value.uri}, true).length){
+								result.push({searchListIcon:searchListIcon,prefLabel:value.prefLabel,uri:value.uri,description:"("+value.matchedPrefLabel+")"});
+							}
+						}
+						else if (value.altLabel){
+							if (!$filter('filter')(result, {uri : value.uri}, true).length){
+								result.push({searchListIcon:searchListIcon,prefLabel:value.prefLabel,uri:value.uri,description:"("+value.altLabel+")"});
+
+							}
 						}
 					}
 				}
@@ -147,7 +191,8 @@
 			}).
 			then(function(data){
 				console.log('>> GOT DATA');
-				var processed = formatResult(data.data,query);
+				vm.searchResults = data.data;
+				var processed = formatResult(vm.searchResults,query);
 				deferred.resolve(processed);
 			}, function(error, q){
 				if (error.status == -1) {
@@ -174,11 +219,6 @@
 				console.log(item.originalObject.uri);
 				var subjects = shortIdFromUri(item.originalObject.uri);
 				console.log('[SearchController] Selecting subject(s): ' + subjects);
-
-				//Timeout required for reasons
-				$timeout(function(){
-					document.getElementById('search_value').value = vm.query;
-				});
 
 				$state.go('subject.search', {
 					subjects:   subjects

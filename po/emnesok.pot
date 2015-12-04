@@ -4,16 +4,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: \n"
 
-#: subject.html:26
+#: subject.html:30
 msgid "(Used for:"
-msgstr ""
-
-#: search.html:9
-msgid "{{truncation}}"
-msgstr ""
-
-#: search.html:5
-msgid "{{vm.truncations[vm.truncate]}} <span class=\"caret\"></span>"
 msgstr ""
 
 #: catalogue.html:22
@@ -54,11 +46,19 @@ msgid_plural "Found {{$count}} documents."
 msgstr[0] ""
 msgstr[1] ""
 
+#: home/subject.service.js:98
+msgid "GenreForm"
+msgstr ""
+
+#: home/subject.service.js:90
+msgid "Geographic"
+msgstr ""
+
 #: home.html:3
 msgid "Hei du!"
 msgstr ""
 
-#: catalogue.html:53
+#: catalogue.html:51
 msgid "Loaded {{ vm.last }} records so far, {{ vm.total_results - vm.last }} to go, hold on…"
 msgstr ""
 
@@ -74,11 +74,11 @@ msgstr ""
 msgid "No hits :("
 msgstr ""
 
-#: home/search.js:154
+#: home/search.js:158
 msgid "No network connection"
 msgstr ""
 
-#: subject.html:33
+#: subject.html:37
 msgid "See also:"
 msgstr ""
 
@@ -90,7 +90,15 @@ msgstr ""
 msgid "Subject search"
 msgstr ""
 
-#: subject.html:18
+#: home/subject.service.js:94
+msgid "Temporal"
+msgstr ""
+
+#: home/subject.service.js:101
+msgid "Topic"
+msgstr ""
+
+#: subject.html:22
 msgid "Used for:"
 msgstr ""
 
@@ -103,6 +111,14 @@ msgid ""
 "    Do you have ideas for improving the subject search? We have a <a href=\"https://github.com/scriptotek/emnesok/issues\">list of issues we're working on</a>, where you can also contribute your own ideas (requires a free GitHub account)."
 msgstr ""
 
-#: catalogue.html:56
+#: catalogue.html:54
 msgid "You've reached the end, my friend!"
+msgstr ""
+
+#: search.html:9
+msgid "{{truncation}}"
+msgstr ""
+
+#: search.html:5
+msgid "{{vm.truncations[vm.truncate]}} <span class=\"caret\"></span>"
 msgstr ""

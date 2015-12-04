@@ -62,6 +62,14 @@ msgid_plural "Found {{$count}} documents."
 msgstr[0] "Fant ett dokument"
 msgstr[1] "Fant {{$count}} dokumenter."
 
+#: home/subject.service.js:98
+msgid "GenreForm"
+msgstr "Sjanger/form"
+
+#: home/subject.service.js:90
+msgid "Geographic"
+msgstr "Sted"
+
 #: home.html:3
 msgid "Hei du!"
 msgstr ""
@@ -101,6 +109,14 @@ msgstr "Begynner med"
 #: header.html:14
 msgid "Subject search"
 msgstr "Emnesøk"
+
+#: home/subject.service.js:94
+msgid "Temporal"
+msgstr "Tid"
+
+#: home/subject.service.js:101
+msgid "Topic"
+msgstr "Emne"
 
 #: subject.html:18
 msgid "Used for:"

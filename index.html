@@ -29,17 +29,28 @@
 				//border:1px red solid;
 			}*/
 
-
+			
 			.highlight {
 				color: #3A8EC4;
 			}
-
+			
 			.angucomplete-row {
 				padding: 3px !important;
-				color: #000000;
 				margin-bottom: 2px !important;
-				clear: both;
 			}
+			
+			.angucomplete-title{
+				float:none !important;
+			}
+			
+			.angucomplete-description {
+				vertical-align: bottom;
+				font-size: 85% !important;
+				color:#777777 !important;
+				font-style: italic !important;
+				float:none !important;
+			}
+		
 
 			#search{
 				width:100%;
@@ -74,8 +85,18 @@
 				margin:0 !important;
 			}
 
-			.subject{
-				margin-top:10px;
+			.search_history{
+				margin-top:30px;
+			}
+
+			.subject {
+				margin-top:-21px;
+			
+			}
+
+			/*Remove blue border from accordion*/
+			.subject *{
+				outline: 0 !important;
 			}
 
 			.subject .pref_label {
@@ -84,7 +105,7 @@
 				font-weight:bolder;
 			}
 			.subject .info {
-				padding:10px 10px 10px 10px;
+				//padding:10px 10px 10px 10px;
 			}
 
 			.subject .definition{
@@ -94,20 +115,13 @@
 			.subject .term_separator:not(:last-child)::after {
 				content: ' • ';
 			}
-
-			.subject .alt_trans{
-				margin-left:10px;
-				font-size: 80%;
-			}
-
-			.subject .block{
-				margin-top:5px;
-			}
+			
+	
+		
 
 		</style>
 
 		<link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-		<link href="lib/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
 		<link href="lib/angucomplete-alt/angucomplete-alt.css" rel="stylesheet">
 		<script src="lib/angular/angular.min.js"></script>
 		<script src="lib/angular-touch/angular-touch.min.js"></script>
@@ -116,7 +130,10 @@
 		<script src="lib/angular-ui-router/release/angular-ui-router.min.js"></script>
 		<script src="lib/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
 		<script src="lib/angular-gettext/dist/angular-gettext.min.js"></script>
+
+
 		<script src="app/home/search.js"></script>
+		<script src="app/home/search.history.js"></script>
 		<script src="app/home/subject.js"></script>
 		<script src="app/home/catalogue.js"></script>
 		<script src="app/home/catalogue.service.js"></script>

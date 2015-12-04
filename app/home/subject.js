@@ -11,77 +11,109 @@
 	        restrict: 'A',
 	        templateUrl: './templates/subject.html?' + Math.random(),
 	        replace: false,
-	        scope: {},
+	        scope: {subject: '=', expanded: '='},
 	        controllerAs: 'vm',
-	        controller: ['$stateParams', '$filter', 'Config', 'Lang', 'SubjectService', controller]
+	        controller: ['$scope', '$stateParams', '$filter', 'Config', 'Lang', 'SubjectService', controller]
 	    };
 
     	return directive;
     }
+	
+	//Checks if subject contains anything else than prefLabel
 
-	function controller($stateParams, $filter, Config, Lang, SubjectService) {
+	function setContentBool(subject) {
+
+		console.log("altlabel",subject.altLabel);
+		console.log("definition",subject.definition);
+		console.log("related",subject.related);
+		console.log("translations",subject.translations);
+
+		if (subject.altLabel) return true;		
+		if (subject.definition) return true;
+		if (subject.related.length) return true;		
+		if (subject.translations.length) return true;
+		
+		return false;
+		
+	}
+
+	function controller($scope, $stateParams, $filter, Config, Lang, SubjectService) {
 		/*jshint validthis: true */
 		var vm = this;
-		vm.subject = null;
+		var subject = $scope.subject;
+		
+		vm.selectSubject = selectSubject;
+		vm.removeFromSearchHistory = removeFromSearchHistory;
 		vm.error = null;
+		vm.expanded = $scope.expanded;
 
 		console.log('[Subject] Init');
+
 
 		activate();
 
 		////////////
 
-		function getSubject(vocab, subject_id) {
-			var lang = Lang.language;
+		//console.log(JsonldRest);
 
-			SubjectService.get(vocab, subject_id).then(function(subject) {
-				var displayLang = lang;
-				var defaultLang = Lang.defaultLanguage;
-				var translations = [];
+		function removeFromSearchHistory() {
 
-				console.log('[Subject] Hooray, got a subject:');
-				console.log(subject);
+			console.log("removeFromSearchHistory",this.subject);
 
-				if (!subject.prefLabel[lang]) {
-					displayLang = defaultLang;
-				}
-				Object.keys(subject.prefLabel).forEach(function(langCode) {
-					if (langCode !== displayLang) {
-						translations.push({
-							language: {code: langCode, name: Config.languageLabels[langCode]},
-							prefLabel: subject.prefLabel[langCode],
-							altLabel: subject.altLabel[langCode]
-						});
-					}
-				});
+		}
 
-				vm.subject = {
-					prefLabel: subject.prefLabel[displayLang],
-					altLabel: subject.altLabel[displayLang],
-					definition: subject.definition[displayLang] || subject.definition[defaultLang],
-					related: subject.related.map(function(k) {
-						return {
-							prefLabel: k.prefLabel[displayLang] || k.prefLabel[defaultLang]
-						};
-					}),
-					translations: translations
-				};
-	
-			
-			}, function (error) {
-				console.log('Uh oh');
-				vm.error = 'Oh noes!';
+		function selectSubject(){
+			//¤¤
+			/*
+			$rootScope.$broadcast('SubjectReady', {
+				uri: uri,
+				vocab: vocab,
+				id: id,
+				data: subject
 			});
+			*/
+
+			console.log(subject);
 		}
 
 		function activate() {
-			if ($stateParams.subjects) {
-				var subjectParts = $stateParams.subjects.split(':');
-				if (subjectParts.length == 2) {
-					getSubject(subjectParts[0], subjectParts[1]);
-				}
+
+			var lang = Lang.language;
+			var displayLang = lang;
+			var defaultLang = Lang.defaultLanguage;
+			var translations = [];
+
+			console.log('[Subject] Hooray, got a subject:');
+			console.log(subject);
+
+			if (!subject.prefLabel[lang]) {
+				displayLang = defaultLang;
 			}
-			// @TODO: Subject should probably be given to the directive as an argument
+			Object.keys(subject.prefLabel).forEach(function(langCode) {
+				if (langCode !== displayLang) {
+					translations.push({
+						language: {code: langCode, name: Config.languageLabels[langCode]},
+						prefLabel: subject.prefLabel[langCode],
+						altLabel: subject.altLabel[langCode]
+					});
+				}
+			});
+
+			vm.subject = {
+				prefLabel: subject.prefLabel[displayLang],
+				altLabel: subject.altLabel[displayLang],
+				definition: subject.definition[displayLang] || subject.definition[defaultLang],
+				type: subject.type,
+				related: subject.related.map(function(k) {
+					return {
+						prefLabel: k.prefLabel[displayLang] || k.prefLabel[defaultLang]
+					};
+				}),
+				translations: translations,
+			};
+
+			vm.subject.hasContent = setContentBool(vm.subject);
+
 		}
 	}
 

@@ -15,16 +15,20 @@
 		{{ vm.errorMsg | translate }}
 	</uib-alert>
 
-	<div id="search" angucomplete-alt placeholder="{{'Enter a subject' | translate}}" maxlength="50" 
+	<div id="search" angucomplete-alt ng-keypress="($event.which === 13)?vm.enterKey():0" placeholder="{{'Enter a subject' | translate}}" maxlength="50" 
 		pause="400"
 		selected-object="vm.selectSubject" 
 		remote-api-handler="vm.search"
 		focus-in="vm.openSearcMenu()"
 		title-field="prefLabel"
+		description-field="description"
 		minlength="2"
 		input-class="form-control form-control-small"
 		match-class="highlight"
 		clear-selected="true"
+		image-field="searchListIcon"
+		focus-first="true"
+		template-url="templates/search-list-template.html"
 		text-no-results="{{'No hits :(' | translate}}"
 		text-searching="{{'Looking…' | translate}}"
 	></div>

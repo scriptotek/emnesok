@@ -11,6 +11,7 @@
 			'gettext',
 			'app.modules.header',
 			'app.modules.search',
+			'app.modules.search-history',
 			'app.modules.subject',
 			'app.modules.catalogue'
 		])
@@ -43,7 +44,7 @@
 						'<div class="row">',
 						'	<div id="left" class="col-md-5">',
 						'		<div mod-search></div>',
-						'		<div ui-view="subject"></div>',
+						'		<div ui-view="search-history"></div>',
 						'	</div>',
 						'	<div id="right" class="col-md-7">',
 						'		<div ui-view="catalogue"></div>',
@@ -57,8 +58,8 @@
 		.state('subject.search', {
 			url: '/search?subjects',
 			views: {
-				'subject': {
-					template: '<div mod-subject></div>'
+				'search-history': {
+					template: '<div mod-search-history></div>'
 				},
 				'catalogue': {
 					template: '<div mod-catalogue></div>'

@@ -1,19 +1,14 @@
-<!-- SUBJECT.HTML
-Includes search history
--->
-<div class="subject panel panel-info" ng-show="vm.subject">
-
-	<div class="panel-heading">
-		<div class="term pref_label panel_heading">{{vm.subject.prefLabel}}</div>
-		<!--<span ng-show="vm.subject.chem"><b>({{vm.subject.chem}})</b></span>-->
-	</div>
-
-	<div class="info">
+<div class="subject" uib-accordion ng-show="vm.subject"> <!-- disabled="true" quick fix -->
+	<div uib-accordion-group is-open="vm.subject.hasContent" is-disabled="true">
+		<div uib-accordion-heading><!-- ¤¤ -->
+		<span ng-click="vm.selectSubject(); $event.preventDefault(); $event.stopPropagation();">{{vm.subject.prefLabel}}</span>
+		<i class="pull-right glyphicon glyphicon-remove-circle" ng-click="vm.removeFromSearchHistory(); $event.preventDefault(); $event.stopPropagation();" title="Remove"></i>
+		</div>
 
 		<div class="block definition" ng-show="vm.subject.definition">
 			{{ vm.subject.definition }}
 		</div>
-
+		
 		<div class="block" ng-show="vm.subject.altLabel.length">
 			<span translate>Used for:</span>
 			<span class="term" ng-repeat-start="label in vm.subject.altLabel">{{ label }}</span>
@@ -34,6 +29,5 @@ Includes search history
 			<a class="term" ng-repeat-start="related in vm.subject.related | orderBy:'prefLabel'" ui-sref="home.subject({ subjects: related.prefLabel })">{{ related.prefLabel }}</a>
 			<span class="term_separator" ng-repeat-end></span>
 		</div>
-
 	</div>
 </div>
