@@ -33,6 +33,13 @@
 		}
 
 		function notify(subject) {
+			var idx = service.searchHistory.reduce(function(prev, curr, idx) {
+				return (curr.uri == subject.uri) ? idx : prev;
+			}, -1);
+
+			if (idx !== -1) {
+				service.searchHistory.splice(idx, 1);
+			}
 			service.searchHistory.push(subject);
 			$rootScope.$emit('subject-service-new-subject-event', subject);
 		}
