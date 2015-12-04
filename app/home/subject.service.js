@@ -63,48 +63,6 @@
 			return out;
 		}
 
-		/* Checks for periodic elements and sets acronym to be chemical element
-		//////////////////////////////////
-
-		function isPeriodicalElement(subject,akronym) {
-			if (akronym===undefined) return false;
-			if (akronym[0]!==undefined && typeof akronym === "object") return false;
-
-			for (var i=0; i<grunnstoff.length; i++){
-
-				if (subject.toLocaleLowerCase()==grunnstoff[i].name && akronym.toLocaleLowerCase()==grunnstoff[i].symbol) {
-					return true;
-				}
-			}
-			return false;
-		}
-
-		//Chemical element test///////////// MUST BE FIXED
-
-		if (data.graph[1].altLabel!==undefined) {
-
-			if (that.subject=="Kopper") that.subject = "Kobber";
-
-			if (data.graph[1].altLabel[0]!==undefined && typeof data.graph[1].altLabel === "object" ) {
-				console.log('array!',data.graph[1].altLabel);
-				var akronym = data.graph[1].altLabel[0];
-			}
-
-			else {
-				console.log('variable!',data.graph[1].altLabel);
-				var akronym = data.graph[1].altLabel;
-			}
-
-			console.log("akronym",akronym);
-
-			if (isPeriodicalElement(that.subject,akronym)) {
-
-				that.chem = akronym;
-			}
-		}
-		//////////////////////////////////
-		*/
-
 		function preferredRdfType(arr) {
 			if (arr.indexOf('http://www.loc.gov/mads/rdf/v1#Geographic') !== -1) {
 				gettext('Geographic');
@@ -118,14 +76,12 @@
 				gettext('GenreForm');
 				return 'GenreForm';
 			}
-			//gettext('Topic');
-			//return 'Topic';
+			gettext('Topic');
+			return 'Topic';
 		}
-		
+
 		// Returns a normalized representation of a JSON LD resource for easier processing
 		function processResource(resources, uri) {
-
-			console.log("_______>",resources, uri);
 			return {
 				prefLabel: indexByLanguage(arrayify(resources[uri].prefLabel), false),
 				altLabel: indexByLanguage(arrayify(resources[uri].altLabel), true),
