@@ -30,7 +30,7 @@
 			if (map[$match.id] !== undefined) {
 				return map[$match.id];
 			}
-			return '/';
+			return false;
 		});
 
 		$urlRouterProvider.otherwise('/');
