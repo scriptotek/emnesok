@@ -35,17 +35,27 @@
 
 </div>
 
+<div class="alert alert-danger" ng-show="vm.error">{{vm.error}}</div>
 
-<h3>Active subject</h3>
+<div class="panel panel-success">
+  <div class="panel-heading" translate><h3 class="panel-title">Active subject</h3></div>
+  <ul class="list-group">
+    <li class="list-group-item">
 
-	<div class="alert alert-danger" ng-show="vm.error">{{vm.error}}</div>
+	    <mod-subject ng-show="vm.searchHistory.length" subject-data="vm.searchHistory[vm.searchHistory.length-1]"></mod-subject>
 
-	<mod-subject ng-show="vm.searchHistory.length" subject-data="vm.searchHistory[vm.searchHistory.length-1]"></mod-subject>
+    </li>
+  </ul>
+</div>
 
-<h3>Search history</h3>
 
-<div class="search_history" ng-show="vm.searchHistory.length > 1">
-
-	<mod-subject ng-repeat="subject in vm.searchHistory.slice(0, vm.searchHistory.length-1).reverse()" subject-data="subject"></mod-subject>
-
+<div class="panel panel-default" ng-show="vm.searchHistory.length > 1">
+  <div class="panel-heading" translate><h3 class="panel-title">Search history</h3></div>
+  <ul class="list-group">
+    <li class="list-group-item" ng-repeat="subject in vm.searchHistory.slice(0, vm.searchHistory.length-1).reverse()">
+	    <a ui-sref="subject.search({ subjects: subject.vocab + ':' + subject.id })">
+		  {{ subject.data.prefLabel.nb }}
+	    </a>
+    </li>
+  </ul>
 </div>
