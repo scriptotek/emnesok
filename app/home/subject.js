@@ -46,6 +46,7 @@
 		function update () {
 			// console.log('[Subject] update():', vm.subjectData.data.prefLabel.nb);
 			vm.subject = process(vm.subjectData);
+			vm.subject.vocab = vm.subjectData.vocab;
 		}
 
 		function process(subject) {
@@ -73,7 +74,8 @@
 				definition: subject.data.definition[displayLang] || subject.data.definition[defaultLang],
 				related: subject.data.related.map(function(k) {
 					return {
-						prefLabel: k.prefLabel[displayLang] || k.prefLabel[defaultLang]
+						prefLabel: k.prefLabel[displayLang] || k.prefLabel[defaultLang],
+						id: k.id
 					};
 				}),
 				translations: translations,

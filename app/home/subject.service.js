@@ -148,11 +148,12 @@
 				processedResources[graph.uri] = processResource(rawResources, graph.uri);
 			});
 
-			console.log(processedResources);
-
 			var out = processedResources[uri];
 			out.related = out.related.map(function(res) {
-				return processedResources[res.uri];
+				var x = processedResources[res.uri];
+				x.uri = res.uri;
+				x.id = x.uri.substr(x.uri.lastIndexOf('/') + 1);
+				return x;
 			});
 			return out;
 		}
