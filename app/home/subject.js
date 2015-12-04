@@ -1,5 +1,5 @@
 (function() {
-    'use strict';
+	'use strict';
 
 	angular
 		.module('app.modules.subject', ['app.services.config', 'app.services.lang', 'app.services.subject'])
@@ -8,19 +8,21 @@
 	function SubjectModule() {
 
 		var directive = {
-	        restrict: 'A',
-	        templateUrl: './templates/subject.html?' + Math.random(),
-	        replace: false,
-	        scope: {subject: '=', expanded: '='},
-	        controllerAs: 'vm',
-	        controller: ['$scope', '$stateParams', '$filter', 'Config', 'Lang', 'SubjectService', controller]
-	    };
+			restrict: 'E',
+			templateUrl: './templates/subject.html?' + Math.random(),
+			replace: true,
+			scope: {
+				subjectData: '='
+			},
+			controllerAs: 'vm',
+			controller: controller,
+			bindToController: true
+		};
 
-    	return directive;
-    }
-	
+		return directive;
+	}
+
 	//Checks if subject contains anything else than prefLabel
-
 	function setContentBool(subject) {
 
 		console.log("altlabel",subject.altLabel);
@@ -28,92 +30,72 @@
 		console.log("related",subject.related);
 		console.log("translations",subject.translations);
 
-		if (subject.altLabel) return true;		
+		if (subject.altLabel) return true;
 		if (subject.definition) return true;
-		if (subject.related.length) return true;		
+		if (subject.related.length) return true;
 		if (subject.translations.length) return true;
-		
+
 		return false;
-		
+
 	}
 
-	function controller($scope, $stateParams, $filter, Config, Lang, SubjectService) {
+	controller.$inject = ['$scope', 'Config', 'Lang'];
+
+	function controller($scope, Config, Lang) {
 		/*jshint validthis: true */
 		var vm = this;
-		var subject = $scope.subject;
-		
-		vm.selectSubject = selectSubject;
-		vm.removeFromSearchHistory = removeFromSearchHistory;
 		vm.error = null;
 		vm.expanded = $scope.expanded;
-
-		console.log('[Subject] Init');
-
 
 		activate();
 
 		////////////
 
-		//console.log(JsonldRest);
-
-		function removeFromSearchHistory() {
-
-			console.log("removeFromSearchHistory",this.subject);
-
-		}
-
-		function selectSubject(){
-			//¤¤
-			/*
-			$rootScope.$broadcast('SubjectReady', {
-				uri: uri,
-				vocab: vocab,
-				id: id,
-				data: subject
-			});
-			*/
-
-			console.log(subject);
-		}
-
 		function activate() {
+			$scope.$watch('vm.subjectData', function(newValue, oldValue) {
+				if (newValue != oldValue) {
+					update();
+				}
+			});
+			update();
+		}
 
+		function update () {
+			// console.log('[Subject] update():', vm.subjectData.data.prefLabel.nb);
+			vm.subject = process(vm.subjectData);
+			vm.subject.hasContent = setContentBool(vm.subject);
+		}
+
+		function process(subject) {
 			var lang = Lang.language;
 			var displayLang = lang;
 			var defaultLang = Lang.defaultLanguage;
 			var translations = [];
 
-			console.log('[Subject] Hooray, got a subject:');
-			console.log(subject);
-
-			if (!subject.prefLabel[lang]) {
+			if (!subject.data.prefLabel[lang]) {
 				displayLang = defaultLang;
 			}
-			Object.keys(subject.prefLabel).forEach(function(langCode) {
+			Object.keys(subject.data.prefLabel).forEach(function(langCode) {
 				if (langCode !== displayLang) {
 					translations.push({
 						language: {code: langCode, name: Config.languageLabels[langCode]},
-						prefLabel: subject.prefLabel[langCode],
-						altLabel: subject.altLabel[langCode]
+						prefLabel: subject.data.prefLabel[langCode],
+						altLabel: subject.data.altLabel[langCode]
 					});
 				}
 			});
 
-			vm.subject = {
-				prefLabel: subject.prefLabel[displayLang],
-				altLabel: subject.altLabel[displayLang],
-				definition: subject.definition[displayLang] || subject.definition[defaultLang],
-				type: subject.type,
-				related: subject.related.map(function(k) {
+			return {
+				prefLabel: subject.data.prefLabel[displayLang],
+				altLabel: subject.data.altLabel[displayLang],
+				definition: subject.data.definition[displayLang] || subject.data.definition[defaultLang],
+				related: subject.data.related.map(function(k) {
 					return {
 						prefLabel: k.prefLabel[displayLang] || k.prefLabel[defaultLang]
 					};
 				}),
 				translations: translations,
 			};
-
-			vm.subject.hasContent = setContentBool(vm.subject);
-
 		}
 	}
 

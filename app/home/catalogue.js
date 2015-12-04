@@ -2,9 +2,12 @@
     'use strict';
 
     angular
-        .module('app.modules.catalogue', ['app.services.catalogue', 'app.services.subject', 'app.services.config', 'app.services.session'])
-        .directive('modCatalogue', CatalogueDirective)
-        .directive('modCatalogueResult', CatalogueResultDirective);
+        .module('app.modules.catalogue', ['app.services.catalogue', 'app.services.subject', 'app.services.lang', 'app.services.config', 'app.services.session'])
+        .controller('CatalogueController', ['$stateParams', '$scope', '$window', '$timeout', 'Lang', 'Catalogue', 'Config', 'Session', 'subject', controller])
+        .directive('modCatalogueResult', CatalogueResultDirective)
+        ;
+
+    /* ------------------------------------------------------------------------------- */
 
     function CatalogueResultDirective() {
         console.log('[CatalogueResultDirective] Init');
@@ -17,52 +20,62 @@
                 record: '=',
                 vocab: '='
             },
-            controller: ['$scope', 'Lang', 'Catalogue', 'Config', resultController]
+            controllerAs: 'vm',
+            controller: ['Lang', 'Catalogue', 'Config', resultController],
+            bindToController: true // because the scope is isolated
         };
 
         return directive;
     }
 
-    function resultController($scope, Lang, Catalogue, Config) {
+    function resultController(Lang, Catalogue, Config) {
+        /*jshint validthis: true */
+        var vm = this;
+
         // @TODO
-        $scope.recordExpanded = false;
-        $scope.expandGroup = expandGroup;
-        $scope.versions = [];
+        vm.recordExpanded = false;
+        vm.expandGroup = expandGroup;
+        vm.versions = [];
+        vm.filterPrint = filterPrint;
+        vm.filterElectronic = filterElectronic;
+        vm.getStatus = getStatus;
 
         ////////////
 
         function expandGroup() {
-            var groupId = $scope.record.id;
-            $scope.busy = true;
+            var groupId = vm.record.id;
+            vm.busy = true;
             Catalogue.expandGroup(groupId).then(function(response) {
                 console.log('Got response:');
                 console.log(response.result.records);
-                $scope.busy = false;
-                $scope.recordExpanded = true;
-                $scope.versions = response.result.records;
+                vm.busy = false;
+                vm.recordExpanded = true;
+                vm.versions = response.result.records;
             }, function(error) {
                 // @TODO: Handle error
-                $scope.busy = false;
+                vm.busy = false;
             });
+        }
+
+        function filterPrint(component) {
+            return component.category == 'Alma-P';
+        }
+
+        function filterElectronic(component) {
+            return component.category !== undefined && component.category !== 'Alma-P';
+        }
+
+        function getStatus(status) {
+            var statuses = {
+                'check_holdings': 'might be available'
+            };
+            return statuses[status] || status;
         }
     }
 
-    function CatalogueDirective() {
-    	console.log('[Catalogue] Init');
+    /* ------------------------------------------------------------------------------- */
 
-    	var directive = {
-            restrict: 'A',
-            templateUrl: './templates/catalogue.html?' + Math.random(),
-            replace: false,
-            scope: {},
-            controllerAs: 'vm',
-            controller: ['$stateParams', '$scope', '$window', '$timeout', 'Lang', 'Catalogue', 'Config', 'Session', controller]
-        };
-
-        return directive;
-    }
-
-    function controller($stateParams, $scope, $window, $timeout, Lang, Catalogue, Config, Session) {
+    function controller($stateParams, $scope, $window, $timeout, Lang, Catalogue, Config, Session, subject) {
         /*jshint validthis: true */
         var vm = this;
         vm.vocab = '';
@@ -91,17 +104,18 @@
 
         function activate() {
             var defaultLang = Lang.defaultLanguage;
-            $scope.$on('SubjectReady', function(evt, data) {
-                vm.vocab = data.vocab;
-                vm.term = data.data.prefLabel[defaultLang];
-                searchFromStart();
+            vm.vocab = subject.vocab;
+            vm.term = subject.data.prefLabel[defaultLang];
+            searchFromStart();
+
+            angular.element($window).bind('scroll', onScroll);
+            $scope.$on('$destroy', function() {
+                angular.element($window).off('scroll', onScroll);
             });
+        }
 
-            // scope.$on('$destroy', function() {
-            //     return target.off('scroll', handler);
-            // });
-
-            angular.element($window).bind('scroll', function() { $scope.$apply(checkScrollPos); });
+        function onScroll () {
+            $scope.$apply(checkScrollPos);
         }
 
         function checkScrollPos() {
