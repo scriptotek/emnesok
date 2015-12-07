@@ -27,11 +27,11 @@
 			//JsonldRest.setBaseUrl('http://data.ub.uio.no');
 			
 			//But this does
-			Restangular.setBaseUrl('http://data.ub.uio.no');
+			//Restangular.setBaseUrl('http://data.ub.uio.no');
 
-
-			//console.log("§§§§§§§§§",JsonldRest);
-
+			
+			/*
+		
 			//A handler to a server collection of persons with a local context interpretation
 			var people = JsonldRest.collection('realfagstermer').withContext({
 				"skos": "http://www.w3.org/2004/02/skos/core#",
@@ -43,7 +43,8 @@
 			people.one('c012171').get().then(function(res){
 				console.log("Hello ", res.grunnstoff);
 			});
-			
+			*/
+	
 
 		}
 
@@ -103,6 +104,7 @@
 				gettext('GenreForm');
 				return 'GenreForm';
 			}
+
 			gettext('Topic');
 			return 'Topic';
 		}
@@ -114,7 +116,8 @@
 				altLabel: indexByLanguage(arrayify(resources[uri].altLabel), true),
 				related: arrayify(resources[uri].related),
 				definition: indexByLanguage(arrayify(resources[uri]['skos:definition'] || resources[uri].definition)),
-				type: preferredRdfType(arrayify(resources[uri].type))
+				type: preferredRdfType(arrayify(resources[uri].type)),
+				elementSymbol:resources[uri]["http://data.ub.uio.no/onto#elementSymbol"]
 			};
 		}
 
@@ -138,6 +141,7 @@
 				x.id = x.uri.substr(x.uri.lastIndexOf('/') + 1);
 				return x;
 			});
+
 			return out;
 		}
 
@@ -156,6 +160,7 @@
 			  url: Config.skosmos.dataUrl.replace('{uri}', uri)
 			}).
 			then(function(data){
+			
 				var subject = {
 					uri: uri,
 					vocab: vocab,
@@ -163,6 +168,7 @@
 					data: processSubject(uri, data.data)
 				};
 				notify(subject);
+				console.log("2DF",subject.data);
 				deferred.resolve(subject);
 			}, function(error){
 				deferred.reject(error);

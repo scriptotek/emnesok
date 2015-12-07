@@ -50,6 +50,7 @@
 		}
 
 		function process(subject) {
+
 			var lang = Lang.language;
 			var displayLang = lang;
 			var defaultLang = Lang.defaultLanguage;
@@ -58,6 +59,14 @@
 			if (!subject.data.prefLabel[lang]) {
 				displayLang = defaultLang;
 			}
+
+			if (subject.data.elementSymbol){
+				if (subject.data.prefLabel[displayLang].substr(-12)=="(grunnstoff)") {
+					subject.data.prefLabel[displayLang]=subject.data.prefLabel[displayLang].slice(0, -12);
+				}
+
+			}
+
 			Object.keys(subject.data.prefLabel).forEach(function(langCode) {
 				if (langCode !== displayLang) {
 					translations.push({
@@ -79,6 +88,7 @@
 					};
 				}),
 				translations: translations,
+				elementSymbol: subject.data.elementSymbol
 			};
 		}
 	}

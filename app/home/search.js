@@ -117,13 +117,11 @@
 
 		function formatResult(response,query) {
 
-			console.log('Got response',response);
+			//console.log('Got response',response);
 			var result = [];
 	
 			//Remove duplicates and add matchedPreflabel and some notation where there is a match
 			response.results.forEach(function (value, key) {
-
-				console.log(value.prefLabel,value.altLabel);
 
 				var searchListIcon=""; 
 				// Add Geographics/Temporal/GenreForm to list
@@ -187,7 +185,7 @@
 
 			var deferred = $q.defer();
 
-			console.log('Searching with...',query);
+			//console.log('Searching with...',query);
 
 			vm.errorMsg = '';
 			$http({
@@ -221,11 +219,11 @@
 		}
 
 		function selectSubject(item) {
-			console.log('selectSubject');
+			//console.log('selectSubject');
 			if (item) {
-				console.log(item.originalObject.uri);
+				//console.log(item.originalObject.uri);
 				var subjects = shortIdFromUri(item.originalObject.uri);
-				console.log('[SearchController] Selecting subject(s): ' + subjects);
+				//console.log('[SearchController] Selecting subject(s): ' + subjects);
 
 				$state.go('subject.search', {
 					subjects:   subjects

@@ -1,6 +1,8 @@
 <div>
 	<div>
-		<strong>{{vm.subject.prefLabel}}</strong>
+		<strong>{{vm.subject.prefLabel}}
+		<span ng-show="vm.subject.elementSymbol"> ({{vm.subject.elementSymbol}})</span>
+		</strong>
 	</div>
 	<div class="block definition" ng-show="vm.subject.definition">
 		{{ vm.subject.definition }}
