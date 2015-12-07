@@ -37,7 +37,7 @@
 
 <div class="alert alert-danger" ng-show="vm.error">{{vm.error}}</div>
 
-<div class="panel panel-success">
+<div class="panel panel-success" ng-show="vm.searchHistory.length > 0">
   <div class="panel-heading" translate><h3 class="panel-title">Active subject</h3></div>
   <ul class="list-group">
     <li class="list-group-item">
