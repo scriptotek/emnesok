@@ -3,9 +3,9 @@
 
 	angular
 		.module('app.services.subject', ['app.services.config'])
-		.factory('SubjectService', ['$http', '$stateParams', '$filter', '$q', '$rootScope', 'gettext', 'Config', SubjectService]);
+		.factory('SubjectService', ['$http', '$stateParams', '$filter', '$q', '$rootScope', 'gettext', 'Config', 'Restangular','JsonldRest', SubjectService]);
 
-	function SubjectService($http, $stateParams, $filter, $q, $rootScope, gettext, Config) {
+	function SubjectService($http, $stateParams, $filter, $q, $rootScope, gettext, Config, Restangular, JsonldRest) {
 		console.log('[SubjectService] Init');
 
 		var service = {
@@ -22,9 +22,29 @@
 		////////////
 
 		function activate() {
-			// $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
+			
+			//This doesn't work...
+			//JsonldRest.setBaseUrl('http://data.ub.uio.no');
+			
+			//But this does
+			Restangular.setBaseUrl('http://data.ub.uio.no');
 
-			// });
+
+			//console.log("§§§§§§§§§",JsonldRest);
+
+			//A handler to a server collection of persons with a local context interpretation
+			var people = JsonldRest.collection('realfagstermer').withContext({
+				"skos": "http://www.w3.org/2004/02/skos/core#",
+				"ubo": "http://data.ub.uio.no/onto#",
+				"grunnstoff": "ubo:elementSymbol"
+			});
+			
+			//We retrieve the person http://example.org/person/1
+			people.one('c012171').get().then(function(res){
+				console.log("Hello ", res.grunnstoff);
+			});
+			
+
 		}
 
 		function onSubject(scope, callback) {
