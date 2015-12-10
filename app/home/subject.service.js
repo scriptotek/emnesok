@@ -28,10 +28,8 @@
 			
 			//But this does
 			//Restangular.setBaseUrl('http://data.ub.uio.no');
-
 			
 			/*
-		
 			//A handler to a server collection of persons with a local context interpretation
 			var people = JsonldRest.collection('realfagstermer').withContext({
 				"skos": "http://www.w3.org/2004/02/skos/core#",
@@ -168,7 +166,7 @@
 					data: processSubject(uri, data.data)
 				};
 				notify(subject);
-				console.log("2DF",subject.data);
+	
 				deferred.resolve(subject);
 			}, function(error){
 				deferred.reject(error);

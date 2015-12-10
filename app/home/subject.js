@@ -2,7 +2,7 @@
 	'use strict';
 
 	angular
-		.module('app.modules.subject', ['app.services.config', 'app.services.lang', 'app.services.subject'])
+		.module('app.modules.subject', ['app.services.config', 'app.services.lang', 'app.services.subject','app.services.externals'])
 		.directive('modSubject', SubjectModule);
 
 	function SubjectModule() {
@@ -22,9 +22,9 @@
 		return directive;
 	}
 
-	controller.$inject = ['$scope', 'Config', 'Lang'];
+	controller.$inject = ['$scope', 'Config', 'Lang', 'Externals'];
 
-	function controller($scope, Config, Lang) {
+	function controller($scope, Config, Lang, Externals) {
 		/*jshint validthis: true */
 		var vm = this;
 		vm.error = null;
@@ -55,6 +55,14 @@
 			var displayLang = lang;
 			var defaultLang = Lang.defaultLanguage;
 			var translations = [];
+
+			Externals.snl(subject.data.prefLabel[displayLang]).then(function(data) {
+				console.log("snl",data);
+			});
+
+			Externals.wp(subject.data.prefLabel[displayLang],displayLang,"exact").then(function(data) {
+				console.log("wp",data);
+			});
 
 			if (!subject.data.prefLabel[lang]) {
 				displayLang = defaultLang;
