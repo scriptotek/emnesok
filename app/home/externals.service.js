@@ -14,7 +14,12 @@
 		console.log('[Externals] Init');
 
 		var service = {
-			data: null,
+			data: {
+				name: "",
+				url: "",
+				extract: "",
+				type: "no result"
+			},
 			snl:snl,
 			wp:wp
 		}
@@ -25,14 +30,7 @@
 
 			console.log('[Externals] SNL lookup');
 
-			//Defaults
-			service.data = {
-				url: "",
-				extract: "",
-				type: "no result"
-			};
-			
-			var snl_deferred = $q.defer();
+			var deferred = $q.defer();
 
 			$http({
 			  method: 'GET',
@@ -42,26 +40,25 @@
 			}).
 			then(function(result){
 
-				service.data=result.data;
-				snl_deferred.resolve(service.data);
+				service.data = result.data;
+				service.data.name = gettext("Store norske leksikon");
+				deferred.resolve(service.data);
+
+				console.log('snl',service.data);
 
 			},function(error){
-				snl_deferred.reject(error);
+				deferred.reject(error);
 			});
 			
-			return snl_deferred.promise;
+			return deferred.promise;
 		}
 
 		function wp(term,lang,type,deferred) {
+
+			if (type===undefined) type="exact";
+			if (!type) type="exact";
 	
 			console.log('[Externals] Wikipedia lookup ('+type+')');		
-
-			//Defaults
-			service.data = {
-				url: "",
-				extract: "",
-				type: "no result"
-			};
 
 			if (!deferred) {
 				deferred = $q.defer();
@@ -102,18 +99,19 @@
 						}
 						
 						service.data = {
+							name: gettext("Wikipedia"),
 							url: processed.canonicalurl,
 							extract: extract,
 							type: type
-						}
+						};
 						deferred.resolve(service.data);	
 					}
 					
 					else {
-			
 						wp(term,lang,"search", deferred);
-
 					}
+						
+					console.log('wiki exact',service.data);
 
 				},function(error){
 					deferred.reject(error);
@@ -141,13 +139,16 @@
 					if (result.data.query.searchinfo.totalhits) {
 							
 						service.data = {
+							name: gettext("Wikipedia"),
 							url: "https://"+lang+".wikipedia.org/w/index.php?search="+term,
 							extract: "",
 							type: type
-						}
+						};
 					}
 
 					deferred.resolve(service.data);	
+
+					console.log('wiki search',service.data);
 
 				},function(error){
 					deferred.reject(error);

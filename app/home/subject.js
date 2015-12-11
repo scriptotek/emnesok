@@ -55,13 +55,18 @@
 			var displayLang = lang;
 			var defaultLang = Lang.defaultLanguage;
 			var translations = [];
+			var externals = [];
+			var output = {};
+	
 
 			Externals.snl(subject.data.prefLabel[displayLang]).then(function(data) {
-				console.log("snl",data);
+				externals.push(data);
+				output.externals = externals;
 			});
 
-			Externals.wp(subject.data.prefLabel[displayLang],displayLang,"exact").then(function(data) {
-				console.log("wp",data);
+			Externals.wp(subject.data.prefLabel[displayLang],displayLang).then(function(data) {
+				externals.push(data);
+				output.externals = externals;	
 			});
 
 			if (!subject.data.prefLabel[lang]) {
@@ -85,7 +90,7 @@
 				}
 			});
 
-			return {
+			output = {
 				prefLabel: subject.data.prefLabel[displayLang],
 				altLabel: subject.data.altLabel[displayLang],
 				definition: subject.data.definition[displayLang] || subject.data.definition[defaultLang],
@@ -98,6 +103,8 @@
 				translations: translations,
 				elementSymbol: subject.data.elementSymbol
 			};
+			console.log(output);
+			return output;
 		}
 	}
 
