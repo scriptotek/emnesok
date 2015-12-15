@@ -28,21 +28,42 @@
         return directive;
     }
 
-    resultController.$inject = ['Lang', 'Catalogue', 'Config'];
+    resultController.$inject = ['Lang', 'Catalogue', 'Config', 'SubjectService', '$state'];
 
-    function resultController(Lang, Catalogue, Config) {
+    function resultController(Lang, Catalogue, Config, SubjectService, $state) {
         /*jshint validthis: true */
         var vm = this;
 
         // @TODO
         vm.recordExpanded = false;
+        vm.clickSubject = clickSubject;
         vm.expandGroup = expandGroup;
         vm.versions = [];
         vm.filterPrint = filterPrint;
         vm.filterElectronic = filterElectronic;
         vm.getStatus = getStatus;
+        vm.busy = false;
+
 
         ////////////
+
+        function clickSubject(subject) {
+            if (vm.busy) {
+                return;
+            }
+            vm.busy = true;
+            SubjectService.exists(subject, vm.vocab).then(function(response) {
+                vm.busy = false;
+                console.log(response);
+                if (!response) {
+                    console.error('Emnet ble ikke funnet');
+                } else {
+                    $state.go('subject.search', {id: response.localname, term: null});
+                }
+            }, function(err) {
+
+            });
+        }
 
         function expandGroup() {
             var groupId = vm.record.id;
@@ -83,7 +104,6 @@
         /*jshint validthis: true */
         var vm = this;
         vm.vocab = '';
-        vm.term = '';
         vm.start = 0;
         vm.last = 0;
         vm.next = 1;
@@ -114,8 +134,6 @@
         ////////////
 
         function activate() {
-            var defaultLang = Lang.defaultLanguage;
-
             if (!subject) {
                 vm.busy = false;
                 vm.subjectNotFound = true;
@@ -123,7 +141,6 @@
             }
             vm.vocab = subject.vocab;
             vm.subject = subject;
-            vm.term = subject.data.prefLabel[defaultLang];
             searchFromStart();
 
             angular.element($window).bind('scroll', onScroll);
@@ -167,7 +184,7 @@
         }
 
         function getMoreRecords() {
-            if (vm.vocab && vm.term && vm.next && !vm.busy) {
+            if (vm.vocab && vm.next && !vm.busy) {
                 search();
             }
         }
@@ -176,8 +193,10 @@
             var inst = vm.selectedInstitution ? vm.selectedInstitution : null;
             var lib = vm.selectedLibrary ? vm.selectedInstitution + vm.selectedLibrary : null;
             var vocab = subject.data.type == 'Geographic' ? 'geo' : vm.controlledSearch ? vm.vocab : '';
+            var defaultLang = Lang.defaultLanguage;
+            var query = subject.data.prefLabel[defaultLang];
             vm.busy = true;
-            Catalogue.search(vocab, vm.term, vm.next, inst, lib).then(
+            Catalogue.search(vocab, query, vm.next, inst, lib).then(
                 gotResults,
                 function(error) {
                     // @TODO Handle error

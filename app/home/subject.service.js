@@ -13,6 +13,7 @@
 			getById: getById,
 			getByUri: getByUri,
 			getByTerm: getByTerm,
+			exists: exists,
 			onSubject: onSubject,
 			searchHistory: []
 		};
@@ -160,7 +161,7 @@
 
 			$http({
 			  method: 'GET',
-			  cache: false,
+			  cache: true,
 			  url: Config.skosmos.searchUrl,
 			  params: query
 			}).
@@ -218,6 +219,19 @@
 				deferred.reject(error);
 			});
 
+			return deferred.promise;
+		}
+
+		function exists(term, vocab) {
+			var deferred = $q.defer();
+			search(term, vocab).then(function(response) {
+				if (!response.results.length) {
+					return deferred.resolve(null);
+				}
+				deferred.resolve(response.results[0]);
+			}, function(error) {
+				deferred.reject(error);
+			});
 			return deferred.promise;
 		}
 
