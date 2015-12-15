@@ -21,7 +21,8 @@
 				type: "no result"
 			},
 			snl:snl,
-			wp:wp
+			wp:wp,
+			ps:ps
 		}
 
 		return service;
@@ -52,6 +53,34 @@
 			
 			return deferred.promise;
 		}
+
+		function ps(term) {
+
+			console.log('[Externals] PS lookup');
+
+			var deferred = $q.defer();
+
+			$http({
+			  method: 'GET',
+			  cache: true,
+			  url: "http://services.biblionaut.net/api/ps.php",
+			  params: {ele: term}
+			}).
+			then(function(result){
+
+				service.data = result.data;
+				service.data.name = gettext("Periodesystemet");
+				deferred.resolve(service.data);
+
+				console.log('ps',service.data);
+
+			},function(error){
+				deferred.reject(error);
+			});
+			
+			return deferred.promise;
+		}
+
 
 		function wp(term,lang,type,deferred) {
 

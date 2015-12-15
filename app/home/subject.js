@@ -69,11 +69,19 @@
 				output.externals = externals;	
 			});
 
+
 			if (!subject.data.prefLabel[lang]) {
 				displayLang = defaultLang;
 			}
 
 			if (subject.data.elementSymbol){
+
+				Externals.ps(subject.data.elementSymbol).then(function(data) {
+					externals.push(data);
+					output.externals = externals;	
+				});
+
+
 				if (subject.data.prefLabel[displayLang].substr(-12)=="(grunnstoff)") {
 					subject.data.prefLabel[displayLang]=subject.data.prefLabel[displayLang].slice(0, -12);
 				}
@@ -101,7 +109,7 @@
 					};
 				}),
 				translations: translations,
-				elementSymbol: subject.data.elementSymbol
+				elementSymbol: subject.data.elementSymbol,
 			};
 			console.log(output);
 			return output;
