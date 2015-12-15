@@ -1,10 +1,13 @@
 <div class="catalogue_result">
 
-	<a ng-href="{{ vm.record.links.primo }}">{{ vm.record.title }}</a>
-	<span ng-show="vm.record.edition">{{ vm.record.edition }}</span>
-	{{ vm.record.date }}
+	<div>
+		<a style="font-size:120%;" ng-href="{{ vm.record.links.primo }}">{{ vm.record.title }}</a>
+		({{ vm.record.publisher }}<span ng-show="vm.record.publisher && vm.record.edition">, </span><span ng-show="vm.record.edition">{{ vm.record.edition }}</span> {{ vm.record.date }})
+	</div>
 
-	<div ng-bind-html="vm.record.creator_string"></div>
+	<div ng-show="vm.record.ispartof">Series: {{ vm.record.ispartof }}</div>
+
+	<div ng-bind-html="vm.record.responsibility ? vm.record.responsibility: vm.record.creator_string"></div>
 
 	<div ng-show="vm.record.format != 'book'">
 		({{ vm.record.format }})
@@ -31,7 +34,7 @@
 		</span>
 
 		<span ng-repeat="subject in vm.record.subjects.geo || []">
-			<a href ng-click="vm.clickSubject(subject)" class="label label-primary">{{ subject }} (Sted)</a>
+			<a href ng-click="vm.clickSubject(subject)" class="label label-default">{{ subject }} (Sted)</a>
 		</span>
 
 		<span ng-show="!vm.record.subjects[vm.vocab].length && !vm.record.subjects.geo.length" ng-repeat="subject in vm.record.subjects.subject">
@@ -48,7 +51,7 @@
 	</ul>
 
 
-	<ul ng-repeat="component in vm.record.components | filter:vm.filterPrint" style="font-size:90%;">
+	<!--<ul ng-repeat="component in vm.record.components | filter:vm.filterPrint" style="font-size:90%;">
 
 		<li ng-repeat="holding in component.holdings" style="font-size:90%;">
 			{{ vm.getStatus(holding.status) | translate }}
@@ -57,6 +60,6 @@
 			{{ holding.collection_name }}
 			{{ holding.callcode }}
 		</li>
-	</ul>
+	</ul>-->
 
 </div>
