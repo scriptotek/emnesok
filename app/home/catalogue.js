@@ -3,7 +3,7 @@
 
     angular
         .module('app.modules.catalogue', ['app.services.catalogue', 'app.services.subject', 'app.services.lang', 'app.services.config', 'app.services.session'])
-        .controller('CatalogueController', ['$stateParams', '$scope', '$window', '$timeout', 'Lang', 'Catalogue', 'Config', 'Session', 'subject', controller])
+        .controller('CatalogueController', ['$stateParams', '$state', '$scope', '$window', '$timeout', 'Lang', 'Catalogue', 'Config', 'Session', 'subject', controller])
         .directive('modCatalogueResult', CatalogueResultDirective)
         ;
 
@@ -75,7 +75,7 @@
 
     /* ------------------------------------------------------------------------------- */
 
-    function controller($stateParams, $scope, $window, $timeout, Lang, Catalogue, Config, Session, subject) {
+    function controller($stateParams, $state, $scope, $window, $timeout, Lang, Catalogue, Config, Session, subject) {
         /*jshint validthis: true */
         var vm = this;
         vm.vocab = '';
@@ -96,7 +96,7 @@
         vm.selectInstitution = selectInstitution;
         vm.selectLibrary = selectLibrary;
 
-        vm.controlledSearch = Session.controlledSearch;
+        vm.controlledSearch = ($stateParams.narrow == 'true');
         vm.updateControlledSearch = updateControlledSearch;
 
         activate();
@@ -195,8 +195,7 @@
         }
 
         function updateControlledSearch() {
-            Session.controlledSearch = vm.controlledSearch;
-            searchFromStart();
+            $state.go('subject.search', {narrow: vm.controlledSearch});
         }
 
     }
