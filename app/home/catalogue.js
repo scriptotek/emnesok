@@ -116,6 +116,7 @@
                 return;
             }
             vm.vocab = subject.vocab;
+            vm.subject = subject;
             vm.term = subject.data.prefLabel[defaultLang];
             searchFromStart();
 
@@ -168,7 +169,7 @@
         function search() {
             var inst = vm.selectedInstitution ? vm.selectedInstitution.id : null;
             var lib = vm.selectedLibrary ? vm.selectedLibrary.id : null;
-            var vocab = vm.controlledSearch ? vm.vocab : '';
+            var vocab = subject.data.type == 'Geographic' ? 'geo' : vm.controlledSearch ? vm.vocab : '';
             vm.busy = true;
             Catalogue.search(vocab, vm.term, vm.next, inst, lib).then(
                 gotResults,
