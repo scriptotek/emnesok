@@ -1,5 +1,5 @@
 (function() {
-    'use strict';
+	'use strict';
 
 	angular
 		.module('app', [
@@ -12,9 +12,11 @@
 			'app.modules.header',
 			'app.modules.search',
 			'app.modules.subject',
-			'app.modules.catalogue'
+			'app.modules.catalogue',
+			'app.modules.error'
 		])
-		.config(['$stateProvider', '$urlRouterProvider', configure]);
+		.config(['$stateProvider', '$urlRouterProvider', configure])
+		.run(['$rootScope', '$state', run]);
 
 	function configure($stateProvider, $urlRouterProvider) {
 
@@ -44,6 +46,19 @@
 				},
 				'main': {
 					templateUrl: './templates/home.html?' + Math.random()
+				}
+			}
+		})
+		.state('error', {
+			url: '/error?lang',
+			views: {
+				'header': {
+					template: '<div mod-header></div>'
+				},
+				'main': {
+					templateUrl: './templates/error.html?' + Math.random(),
+					controller: 'ErrorController',
+					controllerAs: 'vm'
 				}
 			}
 		})
@@ -85,6 +100,26 @@
 						return SubjectService.get(subjectParts[0], subjectParts[1]);
 					}
 				}]
+			}
+		});
+	}
+
+	function run($rootScope, $state) {
+		$rootScope.$on('$stateChangeError', function (evt, toState, toParams, fromState, fromParams, error) {
+			if (angular.isObject(error) && angular.isString(error.code)) {
+				switch (error.code) {
+					case 'NOT_AUTHENTICATED':
+						// go to the login page
+						$state.go('login');
+						break;
+					default:
+						// set the error object on the error state and go there
+						$state.get('error').error = error;
+						$state.go('error');
+				}
+			} else {
+				// unexpected error
+				$state.go('error');
 			}
 		});
 	}
