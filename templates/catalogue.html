@@ -16,23 +16,23 @@ Next: {{ vm.next }}
 
 	    <div class="btn-group" uib-dropdown uib-keyboard-nav>
 	        <button id="simple-btn-keyboard-nav" type="button" class="btn btn-default" uib-dropdown-toggle>
-	            {{ vm.selectedInstitution ? vm.selectedInstitution.label : 'All libraries' | translate }} <span class="caret"></span>
+	            {{ vm.selectedInstitution ? vm.institutions[vm.selectedInstitution].label : 'All libraries' | translate }} <span class="caret"></span>
 	        </button>
 	        <ul class="uib-dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="simple-btn-keyboard-nav">
 	            <li role="menuitem"><a href ng-click="vm.selectInstitution(null)" translate>All libraries</a></li>
 	            <li class="divider"></li>
-	            <li role="menuitem" ng-repeat="institution in vm.institutions"><a href ng-click="vm.selectInstitution(institution)">{{ institution.label }}</a></li>
+	            <li role="menuitem" ng-repeat="(key, val) in vm.institutions"><a href ng-click="vm.selectInstitution(key)">{{ val.label }}</a></li>
 	        </ul>
 	    </div>
 
-	    <div class="btn-group" ng-show="vm.selectedInstitution && vm.selectedInstitution.libraries" uib-dropdown uib-keyboard-nav uib-tooltip="Merk: Hvis du avgrenser på avdeling vil du ikke få treff i e-bøker.">
+	    <div class="btn-group" ng-show="vm.selectedInstitution && vm.institutions[vm.selectedInstitution].libraries" uib-dropdown uib-keyboard-nav uib-tooltip="Merk: Hvis du avgrenser på avdeling vil du ikke få treff i e-bøker.">
 	        <button id="simple-btn-keyboard-nav2" type="button" class="btn btn-default" uib-dropdown-toggle>
-	            {{ vm.selectedLibrary ? vm.selectedLibrary.label : 'Alle avdelinger' }} <span class="caret"></span>
+	            {{ vm.selectedLibrary ? vm.institutions[vm.selectedInstitution].libraries[vm.selectedLibrary].label : 'Alle avdelinger' }} <span class="caret"></span>
 	        </button>
 	        <ul class="uib-dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="simple-btn-keyboard-nav2">
 	            <li role="menuitem"><a href ng-click="vm.selectLibrary(null)">Alle avdelinger</a></li>
 	            <li class="divider"></li>
-	            <li role="menuitem" ng-repeat="library in vm.selectedInstitution.libraries"><a href ng-click="vm.selectLibrary(library)">{{ library.label }}</a></li>
+	            <li role="menuitem" ng-repeat="(key, val) in vm.institutions[vm.selectedInstitution].libraries"><a href ng-click="vm.selectLibrary(key)">{{ val.label }}</a></li>
 	        </ul>
 	    </div>
 	</div>

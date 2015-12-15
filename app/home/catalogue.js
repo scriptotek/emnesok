@@ -94,11 +94,17 @@
         vm.expandGroup = expandGroup;
         vm.getMoreRecords = getMoreRecords;
 
-        vm.institutions = Config.institutions;
-        vm.selectedInstitution = Session.selectedInstitution;
-        vm.selectedLibrary = Session.selectedLibrary;
         vm.selectInstitution = selectInstitution;
         vm.selectLibrary = selectLibrary;
+
+        vm.institutions = Config.institutions;
+        if ($stateParams.library && $stateParams.library.indexOf(':') != -1) {
+            vm.selectedInstitution = $stateParams.library.split(':')[0];
+            vm.selectedLibrary = $stateParams.library.split(':')[1];
+        } else {
+            vm.selectedInstitution = $stateParams.library;
+            vm.selectedLibrary = null;
+        }
 
         vm.controlledSearch = ($stateParams.narrow == 'true');
         vm.updateControlledSearch = updateControlledSearch;
@@ -167,8 +173,8 @@
         }
 
         function search() {
-            var inst = vm.selectedInstitution ? vm.selectedInstitution.id : null;
-            var lib = vm.selectedLibrary ? vm.selectedLibrary.id : null;
+            var inst = vm.selectedInstitution ? vm.selectedInstitution : null;
+            var lib = vm.selectedLibrary ? vm.selectedInstitution + vm.selectedLibrary : null;
             var vocab = subject.data.type == 'Geographic' ? 'geo' : vm.controlledSearch ? vm.vocab : '';
             vm.busy = true;
             Catalogue.search(vocab, vm.term, vm.next, inst, lib).then(
@@ -187,16 +193,11 @@
         }
 
         function selectInstitution(institution) {
-            Session.selectInstitution(institution);
-            vm.selectedInstitution = institution;
-            vm.selectedLibrary = null;
-            searchFromStart();
+            $state.go('subject.search', {library: institution});
         }
 
         function selectLibrary(library) {
-            Session.selectLibrary(library);
-            vm.selectedLibrary = library;
-            searchFromStart();
+            $state.go('subject.search', {library: vm.selectedInstitution + ':' + library});
         }
 
         function updateControlledSearch() {

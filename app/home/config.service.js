@@ -1,5 +1,5 @@
 (function() {
-    'use strict';
+	'use strict';
 
 	angular
 		.module('app.services.config', [])
@@ -16,18 +16,35 @@
 				la: 'Latin'
 			},
 			defaultLanguage: 'nb',
-			institutions: [
-	            {id: 'UBO', label: 'UiO', libraries: [
-		            {id: 'ubo1030310', label: 'Realfagsbiblioteket VB'},
-		            {id: 'ubo1030317', label: 'Informatikkbiblioteket'},
-		            {id: 'ubo1030500', label: 'NHM'},
-		            {id: 'ubo1030300,1030303', label: 'Humsam-biblioteket + Sophus Bugge'}
-		        ]},
-	            {id: 'UBB', label: 'UiB'},
-	            {id: 'NTNU_UB', label: 'NTNU'},
-	            {id: 'UBTO', label: 'UiT'},
-	            {id: 'NMBU', label: 'NMBU'}
-	        ],
+			institutions: {
+				'UBO': {
+					label: 'UiO',
+					libraries: {
+						'1030310': {label: 'Realfagsbiblioteket VB'},
+						'1030317': {label: 'Informatikkbiblioteket'},
+						'1030500': {label: 'NHM'},
+						'1030300,1030303': {label: 'Humsam-biblioteket + Sophus Bugge'}
+					}
+				},
+				'UBB': {
+					label: 'UiB',
+					libraries: {
+						'1120104': {label: 'Bibliotek for realfag'},
+						'1120100': {label: 'Bibliotek for humaniora'},
+						'1120108': {label: 'Bibliotek for amfunnsvitenskap'}
+					}
+				},
+				'NTNU_UB': {
+					label: 'NTNU',
+					libraries: {
+						'1160133': {label: 'DORA'},
+						'1160103': {label: 'Realfagbiblioteket'},
+						'1160101': {label: 'Teknologibiblioteket'}
+					}
+				},
+				'UBTO': {label: 'UiT'},
+				'NMBU': {label: 'NMBU'}
+			},
 			vocabularies: {
 				realfagstermer: {
 					name: 'Realfagstermer',
