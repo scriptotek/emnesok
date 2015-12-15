@@ -195,6 +195,9 @@
             var vocab = subject.data.type == 'Geographic' ? 'geo' : vm.controlledSearch ? vm.vocab : '';
             var defaultLang = Lang.defaultLanguage;
             var query = subject.data.prefLabel[defaultLang];
+            if (subject.data.prefLabel.en !== undefined && subject.data.prefLabel.en !== subject.data.prefLabel[defaultLang]) {
+                query = query + ',' + subject.data.prefLabel.en;
+            }
             vm.busy = true;
             Catalogue.search(vocab, query, vm.next, inst, lib).then(
                 gotResults,
