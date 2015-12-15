@@ -9,7 +9,7 @@ Next: {{ vm.next }}
 	 <!-- Single button with keyboard nav -->
 	 <div style="float:right;">
 
-		<div class="btn-group" ng-show="vm.vocab">
+		<div class="btn-group" ng-show="vm.vocab && vm.subject.data.type != 'Geographic'">
 	        <label class="btn btn-default" ng-model="vm.controlledSearch" ng-change="vm.updateControlledSearch()" uib-btn-radio="false" uib-tooltip="Search all subject vocabularies" translate>Broad</label>
 	        <label class="btn btn-default" ng-model="vm.controlledSearch" ng-change="vm.updateControlledSearch()" uib-btn-radio="true" uib-tooltip="Search {{vm.vocab}} only." translate>Narrow</label>
 	    </div>
@@ -41,6 +41,9 @@ Next: {{ vm.next }}
 
 	<uib-alert ng-show="vm.subjectNotFound" type="danger" translate>The subject was not found.</uib-alert>
 
+	<p ng-show="vm.subject.data.type == 'Geographic'" class="text-muted">
+		Searching for {{ vm.term }} as a geographical name. The broad/narrow filter is not available for geographical names.
+	</p>
 	<p ng-show="vm.start"
 	   translate translate-n="vm.total_results"
 	   translate translate-n="msgCount" translate-plural="Found {{$count}} documents.">Found one document.
