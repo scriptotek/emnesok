@@ -39,7 +39,7 @@ Next: {{ vm.next }}
 
 	<h2 translate>Catalogue results</h2>
 
-	<uib-alert ng-show="vm.subjectNotFound" type="danger" translate>The subject was not found.</uib-alert>
+	<uib-alert ng-show="vm.error" type="danger" translate>{{ vm.error }}</uib-alert>
 
 	<p ng-show="vm.subject.data.type == 'Geographic'" class="text-muted">
 		The broad/narrow filter is not available for geographical names.

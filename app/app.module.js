@@ -11,16 +11,22 @@
 			'ui.router',
 			'ui.bootstrap',
 			'gettext',
+			'ngToast',
+			'ngAnimate',
 			'app.modules.header',
 			'app.modules.search',
 			'app.modules.subject',
 			'app.modules.catalogue',
 			'app.modules.error'
 		])
-		.config(['$stateProvider', '$urlRouterProvider', configure])
+		.config(['$stateProvider', '$urlRouterProvider', 'ngToastProvider', configure])
 		.run(['$rootScope', '$state', run]);
 
-	function configure($stateProvider, $urlRouterProvider) {
+	function configure($stateProvider, $urlRouterProvider, ngToastProvider) {
+
+		ngToastProvider.configure({
+			animation: 'slide'
+		});
 
 		// Redirect from old ULRs
 		// <https://github.com/scriptotek/emnesok/issues/1>

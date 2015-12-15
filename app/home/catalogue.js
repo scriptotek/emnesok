@@ -28,9 +28,9 @@
         return directive;
     }
 
-    resultController.$inject = ['Lang', 'Catalogue', 'Config', 'SubjectService', '$state'];
+    resultController.$inject = ['Lang', 'Catalogue', 'Config', 'SubjectService', '$state', 'ngToast'];
 
-    function resultController(Lang, Catalogue, Config, SubjectService, $state) {
+    function resultController(Lang, Catalogue, Config, SubjectService, $state, ngToast) {
         /*jshint validthis: true */
         var vm = this;
 
@@ -56,7 +56,7 @@
                 vm.busy = false;
                 console.log(response);
                 if (!response) {
-                    console.error('Emnet ble ikke funnet');
+                    ngToast.danger('Sorry, the subject "' + subject + '" was not found in the current vocabulary.', 'danger');
                 } else {
                     $state.go('subject.search', {id: response.localname, term: null});
                 }
@@ -98,9 +98,9 @@
 
     /* ------------------------------------------------------------------------------- */
 
-    controller.$inject = ['$stateParams', '$state', '$scope', '$window', '$timeout', 'Lang', 'Catalogue', 'Config', 'Session', 'subject'];
+    controller.$inject = ['$stateParams', '$state', '$scope', '$window', '$timeout', 'ngToast', 'gettext', 'Lang', 'Catalogue', 'Config', 'Session', 'subject'];
 
-    function controller($stateParams, $state, $scope, $window, $timeout, Lang, Catalogue, Config, Session, subject) {
+    function controller($stateParams, $state, $scope, $window, $timeout, ngToast, gettext, Lang, Catalogue, Config, Session, subject) {
         /*jshint validthis: true */
         var vm = this;
         vm.vocab = '';
@@ -108,7 +108,7 @@
         vm.last = 0;
         vm.next = 1;
         vm.busy = true;
-        vm.subjectNotFound = false;
+        vm.error = null;
         vm.total_results = 0;
         vm.results = [];
         vm.expandGroup = expandGroup;
@@ -136,7 +136,7 @@
         function activate() {
             if (!subject) {
                 vm.busy = false;
-                vm.subjectNotFound = true;
+                vm.error = gettext('Subject not found. It might have been deleted.');
                 return;
             }
             vm.vocab = subject.vocab;
@@ -150,6 +150,9 @@
         }
 
         function onScroll () {
+            if (vm.error) {
+                return;
+            }
             $scope.$apply(checkScrollPos);
         }
 
@@ -202,6 +205,8 @@
             Catalogue.search(vocab, query, vm.next, inst, lib).then(
                 gotResults,
                 function(error) {
+                    vm.error = gettext('Some kind of server error occured.');
+                    vm.busy = false;
                     // @TODO Handle error
                 }
             );
