@@ -27,7 +27,7 @@
 		<span translate>See also:</span>
 		<a class="term"
 			ng-repeat-start="related in vm.subject.related | orderBy:'prefLabel'"
-			ui-sref="subject.search({ subjects: vm.subject.vocab + ':' + related.id })">
+			ui-sref="subject.search({ id: related.id })">
 
 			{{ related.prefLabel }}
 		</a>

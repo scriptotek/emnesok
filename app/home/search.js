@@ -217,18 +217,19 @@
 			var s = uri.split('/'),
 				id = s.pop(),
 				vocab = s.pop();
-			return vocab + ':' + id;
+			return id;
 		}
 
 		function selectSubject(item) {
 			console.log('selectSubject');
 			if (item) {
 				console.log(item.originalObject.uri);
-				var subjects = shortIdFromUri(item.originalObject.uri);
-				console.log('[SearchController] Selecting subject(s): ' + subjects);
+				var subjectId = shortIdFromUri(item.originalObject.uri);
+				console.log('[SearchController] Selecting subject: ' + subjectId);
 
 				$state.go('subject.search', {
-					subjects:   subjects
+					id: subjectId,
+					term: null
 				});
 			}
 		}

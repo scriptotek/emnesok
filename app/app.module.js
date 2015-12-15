@@ -85,7 +85,7 @@
 			}
 		})
 		.state('subject.search', {
-			url: '/search?subjects',
+			url: '/search?term&id',
 			views: {
 				'catalogue': {
 					templateUrl: './templates/catalogue.html',
@@ -95,9 +95,12 @@
 			},
 			resolve: {
 				subject: ['SubjectService', '$stateParams', function(SubjectService, $stateParams){
-					var subjectParts = $stateParams.subjects.split(':');
-					if (subjectParts.length == 2) {
-						return SubjectService.get(subjectParts[0], subjectParts[1]);
+					if ($stateParams.term) {
+						return SubjectService.getByTerm($stateParams.term, $stateParams.vocab);
+					} else if ($stateParams.id) {
+						return SubjectService.getById($stateParams.id, $stateParams.vocab);
+					} else {
+						// Exception
 					}
 				}]
 			}
