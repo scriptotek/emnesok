@@ -33,7 +33,7 @@
 	<ul>
 
 		<li ng-repeat="component in vm.record.components | filter:vm.filterElectronic" style="font-size:90%;">
-			<a ng-href="{{ component.url }}">available online</a>
+			<a ng-href="{{ component.url }}">Available online {{ component.urlDescription ? ' (' + component.urlDescription + ')' : '' }}</a>
 		</li>
 	</ul>
 
