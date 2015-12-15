@@ -3,7 +3,7 @@
 
     angular
         .module('app.modules.catalogue', ['app.services.catalogue', 'app.services.subject', 'app.services.lang', 'app.services.config', 'app.services.session'])
-        .controller('CatalogueController', ['$stateParams', '$scope', '$window', '$timeout', 'Lang', 'Catalogue', 'Config', 'Session', 'subject', controller])
+        .controller('CatalogueController', controller)
         .directive('modCatalogueResult', CatalogueResultDirective)
         ;
 
@@ -21,12 +21,14 @@
                 vocab: '='
             },
             controllerAs: 'vm',
-            controller: ['Lang', 'Catalogue', 'Config', resultController],
+            controller: resultController,
             bindToController: true // because the scope is isolated
         };
 
         return directive;
     }
+
+    resultController.$inject = ['Lang', 'Catalogue', 'Config'];
 
     function resultController(Lang, Catalogue, Config) {
         /*jshint validthis: true */
@@ -75,7 +77,9 @@
 
     /* ------------------------------------------------------------------------------- */
 
-    function controller($stateParams, $scope, $window, $timeout, Lang, Catalogue, Config, Session, subject) {
+    controller.$inject = ['$stateParams', '$state', '$scope', '$window', '$timeout', 'Lang', 'Catalogue', 'Config', 'Session', 'subject'];
+
+    function controller($stateParams, $state, $scope, $window, $timeout, Lang, Catalogue, Config, Session, subject) {
         /*jshint validthis: true */
         var vm = this;
         vm.vocab = '';
@@ -84,6 +88,7 @@
         vm.last = 0;
         vm.next = 1;
         vm.busy = true;
+        vm.subjectNotFound = false;
         vm.total_results = 0;
         vm.results = [];
         vm.expandGroup = expandGroup;
@@ -95,7 +100,7 @@
         vm.selectInstitution = selectInstitution;
         vm.selectLibrary = selectLibrary;
 
-        vm.controlledSearch = Session.controlledSearch;
+        vm.controlledSearch = ($stateParams.narrow == 'true');
         vm.updateControlledSearch = updateControlledSearch;
 
         activate();
@@ -104,6 +109,12 @@
 
         function activate() {
             var defaultLang = Lang.defaultLanguage;
+
+            if (!subject) {
+                vm.busy = false;
+                vm.subjectNotFound = true;
+                return;
+            }
             vm.vocab = subject.vocab;
             vm.term = subject.data.prefLabel[defaultLang];
             searchFromStart();
@@ -188,8 +199,7 @@
         }
 
         function updateControlledSearch() {
-            Session.controlledSearch = vm.controlledSearch;
-            searchFromStart();
+            $state.go('subject.search', {narrow: vm.controlledSearch});
         }
 
     }

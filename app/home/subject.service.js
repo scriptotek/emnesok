@@ -3,14 +3,16 @@
 
 	angular
 		.module('app.services.subject', ['app.services.config'])
-		.factory('SubjectService', ['$http', '$stateParams', '$filter', '$q', '$rootScope', 'gettext', 'Config', 'Restangular','JsonldRest', SubjectService]);
+		.factory('SubjectService', ['$http', '$stateParams', '$filter', '$q', '$rootScope', 'gettext', 'Config', 'Lang', 'Restangular','JsonldRest', SubjectService]);
 
-	function SubjectService($http, $stateParams, $filter, $q, $rootScope, gettext, Config, Restangular, JsonldRest) {
+	function SubjectService($http, $stateParams, $filter, $q, $rootScope, gettext, Config, Lang, Restangular, JsonldRest) {
 		console.log('[SubjectService] Init');
 
 		var service = {
 			search: search,
-			get: get,
+			getById: getById,
+			getByUri: getByUri,
+			getByTerm: getByTerm,
 			onSubject: onSubject,
 			searchHistory: []
 		};
@@ -143,14 +145,36 @@
 			return out;
 		}
 
-		function get(vocab, id) {
+		function search(q, vocab) {
 			if (!Config.vocabularies[vocab]) {
 				console.error('Unknown vocabulary ' + vocab + '!');
 				return;
 			}
 			var deferred = $q.defer();
 
-			var uri = Config.vocabularies[vocab].uriPattern.replace('{id}', id);
+			var query = {
+				vocab: vocab,
+				query: q,
+				labellang: Lang.language
+			};
+
+			$http({
+			  method: 'GET',
+			  cache: false,
+			  url: Config.skosmos.searchUrl,
+			  params: query
+			}).
+			then(function(data){
+				deferred.resolve(data.data);
+			}, function(error){
+				deferred.reject(error);
+			});
+
+			return deferred.promise;
+		}
+
+		function getByUri(uri) {
+			var deferred = $q.defer();
 
 			$http({
 			  method: 'GET',
@@ -158,11 +182,11 @@
 			  url: Config.skosmos.dataUrl.replace('{uri}', uri)
 			}).
 			then(function(data){
-			
+				if (!data.data.graph) {
+					return deferred.resolve(null);
+				}
 				var subject = {
 					uri: uri,
-					vocab: vocab,
-					id: id,
 					data: processSubject(uri, data.data)
 				};
 				notify(subject);
@@ -175,8 +199,45 @@
 			return deferred.promise;
 		}
 
-		function search(q) {
-			// @TODO
+		function getById(id, vocab) {
+			if (!Config.vocabularies[vocab]) {
+				console.error('Unknown vocabulary ' + vocab + '!');
+				return;
+			}
+			var deferred = $q.defer();
+
+			var uri = Config.vocabularies[vocab].uriPattern.replace('{id}', id);
+
+			getByUri(uri).then(function(subject) {
+				if (subject) {
+					subject.id = id;
+					subject.vocab = vocab;
+				}
+				deferred.resolve(subject);
+			}, function(error) {
+				deferred.reject(error);
+			});
+
+			return deferred.promise;
+		}
+
+		function getByTerm(term, vocab) {
+			var deferred = $q.defer();
+			search(term, vocab).then(function(response) {
+				if (!response.results.length) {
+					return deferred.reject();
+				}
+				var uri = response.results[0].uri;
+				getByUri(uri).then(function(subject) {
+					subject.vocab = vocab;
+					deferred.resolve(subject);
+				}, function(error) {
+					deferred.reject(error);
+				});
+			}, function(error) {
+				deferred.reject(error);
+			});
+			return deferred.promise;
 		}
 	}
 

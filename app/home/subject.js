@@ -28,6 +28,8 @@
 		/*jshint validthis: true */
 		var vm = this;
 		vm.error = null;
+		vm.subject = null;
+
 		//vm.expanded = $scope.expanded;
 
 		activate();
@@ -40,7 +42,9 @@
 					update();
 				}
 			});
-			update();
+			if (vm.subjectData) {
+				update();
+			}
 		}
 
 		function update () {

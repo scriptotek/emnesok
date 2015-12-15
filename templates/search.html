@@ -41,7 +41,7 @@
   <div class="panel-heading" translate><h3 class="panel-title">Active subject</h3></div>
   <ul class="list-group">
     <li class="list-group-item">
-	    <mod-subject ng-show="vm.searchHistory.length" subject-data="vm.searchHistory[vm.searchHistory.length-1]"></mod-subject>
+	    <mod-subject subject-data="vm.searchHistory[vm.searchHistory.length-1]"></mod-subject>
     </li>
   </ul>
 </div>
@@ -50,7 +50,7 @@
   <div class="panel-heading" translate><h3 class="panel-title">Search history</h3></div>
   <ul class="list-group">
     <li class="list-group-item" ng-repeat="subject in vm.searchHistory.slice(0, vm.searchHistory.length-1).reverse()">
-	    <a ui-sref="subject.search({ subjects: subject.vocab + ':' + subject.id })">
+	    <a ui-sref="subject.search({ id: subject.id })">
 		  {{ subject.data.prefLabel.nb }}
 	    </a>
     </li>

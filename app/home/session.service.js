@@ -13,8 +13,7 @@
 	        selectedInstitution: null,
 	        selectedLibrary: null,
 	        selectInstitution: selectInstitution,
-	        selectLibrary: selectLibrary,
-	        controlledSearch: false
+	        selectLibrary: selectLibrary
 		};
 
 		return factory;
