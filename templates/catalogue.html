@@ -37,7 +37,7 @@ Next: {{ vm.next }}
 	    </div>
 	</div>
 
-	<h2 translate>Catalogue results <span ng-show="vm.busy">(WORKING...)</span></h2>
+	<h2 translate>Catalogue results</h2>
 
 	<uib-alert ng-show="vm.subjectNotFound" type="danger" translate>The subject was not found.</uib-alert>
 
@@ -53,6 +53,7 @@ Next: {{ vm.next }}
 	<p ng-show="vm.start && vm.last != vm.total_results" translate>
 		Loaded {{ vm.last }} records so far, {{ vm.total_results - vm.last }} to go, hold on…
 	</p>
+	<div ng-show="vm.busy" class="loader"></div>
 	<p ng-show="vm.start && vm.last == vm.total_results" translate>
 		You've reached the end, my friend!
 	</p>
