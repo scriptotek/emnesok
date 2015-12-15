@@ -3,7 +3,7 @@
 
     angular
         .module('app.modules.catalogue', ['app.services.catalogue', 'app.services.subject', 'app.services.lang', 'app.services.config', 'app.services.session'])
-        .controller('CatalogueController', ['$stateParams', '$state', '$scope', '$window', '$timeout', 'Lang', 'Catalogue', 'Config', 'Session', 'subject', controller])
+        .controller('CatalogueController', controller)
         .directive('modCatalogueResult', CatalogueResultDirective)
         ;
 
@@ -21,12 +21,14 @@
                 vocab: '='
             },
             controllerAs: 'vm',
-            controller: ['Lang', 'Catalogue', 'Config', resultController],
+            controller: resultController,
             bindToController: true // because the scope is isolated
         };
 
         return directive;
     }
+
+    resultController.$inject = ['Lang', 'Catalogue', 'Config'];
 
     function resultController(Lang, Catalogue, Config) {
         /*jshint validthis: true */
@@ -74,6 +76,8 @@
     }
 
     /* ------------------------------------------------------------------------------- */
+
+    controller.$inject = ['$stateParams', '$state', '$scope', '$window', '$timeout', 'Lang', 'Catalogue', 'Config', 'Session', 'subject'];
 
     function controller($stateParams, $state, $scope, $window, $timeout, Lang, Catalogue, Config, Session, subject) {
         /*jshint validthis: true */
