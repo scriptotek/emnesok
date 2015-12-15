@@ -136,6 +136,9 @@
 			  url: Config.skosmos.dataUrl.replace('{uri}', uri)
 			}).
 			then(function(data){
+				if (!data.data.graph) {
+					return deferred.resolve(null);
+				}
 				var subject = {
 					uri: uri,
 					vocab: vocab,

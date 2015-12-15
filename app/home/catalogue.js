@@ -84,6 +84,7 @@
         vm.last = 0;
         vm.next = 1;
         vm.busy = true;
+        vm.subjectNotFound = false;
         vm.total_results = 0;
         vm.results = [];
         vm.expandGroup = expandGroup;
@@ -104,6 +105,12 @@
 
         function activate() {
             var defaultLang = Lang.defaultLanguage;
+
+            if (!subject) {
+                vm.busy = false;
+                vm.subjectNotFound = true;
+                return;
+            }
             vm.vocab = subject.vocab;
             vm.term = subject.data.prefLabel[defaultLang];
             searchFromStart();

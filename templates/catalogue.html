@@ -39,6 +39,8 @@ Next: {{ vm.next }}
 
 	<h2 translate>Catalogue results <span ng-show="vm.busy">(WORKING...)</span></h2>
 
+	<uib-alert ng-show="vm.subjectNotFound" type="danger" translate>The subject was not found.</uib-alert>
+
 	<p ng-show="vm.start"
 	   translate translate-n="vm.total_results"
 	   translate translate-n="msgCount" translate-plural="Found {{$count}} documents.">Found one document.
