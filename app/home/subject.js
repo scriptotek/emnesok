@@ -2,7 +2,7 @@
 	'use strict';
 
 	angular
-		.module('app.modules.subject', ['app.services.config', 'app.services.lang', 'app.services.subject'])
+		.module('app.modules.subject', ['app.services.config', 'app.services.lang', 'app.services.subject','app.services.externals'])
 		.directive('modSubject', SubjectModule);
 
 	function SubjectModule() {
@@ -22,9 +22,9 @@
 		return directive;
 	}
 
-	controller.$inject = ['$scope', 'Config', 'Lang'];
+	controller.$inject = ['$scope', 'Config', 'Lang', 'Externals'];
 
-	function controller($scope, Config, Lang) {
+	function controller($scope, Config, Lang, Externals) {
 		/*jshint validthis: true */
 		var vm = this;
 		vm.error = null;
@@ -54,14 +54,36 @@
 		}
 
 		function process(subject) {
+
 			var lang = Lang.language;
 			var displayLang = lang;
 			var defaultLang = Lang.defaultLanguage;
 			var translations = [];
+			var externals = [];
+			var output = {};
+	
+
+			Externals.snl(subject.data.prefLabel[displayLang]).then(function(data) {
+				externals.push(data);
+				output.externals = externals;
+			});
+
+			Externals.wp(subject.data.prefLabel[displayLang],displayLang).then(function(data) {
+				externals.push(data);
+				output.externals = externals;	
+			});
 
 			if (!subject.data.prefLabel[lang]) {
 				displayLang = defaultLang;
 			}
+
+			if (subject.data.elementSymbol){
+				if (subject.data.prefLabel[displayLang].substr(-12)=="(grunnstoff)") {
+					subject.data.prefLabel[displayLang]=subject.data.prefLabel[displayLang].slice(0, -12);
+				}
+
+			}
+
 			Object.keys(subject.data.prefLabel).forEach(function(langCode) {
 				if (langCode !== displayLang) {
 					translations.push({
@@ -72,7 +94,7 @@
 				}
 			});
 
-			return {
+			output = {
 				prefLabel: subject.data.prefLabel[displayLang],
 				altLabel: subject.data.altLabel[displayLang],
 				definition: subject.data.definition[displayLang] || subject.data.definition[defaultLang],
@@ -83,7 +105,10 @@
 					};
 				}),
 				translations: translations,
+				elementSymbol: subject.data.elementSymbol
 			};
+			console.log(output);
+			return output;
 		}
 	}
 

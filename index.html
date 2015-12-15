@@ -85,18 +85,18 @@
 				margin:0 !important;
 			}
 
+			.block {
+				margin-top:5px;
+				margin-bottom:5px;
+			}
+
+			.external {
+				background-color:#F9F9F9 !important;
+
+			}
+
 			.search_history{
 				margin-top:30px;
-			}
-
-			.subject {
-				margin-top:-21px;
-			
-			}
-
-			/*Remove blue border from accordion*/
-			.subject *{
-				outline: 0 !important;
 			}
 
 			.subject .pref_label {
@@ -131,6 +131,11 @@
 		<script src="lib/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
 		<script src="lib/angular-gettext/dist/angular-gettext.min.js"></script>
 
+		<script src="lib/lodash/dist/lodash.compat.js"></script>
+		<script src="lib/restangular/dist/restangular.js"></script>
+
+		<script src="lib/jsonld/js/jsonld.js"></script>
+		<script src="lib/angular-jsonld/dist/angular-jsonld.js"></script>
 
 		<script src="app/home/error.js"></script>
 		<script src="app/home/search.js"></script>
@@ -142,6 +147,7 @@
 		<script src="app/home/subject.service.js"></script>
 		<script src="app/home/lang.service.js"></script>
 		<script src="app/home/session.service.js"></script>
+		<script src="app/home/externals.service.js"></script>
 		<script src="dist/translations/nb.js"></script>
 		<script src="app/app.module.js"></script>
 		<script src="assets/js/grunnstoffene.js"></script>

@@ -1,9 +1,9 @@
 <div>
-
 	<div>
-		<strong>{{vm.subject.prefLabel}}</strong>
+		<strong>{{vm.subject.prefLabel}}
+		<span ng-show="vm.subject.elementSymbol"> ({{vm.subject.elementSymbol}})</span>
+		</strong>
 	</div>
-
 	<div class="block definition" ng-show="vm.subject.definition">
 		{{ vm.subject.definition }}
 	</div>
@@ -31,8 +31,18 @@
 
 			{{ related.prefLabel }}
 		</a>
-
 		<span class="term_separator" ng-repeat-end></span>
 	</div>
-
+	
+	<div ng-show="vm.subject.externals.length">
+		<ul class="list-group">
+			<li class="list-group-item external" ng-if="external.type!='no result'" ng-repeat="external in vm.subject.externals">
+				
+				{{external.extract}}
+				<a ng-if="external.type=='exact'" href="{{ external.url }}" target="external">Les mer i {{external.name}}</a>
+				<a ng-if="external.type=='search'" href="{{ external.url }}" target="external">Søk i {{external.name}}</a>
+		
+			</li>
+		</ul>
+	</div>
 </div>

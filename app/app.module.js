@@ -6,6 +6,8 @@
 			'ngTouch',
 			'ngSanitize',
 			'angucomplete-alt',
+			'restangular',
+            'angularJsonld',
 			'ui.router',
 			'ui.bootstrap',
 			'gettext',
