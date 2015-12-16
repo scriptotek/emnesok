@@ -3,12 +3,13 @@
 
 	angular
 		.module('app.services.lang', ['app.services.config', 'ui.router', 'gettext'])
-		.factory('Lang', ['$state', '$stateParams', '$rootScope', 'gettextCatalog', 'Config', LangFactory]);
+		.factory('Lang', ['$state', '$rootScope', 'gettextCatalog', 'Config', LangFactory]);
 
-	function LangFactory($state, $stateParams, $rootScope, gettextCatalog, Config) {
+	function LangFactory($state, $rootScope, gettextCatalog, Config) {
 
 		var service = {
 			language: null,
+			defaultLanguage: null,
 			languages: Config.languages,
 			setLanguage: setLanguage
 		};
@@ -20,7 +21,6 @@
 		////////////
 
 		function activate() {
-			setLanguageFromState($stateParams);
 
 			// Highlight untranslated strings
 			// gettextCatalog.debug = true;

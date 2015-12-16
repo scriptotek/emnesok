@@ -20,7 +20,7 @@
 			'app.modules.error'
 		])
 		.config(['$stateProvider', '$urlRouterProvider', 'ngToastProvider', configure])
-		.run(['$rootScope', '$state', run]);
+		.run(['$rootScope', '$state', 'Lang', run]);
 
 	function configure($stateProvider, $urlRouterProvider, ngToastProvider) {
 
@@ -115,7 +115,8 @@
 		});
 	}
 
-	function run($rootScope, $state) {
+	function run($rootScope, $state, Lang) {
+
 		$rootScope.$on('$stateChangeError', function (evt, toState, toParams, fromState, fromParams, error) {
 			if (angular.isObject(error) && angular.isString(error.code)) {
 				switch (error.code) {
