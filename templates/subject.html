@@ -25,7 +25,7 @@
 
 	<div class="block" ng-show="vm.subject.related.length">
 		<span translate>See also:</span>
-		<a class="term"
+		<a class="label label-primary"
 			ng-repeat-start="related in vm.subject.related | orderBy:'prefLabel'"
 			ui-sref="subject.search({ subjects: vm.subject.vocab + ':' + related.id })">
 
