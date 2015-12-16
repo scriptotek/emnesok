@@ -13,18 +13,19 @@
 	        replace: false,
 	        scope: {},
 	        controllerAs: 'vm',
-	        controller: ['$scope', '$state', '$stateParams', '$timeout', '$rootScope', '$q', '$http', '$filter', 'gettext', 'gettextCatalog', 'Config', 'SubjectService', controller]
+	        controller: ['$scope', '$state', '$stateParams', '$timeout', '$rootScope', '$q', '$http', '$filter', 'gettext', 'gettextCatalog', 'Config', 'Lang', 'SubjectService', controller]
 	    };
 
 		return directive;
 	}
 
-	function controller($scope, $state, $stateParams, $timeout, $rootScope, $q, $http, $filter, gettext, gettextCatalog, Config, SubjectService) {
+	function controller($scope, $state, $stateParams, $timeout, $rootScope, $q, $http, $filter, gettext, gettextCatalog, Config, Lang, SubjectService) {
 		/*jshint validthis: true */
 		var vm = this;
 
 		// vm.searchUrl = Config.skosmos.searchUrl;
-		vm.lang = $stateParams.lang || Config.defaultLanguage;
+		vm.lang = Lang.language;
+		vm.defaultLang = Lang.defaultLanguage;
 		vm.vocab = ($stateParams.vocab && $stateParams.vocab != 'all') ? $stateParams.vocab : null;
 		// vm.formatRequest = formatRequest;
 		// vm.formatResult = formatResult;

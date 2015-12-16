@@ -51,7 +51,7 @@
   <ul class="list-group">
     <li class="list-group-item" ng-repeat="subject in vm.searchHistory.slice(0, vm.searchHistory.length-1).reverse()">
 	    <a ui-sref="subject.search({ id: subject.id })">
-		  {{ subject.data.prefLabel.nb }}
+		  {{ subject.data.prefLabel[vm.lang] ? subject.data.prefLabel[vm.lang] : subject.data.prefLabel[vm.defaultLang] }}
 	    </a>
     </li>
   </ul>
