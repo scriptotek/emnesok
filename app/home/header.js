@@ -30,8 +30,15 @@
 		vm.navCollapsed = true;
 		vm.vocab = $stateParams.vocab ? Config.vocabularies[$stateParams.vocab] : null;
 
+		vm.helloHidden = sessionStorage.getItem('hideHello');
+
 		vm.setLanguage = function(code) {
 			Lang.setLanguage(code);
+		};
+
+		vm.hideHello = function() {
+			sessionStorage.setItem('hideHello', true);
+			vm.helloHidden = true;
 		};
 	}
 
