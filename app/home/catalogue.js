@@ -226,7 +226,7 @@
         function search() {
             var inst = vm.selectedInstitution ? vm.selectedInstitution : null;
             var lib = vm.selectedLibrary ? vm.selectedInstitution + vm.selectedLibrary : null;
-            var vocab = subject.data.type == 'Geographic' ? 'geo' : vm.broadSearch ? vm.vocab : '';
+            var vocab = subject.data.type == 'Geographic' ? 'geo' : vm.broadSearch ? '' : vm.vocab;
             var defaultLang = Lang.defaultLanguage;
             var query = subject.data.prefLabel[defaultLang];
             if (subject.data.prefLabel.en !== undefined && subject.data.prefLabel.en !== subject.data.prefLabel[defaultLang]) {
