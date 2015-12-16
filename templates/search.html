@@ -10,11 +10,6 @@
 		</ul>
 	</div>
 
-	<uib-alert type="danger" ng-show="vm.errorMsg">
-		<span translate>The search went out in error:</span>
-		{{ vm.errorMsg | translate }}
-	</uib-alert>
-
 	<div id="search" angucomplete-alt ng-keypress="($event.which === 13)?vm.enterKey():0" placeholder="{{'Enter a subject' | translate}}" maxlength="50" 
 		pause="400"
 		selected-object="vm.selectSubject" 
@@ -35,7 +30,10 @@
 
 </div>
 
-<div class="alert alert-danger" ng-show="vm.error">{{vm.error}}</div>
+<uib-alert type="danger" ng-show="vm.errorMsg">
+	<span translate>The search went out in error:</span>
+	{{ vm.errorMsg | translate }}
+</uib-alert>
 
 <div class="subject panel panel-success" ng-show="vm.searchHistory.length > 0">
   <div class="panel-heading"><h3 class="panel-title" translate>Active subject</h3></div>
