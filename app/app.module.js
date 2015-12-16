@@ -70,6 +70,17 @@
 				}
 			}
 		})
+		.state('about', {
+			url: '/about?lang',
+			views: {
+				'header': {
+					template: '<div mod-header></div>'
+				},
+				'main': {
+					templateUrl: './templates/about.html?' + Math.random()
+				}
+			}
+		})
 		.state('subject', {
 			url: '/:vocab?lang',
 			views: {
