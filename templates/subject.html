@@ -25,13 +25,12 @@
 
 	<div class="block" ng-show="vm.subject.related.length">
 		<span translate>See also:</span>
-		<a class="label label-primary"
-			ng-repeat-start="related in vm.subject.related | orderBy:'prefLabel'"
-			ui-sref="subject.search({ subjects: vm.subject.vocab + ':' + related.id })">
-
-			{{ related.prefLabel }}
-		</a>
-		<span class="term_separator" ng-repeat-end></span>
+		<span ng-repeat="related in vm.subject.related | orderBy:'prefLabel'">
+			<a class="label label-primary" ui-sref="subject.search({ id: related.id })">
+				{{ related.prefLabel }}
+			</a>
+			&nbsp;
+		</span>
 	</div>
 	
 	<div ng-show="vm.subject.externals.length">
