@@ -1,44 +1,49 @@
 <div style="max-width:800px; padding: 10px; margin-left:auto;margin-right:auto;">
 
-<h1 translate>Hello there!</h1>
+	<h1 translate>University of Oslo Library Subject Search ß</h1>
 
-<p translate>
-	Welcome to our subject heading search. Begin with choosing a subject heading vocabulary from the list below.
-	A vocabulary is a controlled set of subject headings.
-	You can also try to search in <a ui-sref="subject({vocab:'all'})">all of the vocabularies at the same time</a>,
-	but this is currently not very user friendly as overlapping concepts from different vocabularies
-	do not cluster, but rather shows up as duplicates.<br><br>
-
-	If you use the filter 'Narrow' in the Catalog results, you will only find books that have been
-	indexed with the chosen vocabulary, but you can broaden your search to include results from all the vocabularies -
-	including keywords - by choosing the filter 'Broader'.
-</p>
-<p>
-	<h2 translate>Science: <a ui-sref="subject({vocab:'realfagstermer'})">Realfagstermer</a></h2>
 	<p translate>
-		Search for scientific concepts. 'Realfagstermer' is a controlled vocabulary
-		maintained by the Science Libraries at the University at Oslo and Bergen, and is the best portal to our
-		collections. Realfagstermer has Norwegian terms, but also some English, New Norwegian and Latin terms.
+		Welcome to our subject search. Start by choosing a vocabulary from the list below.
+		A vocabulary is a controlled set of subjects. Support for searching all vocabularies
+		at the same time is not yet supported, but definitely something we would like to add in the future.
+	</p>
+		<!--You can also try to search in <a ui-sref="subject({vocab:'all'})">all of the vocabularies at the same time</a>,
+		but this is currently not very user friendly as overlapping concepts from different vocabularies
+		do not cluster, but rather shows up as duplicates.-->
+	<p translate>
+		Once in, you can toggle between <em>narrow</em> and <em>broad</em> search. With <em>narrow</em> search,
+		you will only get highly relevant results carefully indexed by skilled librarians using the chosen vocabulary.
+		<em>Broad</em> search will give you more results, matching subjects from other vocabularies or
+		even keywords from a variety of sources, but sometimes at the expense of precision.
 	</p>
 
-	<h2 translate>Humanities and Social Sciences: <a ui-sref="subject({vocab:'humord'})">Humord</a></h2>
+
+	<h2><span translate>Science</span>: <a ui-sref="subject({vocab:'realfagstermer'})">Realfagstermer</a></h2>
 	<p translate>
-		Humord is the best portal to the Humanities and Social Sciences. The vocabulary also
-		has a relatively large amount of interdisciplinary subject headings. This vocabulary has only Norwegian terms.
+		Search for scientific concepts. <em>Realfagstermer</em> is a controlled vocabulary
+		maintained by the science libraries at the University at Oslo and Bergen, and is the best portal to our
+		collections. Realfagstermer is a multilingual vocabulary that can be searched in Bokmål, Nynorsk (translation in progress) and English (translation in progress).
 	</p>
 
-	<h2 translate>Technology and engineering: <a ui-sref="subject({vocab:'tekord'})">Tekord</a></h2>
+	<h2><span translate>Humanities and social sciences</span>: <a ui-sref="subject({vocab:'humord'})">Humord</a></h2>
+	<p translate>
+		Humord is the best portal to the humanities and social sciences. The vocabulary also
+		has a relatively large amount of interdisciplinary subject headings. This vocabulary has only Norwegian Bokmål terms.
+	</p>
+
+	<h2><span translate>Technology and engineering</span>: <a ui-sref="subject({vocab:'tekord'})">Tekord</a></h2>
 	<p translate>
 		Tekord is a vocabulary created at NTNU (Norwegian University of Science and Technology).
-		It is an especially useful search portal to Technical and Engeneering literature. This vocabulary has only Norwegian terms.
+		It is an especially useful search portal to Technical and Engeneering literature. This vocabulary has only Norwegian Bokmål terms.
 	</p>
 
-	<h2 translate>Human Rights: <a ui-sref="subject({vocab:'mrtermer'})">Human Rights Terms</a></h2>
+	<h2><span translate>Human rights</span>: <a ui-sref="subject({vocab:'mrtermer'})">Human Rights Terms</a></h2>
 	<p translate>
-		Human Rights Terms is a controlled vocabulary developed and maintained by the Norwegian Centre for Human Rights' (SMR) rights.
-		This vocabulary has only English terms.
-	</p>
+		Yes, we have a controlled subject vocabulary just for human rights terms!
+		Developed and maintained by the
+		Norwegian Centre for Human Rights’ (SMR), the vocabulary has only English terms.
 
-</p>
+
+	</p>
 
 </div>

@@ -65,7 +65,7 @@
 					uriPattern: 'http://data.ub.uio.no/tekord/{id}'
 				},
 				mrtermer: {
-					name: 'Human Rights Terms?',
+					name: 'Human Rights Terms',
 					languages: ['en'],
 					defaultLanguage: 'en',
 					uriPattern: 'http://data.ub.uio.no/mrtermer/{id}'
