@@ -28,21 +28,42 @@
         return directive;
     }
 
-    resultController.$inject = ['Lang', 'Catalogue', 'Config'];
+    resultController.$inject = ['Lang', 'Catalogue', 'Config', 'SubjectService', '$state', 'ngToast'];
 
-    function resultController(Lang, Catalogue, Config) {
+    function resultController(Lang, Catalogue, Config, SubjectService, $state, ngToast) {
         /*jshint validthis: true */
         var vm = this;
 
         // @TODO
         vm.recordExpanded = false;
+        vm.clickSubject = clickSubject;
         vm.expandGroup = expandGroup;
         vm.versions = [];
         vm.filterPrint = filterPrint;
         vm.filterElectronic = filterElectronic;
         vm.getStatus = getStatus;
+        vm.busy = false;
+
 
         ////////////
+
+        function clickSubject(subject) {
+            if (vm.busy) {
+                return;
+            }
+            vm.busy = true;
+            SubjectService.exists(subject, vm.vocab).then(function(response) {
+                vm.busy = false;
+                console.log(response);
+                if (!response) {
+                    ngToast.danger('Sorry, the subject "' + subject + '" was not found in the current vocabulary.', 'danger');
+                } else {
+                    $state.go('subject.search', {id: response.localname, term: null});
+                }
+            }, function(err) {
+
+            });
+        }
 
         function expandGroup() {
             var groupId = vm.record.id;
@@ -77,28 +98,33 @@
 
     /* ------------------------------------------------------------------------------- */
 
-    controller.$inject = ['$stateParams', '$state', '$scope', '$window', '$timeout', 'Lang', 'Catalogue', 'Config', 'Session', 'subject'];
+    controller.$inject = ['$stateParams', '$state', '$scope', '$window', '$timeout', 'ngToast', 'gettext', 'Lang', 'Catalogue', 'Config', 'Session', 'subject'];
 
-    function controller($stateParams, $state, $scope, $window, $timeout, Lang, Catalogue, Config, Session, subject) {
+    function controller($stateParams, $state, $scope, $window, $timeout, ngToast, gettext, Lang, Catalogue, Config, Session, subject) {
         /*jshint validthis: true */
         var vm = this;
         vm.vocab = '';
-        vm.term = '';
         vm.start = 0;
         vm.last = 0;
         vm.next = 1;
         vm.busy = true;
-        vm.subjectNotFound = false;
+        vm.error = null;
         vm.total_results = 0;
         vm.results = [];
         vm.expandGroup = expandGroup;
         vm.getMoreRecords = getMoreRecords;
 
-        vm.institutions = Config.institutions;
-        vm.selectedInstitution = Session.selectedInstitution;
-        vm.selectedLibrary = Session.selectedLibrary;
         vm.selectInstitution = selectInstitution;
         vm.selectLibrary = selectLibrary;
+
+        vm.institutions = Config.institutions;
+        if ($stateParams.library && $stateParams.library.indexOf(':') != -1) {
+            vm.selectedInstitution = $stateParams.library.split(':')[0];
+            vm.selectedLibrary = $stateParams.library.split(':')[1];
+        } else {
+            vm.selectedInstitution = $stateParams.library;
+            vm.selectedLibrary = null;
+        }
 
         vm.controlledSearch = ($stateParams.narrow == 'true');
         vm.updateControlledSearch = updateControlledSearch;
@@ -108,15 +134,13 @@
         ////////////
 
         function activate() {
-            var defaultLang = Lang.defaultLanguage;
-
             if (!subject) {
                 vm.busy = false;
-                vm.subjectNotFound = true;
+                vm.error = gettext('Subject not found. It might have been deleted.');
                 return;
             }
             vm.vocab = subject.vocab;
-            vm.term = subject.data.prefLabel[defaultLang];
+            vm.subject = subject;
             searchFromStart();
 
             angular.element($window).bind('scroll', onScroll);
@@ -126,6 +150,9 @@
         }
 
         function onScroll () {
+            if (vm.error) {
+                return;
+            }
             $scope.$apply(checkScrollPos);
         }
 
@@ -160,19 +187,26 @@
         }
 
         function getMoreRecords() {
-            if (vm.vocab && vm.term && vm.next && !vm.busy) {
+            if (vm.vocab && vm.next && !vm.busy) {
                 search();
             }
         }
 
         function search() {
-            var inst = vm.selectedInstitution ? vm.selectedInstitution.id : null;
-            var lib = vm.selectedLibrary ? vm.selectedLibrary.id : null;
-            var vocab = vm.controlledSearch ? vm.vocab : '';
+            var inst = vm.selectedInstitution ? vm.selectedInstitution : null;
+            var lib = vm.selectedLibrary ? vm.selectedInstitution + vm.selectedLibrary : null;
+            var vocab = subject.data.type == 'Geographic' ? 'geo' : vm.controlledSearch ? vm.vocab : '';
+            var defaultLang = Lang.defaultLanguage;
+            var query = subject.data.prefLabel[defaultLang];
+            if (subject.data.prefLabel.en !== undefined && subject.data.prefLabel.en !== subject.data.prefLabel[defaultLang]) {
+                query = query + ',' + subject.data.prefLabel.en;
+            }
             vm.busy = true;
-            Catalogue.search(vocab, vm.term, vm.next, inst, lib).then(
+            Catalogue.search(vocab, query, vm.next, inst, lib).then(
                 gotResults,
                 function(error) {
+                    vm.error = gettext('Some kind of server error occured.');
+                    vm.busy = false;
                     // @TODO Handle error
                 }
             );
@@ -186,16 +220,11 @@
         }
 
         function selectInstitution(institution) {
-            Session.selectInstitution(institution);
-            vm.selectedInstitution = institution;
-            vm.selectedLibrary = null;
-            searchFromStart();
+            $state.go('subject.search', {library: institution});
         }
 
         function selectLibrary(library) {
-            Session.selectLibrary(library);
-            vm.selectedLibrary = library;
-            searchFromStart();
+            $state.go('subject.search', {library: vm.selectedInstitution + ':' + library});
         }
 
         function updateControlledSearch() {

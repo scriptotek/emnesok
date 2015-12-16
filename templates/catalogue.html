@@ -9,38 +9,41 @@ Next: {{ vm.next }}
 	 <!-- Single button with keyboard nav -->
 	 <div style="float:right;">
 
-		<div class="btn-group" ng-show="vm.vocab">
+		<div class="btn-group" ng-show="vm.vocab && vm.subject.data.type != 'Geographic'">
 	        <label class="btn btn-default" ng-model="vm.controlledSearch" ng-change="vm.updateControlledSearch()" uib-btn-radio="false" uib-tooltip="Search all subject vocabularies" translate>Broad</label>
 	        <label class="btn btn-default" ng-model="vm.controlledSearch" ng-change="vm.updateControlledSearch()" uib-btn-radio="true" uib-tooltip="Search {{vm.vocab}} only." translate>Narrow</label>
 	    </div>
 
 	    <div class="btn-group" uib-dropdown uib-keyboard-nav>
 	        <button id="simple-btn-keyboard-nav" type="button" class="btn btn-default" uib-dropdown-toggle>
-	            {{ vm.selectedInstitution ? vm.selectedInstitution.label : 'All libraries' | translate }} <span class="caret"></span>
+	            {{ vm.selectedInstitution ? vm.institutions[vm.selectedInstitution].label : 'All libraries' | translate }} <span class="caret"></span>
 	        </button>
 	        <ul class="uib-dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="simple-btn-keyboard-nav">
 	            <li role="menuitem"><a href ng-click="vm.selectInstitution(null)" translate>All libraries</a></li>
 	            <li class="divider"></li>
-	            <li role="menuitem" ng-repeat="institution in vm.institutions"><a href ng-click="vm.selectInstitution(institution)">{{ institution.label }}</a></li>
+	            <li role="menuitem" ng-repeat="(key, val) in vm.institutions"><a href ng-click="vm.selectInstitution(key)">{{ val.label }}</a></li>
 	        </ul>
 	    </div>
 
-	    <div class="btn-group" ng-show="vm.selectedInstitution && vm.selectedInstitution.libraries" uib-dropdown uib-keyboard-nav uib-tooltip="Merk: Hvis du avgrenser på avdeling vil du ikke få treff i e-bøker.">
+	    <div class="btn-group" ng-show="vm.selectedInstitution && vm.institutions[vm.selectedInstitution].libraries" uib-dropdown uib-keyboard-nav uib-tooltip="Merk: Hvis du avgrenser på avdeling vil du ikke få treff i e-bøker.">
 	        <button id="simple-btn-keyboard-nav2" type="button" class="btn btn-default" uib-dropdown-toggle>
-	            {{ vm.selectedLibrary ? vm.selectedLibrary.label : 'Alle avdelinger' }} <span class="caret"></span>
+	            {{ vm.selectedLibrary ? vm.institutions[vm.selectedInstitution].libraries[vm.selectedLibrary].label : 'Alle avdelinger' }} <span class="caret"></span>
 	        </button>
 	        <ul class="uib-dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="simple-btn-keyboard-nav2">
 	            <li role="menuitem"><a href ng-click="vm.selectLibrary(null)">Alle avdelinger</a></li>
 	            <li class="divider"></li>
-	            <li role="menuitem" ng-repeat="library in vm.selectedInstitution.libraries"><a href ng-click="vm.selectLibrary(library)">{{ library.label }}</a></li>
+	            <li role="menuitem" ng-repeat="(key, val) in vm.institutions[vm.selectedInstitution].libraries"><a href ng-click="vm.selectLibrary(key)">{{ val.label }}</a></li>
 	        </ul>
 	    </div>
 	</div>
 
 	<h2 translate>Catalogue results</h2>
 
-	<uib-alert ng-show="vm.subjectNotFound" type="danger" translate>The subject was not found.</uib-alert>
+	<uib-alert ng-show="vm.error" type="danger" translate>{{ vm.error }}</uib-alert>
 
+	<p ng-show="vm.subject.data.type == 'Geographic'" class="text-muted">
+		The broad/narrow filter is not available for geographical names.
+	</p>
 	<p ng-show="vm.start"
 	   translate translate-n="vm.total_results"
 	   translate translate-n="msgCount" translate-plural="Found {{$count}} documents.">Found one document.

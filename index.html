@@ -125,13 +125,17 @@
 		<link href="assets/css/app.css" rel="stylesheet">
 		<link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 		<link href="lib/angucomplete-alt/angucomplete-alt.css" rel="stylesheet">
+		<link href="lib/ngtoast/dist/ngToast.min.css" rel="stylesheet">
+		<link href="lib/ngtoast/dist/ngToast-animations.min.css" rel="stylesheet">
 		<script src="lib/angular/angular.min.js"></script>
 		<script src="lib/angular-touch/angular-touch.min.js"></script>
 		<script src="lib/angular-sanitize/angular-sanitize.min.js"></script>
+		<script src="lib/angular-animate/angular-animate.min.js"></script>
 		<script src="lib/angucomplete-alt/dist/angucomplete-alt.min.js"></script>
 		<script src="lib/angular-ui-router/release/angular-ui-router.min.js"></script>
 		<script src="lib/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
 		<script src="lib/angular-gettext/dist/angular-gettext.min.js"></script>
+		<script src="lib/ngtoast/dist/ngToast.min.js"></script>
 
 		<script src="lib/lodash/dist/lodash.compat.js"></script>
 		<script src="lib/restangular/dist/restangular.js"></script>
@@ -157,6 +161,7 @@
 	</head>
 	<body>
 
+		<toast></toast>
 		<div ui-view="header"></div>
 		<div ui-view="main"></div>
 
