@@ -12,7 +12,11 @@ msgstr ""
 "X-Generator: Poedit 1.8.6\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: search.html:41
+#: about.html:2 header.html:24
+msgid "About"
+msgstr "Om"
+
+#: search.html:39
 msgid "Active subject"
 msgstr "Valgt emneord"
 
@@ -28,6 +32,10 @@ msgstr "Det oppsto en ukjent feil."
 msgid "Broad"
 msgstr "Bredt"
 
+#: home/catalogue.js:132
+msgid "broad search"
+msgstr "bred søk"
+
 #: catalogue.html:40
 msgid "Catalogue results"
 msgstr "Katalogresultater"
@@ -40,7 +48,7 @@ msgstr "Inneholder"
 msgid "Ends with"
 msgstr "Slutter med"
 
-#: search.html:18
+#: search.html:13
 msgid "Enter a subject"
 msgstr "Søk etter emne"
 
@@ -56,11 +64,21 @@ msgstr "Klarte ikke hente utgaver."
 msgid "Fetching more editions…"
 msgstr "Henter flere utgaver…"
 
+#: about.html:10
+msgid ""
+"For information about the subject vocabularies, see the <a ui-sref=\"home"
+"\">start page</a>."
+msgstr ""
+"For informasjon om emnevokabularene, se <a ui-sref=\"home\">startsiden</a>."
+
 #: catalogue.html:57
-msgid "Found one document."
-msgid_plural "Found {{$count}} documents."
-msgstr[0] "Fant ett dokument"
-msgstr[1] "Fant {{$count}} dokumenter."
+msgid "Found one document about this topic using {{vm.searchType}}."
+msgid_plural ""
+"Found {{vm.total_results}} documents about this topic using {{vm."
+"searchType}}."
+msgstr[0] "Fant ett dokument om dette emnet med {{vm.searchType}}."
+msgstr[1] ""
+"Fant {{vm.total_results}} dokumenter om dette emnet med {{vm.searchType}}."
 
 #: home/subject.service.js:110
 msgid "GenreForm"
@@ -106,7 +124,7 @@ msgstr ""
 "{{ vm.last }} poster hentet så langt, {{ vm.total_results - vm.last }} "
 "gjenstår, vi skynder oss sakte…"
 
-#: search.html:33
+#: search.html:28
 msgid "Looking…"
 msgstr "Leter…"
 
@@ -118,7 +136,11 @@ msgstr "Flere utgaver"
 msgid "Narrow"
 msgstr "Snevert"
 
-#: search.html:32
+#: home/catalogue.js:133
+msgid "narrow search"
+msgstr "snevert søk"
+
+#: search.html:27
 msgid "No hits :("
 msgstr "Ingen treff :("
 
@@ -170,7 +192,7 @@ msgstr ""
 "vokabular der du kan søke på både bokmål, nynorsk (oversettelse i arbeid), "
 "engelsk (oversettelse i arbeid) og latin (vitenskapelige navn)."
 
-#: search.html:50
+#: search.html:48
 msgid "Search history"
 msgstr "Søkehistorie"
 
@@ -181,6 +203,14 @@ msgstr "Se også:"
 #: catalogue-result.html:16
 msgid "Series"
 msgstr "Serie"
+
+#: about.html:16
+msgid ""
+"Several fantastic pieces of free and open-source software have been used to "
+"build this search. A list is provided below together with their licenses."
+msgstr ""
+"En rekke supre åpen kilde-komponenter er brukt for å bygge emnesøket. De er "
+"listet opp under sammen med lisensene de er underlagt."
 
 #: home/catalogue.js:58
 msgid ""
@@ -217,19 +247,51 @@ msgstr ""
 msgid "Temporal"
 msgstr "Tid"
 
-#: search.html:14
+#: search.html:34
 msgid "The search went out in error:"
 msgstr "Søket gikk ut i feil"
 
-#: home/catalogue.js:142
+#: about.html:7
+msgid ""
+"The Subject Search is <a href=\"https://github.com/scriptotek/emnesok\">open "
+"source</a> and licensed under the <a href=\"https://github.com/scriptotek/"
+"emnesok/blob/master/LICENSE\">MIT license</a>."
+msgstr ""
+"Emnesøket er <a href=\"https://github.com/scriptotek/emnesok\">åpen "
+"kildekode</a> lisensisert under <a href=\"https://github.com/scriptotek/"
+"emnesok/blob/master/LICENSE\">MIT-lisensen</a>."
+
+#: about.html:4
+msgid ""
+"The Subject Search is developed by the University of Oslo Science Library. "
+"Vocabulary search and retrieval is powered by a <a href=\"http://skosmos.org/"
+"\">Skosmos</a> instance using data from <a href=\"http://data.ub.uio.no"
+"\">data.ub.uio.no</a>, while library catalogue search and retrieval is "
+"powered by <a href=\"https://developers.exlibrisgroup.com/primo/apis/"
+"webservices/xservices/search/briefsearch\">Primo</a> through a locally "
+"developed middleware (<a href=\"https://github.com/scriptotek/scs\">SCS</a>)."
+msgstr ""
+"Emnesøket er utviklet av UiO Realfagsbiblioteket. Søk i emnevokabularer "
+"drives av en <a href=\"http://skosmos.org/\">Skosmos</a>-instans med data "
+"fra <a href=\"http://data.ub.uio.no\">data.ub.uio.no</a>, mens søk i "
+"bibliotekskatalogen drives av <a href=\"https://developers.exlibrisgroup.com/"
+"primo/apis/webservices/xservices/search/briefsearch\">Primo</a> via en "
+"lokalt utviklet mellomvare (<a href=\"https://github.com/scriptotek/scs"
+"\">SCS</a>)."
+
+#: home/catalogue.js:146
 msgid "The subject was not found. It might have been deleted."
 msgstr "Emnet ble ikke funnet. Det kan ha blitt slettet."
+
+#: about.html:14
+msgid "Third party licenses"
+msgstr "Tredjepartslisenser"
 
 #: home/subject.service.js:114
 msgid "Topic"
 msgstr "Emne"
 
-#: home/catalogue.js:235
+#: home/catalogue.js:239
 msgid "Uh oh, some kind of server error occured."
 msgstr "Det oppsto en serverfeil, vi beklager."
 
@@ -240,14 +302,14 @@ msgstr "Brukt for:"
 #: home.html:5
 msgid ""
 "Welcome to our subject search. Start by choosing a vocabulary from the list "
-"below. A vocabulary is a controlled set of subjects. Support for searching "
-"all vocabularies at the same time is not yet supported, but definitely "
-"something we would like to add in the future."
+"below. A vocabulary is a controlled set of subjects. Searching all "
+"vocabularies at the same time isn't yet supported, but definitely something "
+"we would like to support in the future."
 msgstr ""
 "Velkommen til emnesøket vårt. Begynn med å velge et emne-vokabular fra "
 "listen under. Et emne-vokabular er et kontrollert sett av emneord. Søk i "
-"alle vokabularer samtidig er foreløpig ikke støttet, men noe vi ønsker å få "
-"til i fremtiden."
+"alle vokabularer samtidig er ikke støttet enda, men det er funksjonalitet vi "
+"håper å få lagt til i fremtiden."
 
 #: header.html:47
 msgid ""
@@ -284,6 +346,11 @@ msgstr ""
 #: catalogue.html:71
 msgid "You've reached the end, my friend!"
 msgstr "Du har nådd enden av lista."
+
+#~ msgid "Found one document."
+#~ msgid_plural "Found {{$count}} documents."
+#~ msgstr[0] "Fant ett dokument"
+#~ msgstr[1] "Fant {{$count}} dokumenter."
 
 #~ msgid "University of Oslo Library Subject Search ß"
 #~ msgstr "Universitetsbiblioteket i Oslos emnesøk ß"
