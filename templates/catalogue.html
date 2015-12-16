@@ -39,7 +39,7 @@ Next: {{ vm.next }}
 
 	<h2 translate>Catalogue results</h2>
 
-	<uib-alert ng-show="vm.error" type="danger" translate>{{ vm.error }}</uib-alert>
+	<uib-alert ng-show="vm.error" type="danger">{{ vm.error }}</uib-alert>
 
 	<p ng-show="vm.subject.data.type == 'Geographic'" class="text-muted">
 		The broad/narrow filter is not available for geographical names.
@@ -49,14 +49,13 @@ Next: {{ vm.next }}
 		<span translate>
 			How odd! Not a single document on that subject could be found using the current subject vocabulary.
 		</span>
-		<span translate ng-show="vm.controlledSearch && vm.subject.data.type !== 'Geographic'">
+		<span ng-show="vm.controlledSearch && vm.subject.data.type !== 'Geographic'" translate>
 			You could try expanding the search to a <a ui-sref="subject.search({narrow:false})">broad search</a>.
 		</span>
 	</p>
 
 	<p ng-show="vm.start && vm.total_results"
-	   translate translate-n="vm.total_results"
-	   translate translate-n="msgCount" translate-plural="Found {{$count}} documents.">Found one document.
+	   translate translate-n="vm.total_results" translate-plural="Found {{$count}} documents.">Found one document.
 	</p>
 
 	<ul class="list-group">

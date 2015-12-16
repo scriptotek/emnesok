@@ -28,13 +28,12 @@
         return directive;
     }
 
-    resultController.$inject = ['Lang', 'Catalogue', 'Config', 'SubjectService', '$state', 'ngToast'];
+    resultController.$inject = ['Lang', 'Catalogue', 'Config', 'SubjectService', '$state', 'ngToast', 'gettext', 'gettextCatalog'];
 
-    function resultController(Lang, Catalogue, Config, SubjectService, $state, ngToast) {
+    function resultController(Lang, Catalogue, Config, SubjectService, $state, ngToast, gettext, gettextCatalog) {
         /*jshint validthis: true */
         var vm = this;
 
-        // @TODO
         vm.recordExpanded = false;
         vm.clickSubject = clickSubject;
         vm.expandGroup = expandGroup;
@@ -56,7 +55,9 @@
                 vm.busy = false;
                 console.log(response);
                 if (!response) {
-                    ngToast.danger('Sorry, the subject "' + subject + '" was not found in the current vocabulary.', 'danger');
+                    var msg = gettext('Sorry, the subject "{{subject}}" was not found in the current vocabulary.');
+                    var translated = gettextCatalog.getString(msg, { subject: subject });
+                    ngToast.danger(translated, 'danger');
                 } else {
                     $state.go('subject.search', {id: response.localname, term: null});
                 }
@@ -75,8 +76,10 @@
                 vm.recordExpanded = true;
                 vm.versions = response.result.records;
             }, function(error) {
-                // @TODO: Handle error
                 vm.busy = false;
+                var msg = gettext('Failed to fetch list of editions.');
+                var translated = gettextCatalog.getString(msg);
+                ngToast.danger(translated, 'danger');
             });
         }
 
@@ -98,9 +101,9 @@
 
     /* ------------------------------------------------------------------------------- */
 
-    controller.$inject = ['$stateParams', '$state', '$scope', '$window', '$timeout', 'ngToast', 'gettext', 'Lang', 'Catalogue', 'Config', 'Session', 'subject'];
+    controller.$inject = ['$stateParams', '$state', '$scope', '$window', '$timeout', 'ngToast', 'gettext', 'gettextCatalog', 'Lang', 'Catalogue', 'Config', 'Session', 'subject'];
 
-    function controller($stateParams, $state, $scope, $window, $timeout, ngToast, gettext, Lang, Catalogue, Config, Session, subject) {
+    function controller($stateParams, $state, $scope, $window, $timeout, ngToast, gettext, gettextCatalog, Lang, Catalogue, Config, Session, subject) {
         /*jshint validthis: true */
         var vm = this;
         vm.vocab = '';
@@ -136,7 +139,8 @@
         function activate() {
             if (!subject) {
                 vm.busy = false;
-                vm.error = gettext('Subject not found. It might have been deleted.');
+                var msg = gettext('The subject was not found. It might have been deleted.');
+                vm.error = gettextCatalog.getString(msg);
                 return;
             }
             vm.vocab = subject.vocab;
@@ -228,7 +232,8 @@
             Catalogue.search(vocab, query, vm.next, inst, lib).then(
                 gotResults,
                 function(error) {
-                    vm.error = gettext('Some kind of server error occured.');
+                    var msg = gettext('Uh oh, some kind of server error occured.');
+                    vm.error = gettextCatalog.getString(msg);
                     vm.busy = false;
                     // @TODO Handle error
                 }
