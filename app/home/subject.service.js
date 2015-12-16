@@ -15,7 +15,8 @@
 			getByTerm: getByTerm,
 			exists: exists,
 			onSubject: onSubject,
-			searchHistory: []
+			searchHistory: [],
+			clearSearchHistory: clearSearchHistory
 		};
 
 		activate();
@@ -47,6 +48,10 @@
 			*/
 	
 
+		}
+
+		function clearSearchHistory() {
+			service.searchHistory = [];
 		}
 
 		function onSubject(scope, callback) {

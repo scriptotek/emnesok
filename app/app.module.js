@@ -20,7 +20,7 @@
 			'app.modules.error'
 		])
 		.config(['$stateProvider', '$urlRouterProvider', 'ngToastProvider', configure])
-		.run(['$rootScope', '$state', 'Lang', run]);
+		.run(['$rootScope', '$state', 'Lang', 'SubjectService', run]);
 
 	function configure($stateProvider, $urlRouterProvider, ngToastProvider) {
 
@@ -115,7 +115,13 @@
 		});
 	}
 
-	function run($rootScope, $state, Lang) {
+	function run($rootScope, $state, Lang, SubjectService) {
+
+		$rootScope.$on('$stateChangeStart', function (evt, toState, toParams, fromState, fromParams, error) {
+			if (!toParams.id && !toParams.term) {
+				SubjectService.clearSearchHistory();
+			}
+		});
 
 		$rootScope.$on('$stateChangeError', function (evt, toState, toParams, fromState, fromParams, error) {
 			if (angular.isObject(error) && angular.isString(error.code)) {
