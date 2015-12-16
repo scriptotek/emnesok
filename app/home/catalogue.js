@@ -149,6 +149,26 @@
             });
         }
 
+        function simplifyAvailability(subject) {
+            var availability = '';
+            // @TODO: Show libraries if vm.selectedInstitution
+
+            var printInstitutions = [];
+            console.log(subject);
+            subject.components.forEach(function(component) {
+                if (component.holdings) {
+                    component.holdings.forEach(function(holding) {
+                        var library = holding.library.replace(/[0-9]+/, '');
+                        if (printInstitutions.indexOf(library) === -1 && library) {
+                            printInstitutions.push(library);
+                        }
+                    });
+                }
+            });
+            subject.availability = {};
+            subject.availability.print = printInstitutions;
+        }
+
         function onScroll () {
             if (vm.error) {
                 return;
@@ -181,6 +201,9 @@
             vm.start = response.first;
             vm.next = response.next;
             vm.last = vm.next ? vm.next - 1 : vm.total_results;
+            response.results.forEach(function(res) {
+                simplifyAvailability(res);
+            });
             vm.results = vm.results.concat(response.results);
             vm.busy = false;
             $timeout(checkScrollPos, 500);

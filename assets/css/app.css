@@ -25,3 +25,30 @@
     95% {left: 120%;}
     to {left: 100%;}
 }
+
+li.online, li.printed {
+    font-size:100%;
+    display: block;
+}
+
+li.online:before {
+    /*Using a Bootstrap glyphicon as the bullet point*/
+    content: "\2601";
+    font-family: 'Glyphicons Halflings';
+    font-size: 10px;
+    float: left;
+    margin-top: 4px;
+    margin-left: -17px;
+    color: #666;
+}
+
+li.printed:before {
+    /*Using a Bootstrap glyphicon as the bullet point*/
+    content: "\e043";
+    font-family: 'Glyphicons Halflings';
+    font-size: 10px;
+    float: left;
+    margin-top: 4px;
+    margin-left: -17px;
+    color: #666;
+}

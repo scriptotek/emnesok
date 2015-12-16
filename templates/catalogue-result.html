@@ -1,65 +1,68 @@
-<div class="catalogue_result">
+<div class="catalogue_result" style="display:flex;">
 
-	<div>
-		<a style="font-size:120%;" ng-href="{{ vm.record.links.primo }}">{{ vm.record.title }}</a>
-		({{ vm.record.publisher }}<span ng-show="vm.record.publisher && vm.record.edition">, </span><span ng-show="vm.record.edition">{{ vm.record.edition }}</span> {{ vm.record.date }})
+	<div style="width: 80px; height: 80px; flex: 0 0 auto;">
+		<img ng-src="{{ vm.record.thumbnails.bibsys ? vm.record.thumbnails.bibsys : '' }}" style=" display: block; padding-right: 10px; margin-left:auto; margin-right: auto; max-width: 80px; max-height: 80px;">
 	</div>
 
-	<div ng-show="vm.record.ispartof">Series: {{ vm.record.ispartof }}</div>
+	<div style="flex: 1 1 auto">
 
-	<div ng-bind-html="vm.record.responsibility ? vm.record.responsibility: vm.record.creator_string"></div>
-
-	<div ng-show="vm.record.format != 'book'">
-		({{ vm.record.format }})
-	</div>
-
-	<div ng-show="vm.record.type == 'group' && !vm.recordExpanded">
-		<a href ng-click="vm.expandGroup()">+ Flere utgaver</a>
-		<span ng-show="busy">Henter...</span>
-	</div>
-
-	<div ng-show="vm.recordExpanded">
-		{{ versions.length }} utgaver:
-		<div ng-repeat="version in vm.versions">
-			{{ version.edition }}
-			{{ version.date }}
-			{{ version.material }}
+		<div>
+			<a style="font-size:120%;" ng-href="{{ vm.record.links.primo }}">{{ vm.record.title }}</a>
+			({{ vm.record.publisher }}<span ng-show="vm.record.publisher && vm.record.edition">, </span><span ng-show="vm.record.edition">{{ vm.record.edition }}</span> {{ vm.record.date }})
 		</div>
+
+		<div ng-bind-html="vm.record.responsibility ? vm.record.responsibility: vm.record.creator_string"></div>
+
+		<div ng-show="vm.record.ispartof" style="font-size:85%;"><span translate>Series</span>: {{ vm.record.ispartof }}</div>
+
+		<div ng-show="vm.record.format != 'book'">
+			Format: {{ vm.record.format }}
+		</div>
+
+		<div ng-show="vm.record.type == 'group' && !vm.recordExpanded">
+			<a href ng-click="vm.expandGroup()">+ <span translate>More editions</span></a>
+			<span ng-show="busy"><span translate>Fetching more editions…</span></span>
+		</div>
+
+		<div ng-show="vm.recordExpanded">
+			<div translate translate-n="vm.total_results" translate-plural="{{$count}} editions:">One edition:</div>
+			<div ng-repeat="version in vm.versions">
+				{{ version.edition }}
+				{{ version.date }}
+				{{ version.material }}
+			</div>
+		</div>
+
+		<!--<div>{{ vm.record.material }}</div>-->
+
+		<ul style="padding-left:25px;">
+			<li class="online" ng-repeat="component in vm.record.components | filter:vm.filterElectronic">
+				<a ng-href="{{ vm.record.urls[0].url }}">{{ vm.record.urls[0].description }}</a>
+			</li>
+		</ul>
+
+		<ul style="padding-left:25px;" ng-show="vm.record.availability.print.length">
+			<li class="printed">
+				<span translate>Print copy at</span> {{ vm.record.availability.print.join(', ') }}
+			</li>
+		</ul>
+
+		<div ng-show="vm.record.subjects[vm.vocab]">
+
+			<span ng-repeat="subject in vm.record.subjects[vm.vocab]">
+				<a href ng-click="vm.clickSubject(subject)" class="label label-primary">{{ subject }}</a>
+			</span>
+
+			<span ng-repeat="subject in vm.record.subjects.geo || []">
+				<a href ng-click="vm.clickSubject(subject)" class="label label-default">{{ subject }} (Sted)</a>
+			</span>
+
+			<span ng-show="!vm.record.subjects[vm.vocab].length && !vm.record.subjects.geo.length" ng-repeat="subject in vm.record.subjects.subject">
+				<a href ng-click="vm.clickSubject(subject)" class="label label-default">{{ subject }}</a>
+			</span>
+
+		</div>
+
 	</div>
-
-	<div ng-show="vm.record.subjects[vm.vocab]">
-
-		<span ng-repeat="subject in vm.record.subjects[vm.vocab]">
-			<a href ng-click="vm.clickSubject(subject)" class="label label-primary">{{ subject }}</a>
-		</span>
-
-		<span ng-repeat="subject in vm.record.subjects.geo || []">
-			<a href ng-click="vm.clickSubject(subject)" class="label label-default">{{ subject }} (Sted)</a>
-		</span>
-
-		<span ng-show="!vm.record.subjects[vm.vocab].length && !vm.record.subjects.geo.length" ng-repeat="subject in vm.record.subjects.subject">
-			<a href ng-click="vm.clickSubject(subject)" class="label label-default">{{ subject }}</a>
-		</span>
-
-	</div>
-
-	<ul>
-
-		<li ng-repeat="component in vm.record.components | filter:vm.filterElectronic" style="font-size:90%;">
-			<a ng-href="{{ component.url }}">Available online {{ component.urlDescription ? ' (' + component.urlDescription + ')' : '' }}</a>
-		</li>
-	</ul>
-
-
-	<!--<ul ng-repeat="component in vm.record.components | filter:vm.filterPrint" style="font-size:90%;">
-
-		<li ng-repeat="holding in component.holdings" style="font-size:90%;">
-			{{ vm.getStatus(holding.status) | translate }}
-			from
-			{{ holding.library }}
-			{{ holding.collection_name }}
-			{{ holding.callcode }}
-		</li>
-	</ul>-->
 
 </div>
