@@ -2,10 +2,10 @@
 	'use strict';
 
 	angular
-		.module('app.services.externals', ['app.services.config', 'ui.router', 'gettext'])
-		.factory('Externals', ['$http', '$q', '$filter', 'gettext', ExternalsFactory]);
+		.module('app.services.externals', ['app.services.config', 'ui.router'])
+		.factory('Externals', ['$http', '$q', '$filter', ExternalsFactory]);
 
-	function ExternalsFactory($http, $q, $filter, gettext) {
+	function ExternalsFactory($http, $q, $filter) {
 
 		function htmlToPlaintext(text) {
 			return text ? String(text).replace(/<[^>]+>/gm, '') : '';
@@ -14,12 +14,6 @@
 		console.log('[Externals] Init');
 
 		var service = {
-			data: {
-				name: "",
-				url: "",
-				extract: "",
-				type: "no result"
-			},
 			snl:snl,
 			wp:wp,
 			ps:ps
@@ -41,11 +35,13 @@
 			}).
 			then(function(result){
 
-				service.data = result.data;
-				service.data.name = gettext("Store norske leksikon");
-				deferred.resolve(service.data);
+				console.log('snl',result.data);
 
-				console.log('snl',service.data);
+				result.data.name = "Store norske leksikon";
+				if (result.data.type == "no result") {
+					return deferred.resolve(null);
+				}
+				return deferred.resolve(result.data);
 
 			},function(error){
 				deferred.reject(error);
@@ -68,11 +64,11 @@
 			}).
 			then(function(result){
 
-				service.data = result.data;
-				service.data.name = gettext("Periodesystemet");
-				deferred.resolve(service.data);
+				result.data = result.data;
+				result.data.name = "Periodesystemet";
+				deferred.resolve(result.data);
 
-				console.log('ps',service.data);
+				console.log('ps',result.data);
 
 			},function(error){
 				deferred.reject(error);
@@ -83,7 +79,7 @@
 
 
 		function wp(term,lang,type,deferred) {
-
+	
 			if (type===undefined) type="exact";
 			if (!type) type="exact";
 	
@@ -127,20 +123,20 @@
 							extract = htmlToPlaintext(onlyFirstParagraph[0]);
 						}
 						
-						service.data = {
-							name: gettext("Wikipedia"),
+						result.data = {
+							name: "Wikipedia",
 							url: processed.canonicalurl,
 							extract: extract,
 							type: type
 						};
-						deferred.resolve(service.data);	
+						deferred.resolve(result.data);	
 					}
 					
 					else {
 						wp(term,lang,"search", deferred);
 					}
 						
-					console.log('wiki exact',service.data);
+					console.log('wiki exact',result.data);
 
 				},function(error){
 					deferred.reject(error);
@@ -164,20 +160,22 @@
 					}
 				}).
 				then(function(result){
+
+					var data = null;
 				
 					if (result.data.query.searchinfo.totalhits) {
 							
-						service.data = {
-							name: gettext("Wikipedia"),
+						data = {
+							name: "Wikipedia",
 							url: "https://"+lang+".wikipedia.org/w/index.php?search="+term,
 							extract: "",
 							type: type
 						};
 					}
 
-					deferred.resolve(service.data);	
+					deferred.resolve(data);	
 
-					console.log('wiki search',service.data);
+					console.log('wiki search',data);
 
 				},function(error){
 					deferred.reject(error);

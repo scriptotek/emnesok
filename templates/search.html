@@ -2,16 +2,16 @@
 
 <div class="input-group" style="margin-bottom:1.5em;">
 	<div class="input-group-btn" uib-dropdown uib-keyboard-nav>
-		<button id="simple-btn-keyboard-nav" type="button" class="truncate_button btn btn-default" uib-dropdown-toggle translate>
-			{{vm.truncations[vm.truncate]}} <span class="caret"></span>
+		<button id="simple-btn-keyboard-nav" type="button" class="truncate_button btn btn-default" uib-dropdown-toggle>
+			<span>{{vm.truncations[vm.truncate] | translate}}</span> <span class="caret"></span>
 		</button>
 		<ul class="uib-dropdown-menu" role="menu" aria-labelledby="simple-btn-keyboard-nav">
-            <li role="menuitem" ng-repeat="truncation in vm.truncations"><a href ng-click="vm.searchTruncation($index)" translate>{{truncation}}</a></li>
+            <li role="menuitem" ng-repeat="truncation in vm.truncations"><a href ng-click="vm.searchTruncation($index)" translate>{{truncation |translate}}</a></li>
 		</ul>
 	</div>
 
 	<uib-alert type="danger" ng-show="vm.errorMsg">
-		<span translate>An error occured:</span>
+		<span translate>The search went out in error:</span>
 		{{ vm.errorMsg | translate }}
 	</uib-alert>
 
@@ -38,7 +38,7 @@
 <div class="alert alert-danger" ng-show="vm.error">{{vm.error}}</div>
 
 <div class="subject panel panel-success" ng-show="vm.searchHistory.length > 0">
-  <div class="panel-heading" translate><h3 class="panel-title">Active subject</h3></div>
+  <div class="panel-heading"><h3 class="panel-title" translate>Active subject</h3></div>
   <ul class="list-group">
     <li class="list-group-item">
 	    <mod-subject subject-data="vm.searchHistory[vm.searchHistory.length-1]"></mod-subject>
@@ -47,7 +47,7 @@
 </div>
 
 <div class="panel panel-default" ng-show="vm.searchHistory.length > 1">
-  <div class="panel-heading" translate><h3 class="panel-title">Search history</h3></div>
+  <div class="panel-heading"><h3 class="panel-title" translate>Search history</h3></div>
   <ul class="list-group">
     <li class="list-group-item" ng-repeat="subject in vm.searchHistory.slice(0, vm.searchHistory.length-1).reverse()">
 	    <a ui-sref="subject.search({ id: subject.id })">

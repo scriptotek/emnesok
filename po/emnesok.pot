@@ -4,16 +4,16 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: \n"
 
-#: subject.html:30
+#: subject.html:20
 msgid "(Used for:"
+msgstr ""
+
+#: search.html:41
+msgid "Active subject"
 msgstr ""
 
 #: catalogue.html:22
 msgid "All libraries"
-msgstr ""
-
-#: search.html:14
-msgid "An error occured:"
 msgstr ""
 
 #: catalogue.html:13
@@ -21,14 +21,14 @@ msgid "Broad"
 msgstr ""
 
 #: catalogue.html:40
-msgid "Catalogue results <span ng-show=\"vm.busy\">(WORKING...)</span>"
+msgid "Catalogue results"
 msgstr ""
 
-#: home/search.js:37
+#: home/search.js:36
 msgid "Containing"
 msgstr ""
 
-#: home/search.js:37
+#: home/search.js:36
 msgid "Ends with"
 msgstr ""
 
@@ -36,33 +36,57 @@ msgstr ""
 msgid "Enter a subject"
 msgstr ""
 
-#: home/search.js:37
+#: home/search.js:36
 msgid "Exact match"
 msgstr ""
 
-#: catalogue.html:42
+#: catalogue.html:44
 msgid "Found one document."
 msgid_plural "Found {{$count}} documents."
 msgstr[0] ""
 msgstr[1] ""
 
-#: home/subject.service.js:98
+#: home/subject.service.js:104
 msgid "GenreForm"
 msgstr ""
 
-#: home/subject.service.js:90
+#: home/subject.service.js:96
 msgid "Geographic"
 msgstr ""
 
-#: home.html:3
-msgid "Hei du!"
+#: home/search.js:148
+msgid "Grunnstoff"
 msgstr ""
 
-#: catalogue.html:51
+#: home.html:3
+msgid "Hello there!"
+msgstr ""
+
+#: home.html:37
+msgid ""
+"Human Rights Terms is a controlled vocabulary developed and maintained by the Norwegian Centre for Human Rights' (SMR) rights.\n"
+"\t\tThis vocabulary has only English terms."
+msgstr ""
+
+#: home.html:36
+msgid "Human Rights: <a ui-sref=\"subject({vocab:'mrtermer'})\">Human Rights Terms</a>"
+msgstr ""
+
+#: home.html:24
+msgid "Humanities and Social Sciences: <a ui-sref=\"subject({vocab:'humord'})\">Humord</a>"
+msgstr ""
+
+#: home.html:25
+msgid ""
+"Humord is the best portal to the Humanities and Social Sciences. The vocabulary also\n"
+"\t\thas a relatively large amount of interdisciplinary subject headings. This vocabulary has only Norwegian terms."
+msgstr ""
+
+#: catalogue.html:53
 msgid "Loaded {{ vm.last }} records so far, {{ vm.total_results - vm.last }} to go, hold on…"
 msgstr ""
 
-#: search.html:29
+#: search.html:33
 msgid "Looking…"
 msgstr ""
 
@@ -70,19 +94,34 @@ msgstr ""
 msgid "Narrow"
 msgstr ""
 
-#: search.html:28
+#: search.html:32
 msgid "No hits :("
 msgstr ""
 
-#: home/search.js:158
+#: home/search.js:204
 msgid "No network connection"
 msgstr ""
 
-#: subject.html:37
+#: home.html:17
+msgid "Science: <a ui-sref=\"subject({vocab:'realfagstermer'})\">Realfagstermer</a>"
+msgstr ""
+
+#: home.html:18
+msgid ""
+"Search for scientific concepts. 'Realfagstermer' is a controlled vocabulary\n"
+"\t\tmaintained by the Science Libraries at the University at Oslo and Bergen, and is the best portal to our\n"
+"\t\tcollections. Realfagstermer has Norwegian terms, but also some English, New Norwegian and Latin terms."
+msgstr ""
+
+#: search.html:50
+msgid "Search history"
+msgstr ""
+
+#: subject.html:27
 msgid "See also:"
 msgstr ""
 
-#: home/search.js:37
+#: home/search.js:36
 msgid "Starting with"
 msgstr ""
 
@@ -90,15 +129,33 @@ msgstr ""
 msgid "Subject search"
 msgstr ""
 
-#: home/subject.service.js:94
+#: home.html:30
+msgid "Technology and engineering: <a ui-sref=\"subject({vocab:'tekord'})\">Tekord</a>"
+msgstr ""
+
+#: home.html:31
+msgid ""
+"Tekord is a vocabulary created at NTNU (Norwegian University of Science and Technology).\n"
+"\t\tIt is an especially useful search portal to Technical and Engeneering literature. This vocabulary has only Norwegian terms."
+msgstr ""
+
+#: home/subject.service.js:100
 msgid "Temporal"
 msgstr ""
 
-#: home/subject.service.js:101
+#: search.html:14
+msgid "The search went out in error:"
+msgstr ""
+
+#: catalogue.html:42
+msgid "The subject was not found."
+msgstr ""
+
+#: home/subject.service.js:108
 msgid "Topic"
 msgstr ""
 
-#: subject.html:22
+#: subject.html:12
 msgid "Used for:"
 msgstr ""
 
@@ -111,14 +168,31 @@ msgid ""
 "    Do you have ideas for improving the subject search? We have a <a href=\"https://github.com/scriptotek/emnesok/issues\">list of issues we're working on</a>, where you can also contribute your own ideas (requires a free GitHub account)."
 msgstr ""
 
-#: catalogue.html:54
+#: home.html:5
+msgid ""
+"Welcome to our subject heading search. Begin with choosing a subject heading vocabulary from the list below.\n"
+"\tA vocabulary is a controlled set of subject headings.\n"
+"\tYou can also try to search in <a ui-sref=\"subject({vocab:'all'})\">all of the vocabularies at the same time</a>,\n"
+"\tbut this is currently not very user friendly as overlapping concepts from different vocabularies\n"
+"\tdo not cluster, but rather shows up as duplicates.<br><br>\n"
+"\n"
+"\tIf you use the filter 'Narrow' in the Catalog results, you will only find books that have been\n"
+"\tindexed with the chosen vocabulary, but you can broaden your search to include results from all the vocabularies -\n"
+"\tincluding keywords - by choosing the filter 'Broader'."
+msgstr ""
+
+#: catalogue.html:57
 msgid "You've reached the end, my friend!"
+msgstr ""
+
+#: error.html:3
+msgid "{{ vm.message }}"
 msgstr ""
 
 #: search.html:9
 msgid "{{truncation}}"
 msgstr ""
 
-#: search.html:5
-msgid "{{vm.truncations[vm.truncate]}} <span class=\"caret\"></span>"
+#: search.html:6
+msgid "{{vm.truncations[vm.truncate]}}"
 msgstr ""

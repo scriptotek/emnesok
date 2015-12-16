@@ -12,39 +12,31 @@ msgstr ""
 "X-Generator: Poedit 1.8.6\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: subject.html:26
+#: subject.html:20
 msgid "(Used for:"
 msgstr "(Brukt for:"
 
-#: search.html:9
-msgid "{{truncation}}"
-msgstr ""
-
-#: search.html:5
-msgid "{{vm.truncations[vm.truncate]}} <span class=\"caret\"></span>"
-msgstr ""
+#: search.html:41
+msgid "Active subject"
+msgstr "Valgt emneord"
 
 #: catalogue.html:22
 msgid "All libraries"
 msgstr "Alle bibliotek"
-
-#: search.html:14
-msgid "An error occured:"
-msgstr "Søket gikk ut i feil:"
 
 #: catalogue.html:13
 msgid "Broad"
 msgstr "Bredt"
 
 #: catalogue.html:40
-msgid "Catalogue results <span ng-show=\"vm.busy\">(WORKING...)</span>"
-msgstr "Katalogresultater <span ng-show=\"vm.busy\">(HENTER...)</span>"
+msgid "Catalogue results"
+msgstr "Katalogresultater"
 
-#: home/search.js:37
+#: home/search.js:36
 msgid "Containing"
 msgstr "Inneholder"
 
-#: home/search.js:37
+#: home/search.js:36
 msgid "Ends with"
 msgstr "Slutter med"
 
@@ -52,27 +44,70 @@ msgstr "Slutter med"
 msgid "Enter a subject"
 msgstr "Søk etter emne"
 
-#: home/search.js:37
+#: home/search.js:36
 msgid "Exact match"
 msgstr "Eksakt lik"
 
-#: catalogue.html:42
+#: catalogue.html:44
 msgid "Found one document."
 msgid_plural "Found {{$count}} documents."
 msgstr[0] "Fant ett dokument"
 msgstr[1] "Fant {{$count}} dokumenter."
 
-#: home/subject.service.js:98
+#: home/subject.service.js:104
 msgid "GenreForm"
 msgstr "Sjanger/form"
 
-#: home/subject.service.js:90
+#: home/subject.service.js:96
 msgid "Geographic"
 msgstr "Sted"
 
+#: home/search.js:148
+msgid "Grunnstoff"
+msgstr "Chemical element"
+
 #: home.html:3
-msgid "Hei du!"
+msgid "Hello there!"
+msgstr "Hei du!"
+
+#: home.html:37
+msgid ""
+"Human Rights Terms is a controlled vocabulary developed and maintained by "
+"the Norwegian Centre for Human Rights' (SMR) rights.\n"
+"\t\tThis vocabulary has only English terms."
 msgstr ""
+"\t\tMenneskerettighetstermer er et kontrollert emneordsvokabular som "
+"forvaltes og\n"
+"\t\tvidereutvikles av Norsk senter for menneskerettigheters (SMR) "
+"bibliotek.\n"
+"\t\tDette vokabularet har bare engelske emneord."
+
+#: home.html:36
+msgid ""
+"Human Rights: <a ui-sref=\"subject({vocab:'mrtermer'})\">Human Rights Terms</"
+"a>"
+msgstr ""
+"Menneskerettigheter: <a ui-sref=\"subject({vocab:'mrtermer'})\">Human Rights "
+"Terms</a>"
+
+#: home.html:24
+msgid ""
+"Humanities and Social Sciences: <a ui-sref="
+"\"subject({vocab:'humord'})\">Humord</a>"
+msgstr ""
+"Humaniora og samfunnsfag: <a ui-sref=\"subject({vocab:'humord'})\">Humord</a>"
+
+#: home.html:25
+msgid ""
+"Humord is the best portal to the Humanities and Social Sciences. The "
+"vocabulary also\n"
+"\t\thas a relatively large amount of interdisciplinary subject headings. "
+"This vocabulary has only Norwegian terms."
+msgstr ""
+"\t\tHumord gir den beste inngangen til humaniora og samfunnsfag. Vokabularet "
+"har\n"
+"\t\togså en stor mengde tverrfaglige termer. Dette vokabularet har bare "
+"norske emneord."
 
 #: catalogue.html:53
 msgid ""
@@ -82,7 +117,7 @@ msgstr ""
 "{{ vm.last }} poster hentet foreløpig, {{ vm.total_results - vm.last }} "
 "gjenstår, vi skynder oss sakte…"
 
-#: search.html:29
+#: search.html:33
 msgid "Looking…"
 msgstr "Leter…"
 
@@ -90,19 +125,47 @@ msgstr "Leter…"
 msgid "Narrow"
 msgstr "Snevert"
 
-#: search.html:28
+#: search.html:32
 msgid "No hits :("
 msgstr "Ingen treff :("
 
-#: home/search.js:154
+#: home/search.js:204
 msgid "No network connection"
 msgstr "Ingen nettverksforbindelse"
 
-#: subject.html:33
+#: home.html:17
+msgid ""
+"Science: <a ui-sref=\"subject({vocab:'realfagstermer'})\">Realfagstermer</a>"
+msgstr ""
+"Realfag: <a ui-sref=\"subject({vocab:'realfagstermer'})\">Realfagstermer</a>"
+
+#: home.html:18
+msgid ""
+"Search for scientific concepts. 'Realfagstermer' is a controlled vocabulary\n"
+"\t\tmaintained by the Science Libraries at the University at Oslo and "
+"Bergen, and is the best portal to our\n"
+"\t\tcollections. Realfagstermer has Norwegian terms, but also some English, "
+"New Norwegian and Latin terms."
+msgstr ""
+"\t\t\tSøk etter realfaglige begreper. Realfagstermer er et kontrollert "
+"begrep\n"
+"\t\t\tsom vedlikeholdes av Realfagsbiblioteket ved UiO og UiB, og gir den "
+"beste\n"
+"\t\t\tinngangen til samlingene våre, men du kan også utvide søket og få "
+"treff\n"
+"\t\t\ti andre samlinger. Realfagstermer består av norske emneord, og en "
+"liten, men økende andel av emneordene er oversatt til engelsk, nynorsk og "
+"latin."
+
+#: search.html:50
+msgid "Search history"
+msgstr "Søkehistorie"
+
+#: subject.html:27
 msgid "See also:"
 msgstr "Se også:"
 
-#: home/search.js:37
+#: home/search.js:36
 msgid "Starting with"
 msgstr "Begynner med"
 
@@ -110,15 +173,43 @@ msgstr "Begynner med"
 msgid "Subject search"
 msgstr "Emnesøk"
 
-#: home/subject.service.js:94
+#: home.html:30
+msgid ""
+"Technology and engineering: <a ui-sref=\"subject({vocab:'tekord'})\">Tekord</"
+"a>"
+msgstr ""
+"Teknikk/ingeniørfag: <a ui-sref=\"subject({vocab:'tekord'})\">Tekord</a>"
+
+#: home.html:31
+msgid ""
+"Tekord is a vocabulary created at NTNU (Norwegian University of Science and "
+"Technology).\n"
+"\t\tIt is an especially useful search portal to Technical and Engeneering "
+"literature. This vocabulary has only Norwegian terms."
+msgstr ""
+"Tekord er et vokabular utviklet ved NTNU. Det er særlig en god søkeinngang "
+"til\n"
+"\t\tteknisk faglitteratur ved NTNU, men ved å utvide søket vil du også få "
+"treff i\n"
+"\t\tandre samlinger. Dette vokabularet har bare norske emneord."
+
+#: home/subject.service.js:100
 msgid "Temporal"
 msgstr "Tid"
 
-#: home/subject.service.js:101
+#: search.html:14
+msgid "The search went out in error:"
+msgstr "Søket gikk ut i feil"
+
+#: catalogue.html:42
+msgid "The subject was not found."
+msgstr "Fant ikke emneord"
+
+#: home/subject.service.js:108
 msgid "Topic"
 msgstr "Emne"
 
-#: subject.html:18
+#: subject.html:12
 msgid "Used for:"
 msgstr "Brukt for:"
 
@@ -145,9 +236,157 @@ msgstr ""
 "scriptotek/emnesok/issues\">liste over ting vi jobber med</a> der du også "
 "kan sende inn forslag (du må registrere deg på GitHub, men det er gratis)."
 
-#: catalogue.html:56
+#: home.html:5
+msgid ""
+"Welcome to our subject heading search. Begin with choosing a subject heading "
+"vocabulary from the list below.\n"
+"\tA vocabulary is a controlled set of subject headings.\n"
+"\tYou can also try to search in <a ui-sref=\"subject({vocab:'all'})\">all of "
+"the vocabularies at the same time</a>,\n"
+"\tbut this is currently not very user friendly as overlapping concepts from "
+"different vocabularies\n"
+"\tdo not cluster, but rather shows up as duplicates.<br><br>\n"
+"\n"
+"\tIf you use the filter 'Narrow' in the Catalog results, you will only find "
+"books that have been\n"
+"\tindexed with the chosen vocabulary, but you can broaden your search to "
+"include results from all the vocabularies -\n"
+"\tincluding keywords - by choosing the filter 'Broader'."
+msgstr ""
+"\tVelkommen til emnesøket vårt. Begynn med å velge et emne-vokabular fra "
+"listen under.\n"
+"\tEt emne-vokabular er et kontrollert sett av emneord.\n"
+"\tDu kan også forsøke å søke i <a ui-sref=\"subject({vocab:'all'})\">alle "
+"samtidig</a>,\n"
+"\tmen det er foreløpig ikke veldig brukervennlig siden overlappende begreper "
+"i ulike\n"
+"\tvokabularer ikke klustres, men vises hver for seg.<br><br>\n"
+"\n"
+"\tBruker du filtreringen 'snevert' i katalogresultatene får du bare treff "
+"fra \n"
+"\tbøker som er indeksert med emneord fra det valgte vokabularet, men du kan "
+"utvide til \n"
+"\tå inkludere alle vokabularer - inkludert frie emneord - ved å velge "
+"filtreringen 'bredt'."
+
+#: catalogue.html:57
 msgid "You've reached the end, my friend!"
 msgstr "Du er på enden av lista."
 
-#~ msgid "Catalogue results"
-#~ msgstr "Katalogresultater"
+#: error.html:3
+msgid "{{ vm.message }}"
+msgstr ""
+
+#: search.html:9
+msgid "{{truncation}}"
+msgstr ""
+
+#: search.html:6
+msgid "{{vm.truncations[vm.truncate]}}"
+msgstr ""
+
+#~ msgid ""
+#~ "Search for scientific concepts. 'Realfagstermer' is a controlled "
+#~ "vocabulary\n"
+#~ "\t\tmaintained by the Science Libraries at the University at Oslo and "
+#~ "Bergen, and is the best portal to our\n"
+#~ "\t\tcollections. Realfagstermer has mosty Norwegian terms, but also some "
+#~ "English, Nynorsk and Latin terms."
+#~ msgstr ""
+#~ "\t\tSøk etter realfaglige begreper. Realfagstermer er et kontrollert "
+#~ "begrep\n"
+#~ "\t\tsom vedlikeholdes av Realfagsbiblioteket ved UiO og UiB, og gir den "
+#~ "beste\n"
+#~ "\t\tinngangen til samlingene våre, men du kan også utvide søket og få "
+#~ "treff\n"
+#~ "\t\ti andre samlinger. Realfagstermer har norske emneord, men også noen "
+#~ "engelske, nynorske og latinske."
+
+#~ msgid ""
+#~ "Human Rights Terms is a controlled vocabulary developed and maintained by "
+#~ "the Norwegian Centre for Human Rights' (SMR) rights."
+#~ msgstr ""
+#~ "\t\tMenneskerettighetstermer er et kontrollert emneordsvokabular som "
+#~ "forvaltes og \n"
+#~ "\t\tvidereutvikles av Norsk senter for menneskerettigheters (SMR) "
+#~ "bibliotek."
+
+#~ msgid ""
+#~ "Humord is the best portal to the Humanities and Social Sciences. The "
+#~ "vocabulary also\n"
+#~ "\t\thas a relatively large amount of interdisciplinary subject headings."
+#~ msgstr ""
+#~ "\t\tHumord gir den beste inngangen til humaniora og samfunnsfag. "
+#~ "Vokabularet har\n"
+#~ "\t\togså en stor mengde tverrfaglige termer."
+
+#~ msgid ""
+#~ "Search for scientific concepts. 'Realfagstermer' is a controlled "
+#~ "vocabulary\n"
+#~ "\t\tmaintained by the Science Libraries at the University at Oslo and "
+#~ "Bergen, and is the best portal to our\n"
+#~ "\t\tcollections."
+#~ msgstr ""
+#~ "\t\tSøk etter realfaglige begreper. Realfagstermer er et kontrollert "
+#~ "vokabular\n"
+#~ "\t\tsom vedlikeholdes av Realfagsbiblioteket ved UiO og UiB, og gir den "
+#~ "beste\n"
+#~ "\t\tinngangen til samlingene våre, men du kan også utvide søket og få "
+#~ "treff\n"
+#~ "\t\ti andre samlinger."
+
+#~ msgid ""
+#~ "Tekord is a vocabulary created at NTNU (Norwegian University of Science "
+#~ "and Technology).\n"
+#~ "\t\tIt is an especially useful search portal to Technical and Engeneering "
+#~ "literature."
+#~ msgstr ""
+#~ "\tTekord er et vokabular utviklet ved NTNU. Det er særlig en god "
+#~ "søkeinngang til\n"
+#~ "\t\tteknisk faglitteratur ved NTNU, men ved å utvide søket vil du også få "
+#~ "treff i\n"
+#~ "\t\tandre samlinger."
+
+#~ msgid "Hei du!"
+#~ msgstr "Hi there!"
+
+#~ msgid ""
+#~ "Humaniora og sammfunnsfag: <a ui-sref="
+#~ "\"subject({vocab:'humord'})\">Humord</a>"
+#~ msgstr ""
+#~ "Humanities and Social Sciences: <a ui-sref="
+#~ "\"subject({vocab:'humord'})\">Humord</a> "
+
+#~ msgid ""
+#~ "Humord gir den beste inngangen til humaniora og samfunnsfag. Vokabularet "
+#~ "har\n"
+#~ "\t\togså en stor mengde tverrfaglige termer, og du kan utvide søket og få "
+#~ "treff\n"
+#~ "\t\ti andre samlinger."
+#~ msgstr ""
+#~ "Humord is the best portal to Humanities and Social Sciences. The "
+#~ "vocabulary also has a large amount of interdisciplinary subject headings, "
+#~ "and you can expand the search and get hits in other col"
+
+#~ msgid ""
+#~ "Velkommen til emnesøket vårt. Begynn med å velge et emne-vokabular fra "
+#~ "listen under.\n"
+#~ "\tEt emne-vokabular er et kontrollert sett av emneord.\n"
+#~ "\tDu kan også forsøke å søke i <a ui-sref=\"subject({vocab:'all'})\">alle "
+#~ "samtidig</a>,\n"
+#~ "\tmen det er foreløpig ikke veldig brukervennlig siden overlappende "
+#~ "begreper i ulike\n"
+#~ "\tvokabularer ikke klustres, men vises hver for seg."
+#~ msgstr ""
+#~ "Welcome to our subject heading search. Start with choosing a vocabulary "
+#~ "from the list below. A vocabulary is a controlled set of subject "
+#~ "headings. You can also try searching in <a ui-sref="
+#~ "\"subject({vocab:'all'})\">all simultaneously</a>, but is at this moment "
+#~ "not very user friendly as overlapping concepts are not clustered, but "
+#~ "shown as duplicates. "
+
+#~ msgid "An error occured:"
+#~ msgstr "An error occured:"
+
+#~ msgid "Catalogue results <span ng-show=\"vm.busy\">(WORKING...)</span>"
+#~ msgstr "Katalogresultater <span ng-show=\"vm.busy\">(HENTER...)</span>"
