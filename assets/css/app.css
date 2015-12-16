@@ -52,3 +52,7 @@ li.printed:before {
     margin-left: -17px;
     color: #666;
 }
+
+h2 {
+  margin-top: 0;
+}
