@@ -44,7 +44,7 @@
   </ul>
 </div>
 
-<div class="panel panel-default" ng-show="vm.searchHistory.length > 1">
+<div class="panel panel-default hidden-xs" ng-show="vm.searchHistory.length > 1">
   <div class="panel-heading"><h3 class="panel-title" translate>Search history</h3></div>
   <ul class="list-group">
     <li class="list-group-item" ng-repeat="subject in vm.searchHistory.slice(0, vm.searchHistory.length-1).reverse()">
