@@ -6,7 +6,7 @@
 			<span>{{vm.truncations[vm.truncate] | translate}}</span> <span class="caret"></span>
 		</button>
 		<ul class="uib-dropdown-menu" role="menu" aria-labelledby="simple-btn-keyboard-nav">
-            <li role="menuitem" ng-repeat="truncation in vm.truncations"><a href ng-click="vm.searchTruncation($index)" translate>{{truncation |translate}}</a></li>
+            <li role="menuitem" ng-repeat="truncation in vm.truncations"><a href ng-click="vm.searchTruncation($index)">{{truncation |translate}}</a></li>
 		</ul>
 	</div>
 
