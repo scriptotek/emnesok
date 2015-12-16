@@ -224,7 +224,11 @@
         }
 
         function selectLibrary(library) {
-            $state.go('subject.search', {library: vm.selectedInstitution + ':' + library});
+            if (library) {
+                $state.go('subject.search', {library: vm.selectedInstitution + ':' + library});
+            } else {
+                $state.go('subject.search', {library: vm.selectedInstitution});
+            }
         }
 
         function updateControlledSearch() {
