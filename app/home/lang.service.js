@@ -22,6 +22,9 @@
 
 		function activate() {
 
+			service.language = Config.defaultLanguage;
+			gettextCatalog.setCurrentLanguage(service.language);
+
 			// Highlight untranslated strings
 			// gettextCatalog.debug = true;
 
