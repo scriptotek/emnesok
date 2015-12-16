@@ -104,7 +104,7 @@
 			}
 		})
 		.state('subject.search', {
-			url: '/search?term&id&narrow&library',
+			url: '/search?term&id&broad&library',
 			views: {
 				'catalogue': {
 					templateUrl: './templates/catalogue.html',

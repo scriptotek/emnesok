@@ -129,7 +129,11 @@
             vm.selectedLibrary = null;
         }
 
-        vm.controlledSearch = ($stateParams.narrow == 'true');
+        var bs = gettext('broad search');
+        var ns = gettext('narrow search');
+        vm.broadSearch = ($stateParams.broad === undefined) ? true : ($stateParams.broad == 'true');
+        vm.searchType = vm.broadSearch ? gettextCatalog.getString(bs) : gettextCatalog.getString(ns);
+
         vm.updateControlledSearch = updateControlledSearch;
 
         activate();
@@ -222,7 +226,7 @@
         function search() {
             var inst = vm.selectedInstitution ? vm.selectedInstitution : null;
             var lib = vm.selectedLibrary ? vm.selectedInstitution + vm.selectedLibrary : null;
-            var vocab = subject.data.type == 'Geographic' ? 'geo' : vm.controlledSearch ? vm.vocab : '';
+            var vocab = subject.data.type == 'Geographic' ? 'geo' : vm.broadSearch ? vm.vocab : '';
             var defaultLang = Lang.defaultLanguage;
             var query = subject.data.prefLabel[defaultLang];
             if (subject.data.prefLabel.en !== undefined && subject.data.prefLabel.en !== subject.data.prefLabel[defaultLang]) {
@@ -260,7 +264,7 @@
         }
 
         function updateControlledSearch() {
-            $state.go('subject.search', {narrow: vm.controlledSearch});
+            $state.go('subject.search', {broad: vm.broadSearch});
         }
 
     }
