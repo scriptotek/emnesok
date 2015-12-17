@@ -171,6 +171,7 @@
                             printInstitutions.push(library);
                         }
                     });
+                    component.holdings = null;
                 }
             });
             subject.availability = {};
