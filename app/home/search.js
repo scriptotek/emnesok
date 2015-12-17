@@ -146,7 +146,7 @@
 			
 				if (isPeriodicalElement(value.prefLabel,value.altLabel)) {
 			
-					searchListIcon ="<img src='assets/img/element.png' title="+gettextCatalog.getString('Grunnstoff')+">";
+					searchListIcon ="<img src='assets/img/element.png' title="+gettextCatalog.getString('Chemical element')+">";
 				}
 					
 				if (value.prefLabel!==undefined) { 

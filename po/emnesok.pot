@@ -37,6 +37,10 @@ msgstr ""
 msgid "Catalogue results"
 msgstr ""
 
+#: home/search.js:149
+msgid "Chemical element"
+msgstr ""
+
 #: home/search.js:37
 msgid "Containing"
 msgstr ""
@@ -77,10 +81,6 @@ msgstr ""
 
 #: home/subject.service.js:102
 msgid "Geographic"
-msgstr ""
-
-#: home/search.js:149
-msgid "Grunnstoff"
 msgstr ""
 
 #: catalogue.html:49
@@ -255,7 +255,7 @@ msgid "Yes, we have a controlled subject vocabulary just for human rights terms!
 msgstr ""
 
 #: catalogue.html:52
-msgid "You could try expanding the search to a <a ui-sref=\"subject.search({narrow:false})\">broad search</a>."
+msgid "You could try expanding the search to a <a ui-sref=\"subject.search({broad:true})\">broad search</a>."
 msgstr ""
 
 #: catalogue.html:77
