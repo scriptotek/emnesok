@@ -136,6 +136,7 @@
         vm.broadSearch = ($stateParams.broad === undefined) ? true : ($stateParams.broad == 'true');
         vm.searchType = vm.broadSearch ? gettextCatalog.getString(bs) : gettextCatalog.getString(ns);
 
+        vm.stringSearch = (subject.data.prefLabel[defaultLang].indexOf(' : ') !== -1);
         vm.searchQuery = '';
 
         vm.updateControlledSearch = updateControlledSearch;
@@ -233,6 +234,9 @@
             var lib = vm.selectedLibrary ? vm.selectedInstitution + vm.selectedLibrary : null;
             var vocab = subject.data.type == 'Geographic' ? 'geo' : vm.broadSearch ? '' : vm.vocab;
             var query = subject.data.prefLabel[defaultLang];
+            if (query.indexOf(' : ') !== -1) {
+                query = query.replace(/ : /g, ' AND ');
+            }
             if (subject.data.prefLabel.en !== undefined && subject.data.prefLabel.en !== subject.data.prefLabel[defaultLang]) {
                 query = query + ' OR ' + subject.data.prefLabel.en;
             }

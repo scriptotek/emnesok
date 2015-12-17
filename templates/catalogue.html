@@ -58,6 +58,12 @@ Next: {{ vm.next }}
 		<span translate translate-n="vm.total_results" translate-plural="Found {{vm.total_results}} documents about this topic using {{vm.searchType}}, querying for ‘{{vm.searchQuery}}’.">Found one document about this topic using {{vm.searchType}}, querying for ‘{{vm.searchQuery}}’</span>
 	</p>
 
+	<p ng-if="vm.stringSearch" style="margin-top:1em;">
+		<span translate>
+			Note: Search for subject strings is currently experimental, and might not yet work as expected.
+		</span>
+	</p>
+
 	<ul class="list-group">
 		<li class="list-group-item" ng-repeat="result in vm.results" mod-catalogue-result record="result" vocab="vm.vocab"></li>
 	</ul>
