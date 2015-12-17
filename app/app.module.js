@@ -17,7 +17,9 @@
 			'app.modules.search',
 			'app.modules.subject',
 			'app.modules.catalogue',
-			'app.modules.error'
+			'app.modules.error',
+			'app.modules.home',
+			'app.modules.about'
 		])
 		.config(['$stateProvider', '$urlRouterProvider', 'ngToastProvider', configure])
 		.run(['$rootScope', '$state', 'Lang', 'SubjectService', run]);
@@ -53,7 +55,9 @@
 					template: '<div mod-header></div>'
 				},
 				'main': {
-					templateUrl: './templates/home.html?' + Math.random()
+					templateUrl: './templates/home.html?' + Math.random(),
+					controller: 'HomeController',
+					controllerAs: 'vm'
 				}
 			}
 		})
@@ -77,7 +81,9 @@
 					template: '<div mod-header></div>'
 				},
 				'main': {
-					templateUrl: './templates/about.html?' + Math.random()
+					templateUrl: './templates/about.html?' + Math.random(),
+					controller: 'AboutController',
+					controllerAs: 'vm'
 				}
 			}
 		})
