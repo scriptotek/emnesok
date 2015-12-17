@@ -66,7 +66,7 @@ msgid "Fetching more editions…"
 msgstr ""
 
 #: about.html:10
-msgid "For information about the subject vocabularies, see the <a ui-sref=\"home\">start page</a>."
+msgid "For information about the subject vocabularies, see the <a ui-sref=\"home({lang: vm.lang})\">start page</a>."
 msgstr ""
 
 #: catalogue.html:58

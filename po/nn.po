@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Subject Search\n"
-"PO-Revision-Date: 2015-12-17 11:51+0000\n"
+"PO-Revision-Date: 2015-12-17 12:01+0000\n"
 "Last-Translator: Eva Holthe Enoksen <e.h.enoksen@ub.uio.no>\n"
 "Language-Team: Norwegian Nynorsk (http://www.transifex.com/university-of-oslo-library/subject-search/language/nn/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,7 +30,7 @@ msgstr "Alle bibliotek"
 
 #: home/error.js:18
 msgid "An unknown error occured."
-msgstr "Det oppsto ein ukjend feil "
+msgstr "Det oppsto ein ukjend feil."
 
 #: catalogue.html:13
 msgid "Broad"
@@ -72,7 +72,7 @@ msgstr "Hentar fleire utgåver..."
 msgid ""
 "For information about the subject vocabularies, see the <a ui-"
 "sref=\"home\">start page</a>."
-msgstr "For informasjon om emneordtilfanget, sjå <a ui-sref=\"home\"> startsida </a>"
+msgstr "For informasjon om emneordtilfanga, sjå <a ui-sref=\"home\"> startsida </a>"
 
 #: catalogue.html:58
 msgid ""
@@ -81,8 +81,8 @@ msgid ""
 msgid_plural ""
 "Found {{vm.total_results}} documents about this topic using "
 "{{vm.searchType}}, querying for ‘{{vm.searchQuery}}’."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Fann eitt dokument om dette emnet med {{vm.searchType}}. Spurte etter ‘{{vm.searchQuery}}’."
+msgstr[1] "Fann {{vm.total_results}} dokument om dette emnet med {{vm.searchType}}. Spurte etter ‘{{vm.searchQuery}}’."
 
 #: home/subject.service.js:110
 msgid "GenreForm"
@@ -125,7 +125,7 @@ msgstr "{{vm.last}} poster er henta så langt, {{vm.total_results - vm.last}} st
 
 #: search.html:28
 msgid "Looking…"
-msgstr "Leitar"
+msgstr "Leitar..."
 
 #: catalogue-result.html:23
 msgid "More editions"
@@ -149,13 +149,13 @@ msgstr "Inkje nettverkssamband"
 
 #: catalogue.html:28
 msgid "Note: Results from a single branch will not include e-books."
-msgstr "Merk: Resultat frå berre ei avdeling vil ikkje inkludere e-bøkar"
+msgstr "Merk: Resultat frå berre ei avdeling vil ikkje inkludere e-bøkar."
 
 #: catalogue.html:62
 msgid ""
 "Note: Search for subject strings is currently experimental, and might not "
 "yet work as expected."
-msgstr "Merk: Søk etter emneordstrengar er førebels eksperimentelt og fungerer kanskje ikkje som planlagt"
+msgstr "Merk: Søk etter emneordstrengar er førebels på eksperimentstadiet og fungerer kanskje ikkje som planlagt."
 
 #: home.html:11
 msgid ""
@@ -165,7 +165,7 @@ msgid ""
 "selected vocabulary. <em>Broad</em> search will give you more results, "
 "matching subjects from other vocabularies or even keywords from a variety of"
 " sources, but sometimes at the expense of precision."
-msgstr "Så fort du er inne kan du velje mellom <em> breidt </em> og <em> snevert </em> søk. Med <em> snevert </em> søk vil du berre få relevante resultat nøye utvald av flinke bibliotekarar og fagfolk som har brukt det valde ordtilfanget. <em> Breitt </em> søk er ikkje like presist, men det gjev fleire resultat av di det søker mot andre ordtilfang og frie nøkkelord frå ei rekke kjelder. "
+msgstr "Så fort du er inne kan du velje mellom <em> breidt </em> og <em> snevert </em> søk. Med <em> snevert </em> søk vil du berre få relevante resultat nøye utvald av flinke bibliotekarar og fagfolk som har brukt det valde ordtilfanget. <em> Breitt </em> søk er ikkje like presist, men det gjev fleire resultat av di det også søker mot andre ordtilfang og frie nøkkelord frå ei rekke kjelder. "
 
 #: catalogue-result.html:28
 msgid "One edition:"
