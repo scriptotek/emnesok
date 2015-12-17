@@ -20,6 +20,11 @@ msgstr "Om"
 msgid "Active subject"
 msgstr "Valgt emneord"
 
+#: catalogue.html:33
+#, fuzzy
+msgid "All branches"
+msgstr "Alle bibliotek"
+
 #: catalogue.html:22
 msgid "All libraries"
 msgstr "Alle bibliotek"
@@ -56,7 +61,7 @@ msgstr "Søk etter emne"
 msgid "Exact match"
 msgstr "Eksakt lik"
 
-#: home/catalogue.js:80
+#: home/catalogue.js:78
 msgid "Failed to fetch list of editions."
 msgstr "Klarte ikke hente utgaver."
 
@@ -71,11 +76,14 @@ msgid ""
 msgstr ""
 "For informasjon om emnevokabularene, se <a ui-sref=\"home\">startsiden</a>."
 
-#: catalogue.html:57
-msgid "Found one document about this topic using {{vm.searchType}}."
+#: catalogue.html:58
+#, fuzzy
+msgid ""
+"Found one document about this topic using {{vm.searchType}}, querying for "
+"‘{{vm.searchQuery}}’"
 msgid_plural ""
 "Found {{vm.total_results}} documents about this topic using {{vm."
-"searchType}}."
+"searchType}}, querying for ‘{{vm.searchQuery}}’."
 msgstr[0] "Fant ett dokument om dette emnet med {{vm.searchType}}."
 msgstr[1] ""
 "Fant {{vm.total_results}} dokumenter om dette emnet med {{vm.searchType}}."
@@ -116,7 +124,7 @@ msgstr ""
 "også en stor mengde tverrfaglige termer. Dette vokabularet har bare emneord "
 "på bokmål."
 
-#: catalogue.html:65
+#: catalogue.html:71
 msgid ""
 "Loaded {{ vm.last }} records so far, {{ vm.total_results - vm.last }} to go, "
 "hold on…"
@@ -148,6 +156,16 @@ msgstr "Ingen treff :("
 msgid "No network connection"
 msgstr "Ingen nettverksforbindelse"
 
+#: catalogue.html:28
+msgid "Note: Results from a single branch will not include e-books."
+msgstr ""
+
+#: catalogue.html:62
+msgid ""
+"Note: Search for subject strings is currently experimental, and might not "
+"yet work as expected."
+msgstr ""
+
 #: home.html:11
 msgid ""
 "Once in, you can toggle between <em>broad</em> and <em>narrow</em> search. "
@@ -177,6 +195,14 @@ msgstr "Trykt utgave ved"
 #: home.html:16
 msgid "Science"
 msgstr "Realfag"
+
+#: catalogue.html:14
+msgid "Search '+vm.vocab+' only"
+msgstr ""
+
+#: catalogue.html:13
+msgid "Search all subject vocabularies"
+msgstr ""
 
 #: home.html:17
 msgid ""
@@ -212,7 +238,7 @@ msgstr ""
 "En rekke supre åpen kilde-komponenter er brukt for å bygge emnesøket. De er "
 "listet opp under sammen med lisensene de er underlagt."
 
-#: home/catalogue.js:58
+#: home/catalogue.js:56
 msgid ""
 "Sorry, the subject \"{{subject}}\" was not found in the current vocabulary."
 msgstr "Beklager, emnet «{{subject}}» ble ikke funnet i dette vokabularet."
@@ -279,7 +305,7 @@ msgstr ""
 "lokalt utviklet mellomvare (<a href=\"https://github.com/scriptotek/scs"
 "\">SCS</a>)."
 
-#: home/catalogue.js:146
+#: home/catalogue.js:149
 msgid "The subject was not found. It might have been deleted."
 msgstr "Emnet ble ikke funnet. Det kan ha blitt slettet."
 
@@ -291,7 +317,7 @@ msgstr "Tredjepartslisenser"
 msgid "Topic"
 msgstr "Emne"
 
-#: home/catalogue.js:239
+#: home/catalogue.js:245
 msgid "Uh oh, some kind of server error occured."
 msgstr "Det oppsto en serverfeil, vi beklager."
 
@@ -343,7 +369,7 @@ msgstr ""
 "Prøv gjerne å utvide søket til et <a ui-sref=\"subject.search({narrow:"
 "false})\">bredt søk</a>."
 
-#: catalogue.html:71
+#: catalogue.html:77
 msgid "You've reached the end, my friend!"
 msgstr "Du har nådd enden av lista."
 

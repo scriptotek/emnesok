@@ -106,6 +106,8 @@
     function controller($stateParams, $state, $scope, $window, $timeout, ngToast, gettext, gettextCatalog, Lang, Catalogue, Config, Session, subject) {
         /*jshint validthis: true */
         var vm = this;
+        var defaultLang = Lang.defaultLanguage;
+
         vm.vocab = '';
         vm.start = 0;
         vm.last = 0;
@@ -133,6 +135,8 @@
         var ns = gettext('narrow search');
         vm.broadSearch = ($stateParams.broad === undefined) ? true : ($stateParams.broad == 'true');
         vm.searchType = vm.broadSearch ? gettextCatalog.getString(bs) : gettextCatalog.getString(ns);
+
+        vm.searchQuery = '';
 
         vm.updateControlledSearch = updateControlledSearch;
 
@@ -228,11 +232,11 @@
             var inst = vm.selectedInstitution ? vm.selectedInstitution : null;
             var lib = vm.selectedLibrary ? vm.selectedInstitution + vm.selectedLibrary : null;
             var vocab = subject.data.type == 'Geographic' ? 'geo' : vm.broadSearch ? '' : vm.vocab;
-            var defaultLang = Lang.defaultLanguage;
             var query = subject.data.prefLabel[defaultLang];
             if (subject.data.prefLabel.en !== undefined && subject.data.prefLabel.en !== subject.data.prefLabel[defaultLang]) {
-                query = query + ',' + subject.data.prefLabel.en;
+                query = query + ' OR ' + subject.data.prefLabel.en;
             }
+            vm.searchQuery = query;
             vm.busy = true;
             Catalogue.search(vocab, query, vm.next, inst, lib).then(
                 gotResults,

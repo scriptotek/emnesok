@@ -123,7 +123,8 @@
 				related: arrayify(resources[uri].related),
 				definition: indexByLanguage(arrayify(resources[uri]['skos:definition'] || resources[uri].definition)),
 				type: preferredRdfType(arrayify(resources[uri].type)),
-				elementSymbol:resources[uri]["http://data.ub.uio.no/onto#elementSymbol"]
+				elementSymbol: resources[uri]['http://data.ub.uio.no/onto#elementSymbol'],
+				components: arrayify(resources[uri]['http://www.loc.gov/mads/rdf/v1#componentList']),
 			};
 		}
 

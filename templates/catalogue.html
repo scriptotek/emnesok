@@ -10,8 +10,8 @@ Next: {{ vm.next }}
 	 <div style="float:right;">
 
 		<div class="btn-group" ng-show="vm.vocab && vm.subject.data.type != 'Geographic'">
-	        <label class="btn btn-default" ng-model="vm.broadSearch" ng-change="vm.updateControlledSearch()" uib-btn-radio="true" uib-tooltip="Search all subject vocabularies" translate>Broad</label>
-	        <label class="btn btn-default" ng-model="vm.broadSearch" ng-change="vm.updateControlledSearch()" uib-btn-radio="false" uib-tooltip="Search {{vm.vocab}} only." translate>Narrow</label>
+	        <label class="btn btn-default" ng-model="vm.broadSearch" ng-change="vm.updateControlledSearch()" uib-btn-radio="true" tooltip-append-to-body="true" uib-tooltip="{{'Search all subject vocabularies' | translate}}" translate>Broad</label>
+	        <label class="btn btn-default" ng-model="vm.broadSearch" ng-change="vm.updateControlledSearch()" uib-btn-radio="false" tooltip-append-to-body="true" uib-tooltip="{{'Search '+vm.vocab+' only' |translate}}" translate>Narrow</label>
 	    </div>
 
 	    <div class="btn-group" uib-dropdown uib-keyboard-nav>
@@ -25,12 +25,12 @@ Next: {{ vm.next }}
 	        </ul>
 	    </div>
 
-	    <div class="btn-group" ng-show="vm.selectedInstitution && vm.institutions[vm.selectedInstitution].libraries" uib-dropdown uib-keyboard-nav uib-tooltip="Merk: Hvis du avgrenser på avdeling vil du ikke få treff i e-bøker.">
+	    <div class="btn-group" ng-show="vm.selectedInstitution && vm.institutions[vm.selectedInstitution].libraries" uib-dropdown uib-keyboard-nav tooltip-append-to-body="true" tooltip-placement="left" uib-tooltip="{{ 'Note: Results from a single branch will not include e-books.' | translate }}">
 	        <button id="simple-btn-keyboard-nav2" type="button" class="btn btn-default" uib-dropdown-toggle>
-	            {{ vm.selectedLibrary ? vm.institutions[vm.selectedInstitution].libraries[vm.selectedLibrary].label : 'Alle avdelinger' }} <span class="caret"></span>
+	            {{ vm.selectedLibrary ? vm.institutions[vm.selectedInstitution].libraries[vm.selectedLibrary].label : 'All branches' | translate }} <span class="caret"></span>
 	        </button>
 	        <ul class="uib-dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="simple-btn-keyboard-nav2">
-	            <li role="menuitem"><a href ng-click="vm.selectLibrary(null)">Alle avdelinger</a></li>
+	            <li role="menuitem"><a href ng-click="vm.selectLibrary(null)" translate>All branches</a></li>
 	            <li class="divider"></li>
 	            <li role="menuitem" ng-repeat="(key, val) in vm.institutions[vm.selectedInstitution].libraries"><a href ng-click="vm.selectLibrary(key)">{{ val.label }}</a></li>
 	        </ul>
@@ -39,23 +39,23 @@ Next: {{ vm.next }}
 
 	<h2 translate>Catalogue results</h2>
 
-	<uib-alert ng-show="vm.error" type="danger">{{ vm.error }}</uib-alert>
+	<uib-alert ng-if="vm.error" type="danger">{{ vm.error }}</uib-alert>
 
-	<p ng-show="vm.subject.data.type == 'Geographic'" class="text-muted">
+	<p ng-if="vm.subject.data.type == 'Geographic'" class="text-muted">
 		The broad/narrow filter is not available for geographical names.
 	</p>
 
-	<p ng-show="!vm.busy && vm.total_results == 0" class="lead" style="margin-top:2em;">
+	<p ng-if="!vm.busy && vm.total_results == 0" class="lead" style="margin-top:2em;">
 		<span translate>
 			How odd! Not a single document on that subject could be found using the current subject vocabulary.
 		</span>
-		<span ng-show="!vm.broadSearch && vm.subject.data.type !== 'Geographic'" translate>
-			You could try expanding the search to a <a ui-sref="subject.search({narrow:false})">broad search</a>.
+		<span ng-if="!vm.broadSearch && vm.subject.data.type !== 'Geographic'" translate>
+			You could try expanding the search to a <a ui-sref="subject.search({broad:true})">broad search</a>.
 		</span>
 	</p>
 
-	<p ng-show="vm.start && vm.total_results"
-	   translate translate-n="vm.total_results" translate-plural="Found {{vm.total_results}} documents about this topic using {{vm.searchType}}.">Found one document about this topic using {{vm.searchType}}.
+	<p ng-if="vm.start && vm.total_results">
+		<span translate translate-n="vm.total_results" translate-plural="Found {{vm.total_results}} documents about this topic using {{vm.searchType}}, querying for ‘{{vm.searchQuery}}’.">Found one document about this topic using {{vm.searchType}}, querying for ‘{{vm.searchQuery}}’</span>
 	</p>
 
 	<ul class="list-group">

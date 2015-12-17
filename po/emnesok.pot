@@ -13,6 +13,10 @@ msgstr ""
 msgid "Active subject"
 msgstr ""
 
+#: catalogue.html:33
+msgid "All branches"
+msgstr ""
+
 #: catalogue.html:22
 msgid "All libraries"
 msgstr ""
@@ -49,7 +53,7 @@ msgstr ""
 msgid "Exact match"
 msgstr ""
 
-#: home/catalogue.js:80
+#: home/catalogue.js:78
 msgid "Failed to fetch list of editions."
 msgstr ""
 
@@ -61,9 +65,9 @@ msgstr ""
 msgid "For information about the subject vocabularies, see the <a ui-sref=\"home\">start page</a>."
 msgstr ""
 
-#: catalogue.html:57
-msgid "Found one document about this topic using {{vm.searchType}}."
-msgid_plural "Found {{vm.total_results}} documents about this topic using {{vm.searchType}}."
+#: catalogue.html:58
+msgid "Found one document about this topic using {{vm.searchType}}, querying for ‘{{vm.searchQuery}}’"
+msgid_plural "Found {{vm.total_results}} documents about this topic using {{vm.searchType}}, querying for ‘{{vm.searchQuery}}’."
 msgstr[0] ""
 msgstr[1] ""
 
@@ -95,7 +99,7 @@ msgstr ""
 msgid "Humord is the best portal to the humanities and social sciences. The vocabulary also has a relatively large amount of interdisciplinary subject headings. This vocabulary has only Norwegian Bokmål terms."
 msgstr ""
 
-#: catalogue.html:65
+#: catalogue.html:71
 msgid "Loaded {{ vm.last }} records so far, {{ vm.total_results - vm.last }} to go, hold on…"
 msgstr ""
 
@@ -123,6 +127,14 @@ msgstr ""
 msgid "No network connection"
 msgstr ""
 
+#: catalogue.html:28
+msgid "Note: Results from a single branch will not include e-books."
+msgstr ""
+
+#: catalogue.html:62
+msgid "Note: Search for subject strings is currently experimental, and might not yet work as expected."
+msgstr ""
+
 #: home.html:11
 msgid "Once in, you can toggle between <em>broad</em> and <em>narrow</em> search. With <em>narrow</em> search, you will only get highly relevant results carefully indexed by skilled librarians and subject specialists using the selected vocabulary. <em>Broad</em> search will give you more results, matching subjects from other vocabularies or even keywords from a variety of sources, but sometimes at the expense of precision."
 msgstr ""
@@ -139,6 +151,14 @@ msgstr ""
 
 #: home.html:16
 msgid "Science"
+msgstr ""
+
+#: catalogue.html:14
+msgid "Search '+vm.vocab+' only"
+msgstr ""
+
+#: catalogue.html:13
+msgid "Search all subject vocabularies"
 msgstr ""
 
 #: home.html:17
@@ -161,7 +181,7 @@ msgstr ""
 msgid "Several fantastic pieces of free and open-source software have been used to build this search. A list is provided below together with their licenses."
 msgstr ""
 
-#: home/catalogue.js:58
+#: home/catalogue.js:56
 msgid "Sorry, the subject \"{{subject}}\" was not found in the current vocabulary."
 msgstr ""
 
@@ -201,7 +221,7 @@ msgstr ""
 msgid "The Subject Search is developed by the University of Oslo Science Library. Vocabulary search and retrieval is powered by a <a href=\"http://skosmos.org/\">Skosmos</a> instance using data from <a href=\"http://data.ub.uio.no\">data.ub.uio.no</a>, while library catalogue search and retrieval is powered by <a href=\"https://developers.exlibrisgroup.com/primo/apis/webservices/xservices/search/briefsearch\">Primo</a> through a locally developed middleware (<a href=\"https://github.com/scriptotek/scs\">SCS</a>)."
 msgstr ""
 
-#: home/catalogue.js:146
+#: home/catalogue.js:149
 msgid "The subject was not found. It might have been deleted."
 msgstr ""
 
@@ -213,7 +233,7 @@ msgstr ""
 msgid "Topic"
 msgstr ""
 
-#: home/catalogue.js:239
+#: home/catalogue.js:245
 msgid "Uh oh, some kind of server error occured."
 msgstr ""
 
@@ -238,6 +258,6 @@ msgstr ""
 msgid "You could try expanding the search to a <a ui-sref=\"subject.search({narrow:false})\">broad search</a>."
 msgstr ""
 
-#: catalogue.html:71
+#: catalogue.html:77
 msgid "You've reached the end, my friend!"
 msgstr ""
