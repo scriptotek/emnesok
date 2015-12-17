@@ -10,7 +10,6 @@
     /* ------------------------------------------------------------------------------- */
 
     function CatalogueResultDirective() {
-        console.log('[CatalogueResultDirective] Init');
 
         var directive = {
             restrict: 'EA',
@@ -53,7 +52,6 @@
             vm.busy = true;
             SubjectService.exists(subject, vm.vocab).then(function(response) {
                 vm.busy = false;
-                console.log(response);
                 if (!response) {
                     var msg = gettext('Sorry, the subject "{{subject}}" was not found in the current vocabulary.');
                     var translated = gettextCatalog.getString(msg, { subject: subject });
@@ -167,7 +165,6 @@
             // @TODO: Show libraries if vm.selectedInstitution
 
             var printInstitutions = [];
-            console.log(subject);
             subject.components.forEach(function(component) {
                 if (component.holdings) {
                     component.holdings.forEach(function(holding) {
