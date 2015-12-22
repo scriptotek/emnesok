@@ -237,9 +237,16 @@
             if (subject.data.prefLabel.en !== undefined && subject.data.prefLabel.en !== subject.data.prefLabel[defaultLang]) {
                 query = query + ' OR ' + subject.data.prefLabel.en;
             }
-            vm.searchQuery = query;
             vm.busy = true;
-            Catalogue.search(vocab, query, vm.next, inst, lib).then(
+            var q = {};
+            if (subject.data.type == 'GenreForm') {
+                q.genre = query;
+            } else {
+                q.vocab = vocab;
+                q.subject = query;
+            }
+            vm.searchQuery = q;
+            Catalogue.search(q, vm.next, inst, lib).then(
                 gotResults,
                 function(error) {
                     var msg = gettext('Uh oh, some kind of server error occured.');

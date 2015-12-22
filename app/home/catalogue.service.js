@@ -17,14 +17,15 @@
 
 		////////////
 
-		function search(vocab, term, start, institution, library) {
+		function search(query, start, institution, library) {
 			var deferred = $q.defer();
 
 			var params = {
 				repr: 'full',
 				sort: 'date',
-				vocabulary: vocab,
-				subject: term
+				vocabulary: query.vocab,
+				subject: query.subject,
+				genre: query.genre
 			};
 
 			if (start) {
