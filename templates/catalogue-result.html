@@ -50,15 +50,15 @@
 		<div ng-show="vm.record.subjects[vm.vocab]">
 
 			<span ng-repeat="subject in vm.record.subjects[vm.vocab]">
-				<a href ng-click="vm.clickSubject(subject)" class="label label-primary">{{ subject }}</a>
+				<a href ng-click="vm.clickSubject(subject)" class="clickable-subject">{{ subject }}</a>
 			</span>
 
 			<span ng-repeat="subject in vm.record.subjects.geo || []">
-				<a href ng-click="vm.clickSubject(subject)" class="label label-default">{{ subject }} (Sted)</a>
+				<a href ng-click="vm.clickSubject(subject)" class="clickable-subject geographic">{{ subject }} (Sted)</a>
 			</span>
 
 			<span ng-show="!vm.record.subjects[vm.vocab].length && !vm.record.subjects.geo.length" ng-repeat="subject in vm.record.subjects.subject">
-				<a href ng-click="vm.clickSubject(subject)" class="label label-default">{{ subject }}</a>
+				<a href ng-click="vm.clickSubject(subject)" class="clickable-subject othervocabulary">{{ subject }}</a>
 			</span>
 
 		</div>

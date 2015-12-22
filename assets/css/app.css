@@ -1,3 +1,42 @@
+/*****************************************
+ * General
+ *****************************************/
+
+body {
+  /* Prevents stuff from jumping around */
+  overflow-y: scroll;
+}
+
+h2 {
+  margin-top: 0;
+}
+
+.clickable-subject {
+  margin-top: 3px;
+  display: inline-block;
+  margin-left:9px;
+}
+.clickable-subject:before {
+  /*Using a Bootstrap glyphicon as the bullet point*/
+  content: "\e041";
+  font-family: 'Glyphicons Halflings';
+  font-size: 10px;
+  padding-right: 2px;
+}
+
+/*****************************************
+ * Catalogue view
+ *****************************************/
+
+#catalogueContainer {
+  margin-bottom: 200px;
+}
+#catalogueContainer p {
+  padding: 15px;
+  border-radius: 4px;
+  margin-top: 1.5em;
+}
+
 .loader {
   margin-top: 20px;
   height: 4px;
@@ -35,7 +74,7 @@ li.online:before {
     /*Using a Bootstrap glyphicon as the bullet point*/
     content: "\2601";
     font-family: 'Glyphicons Halflings';
-    font-size: 10px;
+    font-size: 11px;
     float: left;
     margin-top: 4px;
     margin-left: -17px;
@@ -46,13 +85,94 @@ li.printed:before {
     /*Using a Bootstrap glyphicon as the bullet point*/
     content: "\e043";
     font-family: 'Glyphicons Halflings';
-    font-size: 10px;
+    font-size: 11px;
     float: left;
     margin-top: 4px;
     margin-left: -17px;
     color: #666;
 }
 
-h2 {
-  margin-top: 0;
+/*****************************************
+ * Search / subject view
+ *****************************************/
+
+.highlight {
+  color: #3A8EC4;
+}
+
+.angucomplete-row {
+  padding: 3px !important;
+  margin-bottom: 2px !important;
+}
+
+.angucomplete-title{
+  float:none !important;
+  color:#5D5D5D;
+}
+
+.angucomplete-description {
+  vertical-align: bottom;
+  font-size: 85% !important;
+  color:#777777 !important;
+  font-style: italic !important;
+  float:none !important;
+}
+
+#search{
+  width:100%;
+}
+
+#search_dropdown {
+  margin-top: 32px !important;
+  max-height:50vh;
+  width:80%;
+  overflow-y: auto;
+  background:white;
+  cursor:pointer;
+  color:black;
+}
+
+.truncate_button{
+  width:120px;
+  text-align: left !important;
+}
+
+#header{
+  border-bottom: 1px #EAEAEA solid;
+  margin:0 !important;
+  height:60px;
+}
+
+#left{
+  margin:0 !important;
+}
+
+#right{
+  margin:0 !important;
+}
+
+.block {
+  margin-top:5px;
+  margin-bottom:5px;
+}
+
+.external {
+  background-color:#F9F9F9 !important;
+}
+
+.search_history{
+  margin-top:30px;
+}
+
+.subject .pref_label {
+  font-size:120%;
+  font-weight:bolder;
+}
+
+.subject .definition{
+  font-size: 90%;
+}
+
+.subject .term_separator:not(:last-child)::after {
+  content: ' • ';
 }

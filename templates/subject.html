@@ -26,10 +26,7 @@
 	<div class="block" ng-show="vm.subject.related.length">
 		<span translate>See also:</span>
 		<span ng-repeat="related in vm.subject.related | orderBy:'prefLabel'">
-			<a class="label label-primary" ui-sref="subject.search({ id: related.id })">
-				{{ related.prefLabel }}
-			</a>
-			&nbsp;
+			<a class="clickable-subject" ui-sref="subject.search({ id: related.id })">{{ related.prefLabel }}</a>
 		</span>
 	</div>
 	

@@ -1,13 +1,8 @@
 
-<span style="position:fixed; z-index: 9999; bottom: 0; right: 0; background:rgba(0,0,0,0.5); font-size: 10px; padding:3px; color: white;">
-Bottom: {{ vm.distanceFromBottom}} Busy: {{ vm.busy }}
-Next: {{ vm.next }}
-</span>
-
-<div style="margin-bottom:200px;">
+<div id="catalogueContainer">
 
 	 <!-- Single button with keyboard nav -->
-	 <div style="float:right;">
+	 <div class="pull-right">
 
 		<div class="btn-group" ng-show="vm.vocab && vm.subject.data.type != 'Geographic'">
 	        <label class="btn btn-default" ng-model="vm.broadSearch" ng-change="vm.updateControlledSearch()" uib-btn-radio="true" tooltip-append-to-body="true" uib-tooltip="{{'Search all subject vocabularies' | translate}}" translate>Broad</label>
@@ -45,22 +40,24 @@ Next: {{ vm.next }}
 		The broad/narrow filter is not available for geographical names.
 	</p>
 
-	<p ng-if="!vm.busy && vm.total_results == 0" class="lead" style="margin-top:2em;">
+	<p ng-if="vm.start && vm.total_results">
+		<span translate translate-n="vm.total_results" translate-plural="Found {{vm.total_results}} documents about this topic using {{vm.searchType}}.">Found one document about this topic using {{vm.searchType}}.</span>
+	</p>
+
+	<p>Search query: ‘{{vm.searchQuery}}’</p>
+
+	<p ng-if="vm.stringSearch" class="bg-warning">
+		<span translate>
+			Note: Search for subject strings is currently experimental, and might not yet work as expected.
+		</span>
+	</p>
+
+	<p ng-if="!vm.busy && vm.total_results == 0" class="bg-danger">
 		<span translate>
 			How odd! Not a single document on that subject could be found using the current subject vocabulary.
 		</span>
 		<span ng-if="!vm.broadSearch && vm.subject.data.type !== 'Geographic'" translate>
 			You could try expanding the search to a <a ui-sref="subject.search({broad:true})">broad search</a>.
-		</span>
-	</p>
-
-	<p ng-if="vm.start && vm.total_results">
-		<span translate translate-n="vm.total_results" translate-plural="Found {{vm.total_results}} documents about this topic using {{vm.searchType}}, querying for ‘{{vm.searchQuery}}’.">Found one document about this topic using {{vm.searchType}}, querying for ‘{{vm.searchQuery}}’</span>
-	</p>
-
-	<p ng-if="vm.stringSearch" style="margin-top:1em;">
-		<span translate>
-			Note: Search for subject strings is currently experimental, and might not yet work as expected.
 		</span>
 	</p>
 
