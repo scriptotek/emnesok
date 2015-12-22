@@ -57,6 +57,10 @@
 				<a href ng-click="vm.clickSubject(subject)" class="clickable-subject geographic">{{ subject }} (Sted)</a>
 			</span>
 
+			<span ng-repeat="subject in vm.record.subjects.genre || []">
+				<a href ng-click="vm.clickSubject(subject)" class="clickable-subject genre">{{ subject }}</a>
+			</span>
+
 			<span ng-show="!vm.record.subjects[vm.vocab].length && !vm.record.subjects.geo.length" ng-repeat="subject in vm.record.subjects.subject">
 				<a href ng-click="vm.clickSubject(subject)" class="clickable-subject othervocabulary">{{ subject }}</a>
 			</span>
