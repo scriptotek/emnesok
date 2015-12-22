@@ -21,10 +21,12 @@
 			'app.modules.home',
 			'app.modules.about'
 		])
-		.config(['$stateProvider', '$urlRouterProvider', 'ngToastProvider', configure])
+		.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'ngToastProvider', configure])
 		.run(['$rootScope', '$state', 'Lang', 'SubjectService', run]);
 
-	function configure($stateProvider, $urlRouterProvider, ngToastProvider) {
+	function configure($stateProvider, $urlRouterProvider, $locationProvider, ngToastProvider) {
+
+        $locationProvider.html5Mode(true);
 
 		ngToastProvider.configure({
 			animation: 'slide'
