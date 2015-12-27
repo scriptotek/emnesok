@@ -13,7 +13,7 @@
 
         var directive = {
             restrict: 'EA',
-            templateUrl: './templates/catalogue-result.html?' + Math.random(),
+            templateUrl: 'app/catalogue-result.html',
             replace: false,
             scope: {
                 record: '=',

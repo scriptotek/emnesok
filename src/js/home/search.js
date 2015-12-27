@@ -9,7 +9,7 @@
 
 		var directive = {
 	        restrict: 'A',
-	        templateUrl: './templates/search.html?' + Math.random(),
+	        templateUrl: 'app/search.html',
 	        replace: false,
 	        scope: {},
 	        controllerAs: 'vm',
@@ -65,7 +65,7 @@
 			openSearcMenu();
 		}
 
-		function isPeriodicalElement(subject,akronym) {
+/*		function isPeriodicalElement(subject,akronym) {
 
 			if (akronym===undefined) akronym="";
 			
@@ -78,7 +78,7 @@
 				}
 			}
 			return false;
-		}
+		}*/
 			
 		function formatRequest(str) {
 			var query;
@@ -144,10 +144,10 @@
 				}
 			
 			
-				if (isPeriodicalElement(value.prefLabel,value.altLabel)) {
+/*				if (isPeriodicalElement(value.prefLabel,value.altLabel)) {
 			
 					searchListIcon ="<img src='assets/img/element.png' title="+gettextCatalog.getString('Chemical element')+">";
-				}
+				}*/
 					
 				if (value.prefLabel!==undefined) { 
 

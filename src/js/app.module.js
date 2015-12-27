@@ -19,12 +19,26 @@
 			'app.modules.catalogue',
 			'app.modules.error',
 			'app.modules.home',
-			'app.modules.about'
+			'app.modules.about',
+			'templates'
 		])
-		.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'ngToastProvider', configure])
+		.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$provide', 'ngToastProvider', configure])
 		.run(['$rootScope', '$state', 'Lang', 'SubjectService', run]);
 
-	function configure($stateProvider, $urlRouterProvider, $locationProvider, ngToastProvider) {
+	function configure($stateProvider, $urlRouterProvider, $locationProvider, $provide, ngToastProvider) {
+
+
+    // Fix sourcemaps
+    // @url https://github.com/angular/angular.js/issues/5217#issuecomment-50993513
+    $provide.decorator('$exceptionHandler', function($delegate) {
+      return function(exception, cause) {
+        $delegate(exception, cause);
+        setTimeout(function() {
+          throw exception;
+        });
+      };
+    });
+
 
         $locationProvider.html5Mode(true);
 
@@ -57,7 +71,7 @@
 					template: '<div mod-header></div>'
 				},
 				'main': {
-					templateUrl: './templates/home.html?' + Math.random(),
+					templateUrl: 'app/home.html',
 					controller: 'HomeController',
 					controllerAs: 'vm'
 				}
@@ -70,7 +84,7 @@
 					template: '<div mod-header></div>'
 				},
 				'main': {
-					templateUrl: './templates/error.html?' + Math.random(),
+					templateUrl: 'app/error.html',
 					controller: 'ErrorController',
 					controllerAs: 'vm'
 				}
@@ -83,7 +97,7 @@
 					template: '<div mod-header></div>'
 				},
 				'main': {
-					templateUrl: './templates/about.html?' + Math.random(),
+					templateUrl: 'app/about.html',
 					controller: 'AboutController',
 					controllerAs: 'vm'
 				}
@@ -115,7 +129,7 @@
 			url: '/search?term&id&broad&library',
 			views: {
 				'catalogue': {
-					templateUrl: './templates/catalogue.html',
+					templateUrl: 'app/catalogue.html',
 					controller: 'CatalogueController',
 					controllerAs: 'vm'
 				}

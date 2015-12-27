@@ -9,7 +9,7 @@
 
 		var directive = {
 			restrict: 'E',
-			templateUrl: './templates/subject.html?' + Math.random(),
+			templateUrl: 'app/subject.html',
 			replace: true,
 			scope: {
 				subjectData: '='

@@ -10,7 +10,7 @@
 
 		var directive = {
 	        restrict: 'A',
-	        templateUrl: './templates/header.html?' + Math.random(),
+	        templateUrl: 'app/header.html',
 	        replace: false,
 	        scope: {},
 	        controllerAs: 'vm',
