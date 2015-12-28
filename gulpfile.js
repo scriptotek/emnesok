@@ -3,7 +3,7 @@
 var gulp = require('gulp-help')(require('gulp'));
 var gutil = require('gulp-util');
 var gettext = require('gulp-angular-gettext');
-var browsersync = require('browser-sync');
+var browsersync = require('browser-sync').create();
 var replace = require('gulp-replace');
 var notify = require('gulp-notify');
 var jshint = require('gulp-jshint');
@@ -138,7 +138,7 @@ gulp.task('styles', false, [], function() {
     .pipe(rename({ suffix: '.min' }))
     .pipe(minifycss())
     .pipe(gulp.dest(paths.build + 'css'))
-    .pipe(browsersync.reload({ stream:true }));
+    .pipe(browsersync.stream());
 //    .pipe(notify({ message: 'Styles task complete' }));
 });
 
@@ -193,7 +193,7 @@ gulp.task('clean', 'Cleans the build directory', [], function() {
 ------------------------------------- */
 
 gulp.task('browsersync', false, [], function() {
-  browsersync({
+  browsersync.init({
     server: paths.build,
     middleware: [ historyApiFallback() ]
   });
