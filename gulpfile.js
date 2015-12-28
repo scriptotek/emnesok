@@ -107,6 +107,9 @@ gulp.task('vendor-scripts', false, [], function() {
 gulp.task('vendor-styles', false, [], function() {
   return gulp.src(paths.vendor.styles)
     .pipe(concat('vendor.css'))
+    .pipe(gulp.dest(paths.build + 'css'))
+    .pipe(rename({ suffix: '.min' }))
+    .pipe(minifycss())
     .pipe(gulp.dest(paths.build + 'css'));
 });
 
