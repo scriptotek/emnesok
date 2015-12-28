@@ -157,7 +157,7 @@
             }
             vm.vocab = subject.vocab;
             vm.subject = subject;
-            vm.stringSearch = (subject.data.prefLabel[defaultLang].indexOf(' : ') !== -1);
+            vm.stringSearch = (subject.data.components.length > 0);
             searchFromStart();
 
             angular.element($window).bind('scroll', onScroll);
@@ -232,26 +232,62 @@
             }
         }
 
+        function getPrefLabels(subject, includeEnglish) {
+            var prefLabels = subject.prefLabel[defaultLang];
+            if (includeEnglish && subject.prefLabel.en !== undefined && subject.prefLabel.en !== subject.prefLabel[defaultLang]) {
+                prefLabels = prefLabels + ' OR ' + subject.prefLabel.en;
+            }
+            return prefLabels;
+        }
+
         function search() {
             var inst = vm.selectedInstitution ? vm.selectedInstitution : null;
             var lib = vm.selectedLibrary ? vm.selectedInstitution + vm.selectedLibrary : null;
-            var vocab = subject.data.type == 'Geographic' ? 'geo' : vm.broadSearch ? '' : vm.vocab;
-            var query = subject.data.prefLabel[defaultLang];
-            if (query.indexOf(' : ') !== -1) {
-                query = query.replace(/ : /g, ' AND ');
-            }
-            if (subject.data.prefLabel.en !== undefined && subject.data.prefLabel.en !== subject.data.prefLabel[defaultLang]) {
-                query = query + ' OR ' + subject.data.prefLabel.en;
-            }
-            vm.busy = true;
-            var q = {};
-            if (subject.data.type == 'GenreForm') {
-                q.genre = query;
+            var topics = [], places = [], genres = [];
+
+            if (subject.data.components.length) {
+                places = subject.data.components.filter(function(component) {
+                    return component.type == 'Geographic';
+                });
+                genres = subject.data.components.filter(function(component) {
+                    return component.type == 'GenreForm';
+                });
+                topics = subject.data.components.filter(function(component) {
+                    return component.type == 'Topic';
+                });
             } else {
-                q.vocab = vocab;
-                q.subject = query;
+                if (subject.data.type == 'Geographic') {
+                    places = [subject.data];
+                } else if (subject.data.type == 'GenreForm') {
+                    genres = [subject.data];
+                } else {
+                    topics = [subject.data];
+                }
             }
+
+            var q = {};
+            if (places.length) {
+                q.place = places.map(function(subject) {
+                    return getPrefLabels(subject, places.length == 1);
+                }).join(' AND ');
+            }
+            if (genres.length) {
+                q.genre = genres.map(function(genre) {
+                    return getPrefLabels(genre, genres.length == 1);
+                }).join(' AND ');
+            }
+            if (topics.length) {
+                q.subject = topics.map(function(subject) {
+                    return getPrefLabels(subject, topics.length == 1);
+                }).join(vm.broadSearch ? ' AND ' : ' : ');
+            }
+            if (!vm.broadSearch) {
+                q.vocab = vm.vocab;
+            }
+
+            vm.busy = true;
             vm.searchQuery = q;
+
             Catalogue.search(q, vm.next, inst, lib).then(
                 gotResults,
                 function(error) {

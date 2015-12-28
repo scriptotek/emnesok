@@ -81,6 +81,9 @@
 			} else {
 				arr.push(arrayornot);
 			}
+			if (arr.length == 1 && arr[0]['@list'] !== undefined) {
+				arr = arr[0]['@list'];
+			}
 			return arr;
 		}
 
@@ -143,6 +146,12 @@
 
 			var out = processedResources[uri];
 			out.related = out.related.map(function(res) {
+				var x = processedResources[res.uri];
+				x.uri = res.uri;
+				x.id = x.uri.substr(x.uri.lastIndexOf('/') + 1);
+				return x;
+			});
+			out.components = out.components.map(function(res) {
 				var x = processedResources[res.uri];
 				x.uri = res.uri;
 				x.id = x.uri.substr(x.uri.lastIndexOf('/') + 1);

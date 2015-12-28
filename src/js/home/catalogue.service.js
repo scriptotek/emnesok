@@ -25,7 +25,8 @@
 				sort: 'date',
 				vocabulary: query.vocab,
 				subject: query.subject,
-				genre: query.genre
+				genre: query.genre,
+				place: query.place
 			};
 
 			if (start) {
