@@ -9,7 +9,7 @@
 
 		var directive = {
 	        restrict: 'A',
-	        templateUrl: './templates/search.html?' + Math.random(),
+	        templateUrl: 'app/search.html',
 	        replace: false,
 	        scope: {},
 	        controllerAs: 'vm',
@@ -65,7 +65,7 @@
 			openSearcMenu();
 		}
 
-		function isPeriodicalElement(subject,akronym) {
+/*		function isPeriodicalElement(subject,akronym) {
 
 			if (akronym===undefined) akronym="";
 			
@@ -78,7 +78,7 @@
 				}
 			}
 			return false;
-		}
+		}*/
 			
 		function formatRequest(str) {
 			var query;
@@ -107,10 +107,10 @@
 
 		function matchResult(str,query) {
 
-			if (vm.truncate==0 && query == str.substr(0,query.length)) return "Starting with"; 
-			if (vm.truncate==1 && str.indexOf(query)>-1) return "Containing"; 
-			if (vm.truncate==2 && query == str.substr((str.length-query.length),query.length)) return "Ends with"; 
-			if (vm.truncate==3 && query == str) return "Exact Match";
+			if (vm.truncate===0 && query == str.substr(0,query.length)) return "Starting with"; 
+			if (vm.truncate===1 && str.indexOf(query)>-1) return "Containing"; 
+			if (vm.truncate===2 && query == str.substr((str.length-query.length),query.length)) return "Ends with"; 
+			if (vm.truncate===3 && query == str) return "Exact Match";
 
 			return false;
 			
@@ -144,10 +144,10 @@
 				}
 			
 			
-				if (isPeriodicalElement(value.prefLabel,value.altLabel)) {
+/*				if (isPeriodicalElement(value.prefLabel,value.altLabel)) {
 			
 					searchListIcon ="<img src='assets/img/element.png' title="+gettextCatalog.getString('Chemical element')+">";
-				}
+				}*/
 					
 				if (value.prefLabel!==undefined) { 
 

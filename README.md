@@ -3,27 +3,32 @@
 Frontend for subject search against the vocabularies
 Realfagstermer (Bokmål, Nynorsk, English), Humord (Bokmål), Tekord (Bokmål) and Menneskerettighetstermer (English).
 
-To setup, run `bower install` and `npm install` to fetch dependencies. Then run `gulp watch` to start a development server.
+The frontend uses a [Skosmos](https://github.com/NatLibFi/Skosmos) instance to query for subjects, and the Primo Search API through [LSM](https://github.com/scriptotek/lsm) to query for catalogue records.
 
-The frontend uses a [Skosmos](https://github.com/NatLibFi/Skosmos) instance to query for subjects, and the Primo Search API through [SCS](https://github.com/scriptotek/scs) to query for catalogue records.
+## Develop
+
+After cloning the repository, run `npm install` to fetch dependencies.
+To make a development build in the `build` folder and start a
+development server, run `gulp serve`.
+To make a production build, run `gulp build --env=prod`.
+For a list of available Gulp tasks, run `gulp help`.
 
 ## Translation
 
-The application is translated using gettext, supported
-by [angular-gettext](https://github.com/rubenv/angular-gettext)
+The application is translated [on Transifex](https://www.transifex.com/university-of-oslo-library/subject-search/), supported by [angular-gettext](https://github.com/rubenv/angular-gettext)
 and [angular-gulp-gettext](https://github.com/gabegorelick/gulp-angular-gettext).
 
 * Run `gulp pot` to extract translatable strings from
-  the application into the POT file `po/emnesok.pot`.
+  the application into the PO template file `po/emnesok.pot`.
+  Transifex will read the file from GitHub.
 
-* Translate. If using Poedit, start a new translation from the
-  POT file, or open an existing translation file like `po/nb.po`,
-  then choose "Catalogue" > "Update from POT file" to update
-  the translation.
+* Translate on Transifex and download the translations as
+  PO files into the `po` folder. (TODO: Add Gulp task to
+  fetch translations automatically)
 
-* Run `gulp translations` to compile JavaScript files in
-  `dist/translations` from PO files in the `po` folder.
-
+* Run `gulp translations` to compile `build/js/translations.js`
+  from the PO files in the `po` folder. (Note: the task will also
+  be carried out by `gulp build`)
 
 ## Code style
 
