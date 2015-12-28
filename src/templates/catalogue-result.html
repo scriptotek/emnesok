@@ -37,7 +37,7 @@
 
 		<ul style="padding-left:25px;">
 			<li class="online" ng-repeat="component in vm.record.components | filter:vm.filterElectronic">
-				<a ng-href="{{ vm.record.urls[0].url }}">{{ vm.record.urls[0].description }}</a>
+				<a ng-href="{{ vm.record.urls[0].url }}" target="external">{{ vm.record.urls[0].description }}</a>
 			</li>
 		</ul>
 
