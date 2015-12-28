@@ -3,9 +3,9 @@
 
 	angular
 		.module('app.services.subject', ['app.services.config'])
-		.factory('SubjectService', ['$http', '$stateParams', '$filter', '$q', '$rootScope', 'gettext', 'Config', 'Lang', 'Restangular','JsonldRest', SubjectService]);
+		.factory('SubjectService', ['$http', '$stateParams', '$filter', '$q', '$rootScope', 'gettext', 'Config', 'Lang', 'Restangular', SubjectService]);
 
-	function SubjectService($http, $stateParams, $filter, $q, $rootScope, gettext, Config, Lang, Restangular, JsonldRest) {
+	function SubjectService($http, $stateParams, $filter, $q, $rootScope, gettext, Config, Lang, Restangular) {
 		console.log('[SubjectService] Init');
 
 		var service = {
