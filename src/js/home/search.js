@@ -107,10 +107,10 @@
 
 		function matchResult(str,query) {
 
-			if (vm.truncate==0 && query == str.substr(0,query.length)) return "Starting with"; 
-			if (vm.truncate==1 && str.indexOf(query)>-1) return "Containing"; 
-			if (vm.truncate==2 && query == str.substr((str.length-query.length),query.length)) return "Ends with"; 
-			if (vm.truncate==3 && query == str) return "Exact Match";
+			if (vm.truncate===0 && query == str.substr(0,query.length)) return "Starting with"; 
+			if (vm.truncate===1 && str.indexOf(query)>-1) return "Containing"; 
+			if (vm.truncate===2 && query == str.substr((str.length-query.length),query.length)) return "Ends with"; 
+			if (vm.truncate===3 && query == str) return "Exact Match";
 
 			return false;
 			

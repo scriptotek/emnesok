@@ -17,7 +17,7 @@
 			snl:snl,
 			wp:wp,
 			ps:ps
-		}
+		};
 
 		return service;
 
@@ -108,9 +108,11 @@
 				}).
 				then(function(result){
 
+					var processed;
+
 					for (var pageid in result.data.query.pages) {
 			
-						var processed=result.data.query.pages[pageid];
+						processed=result.data.query.pages[pageid];
 						break;
 					}
 
