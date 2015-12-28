@@ -40,11 +40,10 @@
 		The broad/narrow filter is not available for geographical names.
 	</p>
 
-	<p ng-if="vm.start && vm.total_results">
-		<span translate translate-n="vm.total_results" translate-plural="Found {{vm.total_results}} documents about this topic using {{vm.searchType}}.">Found one document about this topic using {{vm.searchType}}.</span>
+	<p ng-if="!vm.error">
+		<span ng-if="vm.start && vm.total_results" translate translate-n="vm.total_results" translate-plural="Found {{vm.total_results}} documents about this topic using {{vm.searchType}}.">Found one document about this topic using {{vm.searchType}}.</span>
+		<span class="text-muted">Search query: ‘{{vm.searchQuery}}’</span>
 	</p>
-
-	<p ng-if="vm.searchQuery">Search query: ‘{{vm.searchQuery}}’</p>
 
 	<p ng-if="vm.stringSearch" class="bg-warning">
 		<span translate>
