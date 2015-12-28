@@ -7,7 +7,7 @@
 	<div style="flex: 1 1 auto">
 
 		<div>
-			<a style="font-size:120%;" ng-href="{{ vm.record.links.primo }}">{{ vm.record.title }}</a>
+			<a style="font-size:120%;" target="external" ng-href="{{ vm.record.links.primo }}">{{ vm.record.title }}</a>
 			({{ vm.record.publisher }}<span ng-show="vm.record.publisher && vm.record.edition">, </span><span ng-show="vm.record.edition">{{ vm.record.edition }}</span> {{ vm.record.date }})
 		</div>
 
