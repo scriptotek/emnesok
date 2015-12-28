@@ -7,7 +7,8 @@ The frontend uses a [Skosmos](https://github.com/NatLibFi/Skosmos) instance to q
 
 ## Develop
 
-After cloning the repository, run `npm install` to fetch dependencies.
+After cloning the repository, run `npm install` and `bower install`
+to fetch dependencies.
 To make a development build in the `build` folder and start a
 development server, run `gulp serve`.
 To make a production build, run `gulp build --env=prod`.
