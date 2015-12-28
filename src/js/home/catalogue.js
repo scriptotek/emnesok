@@ -116,25 +116,17 @@
         vm.results = [];
         vm.expandGroup = expandGroup;
         vm.getMoreRecords = getMoreRecords;
+        vm.stringSearch = false;
 
         vm.selectInstitution = selectInstitution;
         vm.selectLibrary = selectLibrary;
 
         vm.institutions = Config.institutions;
-        if ($stateParams.library && $stateParams.library.indexOf(':') != -1) {
-            vm.selectedInstitution = $stateParams.library.split(':')[0];
-            vm.selectedLibrary = $stateParams.library.split(':')[1];
-        } else {
-            vm.selectedInstitution = $stateParams.library;
-            vm.selectedLibrary = null;
-        }
+        vm.selectedInstitution = null;
+        vm.selectedLibrary = null;
 
-        var bs = gettext('broad search');
-        var ns = gettext('narrow search');
-        vm.broadSearch = ($stateParams.broad === undefined) ? true : ($stateParams.broad == 'true');
-        vm.searchType = vm.broadSearch ? gettextCatalog.getString(bs) : gettextCatalog.getString(ns);
-
-        vm.stringSearch = (subject.data.prefLabel[defaultLang].indexOf(' : ') !== -1);
+        vm.broadSearch = false;
+        vm.searchType = '';
         vm.searchQuery = '';
 
         vm.updateControlledSearch = updateControlledSearch;
@@ -144,6 +136,19 @@
         ////////////
 
         function activate() {
+            if ($stateParams.library && $stateParams.library.indexOf(':') != -1) {
+                vm.selectedInstitution = $stateParams.library.split(':')[0];
+                vm.selectedLibrary = $stateParams.library.split(':')[1];
+            } else {
+                vm.selectedInstitution = $stateParams.library;
+                vm.selectedLibrary = null;
+            }
+
+            var bs = gettext('broad search');
+            var ns = gettext('narrow search');
+            vm.broadSearch = ($stateParams.broad === undefined) ? true : ($stateParams.broad == 'true');
+            vm.searchType = vm.broadSearch ? gettextCatalog.getString(bs) : gettextCatalog.getString(ns);
+
             if (!subject) {
                 vm.busy = false;
                 var msg = gettext('The subject was not found. It might have been deleted.');
@@ -152,6 +157,7 @@
             }
             vm.vocab = subject.vocab;
             vm.subject = subject;
+            vm.stringSearch = (subject.data.prefLabel[defaultLang].indexOf(' : ') !== -1);
             searchFromStart();
 
             angular.element($window).bind('scroll', onScroll);
