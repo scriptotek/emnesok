@@ -125,6 +125,8 @@
 				prefLabel: indexByLanguage(arrayify(resources[uri].prefLabel), false),
 				altLabel: indexByLanguage(arrayify(resources[uri].altLabel), true),
 				related: arrayify(resources[uri].related),
+				broader: arrayify(resources[uri].broader),
+				narrower: arrayify(resources[uri].narrower),
 				definition: indexByLanguage(arrayify(resources[uri]['skos:definition'] || resources[uri].definition)),
 				type: preferredRdfType(arrayify(resources[uri].type)),
 				elementSymbol: resources[uri]['http://data.ub.uio.no/onto#elementSymbol'],
@@ -145,19 +147,18 @@
 				processedResources[graph.uri] = processResource(rawResources, graph.uri);
 			});
 
+			function expandResource(res) {
+				var x = processedResources[res.uri];
+				x.uri = res.uri;
+				x.id = x.uri.substr(x.uri.lastIndexOf('/') + 1);
+				return x;
+			}
+
 			var out = processedResources[uri];
-			out.related = out.related.map(function(res) {
-				var x = processedResources[res.uri];
-				x.uri = res.uri;
-				x.id = x.uri.substr(x.uri.lastIndexOf('/') + 1);
-				return x;
-			});
-			out.components = out.components.map(function(res) {
-				var x = processedResources[res.uri];
-				x.uri = res.uri;
-				x.id = x.uri.substr(x.uri.lastIndexOf('/') + 1);
-				return x;
-			});
+			out.related = out.related.map(expandResource);
+			out.broader = out.broader.map(expandResource);
+			out.narrower = out.narrower.map(expandResource);
+			out.components = out.components.map(expandResource);
 
 			return out;
 		}

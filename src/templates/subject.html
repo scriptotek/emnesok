@@ -29,7 +29,21 @@
 			<a class="clickable-subject" ui-sref="subject.search({ id: related.id })">{{ related.prefLabel }}</a>
 		</span>
 	</div>
-	
+
+	<div class="block" ng-show="vm.subject.broader.length">
+		<span translate>Broader:</span>
+		<span ng-repeat="broader in vm.subject.broader | orderBy:'prefLabel'">
+			<a class="clickable-subject" ui-sref="subject.search({ id: broader.id })">{{ broader.prefLabel }}</a>
+		</span>
+	</div>
+
+	<div class="block" ng-show="vm.subject.narrower.length">
+		<span translate>Narrower:</span>
+		<span ng-repeat="narrower in vm.subject.narrower | orderBy:'prefLabel'">
+			<a class="clickable-subject" ui-sref="subject.search({ id: narrower.id })">{{ narrower.prefLabel }}</a>
+		</span>
+	</div>
+
 	<div ng-show="vm.subject.externals.length">
 		<ul class="list-group">
 			<li class="list-group-item external" ng-if="external.type!='no result'" ng-repeat="external in vm.subject.externals | filter: {name:''} | orderBy:'-name'">

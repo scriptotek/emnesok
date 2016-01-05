@@ -102,18 +102,23 @@
 				}
 			});
 
+			function transformRelatedSubject(k) {
+				return {
+					prefLabel: k.prefLabel[displayLang] || k.prefLabel[defaultLang],
+					id: k.id
+				};
+			}
+
 			output = {
 				prefLabel: subject.data.prefLabel[displayLang],
 				altLabel: subject.data.altLabel[displayLang],
 				definition: subject.data.definition[displayLang] || subject.data.definition[defaultLang],
-				related: subject.data.related.map(function(k) {
-					return {
-						prefLabel: k.prefLabel[displayLang] || k.prefLabel[defaultLang],
-						id: k.id
-					};
-				}),
+				related: subject.data.related.map(transformRelatedSubject),
+				broader: subject.data.broader.map(transformRelatedSubject),
+				narrower: subject.data.narrower.map(transformRelatedSubject),
 				translations: translations,
 				elementSymbol: subject.data.elementSymbol,
+				uri: subject.uri,
 			};
 			console.log(output);
 			return output;
