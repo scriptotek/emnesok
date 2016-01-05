@@ -193,7 +193,8 @@
 			  method: 'GET',
 			  cache: true,
 			  url: Config.skosmos.searchUrl,
-			  params: formatRequest(query)
+			  params: formatRequest(query),
+			  ignoreLoadingBar: true
 			}).
 			then(function(data){
 				console.log('>> GOT DATA');

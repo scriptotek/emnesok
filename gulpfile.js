@@ -49,6 +49,7 @@ var paths = {
       'lib/lodash/dist/lodash.compat.js',
       'lib/restangular/dist/restangular.js',
       'lib/jsonld/js/jsonld.js',
+      'lib/angular-loading-bar/build/loading-bar.js',
       //'lib/angular-jsonld/dist/angular-jsonld.js',
     ],
     styles: [
@@ -56,6 +57,7 @@ var paths = {
       'lib/angucomplete-alt/angucomplete-alt.css',
       'lib/ngToast/dist/ngToast.min.css',
       'lib/ngToast/dist/ngToast-animations.min.css',
+      'lib/angular-loading-bar/build/loading-bar.css',
     ],
     fonts: [
       'lib/bootstrap/fonts/*',

@@ -12,6 +12,7 @@
 			'gettext',
 			'ngToast',
 			'ngAnimate',
+			'angular-loading-bar',
 			'app.modules.header',
 			'app.modules.search',
 			'app.modules.subject',
@@ -23,10 +24,12 @@
 			'app.modules.vocabulary',
 			'templates'
 		])
-		.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$provide', 'ngToastProvider', configure])
+		.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$provide', 'ngToastProvider', 'cfpLoadingBarProvider', configure])
 		.run(['$rootScope', '$state', 'Lang', 'SubjectService', 'TitleService', run]);
 
-	function configure($stateProvider, $urlRouterProvider, $locationProvider, $provide, ngToastProvider) {
+	function configure($stateProvider, $urlRouterProvider, $locationProvider, $provide, ngToastProvider, cfpLoadingBarProvider) {
+
+		cfpLoadingBarProvider.includeSpinner = false;
 
 
     // Fix sourcemaps
