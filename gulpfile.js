@@ -178,7 +178,7 @@ gulp.task('templates', false, [], function () {
 ------------------------------------- */
 
 gulp.task('pot', 'Extracts translatable strings into emnesok.pot', [], function () {
-  return gulp.src([paths.templates, paths.scripts])
+  return gulp.src(paths.templates.concat(paths.scripts))
     .pipe(gettext.extract('emnesok.pot', {
       // options to pass to angular-gettext-tools...
     }))
