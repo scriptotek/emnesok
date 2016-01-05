@@ -7,6 +7,7 @@ var browsersync = require('browser-sync').create();
 var replace = require('gulp-replace');
 var notify = require('gulp-notify');
 var jshint = require('gulp-jshint');
+var stylish = require('jshint-stylish');
 var concat = require('gulp-concat');
 var rename = require('gulp-rename');
 var uglify = require('gulp-uglify');
@@ -84,9 +85,20 @@ gulp.task('inject-base-href', 'Inject base href into index.html', [], function (
 gulp.task('jslint', 'Lints all javascript files', [], function() {
   return gulp.src(paths.scripts)
     .pipe(jshint())
-    .pipe(jshint.reporter('default'))
-    .pipe(jshint.reporter('fail'))
-    .pipe(notify({ message: 'Lint task complete' }));
+    .pipe(jshint.reporter(stylish))
+    .pipe(notify(function (file) {
+      if (file.jshint.success) {
+        // Don't show something if success
+        return false;
+      }
+
+      var errors = file.jshint.results.map(function (data) {
+        if (data.error) {
+          return "(" + data.error.line + ':' + data.error.character + ') ' + data.error.reason;
+        }
+      }).join("\n");
+      return file.relative + " (" + file.jshint.results.length + " errors)\n" + errors;
+    }));
 });
 
 /* Concatenation & minification
@@ -118,7 +130,7 @@ gulp.task('vendor-fonts', false, [], function() {
     .pipe(gulp.dest(paths.build + 'fonts'));
 });
 
-gulp.task('scripts', false, [], function() {
+gulp.task('scripts', false, ['jslint'], function() {
   return gulp.src(paths.scripts)
     .pipe(sourcemaps.init())
     .pipe(concat('app.js'))
@@ -195,7 +207,9 @@ gulp.task('clean', 'Cleans the build directory', [], function() {
 gulp.task('browsersync', false, [], function() {
   browsersync.init({
     server: paths.build,
-    middleware: [ historyApiFallback() ]
+    middleware: [ historyApiFallback() ],
+    // xip: true,
+    notify: false
   });
 });
 
@@ -214,6 +228,6 @@ gulp.task('serve', 'Starts development server', ['build', 'browsersync'], functi
   //gulp.watch('app/scss/**/*.scss', ['sass']);
   gulp.watch(paths.templates, ['templates', browsersync.reload]);
   gulp.watch(paths.styles, ['styles']);
-  gulp.watch(paths.scripts, ['jslint', 'scripts', browsersync.reload]);
+  gulp.watch(paths.scripts, ['scripts', browsersync.reload]);
   gulp.watch(paths.index, ['inject-base-href']);
 }, { options: ENVOPTIONS });
