@@ -194,7 +194,7 @@
 			  cache: true,
 			  url: Config.skosmos.searchUrl,
 			  params: formatRequest(query),
-			  ignoreLoadingBar: true
+			  ignoreLoadingBar: true  // angular-loading-bar
 			}).
 			then(function(data){
 				console.log('>> GOT DATA');
