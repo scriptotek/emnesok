@@ -19,11 +19,12 @@
 			'app.modules.error',
 			'app.modules.home',
 			'app.modules.about',
+			'app.modules.title',
 			'app.modules.vocabulary',
 			'templates'
 		])
 		.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$provide', 'ngToastProvider', configure])
-		.run(['$rootScope', '$state', 'Lang', 'SubjectService', run]);
+		.run(['$rootScope', '$state', 'Lang', 'SubjectService', 'TitleService', run]);
 
 	function configure($stateProvider, $urlRouterProvider, $locationProvider, $provide, ngToastProvider) {
 
@@ -66,6 +67,7 @@
 		$stateProvider
 		.state('home', {
 			url: '/?lang',
+			data : { pageTitle: '' },
 			views: {
 				'header': {
 					template: '<div mod-header></div>'
@@ -92,6 +94,7 @@
 		})
 		.state('about', {
 			url: '/about?lang',
+			data : { pageTitle: 'About' },
 			views: {
 				'header': {
 					template: '<div mod-header></div>'
@@ -166,7 +169,13 @@
 		});
 	}
 
-	function run($rootScope, $state, Lang, SubjectService) {
+	function run($rootScope, $state, Lang, SubjectService, TitleService) {
+
+		$rootScope.$on('$stateChangeSuccess', function listener(event, toState) {
+			if (toState.data && toState.data.pageTitle !== undefined) {
+				TitleService.set(toState.data.pageTitle);
+			}
+		});
 
 		$rootScope.$on('$stateChangeStart', function (evt, toState, toParams, fromState, fromParams, error) {
 			if (!toParams.id && !toParams.term) {

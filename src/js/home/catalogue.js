@@ -99,9 +99,9 @@
 
     /* ------------------------------------------------------------------------------- */
 
-    controller.$inject = ['$stateParams', '$state', '$scope', '$window', '$timeout', 'ngToast', 'gettext', 'gettextCatalog', 'Lang', 'Catalogue', 'Config', 'Session', 'subject'];
+    controller.$inject = ['$stateParams', '$state', '$scope', '$window', '$timeout', 'ngToast', 'gettext', 'gettextCatalog', 'Lang', 'Catalogue', 'Config', 'Session', 'TitleService', 'subject'];
 
-    function controller($stateParams, $state, $scope, $window, $timeout, ngToast, gettext, gettextCatalog, Lang, Catalogue, Config, Session, subject) {
+    function controller($stateParams, $state, $scope, $window, $timeout, ngToast, gettext, gettextCatalog, Lang, Catalogue, Config, Session, TitleService, subject) {
         /*jshint validthis: true */
         var vm = this;
         var defaultLang = Lang.defaultLanguage;
@@ -164,6 +164,10 @@
             $scope.$on('$destroy', function() {
                 angular.element($window).off('scroll', onScroll);
             });
+
+            var lang = Lang.language;
+            var pageTitle = subject.data.prefLabel[lang] ? subject.data.prefLabel[lang] : subject.data.prefLabel[defaultLang];
+            TitleService.set(pageTitle);
         }
 
         function simplifyAvailability(subject) {
