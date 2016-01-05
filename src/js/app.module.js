@@ -19,6 +19,7 @@
 			'app.modules.error',
 			'app.modules.home',
 			'app.modules.about',
+			'app.modules.vocabulary',
 			'templates'
 		])
 		.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$provide', 'ngToastProvider', configure])
@@ -104,6 +105,7 @@
 		})
 		.state('subject', {
 			url: '/:vocab?lang',
+			abstract:true,
 			views: {
 				'header': {
 					template: '<div mod-header></div>'
@@ -121,7 +123,24 @@
 						'</div>',
 						'</div>'
 					].join('')
-				},
+				}
+			}
+		})
+		.state('subject.vocab', {
+			url: '/',
+			views: {
+				'catalogue': {
+					templateUrl: function(stateParams) {
+						return 'app/vocabs/' + stateParams.vocab + '.html';
+					},
+					controller: 'VocabularyController',
+					controllerAs: 'vm'
+				}
+			},
+			resolve: {
+				vocabulary: ['SubjectService', '$stateParams', function(SubjectService, $stateParams){
+					return SubjectService.getVocabulary($stateParams.vocab);
+				}]
 			}
 		})
 		.state('subject.search', {

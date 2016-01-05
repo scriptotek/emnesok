@@ -13,6 +13,7 @@
 			getById: getById,
 			getByUri: getByUri,
 			getByTerm: getByTerm,
+			getVocabulary: getVocabulary,
 			exists: exists,
 			onSubject: onSubject,
 			searchHistory: [],
@@ -266,6 +267,23 @@
 			}, function(error) {
 				deferred.reject(error);
 			});
+			return deferred.promise;
+		}
+
+		function getVocabulary(vocab) {
+			var deferred = $q.defer();
+
+			$http({
+			  method: 'GET',
+			  cache: true,
+			  url: Config.skosmos.vocabularyStatisticsUrl.replace('{vocab}', vocab)
+			}).
+			then(function(response){
+				deferred.resolve(response.data);
+			}, function(error){
+				deferred.reject(error);
+			});
+
 			return deferred.promise;
 		}
 	}

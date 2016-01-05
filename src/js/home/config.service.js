@@ -72,6 +72,7 @@
 				}
 			},
 			skosmos: {
+				vocabularyStatisticsUrl: 'https://skosmos.biblionaut.net/rest/v1/{vocab}/vocabularyStatistics',
 				dataUrl: 'https://skosmos.biblionaut.net/rest/v1/data?uri={uri}',
 				searchUrl: 'https://skosmos.biblionaut.net/rest/v1/search'
 			},
