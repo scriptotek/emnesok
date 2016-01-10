@@ -266,6 +266,19 @@
             var url = Config.catalogue.groupUrl.replace('{id}', id);
         }
 
+        function filterSubjects(res) {
+            if (res.subjects && res.subjects.subject) {
+                res.subjects.subject = res.subjects.subject.filter(function(s) {
+                    return s != 'Electronic books';
+                });
+            }
+            if (res.subjects && res.subjects.genre) {
+                res.subjects.genre = res.subjects.genre.filter(function(s) {
+                    return s != 'Electronic books';
+                });
+            }
+        }
+
         function gotResults(response) {
             vm.total_results = response.total_results;
             vm.start = response.first;
@@ -273,6 +286,7 @@
             vm.last = vm.next ? vm.next - 1 : vm.total_results;
             response.results.forEach(function(res) {
                 simplifyAvailability(res);
+                filterSubjects(res);
             });
             vm.results = vm.results.concat(response.results);
             vm.busy = false;
