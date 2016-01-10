@@ -1,17 +1,16 @@
 <div style="max-width:800px; padding: 10px; margin-left:auto;margin-right:auto;">
+
 	<h1 translate>Realfagstermer</h1>
 
 	<p translate>
-		Realfagstermer is a vocabulary developed by the University of Oslo Science Library
-		and the University of Bergen Science Library.
+		Search for scientific concepts. <em>Realfagstermer</em> is a controlled vocabulary maintained by the science libraries at the University at Oslo and Bergen, and is the best portal to our collections. Realfagstermer is a multilingual vocabulary that can be searched in Bokmål, Nynorsk (translation in progress), English (translation in progress) and Latin (scientific names).
 	</p>
-	<p>
-		Contains {{ vm.topicCount }} subjects,
-		{{ vm.genreCount }} form/genres,
-		{{ vm.timeCount }} time periods,
-		{{ vm.placeCount }} geographic names or features,
-		{{ vm.compoundConceptCount }} compound concepts and
-		{{ vm.virtualCompoundConceptCount }} virtual compound concepts.
+
+	<p ng-show="vm.topicCount" translate>
+		The vocabulary contains {{ vm.topicCount }} subjects, {{ vm.genreCount }} form/genres, {{ vm.timeCount }} time periods, {{ vm.placeCount }} geographic names or features, {{ vm.compoundConceptCount }} compound concepts and {{ vm.virtualCompoundConceptCount }} virtual compound concepts.
+	</p>
+	<p translate>
+		<a href="http://www.ub.uio.no/english/about/services/subject-search/science-subject-terms.html" target="external">Learn more about the vocabulary</a>
 	</p>
 
 </div>

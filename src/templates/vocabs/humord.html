@@ -1,14 +1,17 @@
 <div style="max-width:800px; padding: 10px; margin-left:auto;margin-right:auto;">
+
 	<h1 translate>Humord</h1>
 
 	<p translate>
-		…
+		Humord is the best portal to the humanities and social sciences. The vocabulary also has a relatively large amount of interdisciplinary subject headings. This vocabulary has only Norwegian Bokmål terms.
 	</p>
-	<p>
-		Contains {{ vm.topicCount }} subjects,
-		{{ vm.genreCount }} form/genres,
-		{{ vm.timeCount }} time periods and
-		{{ vm.placeCount }} geographic names or features.
+
+	<p ng-show="vm.topicCount" translate>
+		The vocabulary contains {{ vm.topicCount }} subjects.
+	</p>
+
+	<p translate>
+		<a href="http://www.bibsys.no/files/out/humord/" target="external">Learn more about the vocabulary</a>
 	</p>
 
 </div>

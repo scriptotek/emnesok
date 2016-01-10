@@ -143,11 +143,6 @@
 					controller: 'VocabularyController',
 					controllerAs: 'vm'
 				}
-			},
-			resolve: {
-				vocabulary: ['SubjectService', '$stateParams', function(SubjectService, $stateParams){
-					return SubjectService.getVocabulary($stateParams.vocab);
-				}]
 			}
 		})
 		.state('subject.search', {
