@@ -26,6 +26,7 @@
 
 		vm.languageLabels = Config.languageLabels;
 		vm.lang = Lang.language;
+		vm.langState = $stateParams.lang;
 		vm.languages = Lang.languages;
 		vm.navCollapsed = true;
 		vm.vocab = $stateParams.vocab ? Config.vocabularies[$stateParams.vocab] : null;
