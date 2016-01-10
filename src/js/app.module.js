@@ -22,6 +22,7 @@
 			'app.modules.about',
 			'app.modules.title',
 			'app.modules.vocabulary',
+			'app.services.institutions',
 			'templates'
 		])
 		.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$provide', 'ngToastProvider', 'cfpLoadingBarProvider', configure])

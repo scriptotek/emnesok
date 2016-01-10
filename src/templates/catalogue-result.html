@@ -35,16 +35,14 @@
 
 		<!--<div>{{ vm.record.material }}</div>-->
 
-		<ul style="padding-left:25px;">
-			<li class="online" ng-repeat="component in vm.record.components | filter:vm.filterElectronic">
-				<a ng-href="{{ vm.record.urls[0].url }}" target="external">{{ vm.record.urls[0].description }}</a>
+		<ul style="padding-left:25px;" ng-if="vm.record.availability.electronic">
+			<li class="online">
+				<a ng-href="{{ vm.record.availability.electronic.url }}" target="external">{{ vm.record.availability.electronic.description }}</a>
 			</li>
 		</ul>
 
-		<ul style="padding-left:25px;" ng-show="vm.record.availability.print.length">
-			<li class="printed">
-				<span translate>Print copy at</span> {{ vm.record.availability.print.join(', ') }}
-			</li>
+		<ul style="padding-left:25px;" ng-if="vm.record.availability.print">
+			<li class="printed">{{ vm.record.availability.print }}</li>
 		</ul>
 
 		<div ng-show="vm.record.subjects[vm.vocab]">

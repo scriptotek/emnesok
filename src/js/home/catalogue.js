@@ -99,9 +99,9 @@
 
     /* ------------------------------------------------------------------------------- */
 
-    controller.$inject = ['$stateParams', '$state', '$scope', '$window', '$timeout', 'ngToast', 'gettext', 'gettextCatalog', 'Lang', 'Catalogue', 'Config', 'Session', 'TitleService', 'subject'];
+    controller.$inject = ['$stateParams', '$state', '$scope', '$window', '$timeout', 'ngToast', 'gettext', 'gettextCatalog', 'Lang', 'Catalogue', 'Config', 'Session', 'TitleService', 'Institutions', 'subject'];
 
-    function controller($stateParams, $state, $scope, $window, $timeout, ngToast, gettext, gettextCatalog, Lang, Catalogue, Config, Session, TitleService, subject) {
+    function controller($stateParams, $state, $scope, $window, $timeout, ngToast, gettext, gettextCatalog, Lang, Catalogue, Config, Session, TitleService, Institutions, subject) {
         /*jshint validthis: true */
         var vm = this;
         var defaultLang = Lang.defaultLanguage;
@@ -174,7 +174,13 @@
             var availability = '';
             // @TODO: Show libraries if vm.selectedInstitution
 
+            subject.availability = {};
+
+            var myInstitution = vm.selectedInstitution || 'UBO';  // @TODO: Default based on IP address
+
+            // Print availability
             var printInstitutions = [];
+            var electronic = [];
             subject.components.forEach(function(component) {
                 if (component.holdings) {
                     component.holdings.forEach(function(holding) {
@@ -186,8 +192,51 @@
                     component.holdings = null;
                 }
             });
-            subject.availability = {};
-            subject.availability.print = printInstitutions;
+
+            if (printInstitutions.length > 0) {
+                var printInstitutionsStr = '';
+                if (printInstitutions.indexOf(myInstitution) != -1) {
+                    if (printInstitutions.length > 1) {
+                        // MyLibrary and n other libraries
+                        printInstitutionsStr = gettextCatalog.getPlural(printInstitutions.length - 1,
+                            'Print copy at {{myInstitution}} and one other library.',
+                            'Print copy at {{myInstitution}} and {{$count}} other libraries.',
+                            {myInstitution: Institutions.getName(myInstitution)}
+                        );
+                    } else {
+                        // MyLibrary
+                        printInstitutionsStr = gettextCatalog.getString('Print copy at {{myInstitution}}.', {
+                            myInstitution: Institutions.getName(myInstitution)
+                        });
+                    }
+                } else if (printInstitutions.length == 1) {
+                    // Lib1
+                    printInstitutionsStr = Institutions.getName(printInstitutions[0]);
+                } else if (printInstitutions.length <= 4) {
+                    // Lib1, Lib2, Lib3 and lib 4
+                    var last = printInstitutions.pop();
+                    printInstitutionsStr = gettextCatalog.getString('Print copy at {{institutions}} and {{lastInstitution}}.', {
+                        institutions: printInstitutions.map(function(k) { return Institutions.getName(k); }).join(', '),
+                        lastInstitution: Institutions.getName(last)
+                    });
+                } else {
+                    // Lib1, Lib2, Lib3 and n. more libraries (where n >= 2)
+                    printInstitutionsStr = gettextCatalog.getString('Print copy at {{institutions}} and {{count}} more libraries.', {
+                        institutions: printInstitutions.slice(0, 4).map(function(k) { return Institutions.getName(k); }).join(', '),
+                        count: printInstitutions.length - 3
+                    });
+                }
+                subject.availability.print = printInstitutionsStr;
+            }
+
+            // Electronic availability
+            if (subject.urls.length > 0) {
+                gettext('Available online');
+                subject.availability.electronic = {
+                    url: subject.urls[0].url,
+                    description: gettextCatalog.getString(subject.urls[0].description)
+                };
+            }
         }
 
         function onScroll () {

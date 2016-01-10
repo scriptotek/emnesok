@@ -31,7 +31,7 @@
 					libraries: {
 						'1120104': {label: 'Bibliotek for realfag'},
 						'1120100': {label: 'Bibliotek for humaniora'},
-						'1120108': {label: 'Bibliotek for amfunnsvitenskap'}
+						'1120108': {label: 'Bibliotek for samfunnsvitenskap'}
 					}
 				},
 				'NTNU_UB': {
