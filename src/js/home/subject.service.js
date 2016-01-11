@@ -114,6 +114,10 @@
 				gettext('GenreForm');
 				return 'GenreForm';
 			}
+			if (arr.indexOf('http://data.ub.uio.no/onto#KnuteTerm') !== -1) {
+				gettext('KnuteTerm');
+				return 'KnuteTerm';
+			}
 
 			gettext('Topic');
 			return 'Topic';
