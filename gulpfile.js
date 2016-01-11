@@ -20,7 +20,6 @@ var historyApiFallback = require('connect-history-api-fallback');
 var templateCache = require('gulp-angular-templatecache');
 var minifyHtml = require('gulp-minify-html');
 var minifycss = require('gulp-minify-css');
-var htmlreplace = require('gulp-html-replace');
 
 
 /* Variables and paths
@@ -50,6 +49,8 @@ var paths = {
       'lib/restangular/dist/restangular.js',
       'lib/jsonld/js/jsonld.js',
       'lib/angular-loading-bar/build/loading-bar.js',
+      'lib/angulartics/src/angulartics.js',
+      'lib/angulartics-google-analytics/lib/angulartics-google-analytics.js',
       //'lib/angular-jsonld/dist/angular-jsonld.js',
     ],
     styles: [
@@ -68,12 +69,16 @@ var paths = {
 /* Rewriting
 ------------------------------------- */
 
-gulp.task('inject-base-href', 'Inject base href into index.html', [], function () {
-  var baseHref = (ENV == 'prod') ? '<base href="/ub/emnesok/">' : '<base href="/">';
+gulp.task('inject-env', 'Inject environment into index.html', [], function () {
+  var baseHref = (ENV == 'prod') ? '/ub/emnesok/' : '/';
+  var gaUrl = (ENV == 'prod') ? '//vrtx.uio.no/js/analytics/v2/analytics.js' : '//www.google-analytics.com/analytics.js';
+  var gaIpp = (ENV == 'prod') ? 'useIppProxy();' : '';
+  var gaId = (ENV == 'prod') ? 'UA-72054416-3' : 'UA-72054416-4';
   return gulp.src(paths.index)
-    .pipe(htmlreplace({
-        'basehref': baseHref
-    }))
+    .pipe(replace('<%BASE_HREF%>', baseHref))
+    .pipe(replace('<%GA_URL%>', gaUrl))
+    .pipe(replace('<%GA_IPP%>', gaIpp))
+    .pipe(replace('<%GA_ID%>', gaId))
     .pipe(minifyHtml({
       conditionals: true,
       spare:true
@@ -216,7 +221,7 @@ gulp.task('browsersync', false, [], function() {
 });
 
 gulp.task('build', 'Builds the app', [
-  'inject-base-href',
+  'inject-env',
   'translations',
   'scripts',
   'styles',
@@ -231,5 +236,5 @@ gulp.task('serve', 'Starts development server', ['build', 'browsersync'], functi
   gulp.watch(paths.templates, ['templates', browsersync.reload]);
   gulp.watch(paths.styles, ['styles']);
   gulp.watch(paths.scripts, ['scripts', browsersync.reload]);
-  gulp.watch(paths.index, ['inject-base-href']);
+  gulp.watch(paths.index, ['inject-env']);
 }, { options: ENVOPTIONS });

@@ -5,8 +5,8 @@
 	 <div class="pull-right">
 
 		<div class="btn-group" ng-show="vm.vocab && vm.subject.data.type != 'Geographic'">
-	        <label class="btn btn-default" ng-model="vm.broadSearch" ng-change="vm.updateControlledSearch()" uib-btn-radio="true" tooltip-append-to-body="true" uib-tooltip="{{'Search all subject vocabularies' | translate}}" translate>Broad</label>
-	        <label class="btn btn-default" ng-model="vm.broadSearch" ng-change="vm.updateControlledSearch()" uib-btn-radio="false" tooltip-append-to-body="true" uib-tooltip="{{'Search '+vm.vocab+' only' |translate}}" translate>Narrow</label>
+	        <label class="btn btn-default" ng-model="vm.broadSearch" ng-change="vm.updateControlledSearch()" uib-btn-radio="true" tooltip-append-to-body="true" uib-tooltip="{{'Search all subject vocabularies' | translate}}" translate analytics-on="click" analytics-event="SetBroadSearch" analytics-category="RefineSearch">Broad</label>
+	        <label class="btn btn-default" ng-model="vm.broadSearch" ng-change="vm.updateControlledSearch()" uib-btn-radio="false" tooltip-append-to-body="true" uib-tooltip="{{'Search '+vm.vocab+' only' |translate}}" translate analytics-on="click" analytics-event="SetNarrowSearch" analytics-category="RefineSearch">Narrow</label>
 	    </div>
 
 	    <div class="btn-group" uib-dropdown uib-keyboard-nav>

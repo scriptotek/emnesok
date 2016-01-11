@@ -53,7 +53,7 @@
 
 			<!-- Show subjects from local vocabulary -->
 			<span ng-repeat="subject in vm.record.subjects[vm.vocab]">
-				<a ui-sref="subject.search({id: null, term: subject})" class="subject-tag" ng-if="vm.indexTerm != subject">{{ subject }}</a><span ng-if="vm.indexTerm == subject" class="subject-tag">{{ subject }}</span>
+				<a ui-sref="subject.search({id: null, term: subject})" class="subject-tag" ng-if="vm.indexTerm != subject" analytics-on="click" analytics-event="ClickTag" analytics-category="ControlledTag" analytics-label="{{ subject }}">{{ subject }}</a><span ng-if="vm.indexTerm == subject" class="subject-tag">{{ subject }}</span>
 			</span>
 
 			<!-- Show subjects from other vocabularies if no local -->

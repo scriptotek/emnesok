@@ -28,9 +28,9 @@
         return directive;
     }
 
-    resultController.$inject = ['Lang', 'Catalogue', 'Config', 'SubjectService', '$state', 'ngToast', 'gettext', 'gettextCatalog'];
+    resultController.$inject = ['Lang', 'Catalogue', 'Config', 'SubjectService', '$state', 'ngToast', 'gettext', 'gettextCatalog', '$analytics'];
 
-    function resultController(Lang, Catalogue, Config, SubjectService, $state, ngToast, gettext, gettextCatalog) {
+    function resultController(Lang, Catalogue, Config, SubjectService, $state, ngToast, gettext, gettextCatalog, $analytics) {
         /*jshint validthis: true */
         var vm = this;
 
@@ -51,13 +51,28 @@
                 return;
             }
             vm.busy = true;
+
+            console.log(subject);
+            $analytics.eventTrack('ClickTag', {category: 'UncontrolledTag', label: subject});
+
             SubjectService.exists(subject, vm.vocab).then(function(response) {
                 vm.busy = false;
                 if (!response) {
+                    $analytics.eventTrack('TagLookupFailed', {
+                        category: 'UncontrolledTag',
+                        label: subject,
+                        nonInteraction: true
+                    });
+
                     var msg = gettext('Sorry, the subject "{{subject}}" was not found in the current vocabulary.');
                     var translated = gettextCatalog.getString(msg, { subject: subject });
                     ngToast.danger(translated, 'danger');
                 } else {
+                    $analytics.eventTrack('TagLookupSuccess', {
+                        category: 'UncontrolledTag',
+                        label: subject,
+                        nonInteraction: true
+                    });
                     $state.go('subject.search', {id: response.localname, term: null});
                 }
             }, function(err) {
@@ -100,9 +115,9 @@
 
     /* ------------------------------------------------------------------------------- */
 
-    controller.$inject = ['$stateParams', '$state', '$scope', '$window', '$timeout', 'ngToast', 'gettext', 'gettextCatalog', 'Lang', 'Catalogue', 'Config', 'Session', 'TitleService', 'Institutions', 'subject'];
+    controller.$inject = ['$stateParams', '$state', '$scope', '$window', '$timeout', 'ngToast', 'gettext', 'gettextCatalog', '$analytics', 'Lang', 'Catalogue', 'Config', 'Session', 'TitleService', 'Institutions', 'subject'];
 
-    function controller($stateParams, $state, $scope, $window, $timeout, ngToast, gettext, gettextCatalog, Lang, Catalogue, Config, Session, TitleService, Institutions, subject) {
+    function controller($stateParams, $state, $scope, $window, $timeout, ngToast, gettext, gettextCatalog, $analytics, Lang, Catalogue, Config, Session, TitleService, Institutions, subject) {
         /*jshint validthis: true */
         var vm = this;
         var defaultLang = Lang.defaultLanguage;
@@ -376,10 +391,12 @@
         }
 
         function selectInstitution(institution) {
+            $analytics.eventTrack('SetInstitution', {category: 'RefineSearch', label: institution});
             $state.go('subject.search', {library: institution});
         }
 
         function selectLibrary(library) {
+            $analytics.eventTrack('SetLibrary', {category: 'RefineSearch', label: library});
             if (library) {
                 $state.go('subject.search', {library: vm.selectedInstitution + ':' + library});
             } else {
