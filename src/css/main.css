@@ -11,28 +11,50 @@ h2 {
   margin-top: 0;
 }
 
-.clickable-subject {
-  margin-top: 3px;
+.subject-tag {
+  margin: 4px 3px 0 0;
   display: inline-block;
-  margin-left:9px;
+  background: #f9f9f9;
+  border: 1px solid #eee;
+  border-radius: 3px;
+  padding: 0px 5px;
+  font-size: 90%;
 }
-.clickable-subject:before {
+span.subject-tag {
+    color: #555;
+}
+a.subject-tag:focus {
+  text-decoration: none;
+}
+a.subject-tag:hover {
+  border: 1px solid #ddd;
+  background-image: linear-gradient(to bottom, #fefefe, #DCEBF5);
+  text-decoration: none;
+  background-repeat: repeat-x;
+}
+a.subject-tag:active {
+  border: 1px solid #bbb;
+  background-image: linear-gradient(to bottom, #DCEBF5, #fefefe);
+  text-decoration: none;
+  background-repeat: repeat-x;
+}
+.subject-tag:before {
   /*Using a Bootstrap glyphicon as the bullet point*/
   content: "\e041";
   font-family: 'Glyphicons Halflings';
   font-size: 10px;
   padding-right: 2px;
 }
-.clickable-subject.othervocabulary {
+.subject-tag.othervocabulary {
 
 }
-.clickable-subject.genre, .clickable-subject.geographic {
+.subject-tag.genre, .subject-tag.geographic {
 
 }
-.clickable-subject.genre:before {
+.subject-tag.genre:before {
   content: "\e032";
 }
-.clickable-subject.geographic:before {
+.subject-tag.geographic:before {
   content: "\e062";
 }
 

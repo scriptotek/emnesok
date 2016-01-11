@@ -17,7 +17,8 @@
             replace: false,
             scope: {
                 record: '=',
-                vocab: '='
+                vocab: '=',
+                indexTerm: '='
             },
             controllerAs: 'vm',
             controller: resultController,
@@ -157,6 +158,7 @@
             }
             vm.vocab = subject.vocab;
             vm.subject = subject;
+            vm.indexTerm = subject.data.prefLabel[defaultLang];
             vm.stringSearch = (subject.data.components.length > 0);
             searchFromStart();
 
