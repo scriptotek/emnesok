@@ -7,7 +7,12 @@
 	<div style="flex: 1 1 auto">
 
 		<div>
-			<a style="font-size:120%;" target="external" ng-href="{{ vm.record.links.primo }}">{{ vm.record.title }}</a>
+			<a style="font-size:120%;"
+				target="external"
+				ng-href="{{ vm.record.links.primo }}"
+				analytics-on="click"
+				analytics-event="ClickPrimo"
+				analytics-category="{{ vm.record.subjects[vm.vocab] ? 'LocallyIndexedDocument' : 'MatchedDocument' }}">{{ vm.record.title }}</a>
 			({{ vm.record.publisher }}<span ng-show="vm.record.publisher && vm.record.edition">, </span><span ng-show="vm.record.edition">{{ vm.record.edition }}</span> {{ vm.record.date }})
 		</div>
 
@@ -44,7 +49,12 @@
 		</ul>
 
 		<ul style="padding-left:20px;" ng-if="vm.record.availability.print">
-			<li class="printed">{{ vm.record.availability.print }}</li>
+			<li class="printed"><a target="external"
+				ng-href="{{ vm.record.links.primo }}"
+				analytics-on="click"
+				analytics-event="ClickPrimo"
+				analytics-category="{{ vm.record.subjects[vm.vocab] ? 'LocallyIndexedDocument' : 'MatchedDocument' }}">{{ vm.record.availability.print }}</a></li>
+		</ul>
 		</ul>
 
 		<!-- Subjects -->

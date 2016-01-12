@@ -225,19 +225,21 @@
                     if (printInstitutions.length > 1) {
                         // MyLibrary and n other libraries
                         printInstitutionsStr = gettextCatalog.getPlural(printInstitutions.length - 1,
-                            'Print copy at {{myInstitution}} and one other library.',
-                            'Print copy at {{myInstitution}} and {{$count}} other libraries.',
-                            {myInstitution: Institutions.getName(myInstitution)}
+                            'Print copy at {{library}} and one other library.',
+                            'Print copy at {{library}} and {{$count}} other libraries.',
+                            {library: Institutions.getName(myInstitution)}
                         );
                     } else {
                         // MyLibrary
-                        printInstitutionsStr = gettextCatalog.getString('Print copy at {{myInstitution}}.', {
-                            myInstitution: Institutions.getName(myInstitution)
+                        printInstitutionsStr = gettextCatalog.getString('Print copy at {{library}}.', {
+                            library: Institutions.getName(myInstitution)
                         });
                     }
                 } else if (printInstitutions.length == 1) {
                     // Lib1
-                    printInstitutionsStr = Institutions.getName(printInstitutions[0]);
+                    printInstitutionsStr = gettextCatalog.getString('Print copy at {{library}}.', {
+                        library: Institutions.getName(printInstitutions[0])
+                    });
                 } else if (printInstitutions.length <= 4) {
                     // Lib1, Lib2, Lib3 and lib 4
                     var last = printInstitutions.pop();
