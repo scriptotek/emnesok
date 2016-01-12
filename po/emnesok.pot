@@ -12,7 +12,7 @@ msgstr ""
 msgid "<a href=\"http://www.ub.uio.no/english/about/services/subject-search/science-subject-terms.html\" target=\"external\">Learn more about the vocabulary</a>"
 msgstr ""
 
-#: vocabs/mrtermer.html:13
+#: vocabs/mrtermer.html:12
 msgid "<a href=\"https://www.ub.uio.no/om/tjenester/emneord/menneskerettighetstermer.html\" target=\"external\">Learn more about the vocabulary</a>"
 msgstr ""
 
@@ -117,16 +117,8 @@ msgstr ""
 msgid "Human rights"
 msgstr ""
 
-#: vocabs/mrtermer.html:2
-msgid "Human rights terms"
-msgstr ""
-
 #: home.html:21
 msgid "Humanities and social sciences"
-msgstr ""
-
-#: vocabs/humord.html:3
-msgid "Humord"
 msgstr ""
 
 #: home.html:22
@@ -211,10 +203,6 @@ msgstr ""
 msgid "Privacy"
 msgstr ""
 
-#: vocabs/realfagstermer.html:3
-msgid "Realfagstermer"
-msgstr ""
-
 #: home.html:16
 msgid "Science"
 msgstr ""
@@ -273,10 +261,6 @@ msgstr ""
 msgid "Technology and engineering"
 msgstr ""
 
-#: vocabs/tekord.html:3
-msgid "Tekord"
-msgstr ""
-
 #: home.html:27
 #: vocabs/tekord.html:5
 msgid "Tekord is a vocabulary created at NTNU (Norwegian University of Science and Technology). It is an especially useful search portal to technical and engineering literature. This vocabulary has only Norwegian Bokmål terms."
@@ -287,9 +271,7 @@ msgid "Temporal"
 msgstr ""
 
 #: vocabs/mrtermer.html:4
-msgid ""
-"The Human rights terms vocabulary was initially developed in 1991 by the Human Rights Research and Education Centre of the University of Ottawa, Canada. It was adopted by the Norwegian Centre for Human Rights (SMR) in the late 1990s,\n"
-"\t\tand has since been adjusted and expanded in order to provide a great entry to the collections of the SMR library."
+msgid "The Human Rights Terms vocabulary was initially developed in 1991 by the Human Rights Research and Education Centre of the University of Ottawa, Canada. In the late 1990s it was adopted by the Norwegian Centre for Human Rights (SMR), who has since adjusted and expanded the vocabulary in order to provide a great entry to the SMR library collections."
 msgstr ""
 
 #: search.html:34
@@ -313,7 +295,7 @@ msgid "The vocabulary contains {{ vm.topicCount }} subjects, {{ vm.genreCount }}
 msgstr ""
 
 #: vocabs/humord.html:9
-#: vocabs/mrtermer.html:9
+#: vocabs/mrtermer.html:8
 #: vocabs/tekord.html:9
 msgid "The vocabulary contains {{ vm.topicCount }} subjects."
 msgstr ""
@@ -352,7 +334,7 @@ msgid "We use https to ensure anonymous searching."
 msgstr ""
 
 #: about.html:28
-msgid "We're proxying all data through <a href=\"https://github.com/unioslo/ipproxy\">ipproxy</a>, which masks the last part of your IP adress, meaning that your full IP address is never sent to any third party (Google)."
+msgid "We're proxying all data through <a href=\"https://github.com/unioslo/ipproxy\">ipproxy</a>, which masks the last part of your IP address, meaning that your full IP address is never sent to any third party (Google)."
 msgstr ""
 
 #: home.html:5
