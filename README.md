@@ -37,3 +37,53 @@ This project tries to adher to:
 
 * [Y033](https://github.com/johnpapa/angular-styleguide#style-y033): Controllers: Place bindable members at the top of the controller, alphabetized
 * [Y052](https://github.com/johnpapa/angular-styleguide#style-y052): Factories: Expose the callable members of the service (its interface) at the top (Revealing Module Pattern)
+
+## .htaccess
+
+Atm. we have two `.htaccess` files, one in `htdocs`:
+
+```
+RewriteEngine on
+RewriteBase /ub/emnesok/
+
+# Serve data from some folders directly
+
+RewriteCond %{REQUEST_URI} ^/ub/emnesok/(data|legacy|program|skosmos)
+RewriteRule ^.+$ - [NC,L]
+
+# Redirect from old URLs
+
+RewriteCond "%{QUERY_STRING}" "^id=UHS$"
+RewriteRule "^.*$" "humord?" [R,L]
+
+RewriteCond "%{QUERY_STRING}" "^id=UREAL$"
+RewriteRule "^.*$" "realfagstermer?" [R,L]
+
+RewriteCond "%{QUERY_STRING}" "^id=TEK$"
+RewriteRule "^.*$" "tekord?" [R,L]
+
+RewriteCond "%{QUERY_STRING}" "^id=MR$"
+RewriteRule "^.*$" "mrtermer?" [R,L]
+
+RewriteRule "^test/oria/(.*)$" "$1" [R,L]
+
+# Alias / to /2/build/
+
+RewriteRule ^(.*) 2/build/$1 [NC,L]
+```
+
+and one in `/htdocs/2/`
+
+```
+RewriteEngine on
+RewriteBase /ub/emnesok/2/
+
+RewriteCond %{REQUEST_FILENAME} -s [OR]
+RewriteCond %{REQUEST_FILENAME} -l [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^.*$ - [NC,L]
+
+RewriteRule ^(.*) build/index.html [NC,L]
+```
+
+TODO: Simplify and merge into one file.

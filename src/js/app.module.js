@@ -53,21 +53,6 @@
 			animation: 'slide'
 		});
 
-		// Redirect from old ULRs
-		// <https://github.com/scriptotek/emnesok/issues/1>
-		$urlRouterProvider.when('/?id', function($match, $stateParams) {
-			var map = {
-				'UREAL': '/realfagstermer',
-				'UHS': '/humord',
-				'TEK': '/tekord',
-				'MR': '/mrtermer'
-			};
-			if (map[$match.id] !== undefined) {
-				return map[$match.id];
-			}
-			return false;
-		});
-
 		$urlRouterProvider.otherwise('/');
 
 		$stateProvider
