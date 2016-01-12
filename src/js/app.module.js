@@ -53,6 +53,7 @@
 			animation: 'slide'
 		});
 
+		$urlRouterProvider.when('/:vocab?lang', '/:vocab/?lang');
 		$urlRouterProvider.otherwise('/');
 
 		$stateProvider
