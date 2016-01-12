@@ -5,6 +5,7 @@
 body {
   /* Prevents stuff from jumping around */
   overflow-y: scroll;
+  /*overflow-x: hidden;*/
 }
 
 h2 {
@@ -72,12 +73,27 @@ a.subject-tag:active {
 }
 
 .loader {
-  margin-top: 20px;
+  margin-top: 40px;
   height: 4px;
   width: 100%;
   position: relative;
   overflow: hidden;
   background-color: #ddd;
+  animation: show .5s forwards;
+  animation-iteration-count: 1;
+  animation-delay: 0.5s;
+  -webkit-animation: show .5s forwards;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-delay: 0.5s;  /* Delay 0.5 seconds before showing the loader */
+  opacity: 0;
+}
+@keyframes show {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: .4;
+  }
 }
 .loader:before{
   display: block;
@@ -209,4 +225,41 @@ li.printed:before {
 
 .subject .term_separator:not(:last-child)::after {
   content: ' • ';
+}
+
+/*****************************************
+ * Animations
+ *****************************************/
+
+.slideInUp.ng-hide-add         { animation:0.4s fadeOut ease-out; }
+
+/* when showing the picture */
+.slideInUp.ng-hide-remove      { animation:0.6s fadeIn ease; }
+
+/* ANIMATIONS (FROM ANIMATE.CSS) ======================== */
+
+@keyframes fadeIn {
+  from {
+    transform: translate3d(0, 0, 0);
+    opacity: 0;
+    visibility: visible;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 0;
+  }
 }

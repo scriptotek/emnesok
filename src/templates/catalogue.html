@@ -36,17 +36,24 @@
 
 	<uib-alert ng-if="vm.error" type="danger">{{ vm.error }}</uib-alert>
 
+	<p ng-if="!vm.busy && !vm.error && !vm.total_results && vm.subject.data.type !== 'KnuteTerm'" class="bg-danger">
+		<span translate>
+			How odd! Not a single document on that subject could be found using the current subject vocabulary.
+		</span>
+		<span ng-if="!vm.broadSearch && vm.subject.data.type !== 'Geographic'" translate>
+			You could try expanding the search to a <a ui-sref="subject.search({broad:true})">broad search</a>.
+		</span>
+		<span ng-if="vm.broadSearch && vm.selectedInstitution && vm.subject.data.type !== 'Geographic'" translate>
+			You could try expanding the search to <a ui-sref="subject.search({library:null})">all libraries</a>.
+		</span>
+	</p>
+
 	<p ng-if="vm.subject.data.type == 'Geographic'" class="text-muted">
 		The broad/narrow filter is not available for geographical names.
 	</p>
 
-	<p ng-if="vm.subject.data.type == 'KnuteTerm'" class="text-muted">
+	<p ng-if="vm.subject.data.type == 'KnuteTerm'" class="bg-warning">
 		This concept is a “KnuteTerm”, so there should not be any search results.
-	</p>
-
-	<p ng-if="!vm.error">
-		<span ng-if="vm.start && vm.total_results" translate translate-n="vm.total_results" translate-plural="Found {{vm.total_results}} documents about this topic using {{vm.searchType}}.">Found one document about this topic using {{vm.searchType}}.</span>
-		<span class="text-muted">Search query: ‘{{vm.searchQuery}}’</span>
 	</p>
 
 	<p ng-if="vm.stringSearch" class="bg-warning">
@@ -55,26 +62,31 @@
 		</span>
 	</p>
 
-	<p ng-if="!vm.busy && !vm.error && !vm.total_results && vm.subject.data.type !== 'KnuteTerm'" class="bg-danger">
-		<span translate>
-			How odd! Not a single document on that subject could be found using the current subject vocabulary.
-		</span>
-		<span ng-if="!vm.broadSearch && vm.subject.data.type !== 'Geographic'" translate>
-			You could try expanding the search to a <a ui-sref="subject.search({broad:true})">broad search</a>.
-		</span>
-	</p>
+	<div style="position: relative;">
 
-	<ul class="list-group">
-		<li class="list-group-item" ng-repeat="result in vm.results" mod-catalogue-result record="result" vocab="vm.vocab" index-term="vm.indexTerm"></li>
-	</ul>
+		<div class="slideInUp" ng-show="vm.results.length && !vm.stateChanging">
 
-	<p ng-show="vm.start && vm.last != vm.total_results" translate>
-		Loaded {{ vm.last }} records so far, {{ vm.total_results - vm.last }} to go, hold on…
-	</p>
+			<p ng-if="!vm.error">
+				<span ng-if="vm.start && vm.total_results" translate translate-n="vm.total_results" translate-plural="Found {{vm.total_results}} documents about this topic using {{vm.searchType}}.">Found one document about this topic using {{vm.searchType}}.</span>
+				<span class="text-muted">Search query: ‘{{vm.searchQuery}}’</span>
+			</p>
+
+			<ul class="list-group">
+				<li class="list-group-item" ng-repeat="result in vm.results" mod-catalogue-result record="result" vocab="vm.vocab" index-term="vm.indexTerm"></li>
+			</ul>
+
+			<p ng-show="vm.start && vm.last != vm.total_results" translate>
+				Loaded {{ vm.last }} records so far, {{ vm.total_results - vm.last }} to go, hold on…
+			</p>
+
+			<p ng-show="vm.start && vm.last == vm.total_results && vm.total_results != 0" translate>
+				You've reached the end, my friend!
+			</p>
+
+		</div>
+
+	</div>
 
 	<div ng-show="vm.busy" class="loader"></div>
 
-	<p ng-show="vm.start && vm.last == vm.total_results && vm.total_results != 0" translate>
-		You've reached the end, my friend!
-	</p>
 </div>
