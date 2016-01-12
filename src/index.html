@@ -38,7 +38,7 @@
 			ga(function(tracker) {
 				tracker.set('sendHitTask', function(model) {
 					var xhr = new XMLHttpRequest();
-					xhr.open('GET', '//w3test-ipproxy.uio.no/collect?' + model.get('hitPayload'), true);
+					xhr.open('GET', '//w3prod-ipproxy.uio.no/collect?' + model.get('hitPayload'), true);
 					xhr.send();
 				});
 			});
