@@ -14,7 +14,7 @@ var uglify = require('gulp-uglify');
 var sourcemaps = require('gulp-sourcemaps');
 var del = require('del'); // rm -rf
 var argv = require('yargs').argv;
-var size = require('gulp-size');
+// var size = require('gulp-size');
 var changed = require('gulp-changed');
 var historyApiFallback = require('connect-history-api-fallback');
 var templateCache = require('gulp-angular-templatecache');
@@ -120,7 +120,8 @@ gulp.task('vendor-scripts', false, [], function() {
     .pipe(uglify())
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(paths.build + 'js'))
-    .pipe(size({showFiles:true, gzip:true, title: 'vendor-scripts'}));
+    // .pipe(size({showFiles:true, gzip:true, title: 'vendor-scripts'}))
+    ;
 });
 
 gulp.task('vendor-styles', false, [], function() {
@@ -147,7 +148,8 @@ gulp.task('scripts', false, ['jslint'], function() {
     // .pipe(uglify())
     .pipe(sourcemaps.write())
     .pipe(gulp.dest(paths.build + 'js'))
-    .pipe(size({showFiles:true, gzip:true, title: 'scripts'}));
+    // .pipe(size({showFiles:true, gzip:true, title: 'scripts'}))
+    ;
 });
 
 gulp.task('styles', false, [], function() {
@@ -198,7 +200,8 @@ gulp.task('translations', 'Builds javascript translation files from .po files', 
     }))
     .pipe(concat('translations.js'))
     .pipe(gulp.dest(paths.build + 'js'))
-    .pipe(size({showFiles:true, gzip:true, title: 'vendor-scripts'}));
+    // .pipe(size({showFiles:true, gzip:true, title: 'vendor-scripts'}))
+    ;
 });
 
 /* Cleaning
