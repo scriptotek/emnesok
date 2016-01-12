@@ -53,7 +53,7 @@
 			animation: 'slide'
 		});
 
-		$urlRouterProvider.when('/:vocab?lang', '/:vocab/?lang');
+		$urlRouterProvider.when(/^\/(humord|realfagstermer|tekord|mrtermer)$/, '/$1/');
 		$urlRouterProvider.otherwise('/');
 
 		$stateProvider
