@@ -206,9 +206,11 @@
 				if (!data.data.graph) {
 					return deferred.resolve(null);
 				}
+				var processed = processSubject(uri, data.data);
 				var subject = {
 					uri: uri,
-					data: processSubject(uri, data.data)
+					id: uri.split('/').pop(),
+					data: processed,
 				};
 				notify(subject);
 	
