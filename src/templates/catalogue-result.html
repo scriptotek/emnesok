@@ -55,6 +55,9 @@
 				analytics-event="ClickPrimo"
 				analytics-category="{{ vm.record.subjects[vm.vocab] ? 'LocallyIndexedDocument' : 'MatchedDocument' }}">{{ vm.record.availability.print }}</a></li>
 		</ul>
+
+		<ul style="padding-left:20px;" ng-if="!vm.record.availability.print && !vm.record.availability.electronic.url">
+			<li translate>This is most likely an ebook we don't have access to, but you can still request it.</li>
 		</ul>
 
 		<!-- Subjects -->
