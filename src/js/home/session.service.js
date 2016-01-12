@@ -6,7 +6,6 @@
 		.factory('Session', ['Config', Session]);
 
 	function Session(Config) {
-		console.log('[Session] Init');
 
 		var factory = {
 	        institutions: Config.institutions,

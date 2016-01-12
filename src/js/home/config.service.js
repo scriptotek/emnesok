@@ -6,7 +6,6 @@
 		.factory('Config', Config);
 
 	function Config() {
-		console.log('[Config] Init');
 		var factory = {
 			languages: ['nb', 'nn', 'en'],
 			languageLabels: {

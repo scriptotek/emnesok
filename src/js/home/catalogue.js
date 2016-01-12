@@ -52,7 +52,6 @@
             }
             vm.busy = true;
 
-            console.log(subject);
             $analytics.eventTrack('ClickTag', {category: 'UncontrolledTag', label: subject});
 
             SubjectService.exists(subject, vm.vocab).then(function(response) {
@@ -84,8 +83,6 @@
             var groupId = vm.record.id;
             vm.busy = true;
             Catalogue.expandGroup(groupId).then(function(response) {
-                console.log('Got response:');
-                console.log(response.result.records);
                 vm.busy = false;
                 vm.recordExpanded = true;
                 vm.versions = response.result.records;
@@ -192,7 +189,6 @@
             //Call some code when a state change starts
             $scope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
                 vm.stateChanging = true;
-                // console.info('STATE CHANGE');
             });
         }
 
@@ -315,7 +311,6 @@
             response.results.forEach(function(res) {
                 simplifyAvailability(res);
                 filterSubjects(res);
-                console.log(res);
                 if (res.thumbnails.bibsys) {
                     res.thumbnails.bibsys = res.thumbnails.bibsys.replace('http:', 'https:');
                 }

@@ -6,7 +6,6 @@
 		.directive('modHeader', HeaderModule);
 
 	function HeaderModule() {
-		console.log('[Header] Init');
 
 		var directive = {
 	        restrict: 'A',

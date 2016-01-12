@@ -6,7 +6,6 @@
 		.factory('SubjectService', ['$http', '$stateParams', '$filter', '$q', '$rootScope', 'gettext', 'Config', 'Lang', 'Restangular', SubjectService]);
 
 	function SubjectService($http, $stateParams, $filter, $q, $rootScope, gettext, Config, Lang, Restangular) {
-		console.log('[SubjectService] Init');
 
 		var service = {
 			search: search,
