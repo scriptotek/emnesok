@@ -315,6 +315,10 @@
             response.results.forEach(function(res) {
                 simplifyAvailability(res);
                 filterSubjects(res);
+                console.log(res);
+                if (res.thumbnails.bibsys) {
+                    res.thumbnails.bibsys = res.thumbnails.bibsys.replace('http:', 'https:');
+                }
             });
             vm.results = vm.results.concat(response.results);
             vm.busy = false;
