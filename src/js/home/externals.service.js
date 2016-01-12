@@ -30,7 +30,7 @@
 			$http({
 			  method: 'GET',
 			  cache: true,
-			  url: "http://services.biblionaut.net/api/snl.php",
+			  url: "https://services.biblionaut.net/api/snl.php",
 			  params: {query: term}
 			}).
 			then(function(result){
@@ -59,7 +59,7 @@
 			$http({
 			  method: 'GET',
 			  cache: true,
-			  url: "http://services.biblionaut.net/api/ps.php",
+			  url: "https://services.biblionaut.net/api/ps.php",
 			  params: {ele: term}
 			}).
 			then(function(result){
@@ -94,7 +94,7 @@
 				$http({
 					method: 'jsonp',
 					cache: true,
-					url: "http://"+lang+".wikipedia.org/w/api.php",
+					url: "https://"+lang+".wikipedia.org/w/api.php",
 					params: {
 						action: "query",
 						prop: "extracts|info",
@@ -150,7 +150,7 @@
 				$http({
 					method: 'jsonp',
 					cache: true,
-					url: "http://"+lang+".wikipedia.org/w/api.php",
+					url: "https://"+lang+".wikipedia.org/w/api.php",
 					params :{
 						action: "query",
 						list: "search",
