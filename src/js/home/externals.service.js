@@ -52,7 +52,7 @@
 
 		function ps(term) {
 
-			console.log('[Externals] PS lookup');
+			console.log('[Externals] PS lookup',term);
 
 			var deferred = $q.defer();
 

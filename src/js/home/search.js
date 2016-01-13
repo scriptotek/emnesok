@@ -63,21 +63,6 @@
 			vm.truncate  = truncate;
 			openSearcMenu();
 		}
-
-/*		function isPeriodicalElement(subject,akronym) {
-
-			if (akronym===undefined) akronym="";
-			
-			if (akronym[0]!==undefined && typeof akronym === "object") return false;
-
-			for (var i=0; i<grunnstoff.length; i++){
-
-				if (subject.toLocaleLowerCase()==grunnstoff[i].name || akronym.toLocaleLowerCase()==grunnstoff[i].symbol) {
-					return true;
-				}
-			}
-			return false;
-		}*/
 			
 		function formatRequest(str) {
 			var query;
@@ -141,12 +126,6 @@
 						break;
 					}
 				}
-			
-			
-/*				if (isPeriodicalElement(value.prefLabel,value.altLabel)) {
-			
-					searchListIcon ="<img src='assets/img/element.png' title="+gettextCatalog.getString('Chemical element')+">";
-				}*/
 					
 				if (value.prefLabel!==undefined) { 
 
@@ -196,9 +175,11 @@
 			  ignoreLoadingBar: true  // angular-loading-bar
 			}).
 			then(function(data){
+				console.log("========",Config.skosmos.searchUrl,query);
 				vm.searchResults = data.data;
 				var processed = formatResult(vm.searchResults,query);
 				deferred.resolve(processed);
+				console.log("-------->",data.data);
 			}, function(error, q){
 				if (error.status == -1) {
 					vm.errorMsg = gettext('No network connection');
