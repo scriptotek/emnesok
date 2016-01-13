@@ -49,10 +49,10 @@
 			<li class="list-group-item external" ng-if="external.type!='no result'" ng-repeat="external in vm.subject.externals | filter: {name:''} | orderBy:'-name'">
 		
 				{{external.extract}}
-				<a ng-if="external.type=='exact'" href="{{ external.url }}" target="external">Les mer i {{external.name}}</a>
-				<a ng-if="external.type=='search'" href="{{ external.url }}" target="external">Søk i {{external.name}}</a>
+				<a ng-if="external.type=='exact'" href="{{ external.url }}" target="external" translate>Read more in {{external.name}}</a>
+				<a ng-if="external.type=='search'" href="{{ external.url }}" target="external" translate>Search in {{external.name}}</a> 
 		
-			</li>
+			</li> 
 		</ul>
 	</div>
 	<p style="font-size:80%; text-align:right; margin: 0;">

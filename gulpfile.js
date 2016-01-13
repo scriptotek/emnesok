@@ -170,21 +170,31 @@ gulp.task('imgs', false, [], function() {
 });
 
 gulp.task('templates', false, [], function () {
-  var htmlOpts = {
-    conditionals: true,
-    spare: true
-  };
+	
+	console.log('Waiting for templates');
+	function ferdigVenta() {
 
-  var tplOpts = {
-    filename: 'templates.js',
-    root: 'app',
-    standalone: true
-  };
+	  var htmlOpts = {
+		conditionals: true,
+		spare: true
+	  };
 
-  gulp.src(paths.templates)
-    .pipe(minifyHtml(htmlOpts))
-    .pipe(templateCache(tplOpts))
-    .pipe(gulp.dest(paths.build + 'js'));
+	  var tplOpts = {
+		filename: 'templates.js',
+		root: 'app',
+		standalone: true
+	  };
+
+	  gulp.src(paths.templates)
+		.pipe(minifyHtml(htmlOpts))
+		.pipe(templateCache(tplOpts))
+		.pipe(gulp.dest(paths.build + 'js'));
+
+		console.log('Finished waiting for templates');
+	}
+
+	setTimeout(ferdigVenta, 2000);
+
 });
 
 /* Translation (gettext)

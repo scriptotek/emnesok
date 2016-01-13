@@ -21,7 +21,7 @@
 
 		return service;
 
-		function snl(term,lang) {
+		function snl(prefLabel) {
 
 			console.log('[Externals] SNL lookup');
 
@@ -31,7 +31,7 @@
 			  method: 'GET',
 			  cache: true,
 			  url: "https://services.biblionaut.net/api/snl.php",
-			  params: {query: term}
+			  params: {query: prefLabel}
 			}).
 			then(function(result){
 
@@ -50,9 +50,9 @@
 			return deferred.promise;
 		}
 
-		function ps(term) {
+		function ps(prefLabel) {
 
-			console.log('[Externals] PS lookup',term);
+			console.log('[Externals] PS lookup',prefLabel);
 
 			var deferred = $q.defer();
 
@@ -60,7 +60,7 @@
 			  method: 'GET',
 			  cache: true,
 			  url: "https://services.biblionaut.net/api/ps.php",
-			  params: {ele: term}
+			  params: {ele: prefLabel}
 			}).
 			then(function(result){
 
@@ -78,9 +78,7 @@
 		}
 
 
-		function wp(term,lang,type,deferred) {
-
-			console.log(";ASD;AD;",term,lang,type);
+		function wp(prefLabel,lang,type,deferred) {
 	
 			if (type===undefined) type="exact";
 			if (!type) type="exact";
@@ -103,7 +101,7 @@
 						exintro:"",
 						inprop: "url",
 						redirects:"",
-						titles:term,
+						titles:prefLabel,
 						format: "json",
 						callback: "JSON_CALLBACK"
 					}
@@ -111,8 +109,6 @@
 				then(function(result){
 
 					var processed;
-
-					console.log(":::::::::::::::::",result);
 
 					for (var pageid in result.data.query.pages) {
 			
@@ -139,7 +135,7 @@
 					}
 					
 					else {
-						wp(term,lang,"search", deferred);
+						wp(prefLabel,lang,"search", deferred);
 					}
 						
 					console.log('wiki exact',result.data);
@@ -158,7 +154,7 @@
 					params :{
 						action: "query",
 						list: "search",
-						srsearch:term,
+						srsearch:prefLabel,
 						srinfo:"totalhits",
 						redirects:"",
 						format: "json",
@@ -173,7 +169,7 @@
 							
 						data = {
 							name: "Wikipedia",
-							url: "https://"+lang+".wikipedia.org/w/index.php?search="+term,
+							url: "https://"+lang+".wikipedia.org/w/index.php?search="+prefLabel,
 							extract: "",
 							type: type
 						};

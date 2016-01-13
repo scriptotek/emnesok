@@ -49,16 +49,16 @@ msgstr ""
 msgid "Broad"
 msgstr ""
 
-#: home/catalogue.js:160
-msgid "broad search"
-msgstr ""
-
 #: subject.html:34
 msgid "Broader:"
 msgstr ""
 
 #: catalogue.html:35
 msgid "Catalogue results"
+msgstr ""
+
+#: subject.html:4
+msgid "Chemical element"
 msgstr ""
 
 #: home/search.js:37
@@ -146,10 +146,6 @@ msgstr ""
 msgid "Narrow"
 msgstr ""
 
-#: home/catalogue.js:161
-msgid "narrow search"
-msgstr ""
-
 #: subject.html:41
 msgid "Narrower:"
 msgstr ""
@@ -158,7 +154,7 @@ msgstr ""
 msgid "No hits :("
 msgstr ""
 
-#: home/search.js:204
+#: home/search.js:184
 msgid "No network connection"
 msgstr ""
 
@@ -203,6 +199,10 @@ msgstr ""
 msgid "Privacy"
 msgstr ""
 
+#: subject.html:52
+msgid "Read more in {{external.name}}"
+msgstr ""
+
 #: home.html:16
 msgid "Science"
 msgstr ""
@@ -225,6 +225,10 @@ msgstr ""
 
 #: search.html:48
 msgid "Search history"
+msgstr ""
+
+#: subject.html:53
+msgid "Search in {{external.name}}"
 msgstr ""
 
 #: subject.html:27
@@ -277,16 +281,16 @@ msgstr ""
 msgid "The Human Rights Terms vocabulary was initially developed in 1991 by the Human Rights Research and Education Centre of the University of Ottawa, Canada. In the late 1990s it was adopted by the Norwegian Centre for Human Rights (SMR), who has since adjusted and expanded the vocabulary in order to provide a great entry to the SMR library collections."
 msgstr ""
 
-#: search.html:34
-msgid "The search went out in error:"
-msgstr ""
-
 #: about.html:7
 msgid "The Subject Search is <a href=\"https://github.com/scriptotek/emnesok\">open source</a> and licensed under the <a href=\"https://github.com/scriptotek/emnesok/blob/master/LICENSE\">MIT license</a>."
 msgstr ""
 
 #: about.html:4
 msgid "The Subject Search is developed by the University of Oslo Science Library. Vocabulary search and retrieval is powered by a <a href=\"http://skosmos.org/\">Skosmos</a> instance using data from <a href=\"http://data.ub.uio.no\">data.ub.uio.no</a>, while library catalogue search and retrieval is powered by <a href=\"https://developers.exlibrisgroup.com/primo/apis/webservices/xservices/search/briefsearch\">Primo</a> through <a href=\"https://github.com/scriptotek/lsm\">a locally developed middleware</a>."
+msgstr ""
+
+#: search.html:34
+msgid "The search went out in error:"
 msgstr ""
 
 #: home/catalogue.js:167
@@ -362,4 +366,12 @@ msgstr ""
 
 #: catalogue.html:82
 msgid "You've reached the end, my friend!"
+msgstr ""
+
+#: home/catalogue.js:160
+msgid "broad search"
+msgstr ""
+
+#: home/catalogue.js:161
+msgid "narrow search"
 msgstr ""

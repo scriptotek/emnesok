@@ -1,36 +1,32 @@
-# 
+#
 # Translators:
 # Dan Michael O. Heggø <danmichaelo@gmail.com>, 2015-2016
 # Eva Holthe Enoksen <e.h.enoksen@ub.uio.no>, 2015
+# Kyrre Traavik Låberg <k.t.laberg@ub.uio.no>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Subject Search\n"
-"PO-Revision-Date: 2016-01-12 17:49+0000\n"
-"Last-Translator: Dan Michael O. Heggø <danmichaelo@gmail.com>\n"
+"PO-Revision-Date: 2016-01-13 17:24+0100\n"
+"Last-Translator: Kyrre Traavik Låberg <k.t.laberg@ub.uio.no>\n"
 "Language-Team: Norwegian Nynorsk (http://www.transifex.com/university-of-oslo-library/subject-search/language/nn/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: nn\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"POT-Creation-Date: \n"
+"MIME-Version: 1.0\n"
+"X-Generator: Poedit 1.8.6\n"
 
 #: vocabs/humord.html:13
-msgid ""
-"<a href=\"http://www.bibsys.no/files/out/humord/\" target=\"external\">Learn"
-" more about the vocabulary</a>"
+msgid "<a href=\"http://www.bibsys.no/files/out/humord/\" target=\"external\">Learn more about the vocabulary</a>"
 msgstr "<a href=\"http://www.bibsys.no/files/out/humord/\" target=\"external\">Lær mer om ordtilfanget</a>"
 
 #: vocabs/realfagstermer.html:12
-msgid ""
-"<a href=\"http://www.ub.uio.no/english/about/services/subject-search"
-"/science-subject-terms.html\" target=\"external\">Learn more about the "
-"vocabulary</a>"
+msgid "<a href=\"http://www.ub.uio.no/english/about/services/subject-search/science-subject-terms.html\" target=\"external\">Learn more about the vocabulary</a>"
 msgstr "<a href=\"http://www.ub.uio.no/om/tjenester/emneord/realfagstermer.html\" target=\"external\">Lær mer om ordtilfanget</a>"
 
 #: vocabs/mrtermer.html:12
-msgid ""
-"<a "
-"href=\"https://www.ub.uio.no/om/tjenester/emneord/menneskerettighetstermer.html\""
-" target=\"external\">Learn more about the vocabulary</a>"
+msgid "<a href=\"https://www.ub.uio.no/om/tjenester/emneord/menneskerettighetstermer.html\" target=\"external\">Learn more about the vocabulary</a>"
 msgstr "<a href=\"https://www.ub.uio.no/om/tjenester/emneord/menneskerettighetstermer.html\" target=\"external\">Lær mer om ordtilfanget</a>"
 
 #: about.html:2 header.html:24
@@ -54,23 +50,16 @@ msgid "An unknown error occured."
 msgstr "Det oppsto ein ukjend feil."
 
 #: about.html:29
-msgid ""
-"As an experiment we've disabled all GA cookies. While we need some "
-"statistics on visits and usage, we believe that tracking <em>users</em> is "
-"not really needed for this tool. Users tracking also has a lot of flaws."
+msgid "As an experiment we've disabled all GA cookies. While we need some statistics on visits and usage, we believe that tracking <em>users</em> is not really needed for this tool. Users tracking also has a lot of flaws."
 msgstr ""
 
-#: home/catalogue.js:262
+#: home/catalogue.js:258
 msgid "Available online"
 msgstr "Tilgjengelig online"
 
 #: catalogue.html:8
 msgid "Broad"
 msgstr "Breitt"
-
-#: home/catalogue.js:163
-msgid "broad search"
-msgstr "breitt søk"
 
 #: subject.html:34
 msgid "Broader:"
@@ -79,6 +68,10 @@ msgstr "Overordna:"
 #: catalogue.html:35
 msgid "Catalogue results"
 msgstr "Katalogresultat"
+
+#: subject.html:4
+msgid "Chemical element"
+msgstr "Grunnstoff"
 
 #: home/search.js:37
 msgid "Containing"
@@ -96,7 +89,7 @@ msgstr "Søk etter emne"
 msgid "Exact match"
 msgstr "Eksakt lik"
 
-#: home/catalogue.js:94
+#: home/catalogue.js:91
 msgid "Failed to fetch list of editions."
 msgstr "Klarte ikkje å hente liste over utgåver"
 
@@ -105,39 +98,29 @@ msgid "Fetching more editions…"
 msgstr "Hentar fleire utgåver..."
 
 #: about.html:24
-msgid ""
-"For analytics, our initial plan was to use the open source tool Piwik, but "
-"we were persuaded into using Google Analytics which is pervasive at the "
-"university. Note that two extra steps have been taken to protect your "
-"privacy:"
+msgid "For analytics, our initial plan was to use the open source tool Piwik, but we were persuaded into using Google Analytics which is pervasive at the university. Note that two extra steps have been taken to protect your privacy:"
 msgstr ""
 
 #: about.html:10
-msgid ""
-"For information about the subject vocabularies, see the <a ui-"
-"sref=\"home({lang: vm.lang})\">start page</a>."
+msgid "For information about the subject vocabularies, see the <a ui-sref=\"home({lang: vm.lang})\">start page</a>."
 msgstr ""
 
 #: catalogue.html:70
 msgid "Found one document about this topic using {{vm.searchType}}."
-msgid_plural ""
-"Found {{vm.total_results}} documents about this topic using "
-"{{vm.searchType}}."
+msgid_plural "Found {{vm.total_results}} documents about this topic using {{vm.searchType}}."
 msgstr[0] "Fann eit dokument om dette emnet med {{vm.searchType}}."
 msgstr[1] "Fann {{vm.total_results}} dokument om dette emnet med {{vm.searchType}}."
 
-#: catalogue-result.html:84 home/subject.service.js:114
+#: catalogue-result.html:84 home/subject.service.js:113
 msgid "GenreForm"
 msgstr "Sjanger/form"
 
-#: catalogue-result.html:79 home/subject.service.js:106
+#: catalogue-result.html:79 home/subject.service.js:105
 msgid "Geographic"
 msgstr "Stad"
 
 #: catalogue.html:40
-msgid ""
-"How odd! Not a single document on that subject could be found using the "
-"current subject vocabulary."
+msgid "How odd! Not a single document on that subject could be found using the current subject vocabulary."
 msgstr "Så rart! Ikkje eit einaste dokument vart funne."
 
 #: home.html:31
@@ -149,20 +132,15 @@ msgid "Humanities and social sciences"
 msgstr "Humaniora og samfunnsfag"
 
 #: home.html:22 vocabs/humord.html:5
-msgid ""
-"Humord is the best portal to the humanities and social sciences. The "
-"vocabulary also has a relatively large amount of interdisciplinary subject "
-"headings. This vocabulary has only Norwegian Bokmål terms."
+msgid "Humord is the best portal to the humanities and social sciences. The vocabulary also has a relatively large amount of interdisciplinary subject headings. This vocabulary has only Norwegian Bokmål terms."
 msgstr "Humord gjev den beste inngangen til humaniora og samfunnsfag. Ordtilfanget har også ei stor mengd tverrfaglege termar. Dette ordtilfanget har berre emneord på bokmål. "
 
-#: home/subject.service.js:118
+#: home/subject.service.js:117
 msgid "KnuteTerm"
 msgstr "knuteterm"
 
 #: catalogue.html:78
-msgid ""
-"Loaded {{ vm.last }} records so far, {{ vm.total_results - vm.last }} to go,"
-" hold on…"
+msgid "Loaded {{ vm.last }} records so far, {{ vm.total_results - vm.last }} to go, hold on…"
 msgstr "{{vm.last}} poster er henta så langt, {{vm.total_results - vm.last}} står att, vi skunder oss sakte..."
 
 #: search.html:28
@@ -177,10 +155,6 @@ msgstr "Fleire utgåver"
 msgid "Narrow"
 msgstr "Snevert"
 
-#: home/catalogue.js:164
-msgid "narrow search"
-msgstr "snevert søk"
-
 #: subject.html:41
 msgid "Narrower:"
 msgstr "Underordna:"
@@ -189,7 +163,7 @@ msgstr "Underordna:"
 msgid "No hits :("
 msgstr "Ingen treff :("
 
-#: home/search.js:206
+#: home/search.js:184
 msgid "No network connection"
 msgstr "Inkje nettverkssamband"
 
@@ -198,19 +172,11 @@ msgid "Note: Results from a single branch will not include e-books."
 msgstr "Merk: Resultat frå berre ei avdeling vil ikkje inkludere e-bøkar."
 
 #: catalogue.html:60
-msgid ""
-"Note: Search for subject strings is currently experimental, and might not "
-"yet work as expected."
+msgid "Note: Search for subject strings is currently experimental, and might not yet work as expected."
 msgstr "Merk: Søk etter emneordstrengar er førebels på eksperimentstadiet og fungerer kanskje ikkje som planlagt."
 
 #: home.html:11
-msgid ""
-"Once in, you can toggle between <em>broad</em> and <em>narrow</em> search. "
-"With <em>narrow</em> search, you will only get highly relevant results "
-"carefully indexed by skilled librarians and subject specialists using the "
-"selected vocabulary. <em>Broad</em> search will give you more results, "
-"matching subjects from other vocabularies or even keywords from a variety of"
-" sources, but sometimes at the expense of precision."
+msgid "Once in, you can toggle between <em>broad</em> and <em>narrow</em> search. With <em>narrow</em> search, you will only get highly relevant results carefully indexed by skilled librarians and subject specialists using the selected vocabulary. <em>Broad</em> search will give you more results, matching subjects from other vocabularies or even keywords from a variety of sources, but sometimes at the expense of precision."
 msgstr "Så fort du er inne kan du velje mellom <em> breidt </em> og <em> snevert </em> søk. Med <em> snevert </em> søk vil du berre få relevante resultat nøye utvald av flinke bibliotekarar og fagfolk som har brukt det valde ordtilfanget. <em> Breitt </em> søk er ikkje like presist, men det gjev fleire resultat av di det også søker mot andre ordtilfang og frie nøkkelord frå ei rekke kjelder. "
 
 #: catalogue-result.html:33
@@ -219,27 +185,31 @@ msgid_plural "{{$count}} editions:"
 msgstr[0] "Ei utgåve:"
 msgstr[1] "{{$count}} utgåver:"
 
-#: home/catalogue.js:252
+#: home/catalogue.js:248
 msgid "Print copy at {{institutions}} and {{count}} more libraries."
 msgstr "Trykt utgåve ved {{institutions}} og {{count}} andre bibliotek."
 
-#: home/catalogue.js:246
+#: home/catalogue.js:242
 msgid "Print copy at {{institutions}} and {{lastInstitution}}."
 msgstr "Trykt utgåve ved {{institutions}} og {{lastInstitution}}."
 
-#: home/catalogue.js:227
+#: home/catalogue.js:223
 msgid "Print copy at {{library}} and one other library."
 msgid_plural "Print copy at {{library}} and {{$count}} other libraries."
 msgstr[0] "Trykt utgåve ved {{library}} og eit anna bibliotek."
 msgstr[1] "Trykt utgåve ved {{library}} og {{$count}} andre bibliotek."
 
-#: home/catalogue.js:234 home/catalogue.js:240
+#: home/catalogue.js:230 home/catalogue.js:236
 msgid "Print copy at {{library}}."
 msgstr "Trykt utgåve ved {{library}}."
 
 #: about.html:14
 msgid "Privacy"
 msgstr "Personvern"
+
+#: subject.html:52
+msgid "Read more in {{external.name}}"
+msgstr "Les meir i {{external.name}}"
 
 #: home.html:16
 msgid "Science"
@@ -253,19 +223,21 @@ msgstr "Søk berre i '+vm.vocab+' "
 msgid "Search all subject vocabularies"
 msgstr "Søk i alle emneordtilfang"
 
-#: home.html:17 vocabs/realfagstermer.html:5
-msgid ""
-"Search for scientific concepts. <em>Realfagstermer</em> is a controlled "
-"vocabulary maintained by the science libraries at the University at Oslo and"
-" Bergen, and is the best portal to our collections. Realfagstermer is a "
-"multilingual vocabulary that can be searched in Bokmål, Nynorsk (translation"
-" in progress), English (translation in progress) and Latin (scientific "
-"names)."
+#: vocabs/realfagstermer.html:5
+msgid "Search for scientific concepts. <em>Realfagstermer</em> is a controlled vocabulary maintained by the science libraries at the University at Oslo and Bergen, and is the best portal to our collections. Realfagstermer is a multilingual vocabulary that can be searched in Bokmål, Nynorsk (translation in progress), English (translation in progress) and Latin (scientific names)."
 msgstr "Søk etter realfaglege omgrep. <em>Realfagstermar</em> er eit kontrollert ordtilfang som vert vedlikehaldt av realfagsbiblioteka ved UiO og UiB. Dette er den beste inngangen til samlingane våre. Realfagstermar er eit fleirspråkleg ordtilfang der du kan søke på både bokmål, nynorsk (omsetjing under utarbeiding), engelsk (omsetjing under utarbeiding) og latin (vitskapelege namn). "
+
+#: home.html:17
+msgid "Search for scientific terms. <em>Realfagstermer</em> is a controlled vocabulary maintained by the science libraries at the University at Oslo and Bergen, and is the best portal to our collections. Realfagstermer is a multilingual vocabulary that can be searched in Bokmål, Nynorsk (translation in progress), English (translation in progress) and Latin (scientific names)."
+msgstr "Søk etter realfaglege termar. <em>Realfagstermar</em> er eit kontrollert ordtilfang som vert vedlikehaldt av realfagsbiblioteka ved UiO og UiB. Dette er den beste inngangen til samlingane våre. Realfagstermar er eit fleirspråkleg ordtilfang der du kan søke på både bokmål, nynorsk (omsetjing under utarbeiding), engelsk (omsetjing under utarbeiding) og latin (vitskapelege namn). "
 
 #: search.html:48
 msgid "Search history"
 msgstr "Søkehistorikk"
+
+#: subject.html:53
+msgid "Search in {{external.name}}"
+msgstr "Søk i {{external.name}}"
 
 #: subject.html:27
 msgid "See also:"
@@ -276,21 +248,15 @@ msgid "Series"
 msgstr "Serie"
 
 #: about.html:34
-msgid ""
-"Several fantastic pieces of free and open-source software have been used to "
-"build this search. A list is provided below together with their licenses."
+msgid "Several fantastic pieces of free and open-source software have been used to build this search. A list is provided below together with their licenses."
 msgstr "Ei rekkje supre open kjelde-komponentar er nytta for å byggje opp emneordsøket. Desse er lista opp saman med lisensane dei er underlagde. "
 
 #: about.html:16
-msgid ""
-"So far we're not using cookies or localStorage at all. If we introduce login"
-" or user preferences in the future, we will need storage, but we will always"
-" limit usage to a minimum."
+msgid "So far we're not using cookies or localStorage at all. If we introduce login or user preferences in the future, we will need storage, but we will always limit usage to a minimum."
 msgstr ""
 
-#: home/catalogue.js:67
-msgid ""
-"Sorry, the subject \"{{subject}}\" was not found in the current vocabulary."
+#: home/catalogue.js:66
+msgid "Sorry, the subject \"{{subject}}\" was not found in the current vocabulary."
 msgstr "Orsak,, emnet «{{subject}}» vart ikkje funne i dette ordtilfanget."
 
 #: home/search.js:37
@@ -310,59 +276,37 @@ msgid "Technology and engineering"
 msgstr "Teknologi og ingeniørfag"
 
 #: home.html:27 vocabs/tekord.html:5
-msgid ""
-"Tekord is a vocabulary created at NTNU (Norwegian University of Science and "
-"Technology). It is an especially useful search portal to technical and "
-"engineering literature. This vocabulary has only Norwegian Bokmål terms."
+msgid "Tekord is a vocabulary created at NTNU (Norwegian University of Science and Technology). It is an especially useful search portal to technical and engineering literature. This vocabulary has only Norwegian Bokmål terms."
 msgstr "Tekord er eit ordtilfang utvikla ved NTNU. Det er særleg ein god søkeinngang til teknisk faglitteratur ved NTNU. Tekord inneheld berre emneord på bokmål. "
 
-#: home/subject.service.js:110
+#: home/subject.service.js:109
 msgid "Temporal"
 msgstr "Tid"
 
 #: vocabs/mrtermer.html:4
-msgid ""
-"The Human Rights Terms vocabulary was initially developed in 1991 by the "
-"Human Rights Research and Education Centre of the University of Ottawa, "
-"Canada. In the late 1990s it was adopted by the Norwegian Centre for Human "
-"Rights (SMR), who has since adjusted and expanded the vocabulary in order to"
-" provide a great entry to the SMR library collections."
+msgid "The Human Rights Terms vocabulary was initially developed in 1991 by the Human Rights Research and Education Centre of the University of Ottawa, Canada. In the late 1990s it was adopted by the Norwegian Centre for Human Rights (SMR), who has since adjusted and expanded the vocabulary in order to provide a great entry to the SMR library collections."
 msgstr ""
+
+#: about.html:7
+msgid "The Subject Search is <a href=\"https://github.com/scriptotek/emnesok\">open source</a> and licensed under the <a href=\"https://github.com/scriptotek/emnesok/blob/master/LICENSE\">MIT license</a>."
+msgstr "Emnesøket er <a href=\"https://github.com/scriptotek/emnesok\">open kjeldekode</a> lisensisert under <a href=\"https://github.com/scriptotek/emnesok/blob/master/LICENSE\">MIT-lisensen</a>."
+
+#: about.html:4
+msgid ""
+"The Subject Search is developed by the University of Oslo Science Library. Vocabulary search and retrieval is powered by a <a href=\"http://skosmos.org/\">Skosmos</a> instance using data from <a href=\"http://data.ub.uio.no\">data.ub.uio.no</a>, while library catalogue search and retrieval is powered by <a href=\"https://developers.exlibrisgroup.com/primo/apis/webservices/xservices/search/briefsearch\">Primo</a> through <a href=\"https://github.com/"
+"scriptotek/lsm\">a locally developed middleware</a>."
+msgstr "Emnesøket er utvikla av UiO Realfagsbiblioteket. Søk i emneordtilfanget vert drivne av ein <a href=\"http://skosmos.org/\">Skosmos</a>-instans med data frå <a href=\"http://data.ub.uio.no\">data.ub.uio.no</a>, medan søk i bibliotekskatalogen vert drivne av <a href=\"https://developers.exlibrisgroup.com/primo/apis/webservices/xservices/search/briefsearch\">Primo</a> via <a href=\"https://github.com/scriptotek/lsm\">ein lokalt utvikla mellomvare</a>."
 
 #: search.html:34
 msgid "The search went out in error:"
 msgstr "Søket gjekk ut i feil"
 
-#: about.html:7
-msgid ""
-"The Subject Search is <a href=\"https://github.com/scriptotek/emnesok\">open"
-" source</a> and licensed under the <a "
-"href=\"https://github.com/scriptotek/emnesok/blob/master/LICENSE\">MIT "
-"license</a>."
-msgstr "Emnesøket er <a href=\"https://github.com/scriptotek/emnesok\">open kjeldekode</a> lisensisert under <a href=\"https://github.com/scriptotek/emnesok/blob/master/LICENSE\">MIT-lisensen</a>."
-
-#: about.html:4
-msgid ""
-"The Subject Search is developed by the University of Oslo Science Library. "
-"Vocabulary search and retrieval is powered by a <a "
-"href=\"http://skosmos.org/\">Skosmos</a> instance using data from <a "
-"href=\"http://data.ub.uio.no\">data.ub.uio.no</a>, while library catalogue "
-"search and retrieval is powered by <a "
-"href=\"https://developers.exlibrisgroup.com/primo/apis/webservices/xservices/search/briefsearch\">Primo</a>"
-" through <a href=\"https://github.com/scriptotek/lsm\">a locally developed "
-"middleware</a>."
-msgstr "Emnesøket er utvikla av UiO Realfagsbiblioteket. Søk i emneordtilfanget vert drivne av ein <a href=\"http://skosmos.org/\">Skosmos</a>-instans med data frå <a href=\"http://data.ub.uio.no\">data.ub.uio.no</a>, medan søk i bibliotekskatalogen vert drivne av <a href=\"https://developers.exlibrisgroup.com/primo/apis/webservices/xservices/search/briefsearch\">Primo</a> via <a href=\"https://github.com/scriptotek/lsm\">ein lokalt utvikla mellomvare</a>."
-
-#: home/catalogue.js:170
+#: home/catalogue.js:167
 msgid "The subject was not found. It might have been deleted."
 msgstr "Emnet vart ikkje funne. Det kan ha blitt sletta."
 
 #: vocabs/realfagstermer.html:9
-msgid ""
-"The vocabulary contains {{ vm.topicCount }} subjects, {{ vm.genreCount }} "
-"form/genres, {{ vm.timeCount }} time periods, {{ vm.placeCount }} geographic"
-" names or features, {{ vm.compoundConceptCount }} compound concepts and {{ "
-"vm.virtualCompoundConceptCount }} virtual compound concepts."
+msgid "The vocabulary contains {{ vm.topicCount }} subjects, {{ vm.genreCount }} form/genres, {{ vm.timeCount }} time periods, {{ vm.placeCount }} geographic names or features, {{ vm.compoundConceptCount }} compound concepts and {{ vm.virtualCompoundConceptCount }} virtual compound concepts."
 msgstr "Ordtilfanget inneheld {{ vm.topicCount }} emne, {{ vm.genreCount }} former/sjangrar, {{ vm.timeCount }} tidsperiodar, {{ vm.placeCount }} geografiske namn, {{ vm.compoundConceptCount }} emnestrengar og {{ vm.virtualCompoundConceptCount }} virtuelle emnestrengar."
 
 #: vocabs/humord.html:9 vocabs/mrtermer.html:8 vocabs/tekord.html:9
@@ -374,22 +318,18 @@ msgid "Third party licenses"
 msgstr "Tredjepartslisensar"
 
 #: catalogue-result.html:74
-msgid ""
-"This is a subject from another vocabulary. It might not exist in the current"
-" vocabulary."
+msgid "This is a subject from another vocabulary. It might not exist in the current vocabulary."
 msgstr "Dette er eit emne frå eit anna ordtilfang. Det er ikkje sikkert det finns i det aktive ordtilfanget."
 
 #: catalogue-result.html:60
-msgid ""
-"This is most likely an ebook we don't have access to, but you can still "
-"request it."
+msgid "This is most likely an ebook we don't have access to, but you can still request it."
 msgstr "Dette er truleg ei ebok vi ikkje har tilgang til, men du kan framleis forsøke å bestelle ho."
 
-#: home/subject.service.js:122
+#: home/subject.service.js:121
 msgid "Topic"
 msgstr "Emne"
 
-#: home/catalogue.js:389
+#: home/catalogue.js:388
 msgid "Uh oh, some kind of server error occured."
 msgstr "Orsak, det oppsto ein serverfeil."
 
@@ -406,48 +346,37 @@ msgid "We use https to ensure anonymous searching."
 msgstr ""
 
 #: about.html:28
-msgid ""
-"We're proxying all data through <a "
-"href=\"https://github.com/unioslo/ipproxy\">ipproxy</a>, which masks the "
-"last part of your IP address, meaning that your full IP address is never "
-"sent to any third party (Google)."
+msgid "We're proxying all data through <a href=\"https://github.com/unioslo/ipproxy\">ipproxy</a>, which masks the last part of your IP address, meaning that your full IP address is never sent to any third party (Google)."
 msgstr ""
 
 #: home.html:5
-msgid ""
-"Welcome to our subject search. Start by choosing a vocabulary from the list "
-"below. A vocabulary is a controlled set of subjects. Searching all "
-"vocabularies at the same time isn't yet supported, but definitely something "
-"we would like to support in the future."
+msgid "Welcome to our subject search. Start by choosing a vocabulary from the list below. A vocabulary is a controlled set of subjects. Searching all vocabularies at the same time isn't yet supported, but definitely something we would like to support in the future."
 msgstr "Velkomen til emnesøket vårt. Start med å velje eit emneordtilfang frå lista under. Eit emneordtilfang er eit kontrollert sett av emneord. Søk i alle ordtilfanga samstundes er førebels ikkje støtta, men vi vonar det skal vere mogleg i framtida. "
 
 #: header.html:47
-msgid ""
-"Welcome to the new Subject Search beta. Head over <a "
-"href=\"https://github.com/scriptotek/emnesok/issues\">to GitHub</a> if you "
-"want to peek into the current state of development, report a problem or "
-"suggest an idea."
+msgid "Welcome to the new Subject Search beta. Head over <a href=\"https://github.com/scriptotek/emnesok/issues\">to GitHub</a> if you want to peek into the current state of development, report a problem or suggest an idea."
 msgstr "Velkommen til beta-utgåva av det nye emnesøket. Du kan følgje med på utviklinga <a href=\"https://github.com/scriptotek/emnesok/issues\">på GitHub</a>.  Der kan du også melde frå om feil og føreslå utbetringar."
 
 #: home.html:32
-msgid ""
-"Yes, we have a controlled subject vocabulary just for human rights terms! "
-"Developed and maintained by the Norwegian Centre for Human Rights’ (SMR), "
-"the vocabulary has only English terms."
+msgid "Yes, we have a controlled subject vocabulary just for human rights terms! Developed and maintained by the Norwegian Centre for Human Rights’ (SMR), the vocabulary has only English terms."
 msgstr "Ja, vi har eit eige emneordtilfang berre for terminologi knytta til menneskerettar. Det er utvikla og vedlikehaldt av biblioteket ved Norsk senter for menneskerettar (SMR) og har berre emneord på engelsk."
 
 #: catalogue.html:46
-msgid ""
-"You could try expanding the search to <a ui-"
-"sref=\"subject.search({library:null})\">all libraries</a>."
+msgid "You could try expanding the search to <a ui-sref=\"subject.search({library:null})\">all libraries</a>."
 msgstr ""
 
 #: catalogue.html:43
-msgid ""
-"You could try expanding the search to a <a ui-"
-"sref=\"subject.search({broad:true})\">broad search</a>."
+msgid "You could try expanding the search to a <a ui-sref=\"subject.search({broad:true})\">broad search</a>."
 msgstr "Prøv gjerne å utvide søket til eit <a ui-sref=\"subject.search({broad:true})\">breitt søk</a>."
 
 #: catalogue.html:82
 msgid "You've reached the end, my friend!"
 msgstr "Du har nådd enden av lista. "
+
+#: home/catalogue.js:160
+msgid "broad search"
+msgstr "breitt søk"
+
+#: home/catalogue.js:161
+msgid "narrow search"
+msgstr "snevert søk"

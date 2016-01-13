@@ -175,11 +175,10 @@
 			  ignoreLoadingBar: true  // angular-loading-bar
 			}).
 			then(function(data){
-				console.log("========",Config.skosmos.searchUrl,query);
 				vm.searchResults = data.data;
 				var processed = formatResult(vm.searchResults,query);
 				deferred.resolve(processed);
-				console.log("-------->",data.data);
+
 			}, function(error, q){
 				if (error.status == -1) {
 					vm.errorMsg = gettext('No network connection');

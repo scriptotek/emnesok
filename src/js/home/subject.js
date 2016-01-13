@@ -62,36 +62,38 @@
 			var externals = [];
 			var output = {};
 			
+			if (!subject.data.prefLabel[displayLang]) {
+				displayLang = defaultLang;
+			}
+
+			//Externals////////////////////
+	
+			if (subject.data.prefLabel[displayLang].substr(-12)=="(grunnstoff)") {
+				subject.data.prefLabel[displayLang]=subject.data.prefLabel[displayLang].slice(0, -12);
+			}
+
 			if (subject.data.prefLabel[lang]!==undefined) {
-				Externals.snl(subject.data.prefLabel[lang]).then(function(data) {
+				Externals.snl(subject.data.prefLabel[displayLang]).then(function(data) {
 					externals.push(data);
 					output.externals = externals;
 				});
 
-				Externals.wp(subject.data.prefLabel[lang],lang).then(function(data) {
+				Externals.wp(subject.data.prefLabel[displayLang],displayLang).then(function(data) {
 					externals.push(data);
 					output.externals = externals;	
 				});
 			}
 			
 
-			if (!subject.data.prefLabel[lang]) {
-				displayLang = defaultLang;
-			}
-
-			if (subject.data.elementSymbol && (lang=="nb" || lang=="nn")){
+			if (subject.data.elementSymbol && (displayLang=="nb" || displayLang=="nn")){
 
 				Externals.ps(subject.data.elementSymbol).then(function(data) {
 					externals.push(data);
 					output.externals = externals;	
 				});
 
-
-				if (subject.data.prefLabel[displayLang].substr(-12)=="(grunnstoff)") {
-					subject.data.prefLabel[displayLang]=subject.data.prefLabel[displayLang].slice(0, -12);
-				}
-
 			}
+			////////////////////////////////
 
 			Object.keys(subject.data.prefLabel).forEach(function(langCode) {
 				if (langCode !== displayLang) {
