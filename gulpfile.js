@@ -33,6 +33,7 @@ var paths = {
   index: 'src/index.html',
   scripts: ['src/js/**/*.js'],
   styles: ['src/css/**/*.css'],
+  imgs: ['src/img/**/*.png'],
   templates: ['src/templates/**/*.html'],
   vendor: {
     scripts: [
@@ -163,6 +164,11 @@ gulp.task('styles', false, [], function() {
 //    .pipe(notify({ message: 'Styles task complete' }));
 });
 
+gulp.task('imgs', false, [], function() {
+  return gulp.src(paths.imgs)
+    .pipe(gulp.dest(paths.build + 'img'));
+});
+
 gulp.task('templates', false, [], function () {
   var htmlOpts = {
     conditionals: true,
@@ -228,6 +234,7 @@ gulp.task('build', 'Builds the app', [
   'translations',
   'scripts',
   'styles',
+  'imgs',
   'templates',
   'vendor-scripts',
   'vendor-styles',
@@ -238,6 +245,7 @@ gulp.task('serve', 'Starts development server', ['build', 'browsersync'], functi
   //gulp.watch('app/scss/**/*.scss', ['sass']);
   gulp.watch(paths.templates, ['templates', browsersync.reload]);
   gulp.watch(paths.styles, ['styles']);
+  gulp.watch(paths.imgs, ['imgs']);
   gulp.watch(paths.scripts, ['scripts', browsersync.reload]);
   gulp.watch(paths.index, ['inject-env']);
 }, { options: ENVOPTIONS });
