@@ -79,6 +79,8 @@
 
 
 		function wp(term,lang,type,deferred) {
+
+			console.log(";ASD;AD;",term,lang,type);
 	
 			if (type===undefined) type="exact";
 			if (!type) type="exact";
@@ -109,6 +111,8 @@
 				then(function(result){
 
 					var processed;
+
+					console.log(":::::::::::::::::",result);
 
 					for (var pageid in result.data.query.pages) {
 			

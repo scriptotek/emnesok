@@ -61,24 +61,25 @@
 			var translations = [];
 			var externals = [];
 			var output = {};
-	
+			
+			if (subject.data.prefLabel[lang]!==undefined) {
+				Externals.snl(subject.data.prefLabel[lang]).then(function(data) {
+					externals.push(data);
+					output.externals = externals;
+				});
 
-			Externals.snl(subject.data.prefLabel[displayLang]).then(function(data) {
-				externals.push(data);
-				output.externals = externals;
-			});
-
-			Externals.wp(subject.data.prefLabel[displayLang],displayLang).then(function(data) {
-				externals.push(data);
-				output.externals = externals;	
-			});
-
+				Externals.wp(subject.data.prefLabel[lang],lang).then(function(data) {
+					externals.push(data);
+					output.externals = externals;	
+				});
+			}
+			
 
 			if (!subject.data.prefLabel[lang]) {
 				displayLang = defaultLang;
 			}
 
-			if (subject.data.elementSymbol){
+			if (subject.data.elementSymbol && (lang=="nb" || lang=="nn")){
 
 				Externals.ps(subject.data.elementSymbol).then(function(data) {
 					externals.push(data);
