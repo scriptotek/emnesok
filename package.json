@@ -28,7 +28,8 @@
     "gulp-util": "^3.0.7",
     "jshint": "^2.8.0",
     "jshint-stylish": "^2.1.0",
-    "yargs": "^3.31.0"
+    "yargs": "^3.31.0",
+    "dotenv": "^1.2.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -46,5 +47,7 @@
     "url": "https://github.com/scriptotek/emnesok/issues"
   },
   "homepage": "https://github.com/scriptotek/emnesok#readme",
-  "dependencies": {}
+  "dependencies": {
+    "gulp-transifex": "^0.1.17"
+  }
 }

@@ -20,7 +20,14 @@ var historyApiFallback = require('connect-history-api-fallback');
 var templateCache = require('gulp-angular-templatecache');
 var minifyHtml = require('gulp-minify-html');
 var minifycss = require('gulp-minify-css');
+require('dotenv').load();
 
+var transifex = require('gulp-transifex').createClient({
+    user: process.env.TRANSIFEX_USERNAME,  // From .env
+    password: process.env.TRANSIFEX_PASSWORD,  // From .env
+    project: 'subject-search',
+    local_path: 'po'
+});
 
 /* Variables and paths
 ------------------------------------- */
@@ -208,7 +215,7 @@ gulp.task('pot', 'Extracts translatable strings into emnesok.pot', [], function 
     .pipe(gulp.dest('po/'));
 });
 
-gulp.task('translations', 'Builds javascript translation files from .po files', [], function () {
+gulp.task('translations', 'Builds javascript translation files from .po files', ['transifex-pull'], function () {
   return gulp.src('po/**/*.po')
     .pipe(gettext.compile({
       // options to pass to angular-gettext-tools...
@@ -218,6 +225,17 @@ gulp.task('translations', 'Builds javascript translation files from .po files', 
     .pipe(gulp.dest(paths.build + 'js'))
     // .pipe(size({showFiles:true, gzip:true, title: 'vendor-scripts'}))
     ;
+});
+
+
+gulp.task('transifex-push', 'Pushes the pot file to Transifex', [], function(){
+    return gulp.src('po/*.pot')
+        .pipe(transifex.pushResource());
+});
+
+gulp.task('transifex-pull', 'Pulls po files from Transifex', [], function(){
+    return gulp.src('po/*.pot')
+        .pipe(transifex.pullResource());
 });
 
 /* Cleaning
