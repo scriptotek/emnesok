@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Subject Search\n"
-"PO-Revision-Date: 2016-01-13 16:20+0000\n"
-"Last-Translator: Kyrre Traavik Låberg <k.t.laberg@ub.uio.no>\n"
+"PO-Revision-Date: 2016-01-14 10:43+0000\n"
+"Last-Translator: Dan Michael O. Heggø <danmichaelo@gmail.com>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/university-of-oslo-library/subject-search/language/nb/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -146,14 +146,14 @@ msgstr "Menneskerettigheter"
 
 #: home.html:21
 msgid "Humanities and social sciences"
-msgstr "Humaniora og samfunnsfag"
+msgstr "Humaniora og samfunnsvitenskap"
 
 #: home.html:22 vocabs/humord.html:5
 msgid ""
 "Humord is the best portal to the humanities and social sciences. The "
 "vocabulary also has a relatively large amount of interdisciplinary subject "
 "headings. This vocabulary has only Norwegian Bokmål terms."
-msgstr "Humord gir den beste inngangen til humaniora og samfunnsfag. Vokabularet har også en stor mengde tverrfaglige termer. Dette vokabularet har bare emneord på bokmål."
+msgstr "Humord gir den beste inngangen til humaniora og samfunnsvitenskap. Vokabularet har også en stor mengde tverrfaglige termer. Dette vokabularet har bare emneord på bokmål."
 
 #: home/subject.service.js:117
 msgid "KnuteTerm"
