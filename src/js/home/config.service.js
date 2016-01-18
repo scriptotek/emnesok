@@ -21,8 +21,10 @@
 					libraries: {
 						'1030310': {label: 'Realfagsbiblioteket VB'},
 						'1030317': {label: 'Informatikkbiblioteket'},
-						'1030500': {label: 'NHM'},
-						'1030300,1030303': {label: 'Humsam-biblioteket + Sophus Bugge'}
+						'1030500': {label: 'Naturhistorisk museum'},
+						'1030300,1030303': {label: 'Humsam-biblioteket + Sophus Bugge'},
+						'1030010': {label: 'Etnografisk bibliotek'},
+						'1030011': {label: 'Arkeologisk bibliotek'}
 					}
 				},
 				'UBB': {
