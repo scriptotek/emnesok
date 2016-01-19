@@ -228,7 +228,7 @@ gulp.task('translations', 'Builds javascript translation files from .po files', 
 });
 
 
-gulp.task('transifex-push', 'Pushes the pot file to Transifex', [], function(){
+gulp.task('transifex-push', 'Pushes the pot file to Transifex', ['pot'], function(){
     return gulp.src('po/*.pot')
         .pipe(transifex.pushResource());
 });

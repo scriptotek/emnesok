@@ -16,20 +16,16 @@ For a list of available Gulp tasks, run `gulp help`.
 
 ## Translation
 
-The application is translated [on Transifex](https://www.transifex.com/university-of-oslo-library/subject-search/), supported by [angular-gettext](https://github.com/rubenv/angular-gettext)
-and [angular-gulp-gettext](https://github.com/gabegorelick/gulp-angular-gettext).
+The application is translated [on Transifex](https://www.transifex.com/university-of-oslo-library/subject-search/), and the translation workflow is supported by [angular-gettext](https://github.com/rubenv/angular-gettext), [angular-gulp-gettext](https://github.com/gabegorelick/gulp-angular-gettext) and
+[gulp-transifex](https://github.com/NEURS/gulp-transifex).
 
-* Run `gulp pot` to extract translatable strings from
-  the application into the PO template file `po/emnesok.pot`.
-  Transifex will read the file from GitHub.
+* After source strings have been added or modified, run `gulp transifex-push` to
+  extract translatable strings from the application into the PO template file
+  `po/emnesok.pot` and push it to Transifex. For this to work, your Transifex
+  credentials must be stored in the `.env` file.
 
-* Translate on Transifex and download the translations as
-  PO files into the `po` folder. (TODO: Add Gulp task to
-  fetch translations automatically)
-
-* Run `gulp translations` to compile `build/js/translations.js`
-  from the PO files in the `po` folder. (Note: the task will also
-  be carried out by `gulp build`)
+* Running `gulp build` will call the `transifex-pull` task that saves the latest translations from Transifex
+  into the `po` folder, then the `translations` task that compiles these into the JavaScript file `build/js/translations.js`.
 
 ## Code style
 
