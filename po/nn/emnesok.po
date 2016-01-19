@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Subject Search\n"
-"PO-Revision-Date: 2016-01-13 16:20+0000\n"
-"Last-Translator: Kyrre Traavik Låberg <k.t.laberg@ub.uio.no>\n"
+"PO-Revision-Date: 2016-01-19 16:39+0000\n"
+"Last-Translator: Dan Michael O. Heggø <danmichaelo@gmail.com>\n"
 "Language-Team: Norwegian Nynorsk (http://www.transifex.com/university-of-oslo-library/subject-search/language/nn/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -69,13 +69,13 @@ msgstr "Tilgjengelig online"
 msgid "Broad"
 msgstr "Breitt"
 
+#: home/catalogue.js:160
+msgid "broad search"
+msgstr "breitt søk"
+
 #: subject.html:34
 msgid "Broader:"
 msgstr "Overordna:"
-
-#: catalogue.html:35
-msgid "Catalogue results"
-msgstr "Katalogresultat"
 
 #: subject.html:4
 msgid "Chemical element"
@@ -84,6 +84,10 @@ msgstr "Grunnstoff"
 #: home/search.js:37
 msgid "Containing"
 msgstr "Inneheld"
+
+#: catalogue.html:35
+msgid "Documents"
+msgstr "Dokument"
 
 #: home/search.js:37
 msgid "Ends with"
@@ -178,6 +182,10 @@ msgstr "Fleire utgåver"
 msgid "Narrow"
 msgstr "Snevert"
 
+#: home/catalogue.js:161
+msgid "narrow search"
+msgstr "snevert søk"
+
 #: subject.html:41
 msgid "Narrower:"
 msgstr "Underordna:"
@@ -238,7 +246,7 @@ msgstr "Trykt utgåve ved {{library}}."
 msgid "Privacy"
 msgstr "Personvern"
 
-#: subject.html:52
+#: subject.html:51
 msgid "Read more in {{external.name}}"
 msgstr "Les meir i {{external.name}}"
 
@@ -278,7 +286,7 @@ msgstr "Søk etter realfaglege termar. <em>Realfagstermar</em> er eit kontroller
 msgid "Search history"
 msgstr "Søkehistorikk"
 
-#: subject.html:53
+#: subject.html:52
 msgid "Search in {{external.name}}"
 msgstr "Søk i {{external.name}}"
 
@@ -344,6 +352,10 @@ msgid ""
 " provide a great entry to the SMR library collections."
 msgstr ""
 
+#: search.html:34
+msgid "The search went out in error:"
+msgstr "Søket gjekk ut i feil"
+
 #: about.html:7
 msgid ""
 "The Subject Search is <a href=\"https://github.com/scriptotek/emnesok\">open"
@@ -363,10 +375,6 @@ msgid ""
 " through <a href=\"https://github.com/scriptotek/lsm\">a locally developed "
 "middleware</a>."
 msgstr "Emnesøket er utvikla av UiO Realfagsbiblioteket. Søk i emneordtilfanget vert drivne av ein <a href=\"http://skosmos.org/\">Skosmos</a>-instans med data frå <a href=\"http://data.ub.uio.no\">data.ub.uio.no</a>, medan søk i bibliotekskatalogen vert drivne av <a href=\"https://developers.exlibrisgroup.com/primo/apis/webservices/xservices/search/briefsearch\">Primo</a> via <a href=\"https://github.com/scriptotek/lsm\">ein lokalt utvikla mellomvare</a>."
-
-#: search.html:34
-msgid "The search went out in error:"
-msgstr "Søket gjekk ut i feil"
 
 #: home/catalogue.js:167
 msgid "The subject was not found. It might have been deleted."
@@ -412,7 +420,7 @@ msgstr "Orsak, det oppsto ein serverfeil."
 msgid "Used for:"
 msgstr "Nytta for:"
 
-#: subject.html:59
+#: subject.html:58
 msgid "View concept in Skosmos"
 msgstr "Vis omgrep i Skosmos."
 
@@ -466,11 +474,3 @@ msgstr "Prøv gjerne å utvide søket til eit <a ui-sref=\"subject.search({broad
 #: catalogue.html:82
 msgid "You've reached the end, my friend!"
 msgstr "Du har nådd enden av lista. "
-
-#: home/catalogue.js:160
-msgid "broad search"
-msgstr "breitt søk"
-
-#: home/catalogue.js:161
-msgid "narrow search"
-msgstr "snevert søk"
