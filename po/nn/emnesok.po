@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Subject Search\n"
-"PO-Revision-Date: 2016-01-19 16:39+0000\n"
-"Last-Translator: Dan Michael O. Heggø <danmichaelo@gmail.com>\n"
+"PO-Revision-Date: 2016-01-21 09:46+0000\n"
+"Last-Translator: Mari Lundevall <lundevall@gmail.com>\n"
 "Language-Team: Norwegian Nynorsk (http://www.transifex.com/university-of-oslo-library/subject-search/language/nn/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -168,7 +168,7 @@ msgstr "knuteterm"
 msgid ""
 "Loaded {{ vm.last }} records so far, {{ vm.total_results - vm.last }} to go,"
 " hold on…"
-msgstr "{{vm.last}} poster er henta så langt, {{vm.total_results - vm.last}} står att, vi skunder oss sakte..."
+msgstr "{{vm.last}} poster er henta så langt, {{vm.total_results - vm.last}} står att, vi skundar oss sakte..."
 
 #: search.html:28
 msgid "Looking…"
@@ -216,7 +216,7 @@ msgid ""
 "selected vocabulary. <em>Broad</em> search will give you more results, "
 "matching subjects from other vocabularies or even keywords from a variety of"
 " sources, but sometimes at the expense of precision."
-msgstr "Så fort du er inne kan du velje mellom <em> breidt </em> og <em> snevert </em> søk. Med <em> snevert </em> søk vil du berre få relevante resultat nøye utvald av flinke bibliotekarar og fagfolk som har brukt det valde ordtilfanget. <em> Breitt </em> søk er ikkje like presist, men det gjev fleire resultat av di det også søker mot andre ordtilfang og frie nøkkelord frå ei rekke kjelder. "
+msgstr "Så fort du er inne kan du velje mellom <em> breitt </em> og <em> snevert </em> søk. Med <em> snevert </em> søk vil du berre få relevante resultat nøye utvald av flinke bibliotekarar og fagfolk som har brukt det valde ordtilfanget. <em> Breitt </em> søk er ikkje like presist, men det gjev fleire resultat av di det og søker mot andre ordtilfang og frie nøkkelord frå ei rekke kjelder. "
 
 #: catalogue-result.html:33
 msgid "One edition:"
@@ -270,7 +270,7 @@ msgid ""
 "multilingual vocabulary that can be searched in Bokmål, Nynorsk (translation"
 " in progress), English (translation in progress) and Latin (scientific "
 "names)."
-msgstr "Søk etter realfaglege omgrep. <em>Realfagstermar</em> er eit kontrollert ordtilfang som vert vedlikehaldt av realfagsbiblioteka ved UiO og UiB. Dette er den beste inngangen til samlingane våre. Realfagstermar er eit fleirspråkleg ordtilfang der du kan søke på både bokmål, nynorsk (omsetjing under utarbeiding), engelsk (omsetjing under utarbeiding) og latin (vitskapelege namn). "
+msgstr "Søk etter realfaglege omgrep. <em>Realfagstermar</em> er eit kontrollert ordtilfang som vert halde ved like av realfagsbiblioteka ved UiO og UiB. Dette er den beste inngangen til samlingane våre. Realfagstermar er eit fleirspråkleg ordtilfang der du kan søke på både bokmål, nynorsk (omsetjing under utarbeiding), engelsk (omsetjing under utarbeiding) og latin (vitskapelege namn). "
 
 #: home.html:17
 msgid ""
@@ -280,7 +280,7 @@ msgid ""
 "multilingual vocabulary that can be searched in Bokmål, Nynorsk (translation"
 " in progress), English (translation in progress) and Latin (scientific "
 "names)."
-msgstr "Søk etter realfaglege termar. <em>Realfagstermar</em> er eit kontrollert ordtilfang som vert vedlikehaldt av realfagsbiblioteka ved UiO og UiB. Dette er den beste inngangen til samlingane våre. Realfagstermar er eit fleirspråkleg ordtilfang der du kan søke på både bokmål, nynorsk (omsetjing under utarbeiding), engelsk (omsetjing under utarbeiding) og latin (vitskapelege namn). "
+msgstr "Søk etter realfaglege termar. <em>Realfagstermar</em> er eit kontrollert ordtilfang som vert halde ved like av realfagsbiblioteka ved UiO og UiB. Dette er den beste inngangen til samlingane våre. Realfagstermar er eit fleirspråkleg ordtilfang der du kan søke på både bokmål, nynorsk (omsetjing under utarbeiding), engelsk (omsetjing under utarbeiding) og latin (vitskapelege namn). "
 
 #: search.html:48
 msgid "Search history"
@@ -314,7 +314,7 @@ msgstr ""
 #: home/catalogue.js:66
 msgid ""
 "Sorry, the subject \"{{subject}}\" was not found in the current vocabulary."
-msgstr "Orsak,, emnet «{{subject}}» vart ikkje funne i dette ordtilfanget."
+msgstr "Orsak, emnet «{{subject}}» vart ikkje funne i dette ordtilfanget."
 
 #: home/search.js:37
 msgid "Starting with"
@@ -406,7 +406,7 @@ msgstr "Dette er eit emne frå eit anna ordtilfang. Det er ikkje sikkert det fin
 msgid ""
 "This is most likely an ebook we don't have access to, but you can still "
 "request it."
-msgstr "Dette er truleg ei ebok vi ikkje har tilgang til, men du kan framleis forsøke å bestelle ho."
+msgstr "Dette er truleg ei ebok vi ikkje har tilgang til, men du kan framleis forsøke å bestille ho."
 
 #: home/subject.service.js:121
 msgid "Topic"
