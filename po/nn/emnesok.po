@@ -1,13 +1,13 @@
 # 
 # Translators:
 # Dan Michael O. Heggø <danmichaelo@gmail.com>, 2015-2016
-# Eva Holthe Enoksen <e.h.enoksen@ub.uio.no>, 2015
+# Eva Holthe Enoksen <e.h.enoksen@ub.uio.no>, 2015-2016
 # Kyrre Traavik Låberg <k.t.laberg@ub.uio.no>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Subject Search\n"
-"PO-Revision-Date: 2016-01-21 09:46+0000\n"
-"Last-Translator: Mari Lundevall <lundevall@gmail.com>\n"
+"PO-Revision-Date: 2016-02-09 12:47+0000\n"
+"Last-Translator: Eva Holthe Enoksen <e.h.enoksen@ub.uio.no>\n"
 "Language-Team: Norwegian Nynorsk (http://www.transifex.com/university-of-oslo-library/subject-search/language/nn/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -18,21 +18,21 @@ msgstr ""
 msgid ""
 "<a href=\"http://www.bibsys.no/files/out/humord/\" target=\"external\">Learn"
 " more about the vocabulary</a>"
-msgstr "<a href=\"http://www.bibsys.no/files/out/humord/\" target=\"external\">Lær mer om ordtilfanget</a>"
+msgstr "<a href=\"http://www.bibsys.no/files/out/humord/\" target=\"external\">Lær meir om ordtilfanget</a>"
 
 #: vocabs/realfagstermer.html:12
 msgid ""
 "<a href=\"http://www.ub.uio.no/english/about/services/subject-search"
 "/science-subject-terms.html\" target=\"external\">Learn more about the "
 "vocabulary</a>"
-msgstr "<a href=\"http://www.ub.uio.no/om/tjenester/emneord/realfagstermer.html\" target=\"external\">Lær mer om ordtilfanget</a>"
+msgstr "<a href=\"http://www.ub.uio.no/om/tjenester/emneord/realfagstermer.html\" target=\"external\">Lær meir om ordtilfanget</a>"
 
 #: vocabs/mrtermer.html:12
 msgid ""
 "<a "
 "href=\"https://www.ub.uio.no/om/tjenester/emneord/menneskerettighetstermer.html\""
 " target=\"external\">Learn more about the vocabulary</a>"
-msgstr "<a href=\"https://www.ub.uio.no/om/tjenester/emneord/menneskerettighetstermer.html\" target=\"external\">Lær mer om ordtilfanget</a>"
+msgstr "<a href=\"https://www.ub.uio.no/om/tjenester/emneord/menneskerettighetstermer.html\" target=\"external\">Lær meir om ordtilfanget</a>"
 
 #: about.html:2 header.html:24
 msgid "About"
@@ -59,7 +59,7 @@ msgid ""
 "As an experiment we've disabled all GA cookies. While we need some "
 "statistics on visits and usage, we believe that tracking <em>users</em> is "
 "not really needed for this tool. Users tracking also has a lot of flaws."
-msgstr ""
+msgstr "Som eit eksperiment har vi slått av GA informasjonskapslar. Trass i at vi treng statistikk for vitjingar og bruk meiner vi ikkje at det er naudsynt å spore <em>brukarar</em> av dette verktøyet. Brukarsporing har i tillegg mange manglar."
 
 #: home/catalogue.js:258
 msgid "Available online"
@@ -115,13 +115,13 @@ msgid ""
 "we were persuaded into using Google Analytics which is pervasive at the "
 "university. Note that two extra steps have been taken to protect your "
 "privacy:"
-msgstr ""
+msgstr "For statistikk planla vi opphaveleg å bruke open kjeldekode-verktøyet Piwik, men vi vart overtalde til å bruke Google Analytics, som er gjennomgripande på universitetet. Merk at to ekstra tiltak er sette i verk av omsyn til personvernet ditt."
 
 #: about.html:10
 msgid ""
 "For information about the subject vocabularies, see the <a ui-"
 "sref=\"home({lang: vm.lang})\">start page</a>."
-msgstr ""
+msgstr "For informasjon om ordtilfanga, gå til <a ui-sref=\"home({lang: vm.lang})\">heimesida</a>."
 
 #: catalogue.html:70
 msgid "Found one document about this topic using {{vm.searchType}}."
@@ -309,7 +309,7 @@ msgid ""
 "So far we're not using cookies or localStorage at all. If we introduce login"
 " or user preferences in the future, we will need storage, but we will always"
 " limit usage to a minimum."
-msgstr ""
+msgstr "Enn så lenge nyttar vi ikkje informasjonskapslar eller lokal lagring i det heile. Viss vi ein gong i framtida kjem til å introdusere innlogging eller brukarinnstillingar vil vi trenge lagring, men vi vil alltid avgrense det til eit minimum."
 
 #: home/catalogue.js:66
 msgid ""
@@ -350,7 +350,7 @@ msgid ""
 "Canada. In the late 1990s it was adopted by the Norwegian Centre for Human "
 "Rights (SMR), who has since adjusted and expanded the vocabulary in order to"
 " provide a great entry to the SMR library collections."
-msgstr ""
+msgstr "Menneskerettsordtilfanget vart opphaveleg utvikla i 1991 av Human Rights Research and Education Centre ved Universitetet i Ottawa, Canada. På slutten av 1990-talet vart det teke i bruk av Norsk senter for menneskerettigheter (SMR), som sidan har utvikla og utvida vokabularet for å gjere det til ein god inngangsport til boksamlinga til SMR."
 
 #: search.html:34
 msgid "The search went out in error:"
@@ -426,7 +426,7 @@ msgstr "Vis omgrep i Skosmos."
 
 #: about.html:20
 msgid "We use https to ensure anonymous searching."
-msgstr ""
+msgstr "Vi nyttar https for å sikre anonyme søk."
 
 #: about.html:28
 msgid ""
@@ -434,7 +434,7 @@ msgid ""
 "href=\"https://github.com/unioslo/ipproxy\">ipproxy</a>, which masks the "
 "last part of your IP address, meaning that your full IP address is never "
 "sent to any third party (Google)."
-msgstr ""
+msgstr "Vi sender all data gjennom <a href=\"https://github.com/unioslo/ipproxy\">ipproxy</a>, som maskerer siste delen av IP-adressa di. Det betyr at ingen tredjepart (Google) kan sjå heile IP-adressa di. "
 
 #: home.html:5
 msgid ""
@@ -463,7 +463,7 @@ msgstr "Ja, vi har eit eige emneordtilfang berre for terminologi knytta til menn
 msgid ""
 "You could try expanding the search to <a ui-"
 "sref=\"subject.search({library:null})\">all libraries</a>."
-msgstr ""
+msgstr "Prøv gjerne å utvide søket til <a ui-sref=\"subject.search({library:null})\">alle bibliotek</a>."
 
 #: catalogue.html:43
 msgid ""
