@@ -1,3 +1,5 @@
+[![Dependency Status](https://www.versioneye.com/php/scriptotek:emnesok/dev-master/badge.svg)](https://www.versioneye.com/php/scriptotek:emnesok/dev-master)
+
 # UiO Library Subject Search
 
 Frontend for subject search against the vocabularies
