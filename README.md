@@ -1,4 +1,4 @@
-[![Dependency Status](https://www.versioneye.com/php/scriptotek:emnesok/dev-master/badge.svg)](https://www.versioneye.com/php/scriptotek:emnesok/dev-master)
+[![Dependency Status](https://www.versioneye.com/user/projects/56dd2251309a580038b000de/badge.svg?style=flat)](https://www.versioneye.com/user/projects/56dd2251309a580038b000de)
 
 # UiO Library Subject Search
 
