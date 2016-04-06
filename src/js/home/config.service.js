@@ -73,9 +73,9 @@
 				}
 			},
 			skosmos: {
-				vocabularyStatisticsUrl: 'https://skosmos.biblionaut.net/rest/v1/{vocab}/vocabularyStatistics',
-				dataUrl: 'https://skosmos.biblionaut.net/rest/v1/data?uri={uri}',
-				searchUrl: 'https://skosmos.biblionaut.net/rest/v1/search'
+				vocabularyStatisticsUrl: 'https://data.ub.uio.no/skosmos/rest/v1/{vocab}/vocabularyStatistics',
+				dataUrl: 'https://data.ub.uio.no/skosmos/rest/v1/data?uri={uri}',
+				searchUrl: 'https://data.ub.uio.no/skosmos/rest/v1/search'
 			},
 			catalogue: {
 				searchUrl: 'https://scs.biblionaut.net/primo/search',
