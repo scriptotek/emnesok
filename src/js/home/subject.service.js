@@ -101,15 +101,15 @@
 		}
 
 		function preferredRdfType(arr) {
-			if (arr.indexOf('http://www.loc.gov/mads/rdf/v1#Geographic') !== -1) {
+			if (arr.indexOf('http://data.ub.uio.no/onto#Place') !== -1) {
 				gettext('Geographic');
 				return 'Geographic';
 			}
-			if (arr.indexOf('http://www.loc.gov/mads/rdf/v1#Temporal') !== -1) {
+			if (arr.indexOf('http://data.ub.uio.no/onto#Time') !== -1) {
 				gettext('Temporal');
 				return 'Temporal';
 			}
-			if (arr.indexOf('http://www.loc.gov/mads/rdf/v1#GenreForm') !== -1) {
+			if (arr.indexOf('http://data.ub.uio.no/onto#GenreForm') !== -1) {
 				gettext('GenreForm');
 				return 'GenreForm';
 			}
