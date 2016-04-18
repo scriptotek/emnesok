@@ -111,13 +111,13 @@
 				var searchListIcon=""; 
 				// Add Geographics/Temporal/GenreForm to list
 				for (var i=0; i<value.type.length; i++) {
-					var str = value.type[i].split(":")[1];
+					var str = value.type[i].split("#")[1];
 
-					if (str=="Geographic") {
+					if (str=="Place") {
 						searchListIcon ="<span><i class=\"glyphicon glyphicon-map-marker\"></i><em> "+gettextCatalog.getString(str)+"</em></span>";
 						break;
 					}
-					else if (str=="Temporal") {
+					else if (str=="Time") {
 						searchListIcon ="<span><i class=\"glyphicon glyphicon-time\"></i><em> "+gettextCatalog.getString(str)+"</em></span>";
 						break;	
 					}
