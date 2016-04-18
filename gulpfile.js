@@ -20,6 +20,7 @@ var historyApiFallback = require('connect-history-api-fallback');
 var templateCache = require('gulp-angular-templatecache');
 var minifyHtml = require('gulp-minify-html');
 var minifycss = require('gulp-minify-css');
+var cachebust = require('gulp-cache-bust');
 require('dotenv').load();
 
 var transifex = require('gulp-transifex').createClient({
@@ -87,6 +88,9 @@ gulp.task('inject-env', 'Inject environment into index.html', [], function () {
     .pipe(replace('<%GA_URL%>', gaUrl))
     .pipe(replace('<%GA_IPP%>', gaIpp))
     .pipe(replace('<%GA_ID%>', gaId))
+    .pipe(cachebust({
+                type: 'timestamp'
+            }))
     .pipe(minifyHtml({
       conditionals: true,
       spare:true
