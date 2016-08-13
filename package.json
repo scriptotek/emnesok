@@ -6,7 +6,7 @@
   "devDependencies": {
     "browser-sync": "^2.10.0",
     "connect-history-api-fallback": "^1.1.0",
-    "del": "^2.2.0",
+    "del": "^2.2.2",
     "dotenv": "^1.2.0",
     "gulp": "^3.9.0",
     "gulp-angular-gettext": "^2.1.0",
