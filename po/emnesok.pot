@@ -9,7 +9,7 @@ msgid "<a href=\"http://www.bibsys.no/files/out/humord/\" target=\"external\">Le
 msgstr ""
 
 #: vocabs/realfagstermer.html:12
-msgid "<a href=\"http://www.ub.uio.no/english/about/services/subject-search/science-subject-terms.html\" target=\"external\">Learn more about the vocabulary</a>"
+msgid "<a href=\"https://www.ub.uio.no/english/using/search-the-library/subject-search-terms/science-subject-terms.html\">Learn more about the vocabulary</a>"
 msgstr ""
 
 #: vocabs/mrtermer.html:12

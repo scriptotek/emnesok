@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Subject Search\n"
-"PO-Revision-Date: 2016-02-09 12:47+0000\n"
-"Last-Translator: Eva Holthe Enoksen <e.h.enoksen@ub.uio.no>\n"
+"PO-Revision-Date: 2016-10-10 14:51+0000\n"
+"Last-Translator: Dan Michael O. Heggø <danmichaelo@gmail.com>\n"
 "Language-Team: Norwegian Nynorsk (http://www.transifex.com/university-of-oslo-library/subject-search/language/nn/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -22,10 +22,10 @@ msgstr "<a href=\"http://www.bibsys.no/files/out/humord/\" target=\"external\">L
 
 #: vocabs/realfagstermer.html:12
 msgid ""
-"<a href=\"http://www.ub.uio.no/english/about/services/subject-search"
-"/science-subject-terms.html\" target=\"external\">Learn more about the "
+"<a href=\"https://www.ub.uio.no/english/using/search-the-library/subject-"
+"search-terms/science-subject-terms.html\">Learn more about the "
 "vocabulary</a>"
-msgstr "<a href=\"http://www.ub.uio.no/om/tjenester/emneord/realfagstermer.html\" target=\"external\">Lær meir om ordtilfanget</a>"
+msgstr "<a href=\"https://www.ub.uio.no/bruk/sok-i-hele-biblioteket/beskrivelser-av-termer/realfagstermer.html\" target=\"external\">Lær meir om ordtilfanget</a>"
 
 #: vocabs/mrtermer.html:12
 msgid ""
