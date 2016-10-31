@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Subject Search\n"
-"PO-Revision-Date: 2016-10-10 14:51+0000\n"
+"PO-Revision-Date: 2016-10-31 18:28+0000\n"
 "Last-Translator: Dan Michael O. Heggø <danmichaelo@gmail.com>\n"
 "Language-Team: Norwegian Nynorsk (http://www.transifex.com/university-of-oslo-library/subject-search/language/nn/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -61,17 +61,13 @@ msgid ""
 "not really needed for this tool. Users tracking also has a lot of flaws."
 msgstr "Som eit eksperiment har vi slått av GA informasjonskapslar. Trass i at vi treng statistikk for vitjingar og bruk meiner vi ikkje at det er naudsynt å spore <em>brukarar</em> av dette verktøyet. Brukarsporing har i tillegg mange manglar."
 
-#: home/catalogue.js:258
+#: home/catalogue.js:262
 msgid "Available online"
 msgstr "Tilgjengelig online"
 
 #: catalogue.html:8
 msgid "Broad"
 msgstr "Breitt"
-
-#: home/catalogue.js:160
-msgid "broad search"
-msgstr "breitt søk"
 
 #: subject.html:34
 msgid "Broader:"
@@ -105,7 +101,7 @@ msgstr "Eksakt lik"
 msgid "Failed to fetch list of editions."
 msgstr "Klarte ikkje å hente liste over utgåver"
 
-#: catalogue-result.html:29
+#: catalogue-result.html:31
 msgid "Fetching more editions…"
 msgstr "Hentar fleire utgåver..."
 
@@ -131,11 +127,11 @@ msgid_plural ""
 msgstr[0] "Fann eit dokument om dette emnet med {{vm.searchType}}."
 msgstr[1] "Fann {{vm.total_results}} dokument om dette emnet med {{vm.searchType}}."
 
-#: catalogue-result.html:84 home/subject.service.js:113
+#: catalogue-result.html:85 home/subject.service.js:113
 msgid "GenreForm"
 msgstr "Sjanger/form"
 
-#: catalogue-result.html:79 home/subject.service.js:105
+#: catalogue-result.html:80 home/subject.service.js:105
 msgid "Geographic"
 msgstr "Stad"
 
@@ -174,17 +170,13 @@ msgstr "{{vm.last}} poster er henta så langt, {{vm.total_results - vm.last}} st
 msgid "Looking…"
 msgstr "Leitar..."
 
-#: catalogue-result.html:28
-msgid "More editions"
+#: catalogue-result.html:30
+msgid "Multiple editions"
 msgstr "Fleire utgåver"
 
 #: catalogue.html:9
 msgid "Narrow"
 msgstr "Snevert"
-
-#: home/catalogue.js:161
-msgid "narrow search"
-msgstr "snevert søk"
 
 #: subject.html:41
 msgid "Narrower:"
@@ -218,27 +210,27 @@ msgid ""
 " sources, but sometimes at the expense of precision."
 msgstr "Så fort du er inne kan du velje mellom <em> breitt </em> og <em> snevert </em> søk. Med <em> snevert </em> søk vil du berre få relevante resultat nøye utvald av flinke bibliotekarar og fagfolk som har brukt det valde ordtilfanget. <em> Breitt </em> søk er ikkje like presist, men det gjev fleire resultat av di det og søker mot andre ordtilfang og frie nøkkelord frå ei rekke kjelder. "
 
-#: catalogue-result.html:33
+#: catalogue-result.html:35
 msgid "One edition:"
 msgid_plural "{{$count}} editions:"
 msgstr[0] "Ei utgåve:"
 msgstr[1] "{{$count}} utgåver:"
 
-#: home/catalogue.js:248
+#: home/catalogue.js:252
 msgid "Print copy at {{institutions}} and {{count}} more libraries."
 msgstr "Trykt utgåve ved {{institutions}} og {{count}} andre bibliotek."
 
-#: home/catalogue.js:242
+#: home/catalogue.js:246
 msgid "Print copy at {{institutions}} and {{lastInstitution}}."
 msgstr "Trykt utgåve ved {{institutions}} og {{lastInstitution}}."
 
-#: home/catalogue.js:223
+#: home/catalogue.js:227
 msgid "Print copy at {{library}} and one other library."
 msgid_plural "Print copy at {{library}} and {{$count}} other libraries."
 msgstr[0] "Trykt utgåve ved {{library}} og eit anna bibliotek."
 msgstr[1] "Trykt utgåve ved {{library}} og {{$count}} andre bibliotek."
 
-#: home/catalogue.js:230 home/catalogue.js:236
+#: home/catalogue.js:234 home/catalogue.js:240
 msgid "Print copy at {{library}}."
 msgstr "Trykt utgåve ved {{library}}."
 
@@ -294,7 +286,7 @@ msgstr "Søk i {{external.name}}"
 msgid "See also:"
 msgstr "Sjå også:"
 
-#: catalogue-result.html:21
+#: catalogue-result.html:23
 msgid "Series"
 msgstr "Serie"
 
@@ -352,10 +344,6 @@ msgid ""
 " provide a great entry to the SMR library collections."
 msgstr "Menneskerettsordtilfanget vart opphaveleg utvikla i 1991 av Human Rights Research and Education Centre ved Universitetet i Ottawa, Canada. På slutten av 1990-talet vart det teke i bruk av Norsk senter for menneskerettigheter (SMR), som sidan har utvikla og utvida vokabularet for å gjere det til ein god inngangsport til boksamlinga til SMR."
 
-#: search.html:34
-msgid "The search went out in error:"
-msgstr "Søket gjekk ut i feil"
-
 #: about.html:7
 msgid ""
 "The Subject Search is <a href=\"https://github.com/scriptotek/emnesok\">open"
@@ -375,6 +363,10 @@ msgid ""
 " through <a href=\"https://github.com/scriptotek/lsm\">a locally developed "
 "middleware</a>."
 msgstr "Emnesøket er utvikla av UiO Realfagsbiblioteket. Søk i emneordtilfanget vert drivne av ein <a href=\"http://skosmos.org/\">Skosmos</a>-instans med data frå <a href=\"http://data.ub.uio.no\">data.ub.uio.no</a>, medan søk i bibliotekskatalogen vert drivne av <a href=\"https://developers.exlibrisgroup.com/primo/apis/webservices/xservices/search/briefsearch\">Primo</a> via <a href=\"https://github.com/scriptotek/lsm\">ein lokalt utvikla mellomvare</a>."
+
+#: search.html:34
+msgid "The search went out in error:"
+msgstr "Søket gjekk ut i feil"
 
 #: home/catalogue.js:167
 msgid "The subject was not found. It might have been deleted."
@@ -396,13 +388,13 @@ msgstr "Vokabularet inneheld {{ vm.topicCount }} emne."
 msgid "Third party licenses"
 msgstr "Tredjepartslisensar"
 
-#: catalogue-result.html:74
+#: catalogue-result.html:75
 msgid ""
 "This is a subject from another vocabulary. It might not exist in the current"
 " vocabulary."
 msgstr "Dette er eit emne frå eit anna ordtilfang. Det er ikkje sikkert det finns i det aktive ordtilfanget."
 
-#: catalogue-result.html:60
+#: catalogue-result.html:61
 msgid ""
 "This is most likely an ebook we don't have access to, but you can still "
 "request it."
@@ -412,7 +404,7 @@ msgstr "Dette er truleg ei ebok vi ikkje har tilgang til, men du kan framleis fo
 msgid "Topic"
 msgstr "Emne"
 
-#: home/catalogue.js:388
+#: home/catalogue.js:393
 msgid "Uh oh, some kind of server error occured."
 msgstr "Orsak, det oppsto ein serverfeil."
 
@@ -444,14 +436,6 @@ msgid ""
 "we would like to support in the future."
 msgstr "Velkomen til emnesøket vårt. Start med å velje eit emneordtilfang frå lista under. Eit emneordtilfang er eit kontrollert sett av emneord. Søk i alle ordtilfanga samstundes er førebels ikkje støtta, men vi vonar det skal vere mogleg i framtida. "
 
-#: header.html:47
-msgid ""
-"Welcome to the new Subject Search beta. Head over <a "
-"href=\"https://github.com/scriptotek/emnesok/issues\">to GitHub</a> if you "
-"want to peek into the current state of development, report a problem or "
-"suggest an idea."
-msgstr "Velkommen til beta-utgåva av det nye emnesøket. Du kan følgje med på utviklinga <a href=\"https://github.com/scriptotek/emnesok/issues\">på GitHub</a>.  Der kan du også melde frå om feil og føreslå utbetringar."
-
 #: home.html:32
 msgid ""
 "Yes, we have a controlled subject vocabulary just for human rights terms! "
@@ -474,3 +458,11 @@ msgstr "Prøv gjerne å utvide søket til eit <a ui-sref=\"subject.search({broad
 #: catalogue.html:82
 msgid "You've reached the end, my friend!"
 msgstr "Du har nådd enden av lista. "
+
+#: home/catalogue.js:160
+msgid "broad search"
+msgstr "breitt søk"
+
+#: home/catalogue.js:161
+msgid "narrow search"
+msgstr "snevert søk"

@@ -41,16 +41,12 @@ msgstr ""
 msgid "As an experiment we've disabled all GA cookies. While we need some statistics on visits and usage, we believe that tracking <em>users</em> is not really needed for this tool. Users tracking also has a lot of flaws."
 msgstr ""
 
-#: home/catalogue.js:258
+#: home/catalogue.js:262
 msgid "Available online"
 msgstr ""
 
 #: catalogue.html:8
 msgid "Broad"
-msgstr ""
-
-#: home/catalogue.js:160
-msgid "broad search"
 msgstr ""
 
 #: subject.html:34
@@ -85,7 +81,7 @@ msgstr ""
 msgid "Failed to fetch list of editions."
 msgstr ""
 
-#: catalogue-result.html:29
+#: catalogue-result.html:31
 msgid "Fetching more editions…"
 msgstr ""
 
@@ -103,12 +99,12 @@ msgid_plural "Found {{vm.total_results}} documents about this topic using {{vm.s
 msgstr[0] ""
 msgstr[1] ""
 
-#: catalogue-result.html:84
+#: catalogue-result.html:85
 #: home/subject.service.js:113
 msgid "GenreForm"
 msgstr ""
 
-#: catalogue-result.html:79
+#: catalogue-result.html:80
 #: home/subject.service.js:105
 msgid "Geographic"
 msgstr ""
@@ -142,16 +138,12 @@ msgstr ""
 msgid "Looking…"
 msgstr ""
 
-#: catalogue-result.html:28
-msgid "More editions"
+#: catalogue-result.html:30
+msgid "Multiple editions"
 msgstr ""
 
 #: catalogue.html:9
 msgid "Narrow"
-msgstr ""
-
-#: home/catalogue.js:161
-msgid "narrow search"
 msgstr ""
 
 #: subject.html:41
@@ -178,28 +170,28 @@ msgstr ""
 msgid "Once in, you can toggle between <em>broad</em> and <em>narrow</em> search. With <em>narrow</em> search, you will only get highly relevant results carefully indexed by skilled librarians and subject specialists using the selected vocabulary. <em>Broad</em> search will give you more results, matching subjects from other vocabularies or even keywords from a variety of sources, but sometimes at the expense of precision."
 msgstr ""
 
-#: catalogue-result.html:33
+#: catalogue-result.html:35
 msgid "One edition:"
 msgid_plural "{{$count}} editions:"
 msgstr[0] ""
 msgstr[1] ""
 
-#: home/catalogue.js:248
+#: home/catalogue.js:252
 msgid "Print copy at {{institutions}} and {{count}} more libraries."
 msgstr ""
 
-#: home/catalogue.js:242
+#: home/catalogue.js:246
 msgid "Print copy at {{institutions}} and {{lastInstitution}}."
 msgstr ""
 
-#: home/catalogue.js:223
+#: home/catalogue.js:227
 msgid "Print copy at {{library}} and one other library."
 msgid_plural "Print copy at {{library}} and {{$count}} other libraries."
 msgstr[0] ""
 msgstr[1] ""
 
-#: home/catalogue.js:230
-#: home/catalogue.js:236
+#: home/catalogue.js:234
+#: home/catalogue.js:240
 msgid "Print copy at {{library}}."
 msgstr ""
 
@@ -243,7 +235,7 @@ msgstr ""
 msgid "See also:"
 msgstr ""
 
-#: catalogue-result.html:21
+#: catalogue-result.html:23
 msgid "Series"
 msgstr ""
 
@@ -289,16 +281,16 @@ msgstr ""
 msgid "The Human Rights Terms vocabulary was initially developed in 1991 by the Human Rights Research and Education Centre of the University of Ottawa, Canada. In the late 1990s it was adopted by the Norwegian Centre for Human Rights (SMR), who has since adjusted and expanded the vocabulary in order to provide a great entry to the SMR library collections."
 msgstr ""
 
-#: search.html:34
-msgid "The search went out in error:"
-msgstr ""
-
 #: about.html:7
 msgid "The Subject Search is <a href=\"https://github.com/scriptotek/emnesok\">open source</a> and licensed under the <a href=\"https://github.com/scriptotek/emnesok/blob/master/LICENSE\">MIT license</a>."
 msgstr ""
 
 #: about.html:4
 msgid "The Subject Search is developed by the University of Oslo Science Library. Vocabulary search and retrieval is powered by a <a href=\"http://skosmos.org/\">Skosmos</a> instance using data from <a href=\"http://data.ub.uio.no\">data.ub.uio.no</a>, while library catalogue search and retrieval is powered by <a href=\"https://developers.exlibrisgroup.com/primo/apis/webservices/xservices/search/briefsearch\">Primo</a> through <a href=\"https://github.com/scriptotek/lsm\">a locally developed middleware</a>."
+msgstr ""
+
+#: search.html:34
+msgid "The search went out in error:"
 msgstr ""
 
 #: home/catalogue.js:167
@@ -319,11 +311,11 @@ msgstr ""
 msgid "Third party licenses"
 msgstr ""
 
-#: catalogue-result.html:74
+#: catalogue-result.html:75
 msgid "This is a subject from another vocabulary. It might not exist in the current vocabulary."
 msgstr ""
 
-#: catalogue-result.html:60
+#: catalogue-result.html:61
 msgid "This is most likely an ebook we don't have access to, but you can still request it."
 msgstr ""
 
@@ -331,7 +323,7 @@ msgstr ""
 msgid "Topic"
 msgstr ""
 
-#: home/catalogue.js:388
+#: home/catalogue.js:393
 msgid "Uh oh, some kind of server error occured."
 msgstr ""
 
@@ -356,10 +348,6 @@ msgstr ""
 msgid "Welcome to our subject search. Start by choosing a vocabulary from the list below. A vocabulary is a controlled set of subjects. Searching all vocabularies at the same time isn't yet supported, but definitely something we would like to support in the future."
 msgstr ""
 
-#: header.html:47
-msgid "Welcome to the new Subject Search beta. Head over <a href=\"https://github.com/scriptotek/emnesok/issues\">to GitHub</a> if you want to peek into the current state of development, report a problem or suggest an idea."
-msgstr ""
-
 #: home.html:32
 msgid "Yes, we have a controlled subject vocabulary just for human rights terms! Developed and maintained by the Norwegian Centre for Human Rights’ (SMR), the vocabulary has only English terms."
 msgstr ""
@@ -374,4 +362,12 @@ msgstr ""
 
 #: catalogue.html:82
 msgid "You've reached the end, my friend!"
+msgstr ""
+
+#: home/catalogue.js:160
+msgid "broad search"
+msgstr ""
+
+#: home/catalogue.js:161
+msgid "narrow search"
 msgstr ""
