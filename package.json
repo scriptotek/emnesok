@@ -29,7 +29,7 @@
     "gulp-useref": "^3.0.4",
     "gulp-util": "^3.0.7",
     "jshint": "^2.8.0",
-    "jshint-stylish": "^2.1.0",
+    "jshint-stylish": "^2.2.1",
     "yargs": "^3.31.0"
   },
   "scripts": {
