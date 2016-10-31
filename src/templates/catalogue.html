@@ -13,7 +13,7 @@
 	        <button id="simple-btn-keyboard-nav" type="button" class="btn btn-default" uib-dropdown-toggle>
 	            {{ vm.selectedInstitution ? vm.institutions[vm.selectedInstitution].label : 'All libraries' | translate }} <span class="caret"></span>
 	        </button>
-	        <ul class="uib-dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="simple-btn-keyboard-nav">
+	        <ul uib-dropdown-menu class="dropdown-menu-right" role="menu" aria-labelledby="simple-btn-keyboard-nav">
 	            <li role="menuitem"><a href ng-click="vm.selectInstitution(null)" translate>All libraries</a></li>
 	            <li class="divider"></li>
 	            <li role="menuitem" ng-repeat="(key, val) in vm.institutions"><a href ng-click="vm.selectInstitution(key)">{{ val.label }}</a></li>
@@ -24,7 +24,7 @@
 	        <button id="simple-btn-keyboard-nav2" type="button" class="btn btn-default" uib-dropdown-toggle>
 	            {{ vm.selectedLibrary ? vm.institutions[vm.selectedInstitution].libraries[vm.selectedLibrary].label : 'All branches' | translate }} <span class="caret"></span>
 	        </button>
-	        <ul class="uib-dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="simple-btn-keyboard-nav2">
+	        <ul uib-dropdown-menu class="dropdown-menu-right" role="menu" aria-labelledby="simple-btn-keyboard-nav2">
 	            <li role="menuitem"><a href ng-click="vm.selectLibrary(null)" translate>All branches</a></li>
 	            <li class="divider"></li>
 	            <li role="menuitem" ng-repeat="(key, val) in vm.institutions[vm.selectedInstitution].libraries"><a href ng-click="vm.selectLibrary(key)">{{ val.label }}</a></li>

@@ -48,6 +48,22 @@
   },
   "homepage": "https://github.com/scriptotek/emnesok#readme",
   "dependencies": {
-    "gulp-transifex": "^0.1.17"
+    "angucomplete-alt": "~2.5.0",
+    "angular": "~1.4.8",
+    "angular-animate": "~1.4.8",
+    "angular-gettext": "~2.3.8",
+    "angular-jsonld": "~0.2.0",
+    "angular-loading-bar": "~0.9.0",
+    "angular-sanitize": "~1.4.8",
+    "angular-touch": "~1.4.8",
+    "angular-ui-bootstrap": "~2.2.0",
+    "angular-ui-router": "~0.3.1",
+    "angulartics": "~1.3.0",
+    "angulartics-google-analytics": "~0.3.0",
+    "bootstrap": "~3.3.7",
+    "jsonld": "~0.4.11",
+    "lodash": "~2.4.2",
+    "ng-toast": "~2.0.0",
+    "restangular": "~1.5.2"
   }
 }

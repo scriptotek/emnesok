@@ -29,7 +29,7 @@
             {{ vm.languageLabels[vm.lang] }} <span class="caret"></span>
           </a>
 
-          <ul class="uib-dropdown-menu" role="menu" aria-labelledby="language-dropdown-button">
+          <ul uib-dropdown-menu role="menu" aria-labelledby="language-dropdown-button">
             <li role="menuitem" ng-repeat="lang in vm.languages"><a href ng-click="vm.setLanguage(lang)">{{ vm.languageLabels[lang] }}</a></li>
           </ul>
 
