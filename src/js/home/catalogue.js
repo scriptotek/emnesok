@@ -189,7 +189,7 @@
 
             var bs = gettext('broad search');
             var ns = gettext('narrow search');
-            vm.broadSearch = ($stateParams.broad === undefined) ? true : ($stateParams.broad == 'true');
+            vm.broadSearch = ($stateParams.broad === undefined) ? false : ($stateParams.broad == 'true');
             vm.searchType = vm.broadSearch ? gettextCatalog.getString(bs) : gettextCatalog.getString(ns);
 
             if (!subject) {
