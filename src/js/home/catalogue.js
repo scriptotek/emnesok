@@ -192,18 +192,18 @@
             });
         }
 
-        function simplifyAvailability(subject) {
+        function simplifyAvailability(record) {
             var availability = '';
             // @TODO: Show libraries if vm.selectedInstitution
 
-            subject.availability = {};
+            record.availability = {};
 
             var myInstitution = vm.selectedInstitution || 'UBO';  // @TODO: Default based on IP address
 
             // Print availability
             var printInstitutions = [];
             var electronic = [];
-            subject.components.forEach(function(component) {
+            record.components.forEach(function(component) {
                 if (component.holdings) {
                     component.holdings.forEach(function(holding) {
                         var library = holding.library.replace(/[0-9]+/, '');
@@ -250,15 +250,15 @@
                         count: printInstitutions.length - 3
                     });
                 }
-                subject.availability.print = printInstitutionsStr;
+                record.availability.print = printInstitutionsStr;
             }
 
             // Electronic availability
-            if (subject.urls.length > 0) {
+            if (record.urls.length > 0) {
                 gettext('Available online');
-                subject.availability.electronic = {
-                    url: subject.urls[0].url,
-                    description: gettextCatalog.getString(subject.urls[0].description)
+                record.availability.electronic = {
+                    url: record.urls[0].url,
+                    description: gettextCatalog.getString(record.urls[0].description)
                 };
             }
         }
@@ -290,14 +290,14 @@
             var url = Config.catalogue.groupUrl.replace('{id}', id);
         }
 
-        function filterSubjects(res) {
-            if (res.subjects && res.subjects.subject) {
-                res.subjects.subject = res.subjects.subject.filter(function(s) {
+        function filterSubjects(record) {
+            if (record.subjects && record.subjects.subject) {
+                record.subjects.subject = record.subjects.subject.filter(function(s) {
                     return s != 'Electronic books';
                 });
             }
-            if (res.subjects && res.subjects.genre) {
-                res.subjects.genre = res.subjects.genre.filter(function(s) {
+            if (record.subjects && record.subjects.genre) {
+                record.subjects.genre = record.subjects.genre.filter(function(s) {
                     return s != 'Electronic books';
                 });
             }
@@ -308,11 +308,11 @@
             vm.start = response.first;
             vm.next = response.next;
             vm.last = vm.next ? vm.next - 1 : vm.total_results;
-            response.results.forEach(function(res) {
-                simplifyAvailability(res);
-                filterSubjects(res);
-                if (res.thumbnails.bibsys) {
-                    res.thumbnails.bibsys = res.thumbnails.bibsys.replace('http:', 'https:');
+            response.results.forEach(function(record) {
+                simplifyAvailability(record);
+                filterSubjects(record);
+                if (record.thumbnails.bibsys) {
+                    record.thumbnails.bibsys = record.thumbnails.bibsys.replace('http:', 'https:');
                 }
             });
             vm.results = vm.results.concat(response.results);
