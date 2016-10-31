@@ -79,9 +79,14 @@
 				Loaded {{ vm.last }} records so far, {{ vm.total_results - vm.last }} to go, hold on…
 			</p>
 
-			<p ng-show="vm.start && vm.last == vm.total_results && vm.total_results != 0" translate>
-				You've reached the end, my friend!
-			</p>
+			<div class="panel panel-default" ng-show="vm.start && vm.last == vm.total_results && vm.total_results != 0 && !vm.broadSearch && vm.subject.data.type !== 'Geographic'">
+				<div class="panel-body">
+					<span translate>Interested in more results?</span>
+					<a ui-sref="subject.search({broad:true})" class="btn btn-default" translate>Expand to broad search</a>
+				</div>
+			</div>
+		</span>
+
 
 		</div>
 
