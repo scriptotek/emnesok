@@ -21,7 +21,7 @@ var templateCache = require('gulp-angular-templatecache');
 var minifyHtml = require('gulp-minify-html');
 var minifycss = require('gulp-minify-css');
 var cachebust = require('gulp-cache-bust');
-require('dotenv').load();
+require('dotenv').config();
 
 var transifex = require('gulp-transifex').createClient({
     user: process.env.TRANSIFEX_USERNAME,  // From .env
