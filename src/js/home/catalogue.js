@@ -198,6 +198,10 @@
 
             record.availability = {};
 
+            if (record.type == 'group') {
+                return;
+            }
+
             var myInstitution = vm.selectedInstitution || 'UBO';  // @TODO: Default based on IP address
 
             // Print availability
@@ -309,9 +313,10 @@
             vm.next = response.next;
             vm.last = vm.next ? vm.next - 1 : vm.total_results;
             response.results.forEach(function(record) {
+                console.log(record);
                 simplifyAvailability(record);
                 filterSubjects(record);
-                if (record.thumbnails.bibsys) {
+                if (record.thumbnails && record.thumbnails.bibsys) {
                     record.thumbnails.bibsys = record.thumbnails.bibsys.replace('http:', 'https:');
                 }
             });
