@@ -5,13 +5,21 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Subject Search\n"
-"PO-Revision-Date: 2016-10-31 18:28+0000\n"
+"PO-Revision-Date: 2016-10-31 22:06+0000\n"
 "Last-Translator: Dan Michael O. Heggø <danmichaelo@gmail.com>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/university-of-oslo-library/subject-search/language/nb/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: nb\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: availability.html:6
+msgid "(might or might not be available)"
+msgstr "(uvisst om tilgjengelig eller ei)"
+
+#: availability.html:19
+msgid "(no access)"
+msgstr "(ingen tilgang)"
 
 #: vocabs/humord.html:13
 msgid ""
@@ -60,10 +68,6 @@ msgid ""
 "not really needed for this tool. Users tracking also has a lot of flaws."
 msgstr "Som et eksperiment har vi skrudd av alle GA-informasjonskapsler. Vi trenger statistikk om besøk og bruk, men vi tror at vi klarer oss fint uten sporing av <em>brukere</em>. Brukersporing har uansett en del svakheter."
 
-#: home/catalogue.js:262
-msgid "Available online"
-msgstr "Tilgjengelig online"
-
 #: catalogue.html:8
 msgid "Broad"
 msgstr "Bredt"
@@ -84,6 +88,10 @@ msgstr "Inneholder"
 msgid "Documents"
 msgstr "Dokumenter"
 
+#: availability.html:19 home/catalogue.service.js:169
+msgid "E-book"
+msgstr "E-bok"
+
 #: home/search.js:37
 msgid "Ends with"
 msgstr "Slutter med"
@@ -96,11 +104,15 @@ msgstr "Søk etter emne"
 msgid "Exact match"
 msgstr "Eksakt lik"
 
-#: home/catalogue.js:91
+#: catalogue.html:85
+msgid "Expand to broad search"
+msgstr "Utvid til bredt søk"
+
+#: home/catalogue.js:121
 msgid "Failed to fetch list of editions."
 msgstr "Klarte ikke hente utgaver."
 
-#: catalogue-result.html:31
+#: catalogue-result.html:29
 msgid "Fetching more editions…"
 msgstr "Henter flere utgaver…"
 
@@ -126,11 +138,11 @@ msgid_plural ""
 msgstr[0] "Fant ett dokument om dette emnet med {{vm.searchType}}."
 msgstr[1] "Fant {{vm.total_results}} dokumenter om dette emnet med {{vm.searchType}}."
 
-#: catalogue-result.html:85 home/subject.service.js:113
+#: catalogue-result.html:72 home/subject.service.js:113
 msgid "GenreForm"
 msgstr "Sjanger/form"
 
-#: catalogue-result.html:80 home/subject.service.js:105
+#: catalogue-result.html:67 home/subject.service.js:105
 msgid "Geographic"
 msgstr "Sted"
 
@@ -155,6 +167,10 @@ msgid ""
 "headings. This vocabulary has only Norwegian Bokmål terms."
 msgstr "Humord gir den beste inngangen til humaniora og samfunnsvitenskap. Vokabularet har også en stor mengde tverrfaglige termer. Dette vokabularet har bare emneord på bokmål."
 
+#: catalogue.html:84
+msgid "Interested in more results?"
+msgstr "Interessert i flere treff?"
+
 #: home/subject.service.js:117
 msgid "KnuteTerm"
 msgstr "knuteterm"
@@ -169,7 +185,7 @@ msgstr "{{ vm.last }} poster hentet så langt, {{ vm.total_results - vm.last }} 
 msgid "Looking…"
 msgstr "Leter…"
 
-#: catalogue-result.html:30
+#: catalogue-result.html:28
 msgid "Multiple editions"
 msgstr "Flere utgaver"
 
@@ -209,27 +225,21 @@ msgid ""
 " sources, but sometimes at the expense of precision."
 msgstr "Vel inne kan du velge mellom <em>bredt</em> og <em>snevert</em> søk. Med <em>snevert</em> søk vil du kun få relevante resultater som har blitt møysommelig indeksert av flinke bibliotekarer og fagfolk ved hjelp av det valgte vokabularet. <em>Bredt</em> søk er ikke like presist, men vil gi flere resultater ved at det også søkes mot andre vokabularer og frie nøkkelord fra en rekke kilder."
 
-#: catalogue-result.html:35
-msgid "One edition:"
-msgid_plural "{{$count}} editions:"
-msgstr[0] "Én utgave:"
-msgstr[1] "{{$count}} utgaver:"
-
-#: home/catalogue.js:252
+#: home/catalogue.service.js:159
 msgid "Print copy at {{institutions}} and {{count}} more libraries."
 msgstr "Trykt utgave ved {{institutions}} og {{count}} andre bibliotek."
 
-#: home/catalogue.js:246
+#: home/catalogue.service.js:153
 msgid "Print copy at {{institutions}} and {{lastInstitution}}."
 msgstr "Trykt utgave ved {{institutions}} og {{lastInstitution}}."
 
-#: home/catalogue.js:227
+#: home/catalogue.service.js:134
 msgid "Print copy at {{library}} and one other library."
 msgid_plural "Print copy at {{library}} and {{$count}} other libraries."
 msgstr[0] "Trykt kopi ved {{library}} og ett annet bibliotek."
 msgstr[1] "Trykt kopi ved {{library}} og {{$count}} andre bibliotek."
 
-#: home/catalogue.js:234 home/catalogue.js:240
+#: home/catalogue.service.js:141 home/catalogue.service.js:147
 msgid "Print copy at {{library}}."
 msgstr "Trykt utgave ved {{library}}."
 
@@ -285,7 +295,7 @@ msgstr "Søk i {{external.name}}"
 msgid "See also:"
 msgstr "Se også:"
 
-#: catalogue-result.html:23
+#: catalogue-result.html:21
 msgid "Series"
 msgstr "Serie"
 
@@ -302,7 +312,7 @@ msgid ""
 " limit usage to a minimum."
 msgstr "Så langt har vi klart oss uten cookies og localStorage. Hvis vi i fremtiden introduserer innlogging eller brukerinnstillinger vil vi trenge lagring, men kommer til å holde bruken på et minimum."
 
-#: home/catalogue.js:66
+#: home/catalogue.js:95
 msgid ""
 "Sorry, the subject \"{{subject}}\" was not found in the current vocabulary."
 msgstr "Beklager, emnet «{{subject}}» ble ikke funnet i dette vokabularet."
@@ -367,7 +377,7 @@ msgstr "Emnesøket er utviklet av UiO Realfagsbiblioteket. Søk i emnevokabulare
 msgid "The search went out in error:"
 msgstr "Søket gikk ut i feil"
 
-#: home/catalogue.js:167
+#: home/catalogue.js:197
 msgid "The subject was not found. It might have been deleted."
 msgstr "Emnet ble ikke funnet. Det kan ha blitt slettet."
 
@@ -387,23 +397,17 @@ msgstr "Vokabularet inneholder {{ vm.topicCount }} emner."
 msgid "Third party licenses"
 msgstr "Tredjepartslisenser"
 
-#: catalogue-result.html:75
+#: catalogue-result.html:62
 msgid ""
 "This is a subject from another vocabulary. It might not exist in the current"
 " vocabulary."
 msgstr "Dette er et emne fra et annet vokabular. Det er ikke sikkert det finnes i det aktive vokabularet."
 
-#: catalogue-result.html:61
-msgid ""
-"This is most likely an ebook we don't have access to, but you can still "
-"request it."
-msgstr "Dette er trolig en ebok vi ikke har tilgang til, men du kan fremdeles prøve å bestille den."
-
 #: home/subject.service.js:121
 msgid "Topic"
 msgstr "Emne"
 
-#: home/catalogue.js:393
+#: home/catalogue.js:348
 msgid "Uh oh, some kind of server error occured."
 msgstr "Det oppsto en serverfeil, vi beklager."
 
@@ -454,14 +458,10 @@ msgid ""
 "sref=\"subject.search({broad:true})\">broad search</a>."
 msgstr "Prøv gjerne å utvide søket til et <a ui-sref=\"subject.search({broad:true})\">bredt søk</a>."
 
-#: catalogue.html:82
-msgid "You've reached the end, my friend!"
-msgstr "Du har nådd enden av lista."
-
-#: home/catalogue.js:160
+#: home/catalogue.js:190
 msgid "broad search"
 msgstr "bredt søk"
 
-#: home/catalogue.js:161
+#: home/catalogue.js:191
 msgid "narrow search"
 msgstr "snevert søk"
