@@ -42,10 +42,30 @@
   </div><!-- /.container-fluid -->
 </nav>
 
+<div class="container" style="font-size: 130%; max-width:900px;">
+  <div class="panel panel-danger">
+    <div class="panel-heading">
+      <h3 class="panel-title">Out of service!</h3>
+    </div>
+    <div class="panel-body" style="color:#a94442;">
+      <p>
+        The enabling of FRBRization in Oria by Bibsys around October 29th
+        caused non-trivial changes to the Primo API response format.
+        Until we update the app to work with the new data model,
+        the app is generally not able to show results from Primo.
+      </p>
+      <p>
+        We expect to be back in service within a few days!
+      </p>
+    </div>
+  </div>
+</div>
+
 <div class="container-fluid" ng-show="!vm.helloHidden">
-  <uib-alert type="info" close="vm.hideHello();">
+  <!-- <uib-alert type="info" close="vm.hideHello();">
     <div translate>
     Welcome to the new Subject Search beta. Head over <a href="https://github.com/scriptotek/emnesok/issues">to GitHub</a> if you want to peek into the current state of development, report a problem or suggest an idea.
     </div>
   </uib-alert>
+  -->
 </div>
