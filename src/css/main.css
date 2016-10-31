@@ -12,7 +12,7 @@ h2 {
   margin-top: 0;
 }
 
-.subject-tag {
+.subject-tag, .ddc-tag {
   margin: 4px 3px 0 0;
   display: inline-block;
   background: #f9f9f9;
@@ -21,8 +21,16 @@ h2 {
   padding: 0px 5px;
   font-size: 90%;
 }
-span.subject-tag {
-    color: #555;
+span.subject-tag, span.ddc-tag {
+  background: white;
+  color: #666;
+  cursor: default;
+}
+.ddc-tag:before {
+  /*Using a Bootstrap glyphicon as the bullet point*/
+  content: "DDC: ";
+}
+span.ddc-tag {
 }
 a.subject-tag:focus {
   text-decoration: none;
