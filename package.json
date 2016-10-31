@@ -4,7 +4,7 @@
   "description": "Realfagsbibliotekets emnesøk",
   "main": "index.js",
   "devDependencies": {
-    "browser-sync": "^2.10.0",
+    "browser-sync": "^2.15.0",
     "connect-history-api-fallback": "^1.1.0",
     "del": "^2.2.0",
     "dotenv": "^1.2.0",
