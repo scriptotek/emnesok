@@ -13,28 +13,29 @@
 				analytics-on="click"
 				analytics-event="ClickPrimo"
 				analytics-category="{{ vm.record.subjects[vm.vocab] ? 'LocallyIndexedDocument' : 'MatchedDocument' }}">{{ vm.record.title }}</a>
+			<span ng-show="vm.record.publisher || vm.record.date">
 			({{ vm.record.publisher }}<span ng-show="vm.record.publisher && vm.record.edition">, </span><span ng-show="vm.record.edition">{{ vm.record.edition }}</span> {{ vm.record.date }})
+			</span>
 		</div>
 
 		<div ng-bind-html="vm.record.responsibility ? vm.record.responsibility: vm.record.creator_string"></div>
 
 		<div ng-show="vm.record.ispartof" style="font-size:85%;"><span translate>Series</span>: {{ vm.record.ispartof }}</div>
 
-		<div ng-show="vm.record.format != 'book'">
+		<div ng-show="vm.record.format && vm.record.format != 'book'">
 			Format: {{ vm.record.format }}
 		</div>
 
 		<div ng-show="vm.record.type == 'group' && !vm.recordExpanded">
-			<a href ng-click="vm.expandGroup()">+ <span translate>More editions</span></a>
+			<a href="#" ng-click="vm.expandGroup()">+ <span translate>Multiple editions</span></a>
 			<span ng-show="busy"><span translate>Fetching more editions…</span></span>
 		</div>
 
 		<div ng-show="vm.recordExpanded">
-			<div translate translate-n="vm.total_results" translate-plural="{{$count}} editions:">One edition:</div>
-			<div ng-repeat="version in vm.versions">
+			<div translate translate-n="vm.versions.length" translate-plural="{{$count}} editions:">One edition:</div>
+			<div ng-repeat="version in vm.versions" style="padding-left:16px;">
 				{{ version.edition }}
 				{{ version.date }}
-				{{ version.material }}
 			</div>
 		</div>
 
@@ -56,7 +57,7 @@
 				analytics-category="{{ vm.record.subjects[vm.vocab] ? 'LocallyIndexedDocument' : 'MatchedDocument' }}">{{ vm.record.availability.print }}</a></li>
 		</ul>
 
-		<ul style="padding-left:20px;" ng-if="!vm.record.availability.print && !vm.record.availability.electronic.url">
+		<ul style="padding-left:20px;" ng-if="vm.record.type == 'record' && !vm.record.availability.print && !vm.record.availability.electronic.url">
 			<li translate>This is most likely an ebook we don't have access to, but you can still request it.</li>
 		</ul>
 
