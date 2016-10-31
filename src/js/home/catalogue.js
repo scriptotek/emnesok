@@ -5,7 +5,36 @@
         .module('app.modules.catalogue', ['app.services.catalogue', 'app.services.subject', 'app.services.lang', 'app.services.config', 'app.services.session'])
         .controller('CatalogueController', controller)
         .directive('modCatalogueResult', CatalogueResultDirective)
+        .directive('modAvailability', AvailabilityDirective)
         ;
+
+    /* ------------------------------------------------------------------------------- */
+
+    function AvailabilityDirective() {
+
+        var directive = {
+            restrict: 'EA',
+            templateUrl: 'app/availability.html',
+            replace: false,
+            scope: {
+                record: '='
+            },
+            controllerAs: 'vm',
+            controller: availabilityController,
+            bindToController: true // because the scope is isolated
+        };
+
+        return directive;
+    }
+
+    availabilityController.$inject = [];
+
+    function availabilityController() {
+        /*jshint validthis: true */
+        var vm = this;
+
+        ////////////
+    }
 
     /* ------------------------------------------------------------------------------- */
 
@@ -82,10 +111,11 @@
         function expandGroup() {
             var groupId = vm.record.id;
             vm.busy = true;
-            Catalogue.expandGroup(groupId).then(function(response) {
+            Catalogue.expandGroup(groupId, vm.selectedInstitution).then(function(response) {
                 vm.busy = false;
                 vm.recordExpanded = true;
                 vm.versions = response.result.records;
+
             }, function(error) {
                 vm.busy = false;
                 var msg = gettext('Failed to fetch list of editions.');
@@ -192,81 +222,6 @@
             });
         }
 
-        function simplifyAvailability(record) {
-            var availability = '';
-            // @TODO: Show libraries if vm.selectedInstitution
-
-            record.availability = {};
-
-            if (record.type == 'group') {
-                return;
-            }
-
-            var myInstitution = vm.selectedInstitution || 'UBO';  // @TODO: Default based on IP address
-
-            // Print availability
-            var printInstitutions = [];
-            var electronic = [];
-            record.components.forEach(function(component) {
-                if (component.holdings) {
-                    component.holdings.forEach(function(holding) {
-                        var library = holding.library.replace(/[0-9]+/, '');
-                        if (printInstitutions.indexOf(library) === -1 && library) {
-                            printInstitutions.push(library);
-                        }
-                    });
-                    component.holdings = null;
-                }
-            });
-
-            if (printInstitutions.length > 0) {
-                var printInstitutionsStr = '';
-                if (printInstitutions.indexOf(myInstitution) != -1) {
-                    if (printInstitutions.length > 1) {
-                        // MyLibrary and n other libraries
-                        printInstitutionsStr = gettextCatalog.getPlural(printInstitutions.length - 1,
-                            'Print copy at {{library}} and one other library.',
-                            'Print copy at {{library}} and {{$count}} other libraries.',
-                            {library: Institutions.getName(myInstitution)}
-                        );
-                    } else {
-                        // MyLibrary
-                        printInstitutionsStr = gettextCatalog.getString('Print copy at {{library}}.', {
-                            library: Institutions.getName(myInstitution)
-                        });
-                    }
-                } else if (printInstitutions.length == 1) {
-                    // Lib1
-                    printInstitutionsStr = gettextCatalog.getString('Print copy at {{library}}.', {
-                        library: Institutions.getName(printInstitutions[0])
-                    });
-                } else if (printInstitutions.length <= 4) {
-                    // Lib1, Lib2, Lib3 and lib 4
-                    var last = printInstitutions.pop();
-                    printInstitutionsStr = gettextCatalog.getString('Print copy at {{institutions}} and {{lastInstitution}}.', {
-                        institutions: printInstitutions.map(function(k) { return Institutions.getName(k); }).join(', '),
-                        lastInstitution: Institutions.getName(last)
-                    });
-                } else {
-                    // Lib1, Lib2, Lib3 and n. more libraries (where n >= 2)
-                    printInstitutionsStr = gettextCatalog.getString('Print copy at {{institutions}} and {{count}} more libraries.', {
-                        institutions: printInstitutions.slice(0, 4).map(function(k) { return Institutions.getName(k); }).join(', '),
-                        count: printInstitutions.length - 3
-                    });
-                }
-                record.availability.print = printInstitutionsStr;
-            }
-
-            // Electronic availability
-            if (record.urls.length > 0) {
-                gettext('Available online');
-                record.availability.electronic = {
-                    url: record.urls[0].url,
-                    description: gettextCatalog.getString(record.urls[0].description)
-                };
-            }
-        }
-
         function onScroll () {
             if (vm.error) {
                 return;
@@ -312,14 +267,14 @@
             vm.start = response.first;
             vm.next = response.next;
             vm.last = vm.next ? vm.next - 1 : vm.total_results;
+
             response.results.forEach(function(record) {
-                console.log(record);
-                simplifyAvailability(record);
                 filterSubjects(record);
                 if (record.thumbnails && record.thumbnails.bibsys) {
                     record.thumbnails.bibsys = record.thumbnails.bibsys.replace('http:', 'https:');
                 }
             });
+
             vm.results = vm.results.concat(response.results);
             vm.busy = false;
             $timeout(checkScrollPos, 500);

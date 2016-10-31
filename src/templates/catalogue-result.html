@@ -13,9 +13,7 @@
 				analytics-on="click"
 				analytics-event="ClickPrimo"
 				analytics-category="{{ vm.record.subjects[vm.vocab] ? 'LocallyIndexedDocument' : 'MatchedDocument' }}">{{ vm.record.title }}</a>
-			<span ng-show="vm.record.publisher || vm.record.date">
-			({{ vm.record.publisher }}<span ng-show="vm.record.publisher && vm.record.edition">, </span><span ng-show="vm.record.edition">{{ vm.record.edition }}</span> {{ vm.record.date }})
-			</span>
+			<span ng-show="vm.record.pubEdYear">({{ vm.record.pubEdYear }})</span>
 		</div>
 
 		<div ng-bind-html="vm.record.responsibility ? vm.record.responsibility: vm.record.creator_string"></div>
@@ -32,10 +30,14 @@
 		</div>
 
 		<div ng-show="vm.recordExpanded">
-			<div translate translate-n="vm.versions.length" translate-plural="{{$count}} editions:">One edition:</div>
-			<div ng-repeat="version in vm.versions" style="padding-left:16px;">
-				{{ version.edition }}
-				{{ version.date }}
+			<!-- <div translate translate-n="vm.versions.length" translate-plural="{{$count}} editions:">One edition:</div> -->
+
+			<div ng-repeat="version in vm.versions">
+				<span style="float:right; font-style: italic;">
+					{{ version.edition }}
+					{{ version.date }}
+				</span>
+				<div mod-availability record="version"></div>
 			</div>
 		</div>
 
@@ -43,23 +45,8 @@
 
 		<!-- Availability -->
 
-		<ul style="padding-left:20px;" ng-if="vm.record.availability.electronic">
-			<li class="online">
-				<a ng-href="{{ vm.record.availability.electronic.url }}" target="external">{{ vm.record.availability.electronic.description }}</a>
-			</li>
-		</ul>
+		<div mod-availability record="vm.record"></div>
 
-		<ul style="padding-left:20px;" ng-if="vm.record.availability.print">
-			<li class="printed"><a target="external"
-				ng-href="{{ vm.record.links.primo }}"
-				analytics-on="click"
-				analytics-event="ClickPrimo"
-				analytics-category="{{ vm.record.subjects[vm.vocab] ? 'LocallyIndexedDocument' : 'MatchedDocument' }}">{{ vm.record.availability.print }}</a></li>
-		</ul>
-
-		<ul style="padding-left:20px;" ng-if="vm.record.type == 'record' && !vm.record.availability.print && !vm.record.availability.electronic.url">
-			<li translate>This is most likely an ebook we don't have access to, but you can still request it.</li>
-		</ul>
 
 		<!-- Subjects -->
 

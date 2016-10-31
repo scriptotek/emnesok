@@ -1,0 +1,22 @@
+<div class="availability">
+
+	<ul style="padding-left:20px;" ng-if="vm.record.availability.electronic">
+		<li class="online">
+			<a ng-href="{{ vm.record.availability.electronic.url }}" target="external">{{ vm.record.availability.electronic.description }}</a>
+			<small translate>(might or might not be available)</small>
+		</li>
+	</ul>
+
+	<ul style="padding-left:20px;" ng-if="vm.record.availability.print">
+		<li class="printed"><a target="external"
+			ng-href="{{ vm.record.links.primo }}"
+			analytics-on="click"
+			analytics-event="ClickPrimo"
+			analytics-category="{{ vm.record.subjects[vm.vocab] ? 'LocallyIndexedDocument' : 'MatchedDocument' }}">{{ vm.record.availability.print }}</a></li>
+	</ul>
+
+	<ul style="padding-left:20px;" ng-if="vm.record.type == 'record' && !vm.record.availability.print && !vm.record.availability.electronic.url">
+		<li class="noaccess"><span translate>E-book</span> <small translate>(no access)</small></li>
+	</ul>
+
+</div>
