@@ -25,8 +25,8 @@
 		</div>
 
 		<div ng-show="vm.record.type == 'group' && !vm.recordExpanded">
-			<a href="#" ng-click="vm.expandGroup()">+ <span translate>Multiple editions</span></a>
-			<span ng-show="busy"><span translate>Fetching more editions…</span></span>
+			<a href="#" ng-click="vm.expandGroup()" translate>{{vm.record.number_of_editions}} editions</a>
+			<span ng-show="busy"><span translate>Fetching editions…</span></span>
 		</div>
 
 		<div ng-show="vm.recordExpanded">

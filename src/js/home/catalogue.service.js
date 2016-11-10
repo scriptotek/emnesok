@@ -34,6 +34,7 @@
             }
             if (institution) {
                 params.institution = institution;
+                params.scope = institution;
             }
             if (library) {
                 params.library = library;
@@ -57,11 +58,19 @@
 
         function expandGroup(id, institution) {
             var deferred = $q.defer();
+            var params = {};
+            console.log('GNUX', institution);
+
+            if (institution) {
+                params.institution = institution;
+                params.scope = institution;
+            }
 
             $http({
               method: 'GET',
               cache: true,
-              url: Config.catalogue.groupUrl.replace('{id}', id)
+              url: Config.catalogue.groupUrl.replace('{id}', id),
+              params: params,
             }).
             then(function(response){
                 postProcessRecords(response.data.result.records, institution);

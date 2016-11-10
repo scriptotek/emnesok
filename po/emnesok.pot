@@ -4,11 +4,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: \n"
 
-#: availability.html:6
-msgid "(might or might not be available)"
-msgstr ""
-
-#: availability.html:19
+#: availability.html:18
 msgid "(no access)"
 msgstr ""
 
@@ -69,8 +65,8 @@ msgstr ""
 msgid "Documents"
 msgstr ""
 
-#: availability.html:19
-#: home/catalogue.service.js:169
+#: availability.html:18
+#: home/catalogue.service.js:178
 msgid "E-book"
 msgstr ""
 
@@ -90,12 +86,12 @@ msgstr ""
 msgid "Expand to broad search"
 msgstr ""
 
-#: home/catalogue.js:121
+#: home/catalogue.js:122
 msgid "Failed to fetch list of editions."
 msgstr ""
 
 #: catalogue-result.html:29
-msgid "Fetching more editions…"
+msgid "Fetching editions…"
 msgstr ""
 
 #: about.html:24
@@ -155,10 +151,6 @@ msgstr ""
 msgid "Looking…"
 msgstr ""
 
-#: catalogue-result.html:28
-msgid "Multiple editions"
-msgstr ""
-
 #: catalogue.html:9
 msgid "Narrow"
 msgstr ""
@@ -187,22 +179,22 @@ msgstr ""
 msgid "Once in, you can toggle between <em>broad</em> and <em>narrow</em> search. With <em>narrow</em> search, you will only get highly relevant results carefully indexed by skilled librarians and subject specialists using the selected vocabulary. <em>Broad</em> search will give you more results, matching subjects from other vocabularies or even keywords from a variety of sources, but sometimes at the expense of precision."
 msgstr ""
 
-#: home/catalogue.service.js:159
+#: home/catalogue.service.js:168
 msgid "Print copy at {{institutions}} and {{count}} more libraries."
 msgstr ""
 
-#: home/catalogue.service.js:153
+#: home/catalogue.service.js:162
 msgid "Print copy at {{institutions}} and {{lastInstitution}}."
 msgstr ""
 
-#: home/catalogue.service.js:134
+#: home/catalogue.service.js:143
 msgid "Print copy at {{library}} and one other library."
 msgid_plural "Print copy at {{library}} and {{$count}} other libraries."
 msgstr[0] ""
 msgstr[1] ""
 
-#: home/catalogue.service.js:141
-#: home/catalogue.service.js:147
+#: home/catalogue.service.js:150
+#: home/catalogue.service.js:156
 msgid "Print copy at {{library}}."
 msgstr ""
 
@@ -258,7 +250,7 @@ msgstr ""
 msgid "So far we're not using cookies or localStorage at all. If we introduce login or user preferences in the future, we will need storage, but we will always limit usage to a minimum."
 msgstr ""
 
-#: home/catalogue.js:95
+#: home/catalogue.js:96
 msgid "Sorry, the subject \"{{subject}}\" was not found in the current vocabulary."
 msgstr ""
 
@@ -304,7 +296,7 @@ msgstr ""
 msgid "The search went out in error:"
 msgstr ""
 
-#: home/catalogue.js:197
+#: home/catalogue.js:198
 msgid "The subject was not found. It might have been deleted."
 msgstr ""
 
@@ -330,7 +322,7 @@ msgstr ""
 msgid "Topic"
 msgstr ""
 
-#: home/catalogue.js:348
+#: home/catalogue.js:349
 msgid "Uh oh, some kind of server error occured."
 msgstr ""
 
@@ -367,10 +359,14 @@ msgstr ""
 msgid "You could try expanding the search to a <a ui-sref=\"subject.search({broad:true})\">broad search</a>."
 msgstr ""
 
-#: home/catalogue.js:190
+#: home/catalogue.js:191
 msgid "broad search"
 msgstr ""
 
-#: home/catalogue.js:191
+#: home/catalogue.js:192
 msgid "narrow search"
+msgstr ""
+
+#: catalogue-result.html:28
+msgid "{{vm.record.number_of_editions}} editions"
 msgstr ""

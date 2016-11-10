@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Subject Search\n"
-"PO-Revision-Date: 2016-10-31 22:06+0000\n"
+"PO-Revision-Date: 2016-11-10 20:59+0000\n"
 "Last-Translator: Dan Michael O. Heggø <danmichaelo@gmail.com>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/university-of-oslo-library/subject-search/language/nb/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -13,11 +13,7 @@ msgstr ""
 "Language: nb\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: availability.html:6
-msgid "(might or might not be available)"
-msgstr "(uvisst om tilgjengelig eller ei)"
-
-#: availability.html:19
+#: availability.html:18
 msgid "(no access)"
 msgstr "(ingen tilgang)"
 
@@ -88,7 +84,7 @@ msgstr "Inneholder"
 msgid "Documents"
 msgstr "Dokumenter"
 
-#: availability.html:19 home/catalogue.service.js:169
+#: availability.html:18 home/catalogue.service.js:178
 msgid "E-book"
 msgstr "E-bok"
 
@@ -108,13 +104,13 @@ msgstr "Eksakt lik"
 msgid "Expand to broad search"
 msgstr "Utvid til bredt søk"
 
-#: home/catalogue.js:121
+#: home/catalogue.js:122
 msgid "Failed to fetch list of editions."
 msgstr "Klarte ikke hente utgaver."
 
 #: catalogue-result.html:29
-msgid "Fetching more editions…"
-msgstr "Henter flere utgaver…"
+msgid "Fetching editions…"
+msgstr "Henter utgaver…"
 
 #: about.html:24
 msgid ""
@@ -185,10 +181,6 @@ msgstr "{{ vm.last }} poster hentet så langt, {{ vm.total_results - vm.last }} 
 msgid "Looking…"
 msgstr "Leter…"
 
-#: catalogue-result.html:28
-msgid "Multiple editions"
-msgstr "Flere utgaver"
-
 #: catalogue.html:9
 msgid "Narrow"
 msgstr "Snevert"
@@ -225,21 +217,21 @@ msgid ""
 " sources, but sometimes at the expense of precision."
 msgstr "Vel inne kan du velge mellom <em>bredt</em> og <em>snevert</em> søk. Med <em>snevert</em> søk vil du kun få relevante resultater som har blitt møysommelig indeksert av flinke bibliotekarer og fagfolk ved hjelp av det valgte vokabularet. <em>Bredt</em> søk er ikke like presist, men vil gi flere resultater ved at det også søkes mot andre vokabularer og frie nøkkelord fra en rekke kilder."
 
-#: home/catalogue.service.js:159
+#: home/catalogue.service.js:168
 msgid "Print copy at {{institutions}} and {{count}} more libraries."
 msgstr "Trykt utgave ved {{institutions}} og {{count}} andre bibliotek."
 
-#: home/catalogue.service.js:153
+#: home/catalogue.service.js:162
 msgid "Print copy at {{institutions}} and {{lastInstitution}}."
 msgstr "Trykt utgave ved {{institutions}} og {{lastInstitution}}."
 
-#: home/catalogue.service.js:134
+#: home/catalogue.service.js:143
 msgid "Print copy at {{library}} and one other library."
 msgid_plural "Print copy at {{library}} and {{$count}} other libraries."
 msgstr[0] "Trykt kopi ved {{library}} og ett annet bibliotek."
 msgstr[1] "Trykt kopi ved {{library}} og {{$count}} andre bibliotek."
 
-#: home/catalogue.service.js:141 home/catalogue.service.js:147
+#: home/catalogue.service.js:150 home/catalogue.service.js:156
 msgid "Print copy at {{library}}."
 msgstr "Trykt utgave ved {{library}}."
 
@@ -312,7 +304,7 @@ msgid ""
 " limit usage to a minimum."
 msgstr "Så langt har vi klart oss uten cookies og localStorage. Hvis vi i fremtiden introduserer innlogging eller brukerinnstillinger vil vi trenge lagring, men kommer til å holde bruken på et minimum."
 
-#: home/catalogue.js:95
+#: home/catalogue.js:96
 msgid ""
 "Sorry, the subject \"{{subject}}\" was not found in the current vocabulary."
 msgstr "Beklager, emnet «{{subject}}» ble ikke funnet i dette vokabularet."
@@ -377,7 +369,7 @@ msgstr "Emnesøket er utviklet av UiO Realfagsbiblioteket. Søk i emnevokabulare
 msgid "The search went out in error:"
 msgstr "Søket gikk ut i feil"
 
-#: home/catalogue.js:197
+#: home/catalogue.js:198
 msgid "The subject was not found. It might have been deleted."
 msgstr "Emnet ble ikke funnet. Det kan ha blitt slettet."
 
@@ -407,7 +399,7 @@ msgstr "Dette er et emne fra et annet vokabular. Det er ikke sikkert det finnes 
 msgid "Topic"
 msgstr "Emne"
 
-#: home/catalogue.js:348
+#: home/catalogue.js:349
 msgid "Uh oh, some kind of server error occured."
 msgstr "Det oppsto en serverfeil, vi beklager."
 
@@ -458,10 +450,14 @@ msgid ""
 "sref=\"subject.search({broad:true})\">broad search</a>."
 msgstr "Prøv gjerne å utvide søket til et <a ui-sref=\"subject.search({broad:true})\">bredt søk</a>."
 
-#: home/catalogue.js:190
+#: home/catalogue.js:191
 msgid "broad search"
 msgstr "bredt søk"
 
-#: home/catalogue.js:191
+#: home/catalogue.js:192
 msgid "narrow search"
 msgstr "snevert søk"
+
+#: catalogue-result.html:28
+msgid "{{vm.record.number_of_editions}} editions"
+msgstr "{{vm.record.number_of_editions}} utgaver"

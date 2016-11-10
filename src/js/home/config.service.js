@@ -78,8 +78,8 @@
 				searchUrl: 'https://data.ub.uio.no/skosmos/rest/v1/search'
 			},
 			catalogue: {
-				searchUrl: 'https://scs.biblionaut.net/primo/search',
-				groupUrl: 'https://scs.biblionaut.net/primo/groups/{id}'
+				searchUrl: 'https://ub-lsm.uio.no/primo/search',
+				groupUrl: 'https://ub-lsm.uio.no/primo/groups/{id}'
 			}
 		};
 		return factory;

@@ -57,9 +57,9 @@
         return directive;
     }
 
-    resultController.$inject = ['Lang', 'Catalogue', 'Config', 'SubjectService', '$state', 'ngToast', 'gettext', 'gettextCatalog', '$analytics'];
+    resultController.$inject = ['Lang', 'Catalogue', 'Config', 'SubjectService', '$state', 'ngToast', 'gettext', 'gettextCatalog', '$analytics', '$stateParams'];
 
-    function resultController(Lang, Catalogue, Config, SubjectService, $state, ngToast, gettext, gettextCatalog, $analytics) {
+    function resultController(Lang, Catalogue, Config, SubjectService, $state, ngToast, gettext, gettextCatalog, $analytics, $stateParams) {
         /*jshint validthis: true */
         var vm = this;
 
@@ -70,6 +70,7 @@
         vm.filterPrint = filterPrint;
         vm.filterElectronic = filterElectronic;
         vm.getStatus = getStatus;
+        vm.selectedInstitution = $stateParams.library.split(':')[0];
         vm.busy = false;
 
 
