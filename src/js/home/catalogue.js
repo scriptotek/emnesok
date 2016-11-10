@@ -70,7 +70,7 @@
         vm.filterPrint = filterPrint;
         vm.filterElectronic = filterElectronic;
         vm.getStatus = getStatus;
-        vm.selectedInstitution = $stateParams.library.split(':')[0];
+        vm.selectedInstitution = $stateParams.library ? $stateParams.library.split(':')[0] : null;
         vm.busy = false;
 
 
