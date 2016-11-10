@@ -48,6 +48,12 @@
 			SubjectService.onSubject($scope, function (subject) {
 				vm.searchHistory = SubjectService.searchHistory;
 			});
+			angular.element(document).ready(function () {
+				var sv = document.getElementById('search_value');
+				if (sv) {
+					sv.focus();
+				}
+			});
 		}
 
 		//Temporary solution until angucomplete gets a proper search-on-focus behaviour
