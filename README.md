@@ -1,4 +1,5 @@
 [![Dependency Status](https://www.versioneye.com/user/projects/56dd2251309a580038b000de/badge.svg?style=flat)](https://www.versioneye.com/user/projects/56dd2251309a580038b000de)
+[![DOI](https://zenodo.org/badge/46412901.svg)](https://zenodo.org/badge/latestdoi/46412901)
 
 # UiO Library Subject Search
 
