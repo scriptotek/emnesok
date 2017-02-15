@@ -1,11 +1,11 @@
 # 
 # Translators:
-# Dan Michael O. Heggø <danmichaelo@gmail.com>, 2015-2016
+# Dan Michael O. Heggø <danmichaelo@gmail.com>, 2015-2017
 # Kyrre Traavik Låberg <k.t.laberg@ub.uio.no>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Subject Search\n"
-"PO-Revision-Date: 2016-11-10 20:59+0000\n"
+"PO-Revision-Date: 2017-02-15 22:17+0000\n"
 "Last-Translator: Dan Michael O. Heggø <danmichaelo@gmail.com>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/university-of-oslo-library/subject-search/language/nb/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -112,6 +112,15 @@ msgstr "Klarte ikke hente utgaver."
 msgid "Fetching editions…"
 msgstr "Henter utgaver…"
 
+#: home.html:5
+msgid ""
+"Find books and more about a specific topic in the collections of Norwegian "
+"academic libraries. Start by choosing a vocabulary from the list below. A "
+"vocabulary is a controlled set of subjects. Searching all vocabularies at "
+"the same time isn't yet supported, but definitely something we would like to"
+" support in the future."
+msgstr "Finn bøker og mer om et gitt emne i samlingene til norske fag- og forskningsbibliotek. Begynn med å velge et emne-vokabular fra listen under. Et emne-vokabular er et kontrollert sett av emneord. Søk i alle vokabularer samtidig er ikke støttet enda, men det er funksjonalitet vi håper å få lagt til i fremtiden."
+
 #: about.html:24
 msgid ""
 "For analytics, our initial plan was to use the open source tool Piwik, but "
@@ -193,7 +202,7 @@ msgstr "Underordnet:"
 msgid "No hits :("
 msgstr "Ingen treff :("
 
-#: home/search.js:184
+#: home/search.js:190
 msgid "No network connection"
 msgstr "Ingen nettverksforbindelse"
 
@@ -313,13 +322,9 @@ msgstr "Beklager, emnet «{{subject}}» ble ikke funnet i dette vokabularet."
 msgid "Starting with"
 msgstr "Begynner med"
 
-#: header.html:14 home/title.directive.js:43
+#: header.html:14 home.html:3 home/title.directive.js:43
 msgid "Subject Search"
 msgstr "Emnesøk"
-
-#: home.html:3
-msgid "Subject Search ß"
-msgstr "Emnesøk ß"
 
 #: home.html:26
 msgid "Technology and engineering"
@@ -422,14 +427,6 @@ msgid ""
 "last part of your IP address, meaning that your full IP address is never "
 "sent to any third party (Google)."
 msgstr "Alle data sendes via <a href=\"https://github.com/unioslo/ipproxy\">ipproxy</a>, som fjerner den siste biten av IP-adressen din slik at den fullstendige adressen aldri blir delt med noen tredjeparter (Google)."
-
-#: home.html:5
-msgid ""
-"Welcome to our subject search. Start by choosing a vocabulary from the list "
-"below. A vocabulary is a controlled set of subjects. Searching all "
-"vocabularies at the same time isn't yet supported, but definitely something "
-"we would like to support in the future."
-msgstr "Velkommen til emnesøket vårt. Begynn med å velge et emne-vokabular fra listen under. Et emne-vokabular er et kontrollert sett av emneord. Søk i alle vokabularer samtidig er ikke støttet enda, men det er funksjonalitet vi håper å få lagt til i fremtiden."
 
 #: home.html:32
 msgid ""

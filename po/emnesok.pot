@@ -94,6 +94,10 @@ msgstr ""
 msgid "Fetching editions…"
 msgstr ""
 
+#: home.html:5
+msgid "Find books and more about a specific topic in the collections of Norwegian academic libraries. Start by choosing a vocabulary from the list below. A vocabulary is a controlled set of subjects. Searching all vocabularies at the same time isn't yet supported, but definitely something we would like to support in the future."
+msgstr ""
+
 #: about.html:24
 msgid "For analytics, our initial plan was to use the open source tool Piwik, but we were persuaded into using Google Analytics which is pervasive at the university. Note that two extra steps have been taken to protect your privacy:"
 msgstr ""
@@ -163,7 +167,7 @@ msgstr ""
 msgid "No hits :("
 msgstr ""
 
-#: home/search.js:184
+#: home/search.js:190
 msgid "No network connection"
 msgstr ""
 
@@ -259,12 +263,9 @@ msgid "Starting with"
 msgstr ""
 
 #: header.html:14
+#: home.html:3
 #: home/title.directive.js:43
 msgid "Subject Search"
-msgstr ""
-
-#: home.html:3
-msgid "Subject Search ß"
 msgstr ""
 
 #: home.html:26
@@ -341,10 +342,6 @@ msgstr ""
 
 #: about.html:28
 msgid "We're proxying all data through <a href=\"https://github.com/unioslo/ipproxy\">ipproxy</a>, which masks the last part of your IP address, meaning that your full IP address is never sent to any third party (Google)."
-msgstr ""
-
-#: home.html:5
-msgid "Welcome to our subject search. Start by choosing a vocabulary from the list below. A vocabulary is a controlled set of subjects. Searching all vocabularies at the same time isn't yet supported, but definitely something we would like to support in the future."
 msgstr ""
 
 #: home.html:32
