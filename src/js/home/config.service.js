@@ -24,7 +24,8 @@
 						'1030500': {label: 'Naturhistorisk museum'},
 						'1030300,1030303': {label: 'Humsam-biblioteket + Sophus Bugge'},
 						'1030010': {label: 'Etnografisk bibliotek'},
-						'1030011': {label: 'Arkeologisk bibliotek'}
+						'1030011': {label: 'Arkeologisk bibliotek'},
+						'1030048': {label: 'Menneskerettighetsbiblioteket'}
 					}
 				},
 				'UBB': {
