@@ -121,8 +121,8 @@
 						var extract="";
 						if (processed.extract) {
 					
-							var onlyFirstParagraph =  processed.extract.match(/<p>(.*?)<\/p>/g);
-							extract = htmlToPlaintext(onlyFirstParagraph[0]);
+							var paragraphs =  processed.extract.match(/<p>([^]*?)<\/p>/gi);
+							extract = htmlToPlaintext(paragraphs[0]);
 						}
 						
 						result.data = {
