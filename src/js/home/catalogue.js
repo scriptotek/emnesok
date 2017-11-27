@@ -310,6 +310,10 @@
                 topics = subject.data.components.filter(function(component) {
                     return component.type == 'Topic';
                 });
+                topics.sort(function(a, b) {
+                    var alab = a.prefLabel[defaultLang], blab = b.prefLabel[defaultLang], tlab = subject.data.prefLabel[defaultLang].split(' : ');
+                    return tlab.indexOf(alab) - tlab.indexOf(blab);
+                });
             } else {
                 if (subject.data.type == 'Geographic') {
                     places = [subject.data];

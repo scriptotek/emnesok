@@ -56,19 +56,12 @@
 		This concept is a “KnuteTerm”, so there should not be any search results.
 	</p>
 
-	<p ng-if="vm.stringSearch" class="bg-warning">
-		<span translate>
-			Note: Search for subject strings is currently experimental, and might not yet work as expected.
-		</span>
-	</p>
-
 	<div style="position: relative;">
 
 		<div class="slideInUp" ng-show="vm.results.length && !vm.stateChanging">
 
 			<p ng-if="!vm.error">
 				<span ng-if="vm.start && vm.total_results" translate translate-n="vm.total_results" translate-plural="Found {{vm.total_results}} documents about this topic using {{vm.searchType}}.">Found one document about this topic using {{vm.searchType}}.</span>
-				<span class="text-muted">Search query: ‘{{vm.searchQuery}}’</span>
 			</p>
 
 			<ul class="list-group">
@@ -93,5 +86,7 @@
 	</div>
 
 	<div ng-show="vm.busy" class="loader"></div>
+
+	<div class="text-muted small">Search query: ‘{{vm.searchQuery}}’</div>
 
 </div>
