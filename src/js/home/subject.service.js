@@ -265,8 +265,12 @@
 				}
 				var uri = response.results[0].uri;
 				getByUri(uri).then(function(subject) {
-					subject.vocab = vocab;
-					deferred.resolve(subject);
+					if (!subject) {
+						deferred.reject('Ukjent feil #1');
+					} else {
+						subject.vocab = vocab;
+						deferred.resolve(subject);
+					}
 				}, function(error) {
 					deferred.reject(error);
 				});
