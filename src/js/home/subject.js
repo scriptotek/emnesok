@@ -108,7 +108,8 @@
 			function transformRelatedSubject(k) {
 				return {
 					prefLabel: k.prefLabel[displayLang] || k.prefLabel[defaultLang],
-					id: k.id
+					id: k.id,
+                    type: k.type,
 				};
 			}
 
