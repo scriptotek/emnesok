@@ -210,6 +210,10 @@ msgstr ""
 msgid "Read more in {{external.name}}"
 msgstr ""
 
+#: subject.html:58
+msgid "Report problem"
+msgstr ""
+
 #: home.html:16
 msgid "Science"
 msgstr ""
@@ -332,7 +336,7 @@ msgstr ""
 msgid "Used for:"
 msgstr ""
 
-#: subject.html:58
+#: subject.html:59
 msgid "View concept in Skosmos"
 msgstr ""
 

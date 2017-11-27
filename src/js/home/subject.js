@@ -123,7 +123,18 @@
 				elementSymbol: subject.data.elementSymbol,
 				uri: subject.uri,
 			};
-			console.log(output);
+
+			if (subject.vocab == "realfagstermer") {
+				var uri_id = output.uri.split('/').pop();
+				var ident = uri_id.replace('c', 'REAL');
+				var emnesokUrl = 'https://app.uio.no/ub/emnesok/realfagstermer/search?id=' + encodeURIComponent(uri_id);
+				var katapiUrl  = 'http://ub-viz01.uio.no/okapi2/#/search?q=' + encodeURIComponent('realfagstermer:"' + output.prefLabel + '"');
+				var soksedUrl = 'http://ub-soksed.uio.no/concepts/' + ident ;
+				var issue_title = output.prefLabel;
+				var issue_body = encodeURIComponent('\n\n\n\n---\n*' + ident + ' (' + output.prefLabel + ') i [Emnesøk](' + emnesokUrl + '), [Skosmos]('+ output.uri + '), [Okapi](' + katapiUrl + '), [Soksed](' + soksedUrl + ')*');
+				output.feedback_uri = 'https://github.com/realfagstermer/realfagstermer/issues/new?title=' + issue_title + '&body=' + issue_body;
+			}
+
 			return output;
 		}
 	}

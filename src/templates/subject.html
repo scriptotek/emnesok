@@ -55,6 +55,9 @@
 		</ul>
 	</div>
 	<p style="font-size:80%; text-align:right; margin: 0;">
+		<span ng-show="vm.subject.feedback_uri">
+			<a ng-href="{{ vm.subject.feedback_uri }}" target="external" translate>Report problem</a> |
+		</span>
 		<a ng-href="{{ vm.subject.uri }}" target="external" translate>View concept in Skosmos</a>
 	</p>
 </div>
