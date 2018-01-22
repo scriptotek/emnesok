@@ -62,7 +62,7 @@
     "angulartics-google-analytics": "~0.3.0",
     "bootstrap": "~3.3.7",
     "jsonld": "~0.4.11",
-    "lodash": "~2.4.2",
+    "lodash": "~4.17",
     "ng-toast": "~2.0.0",
     "restangular": "~1.5.2"
   }

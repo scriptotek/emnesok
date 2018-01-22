@@ -54,7 +54,7 @@ var paths = {
       'node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js',
       'node_modules/angular-gettext/dist/angular-gettext.js',
       'node_modules/ng-toast/dist/ngToast.js',
-      'node_modules/lodash/dist/lodash.compat.js',
+      'node_modules/lodash/lodash.js',
       'node_modules/restangular/dist/restangular.js',
       'node_modules/jsonld/js/jsonld.js',
       'node_modules/angular-loading-bar/build/loading-bar.js',
