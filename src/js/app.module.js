@@ -27,12 +27,14 @@
 			'app.services.institutions',
 			'templates'
 		])
-		.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$provide', 'ngToastProvider', 'cfpLoadingBarProvider', configure])
+		.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$provide', 'ngToastProvider', 'cfpLoadingBarProvider', '$httpProvider', configure])
 		.run(['$rootScope', '$state', 'Lang', 'SubjectService', 'TitleService', run]);
 
-	function configure($stateProvider, $urlRouterProvider, $locationProvider, $provide, ngToastProvider, cfpLoadingBarProvider) {
+	function configure($stateProvider, $urlRouterProvider, $locationProvider, $provide, ngToastProvider, cfpLoadingBarProvider, $httpProvider) {
 
 		cfpLoadingBarProvider.includeSpinner = false;
+
+        $httpProvider.defaults.headers.common = {'Accept': 'application/json'};
 
 
     // Fix sourcemaps
