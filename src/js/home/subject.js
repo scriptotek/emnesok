@@ -106,8 +106,10 @@
 			});
 
 			function transformRelatedSubject(k) {
+                console.log('rel', k);
 				return {
 					prefLabel: k.prefLabel[displayLang] || k.prefLabel[defaultLang],
+                    notation: k.notation,
 					id: k.id,
                     type: k.type,
 				};
@@ -116,6 +118,7 @@
 			output = {
 				prefLabel: subject.data.prefLabel[displayLang],
 				altLabel: subject.data.altLabel[displayLang],
+                notation: subject.data.notation,
 				definition: subject.data.definition[displayLang] || subject.data.definition[defaultLang],
 				related: subject.data.related.map(transformRelatedSubject),
 				broader: subject.data.broader.map(transformRelatedSubject),

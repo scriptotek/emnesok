@@ -96,6 +96,7 @@
 		}
 
 		function matchResult(str,query) {
+			if (!str) return false;
 
 			if (vm.truncate===0 && query == str.substr(0,query.length)) return "Starting with"; 
 			if (vm.truncate===1 && str.indexOf(query)>-1) return "Containing"; 
@@ -139,21 +140,29 @@
 					if (matchResult(value.prefLabel.toLocaleLowerCase(),query.toLocaleLowerCase())) {
 					
 						//PrefLabel might exist from before
-						if (!$filter('filter')(result, {uri : value.uri}, true).length){
-							result.push({searchListIcon:searchListIcon,prefLabel:value.prefLabel,uri:value.uri});
+						if (!$filter('filter')(result, {localname : value.localname}, true).length){
+							result.push({searchListIcon:searchListIcon,prefLabel:value.prefLabel,localname:value.localname});
 						}	
 					}
+					//Check if match is on notation
+                    else if (matchResult(value.notation,query.toLocaleLowerCase())) {
+						//PrefLabel might exist from before
+						if (!$filter('filter')(result, {localname : value.localname}, true).length){
+							result.push({searchListIcon:searchListIcon,prefLabel:value.notation + ' ' + value.prefLabel,localname:value.localname});
+						}	
+
+                    }
 					//Or on matchedPrefLabel or altLabel
 					else {
 		
 						if (value.matchedPrefLabel){
-							if (!$filter('filter')(result, {uri : value.uri}, true).length){
-								result.push({searchListIcon:searchListIcon,prefLabel:value.prefLabel,uri:value.uri,description:"("+value.matchedPrefLabel+")"});
+							if (!$filter('filter')(result, {localname : value.localname}, true).length){
+								result.push({searchListIcon:searchListIcon,prefLabel:value.prefLabel,localname:value.localname,description:"("+value.matchedPrefLabel+")"});
 							}
 						}
 						else if (value.altLabel){
-							if (!$filter('filter')(result, {uri : value.uri}, true).length){
-								result.push({searchListIcon:searchListIcon,prefLabel:value.prefLabel,uri:value.uri,description:"("+value.altLabel+")"});
+							if (!$filter('filter')(result, {localname : value.localname}, true).length){
+								result.push({searchListIcon:searchListIcon,prefLabel:value.prefLabel,localname:value.localname,description:"("+value.altLabel+")"});
 
 							}
 						}
@@ -197,22 +206,14 @@
 			return deferred.promise;
 		}
 
-		function shortIdFromUri(uri) {
-			var s = uri.split('/'),
-				id = s.pop(),
-				vocab = s.pop();
-			return id;
-		}
-
 		function selectSubject(item) {
 			//console.log('selectSubject');
 			if (item) {
-				// console.log(item.originalObject.uri);
-				var subjectId = shortIdFromUri(item.originalObject.uri);
-				console.log('[SearchController] Selecting subject: ' + subjectId);
+				// console.log(item.originalObject.localname);
+				console.log('[SearchController] Selecting subject: ' + item.originalObject.localname);
 
 				$state.go('subject.search', {
-					id: subjectId,
+					id: item.originalObject.localname,
 					term: null
 				});
 			}

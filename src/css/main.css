@@ -246,6 +246,12 @@ li.noaccess:before {
   content: ' • ';
 }
 
+@media print {
+  a[href]:after {
+    content: none;
+  }
+}
+
 /*****************************************
  * Animations
  *****************************************/

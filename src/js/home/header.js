@@ -30,14 +30,14 @@
 		vm.navCollapsed = true;
 		vm.vocab = $stateParams.vocab ? Config.vocabularies[$stateParams.vocab] : null;
 
-		vm.helloHidden = sessionStorage.getItem('hideHello');
+		vm.helloHidden = localStorage.getItem('hideHello1');
 
 		vm.setLanguage = function(code) {
 			Lang.setLanguage(code);
 		};
 
 		vm.hideHello = function() {
-			sessionStorage.setItem('hideHello', true);
+			localStorage.setItem('hideHello1', true);
 			vm.helloHidden = true;
 		};
 	}

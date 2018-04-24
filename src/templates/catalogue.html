@@ -58,18 +58,22 @@
 
 	<div style="position: relative;">
 
-		<div class="slideInUp" ng-show="vm.results.length && !vm.stateChanging">
+		<div class="slideInUp" ng-show="vm.total_results && !vm.stateChanging">
 
-			<p ng-if="!vm.error">
+			<!--<p ng-if="!vm.error">
 				<span ng-if="vm.start && vm.total_results" translate translate-n="vm.total_results" translate-plural="Found {{vm.total_results}} documents about this topic using {{vm.searchType}}.">Found one document about this topic using {{vm.searchType}}.</span>
-			</p>
+			</p>-->
 
 			<ul class="list-group">
 				<li class="list-group-item" ng-repeat="result in vm.results" mod-catalogue-result record="result" vocab="vm.vocab" index-term="vm.indexTerm"></li>
 			</ul>
 
 			<p ng-show="vm.start && vm.last != vm.total_results" translate>
-				Loaded {{ vm.last }} records so far, {{ vm.total_results - vm.last }} to go, hold on…
+				Loaded {{ vm.results.length }} records so far, about {{ vm.total_results - vm.last }} left, hold on…
+			</p>
+
+			<p ng-show="vm.start && vm.last == vm.total_results" translate>
+				Found {{ vm.results.length }} documents about this topic using {{vm.searchType}}.
 			</p>
 
 			<div class="panel panel-default" ng-show="vm.start && vm.last == vm.total_results && vm.total_results != 0 && !vm.broadSearch && vm.subject.data.type !== 'Geographic'">
