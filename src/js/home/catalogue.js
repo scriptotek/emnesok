@@ -199,6 +199,23 @@
                 vm.error = gettextCatalog.getString(msg);
                 return;
             }
+
+            if (subject.data.replacedBy.length) {
+                var replacement = subject.data.replacedBy[0];
+                vm.busy = false;
+                var msg = gettext('This concept has been replaced by {{subject}}');
+                var replacementTitle = replacement.prefLabel[lang] ? replacement.prefLabel[lang] : replacement.prefLabel[defaultLang];
+                vm.error = gettextCatalog.getString(msg, {
+                    subject: '<a ui-sref="subject.search({id: \'' + replacement.id + '\', term: null})">' + replacementTitle + '</a>'
+                });
+                return;
+            } else if (subject.data.deprecated) {
+                vm.busy = false;
+                var msg = gettext('This concept has been depreacted');
+                vm.error = gettextCatalog.getString(msg);
+                return;
+            }
+
             vm.vocab = subject.vocab;
             vm.subject = subject;
             vm.indexTerm = subject.data.prefLabel[defaultLang];

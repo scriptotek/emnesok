@@ -132,6 +132,8 @@
 				narrower: arrayify(resources[uri].narrower),
 				definition: indexByLanguage(arrayify(resources[uri]['skos:definition'] || resources[uri].definition)),
 				type: preferredRdfType(arrayify(resources[uri].type)),
+				deprecated: _.get(resources[uri], 'owl:deprecated', false),
+				replacedBy: arrayify(resources[uri]['dct:isReplacedBy']),
 				elementSymbol: resources[uri]['http://data.ub.uio.no/onto#elementSymbol'],
 				components: arrayify(resources[uri]['http://data.ub.uio.no/onto#component']),
 			};
@@ -161,6 +163,7 @@
 			out.related = out.related.map(expandResource);
 			out.broader = out.broader.map(expandResource);
 			out.narrower = out.narrower.map(expandResource);
+			out.replacedBy = out.replacedBy.map(expandResource);
 			out.components = out.components.map(expandResource);
 
 			return out;

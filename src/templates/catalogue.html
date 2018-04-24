@@ -34,7 +34,7 @@
 
 	<h2 translate>Documents</h2>
 
-	<uib-alert ng-if="vm.error" type="danger">{{ vm.error }}</uib-alert>
+	<div uib-alert ng-if="vm.error" class="alert-danger" compile="vm.error"></div>
 
 	<p ng-if="!vm.busy && !vm.error && !vm.total_results && vm.subject.data.type !== 'KnuteTerm'" class="bg-danger">
 		<span translate>
@@ -87,6 +87,6 @@
 
 	<div ng-show="vm.busy" class="loader"></div>
 
-	<div class="text-muted small">Search query: ‘{{vm.searchQuery}}’</div>
+	<div ng-if="!vm.error" class="text-muted small">Search query: ‘{{vm.searchQuery}}’</div>
 
 </div>

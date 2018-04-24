@@ -15,6 +15,7 @@
 			'angular-loading-bar',
 			'angulartics',
 			'angulartics.google.analytics',
+			'app.directives',
 			'app.modules.header',
 			'app.modules.search',
 			'app.modules.subject',
