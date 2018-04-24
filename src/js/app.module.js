@@ -111,10 +111,10 @@
 					template: [
 						'<div class="container-fluid">',
 						'<div class="row">',
-						'	<div id="left" class="col-sm-5">',
+						'	<div id="left" class="col-md-5">',
 						'		<div mod-search></div>',
 						'	</div>',
-						'	<div id="right" class="col-sm-7">',
+						'	<div id="right" class="col-md-7">',
 						'		<div ui-view="catalogue"></div>',
 						'	</div>',
 						'</div>',
