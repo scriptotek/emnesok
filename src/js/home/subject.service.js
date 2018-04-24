@@ -124,9 +124,12 @@
 
 		// Returns a normalized representation of a JSON LD resource for easier processing
 		function processResource(resources, uri) {
+			console.log('DSD', resources[uri]);
 			return {
 				prefLabel: indexByLanguage(arrayify(resources[uri].prefLabel), false),
 				altLabel: indexByLanguage(arrayify(resources[uri].altLabel), true),
+				notation: _.get(resources[uri], 'skos:notation'),
+				// TODO: MSC
 				related: arrayify(resources[uri].related),
 				broader: arrayify(resources[uri].broader),
 				narrower: arrayify(resources[uri].narrower),
@@ -145,10 +148,14 @@
 				rawResources[graph.uri] = graph;
 			});
 
+			console.log('graph', data.graph);
+
 			var processedResources = {};
 			data.graph.forEach(function(graph) {
 				processedResources[graph.uri] = processResource(rawResources, graph.uri);
 			});
+
+			console.log('processedResources', processedResources);
 
 			function expandResource(res) {
 				var x = processedResources[res.uri];
@@ -157,11 +164,14 @@
 				return x;
 			}
 
+			console.log('uri', uri);
+
 			var out = processedResources[uri];
-			out.related = out.related.map(expandResource);
-			out.broader = out.broader.map(expandResource);
-			out.narrower = out.narrower.map(expandResource);
-			out.components = out.components.map(expandResource);
+			console.log(out);
+			out.related = _.get(out, 'related', []).map(expandResource);
+			out.broader = _.get(out, 'broader', []).map(expandResource);
+			out.narrower = _.get(out, 'narrower', []).map(expandResource);
+			out.components = _.get(out, 'components', []).map(expandResource);
 
 			return out;
 		}
@@ -175,7 +185,7 @@
 
 			var query = {
 				vocab: vocab,
-				query: q,
+				query: q.replace('--', ' : '),
 				labellang: Lang.language
 			};
 

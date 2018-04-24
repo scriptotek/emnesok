@@ -17,10 +17,11 @@
 
         ////////////
 
-        function search(query, start, institution, library) {
+        function search(query, start, institution, library, broadSearch) {
             var deferred = $q.defer();
 
             var params = {
+                expand_groups: true,  // in order to filter we need this, since it's random which edition we get data for in frbr groups
                 repr: 'full',
                 sort: 'date',
                 vocabulary: query.vocab,
@@ -47,7 +48,7 @@
               params: params
             }).
             then(function(response){
-                postProcessRecords(response.data.results, institution);
+                response.data.results = postProcessRecords(response.data.results, institution, params, broadSearch);
                 deferred.resolve(response.data);
             }, function(error){
                 deferred.reject(error);
@@ -73,7 +74,7 @@
               params: params,
             }).
             then(function(response){
-                postProcessRecords(response.data.result.records, institution);
+                response.data.result.records = postProcessRecords(response.data.result.records, institution);
                 deferred.resolve(response.data);
             }, function(error){
                 deferred.reject(error);
@@ -82,11 +83,54 @@
             return deferred.promise;
         }
 
-        function postProcessRecords(records, selectedInstitution) {
+        function onlyUnique(value, index, self) {
+            return self.indexOf(value) === index;
+        }
+
+        function postProcessRecords(records, selectedInstitution, queryParams, broadSearch) {
             records.forEach(function(record) {
                 simplifyAvailability(record, selectedInstitution);
                 record.pubEdYear = formatPubEdYearString(record);
+                Object.keys(record.subjects).forEach(function(k) {
+                    record.subjects[k] = record.subjects[k].filter(onlyUnique);
+                });
             });
+
+            console.log('queryParams', queryParams);
+
+            function matchingRecord(rec) {
+                if (broadSearch) {
+                    return true;
+                }
+                if (queryParams && queryParams.vocabulary && queryParams.subject) {
+                    var s = queryParams.subject.split(' OR ').shift();
+                    if (rec.subjects[queryParams.vocabulary].indexOf(s) == -1) { return false; }
+                }
+                if (queryParams && queryParams.place) {
+                    var s = queryParams.place.split(' OR ').shift();
+                    if (rec.subjects.place.indexOf(s) == -1) { return false; }
+                }
+                if (queryParams && queryParams.genre) {
+                    var s = queryParams.genre.split(' OR ').shift();
+                    if (rec.subjects.genre.indexOf(s) == -1) { return false; }
+                }
+                return true;
+            }
+
+            // Since Oria doesn't support exact search, we must post-filter
+            var nbefore = records.length;
+            records = records.filter(function(rec) {
+                if (rec.type == 'group') {
+                    var matching = rec.records.map(matchingRecord);
+                    if (matching.indexOf(true) != -1) { return true; }
+                } else if (matchingRecord(rec)) {
+                    return true;
+                }
+                return false;
+            });
+            console.log('Filter: from ' + nbefore + ' to ' + records.length);
+
+            return records;
         }
 
         function formatPubEdYearString(record) {

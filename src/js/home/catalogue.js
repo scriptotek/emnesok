@@ -71,6 +71,7 @@
         vm.filterElectronic = filterElectronic;
         vm.getStatus = getStatus;
         vm.selectedInstitution = $stateParams.library ? $stateParams.library.split(':')[0] : null;
+        vm.vocabularies = Config.vocabularies;
         vm.busy = false;
 
 
@@ -343,11 +344,14 @@
             if (!vm.broadSearch) {
                 q.vocab = vm.vocab;
             }
+            if (subject.data.notation) {
+                q.subject = subject.data.notation;
+            }
 
             vm.busy = true;
             vm.searchQuery = q;
 
-            Catalogue.search(q, vm.next, inst, lib).then(
+            Catalogue.search(q, vm.next, inst, lib, vm.broadSearch).then(
                 gotResults,
                 function(error) {
                     var msg = gettext('Uh oh, some kind of server error occured.');

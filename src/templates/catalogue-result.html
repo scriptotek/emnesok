@@ -49,13 +49,13 @@
 
 
 		<!-- Subjects -->
+	 	<div ng-repeat="v in vm.vocabularies[vm.vocab].show_vocabs">
+			<span ng-repeat="subject in vm.record.subjects[v]">
+				<a ui-sref="subject.search({vocab:v, id: null, term: subject})" class="subject-tag" ng-if="vm.indexTerm != subject" analytics-on="click" analytics-event="ClickTag" analytics-category="ControlledTag" analytics-label="{{ subject }}" title="{{ subject }} i {{v}}">{{ subject }}</a><span ng-if="vm.indexTerm == subject" class="subject-tag">{{ subject }}</span>
+			</span>
+	 	</div>
 
 		<div ng-show="vm.record.subjects[vm.vocab]">
-
-			<!-- Show subjects from local vocabulary -->
-			<span ng-repeat="subject in vm.record.subjects[vm.vocab]">
-				<a ui-sref="subject.search({id: null, term: subject})" class="subject-tag" ng-if="vm.indexTerm != subject" analytics-on="click" analytics-event="ClickTag" analytics-category="ControlledTag" analytics-label="{{ subject }}">{{ subject }}</a><span ng-if="vm.indexTerm == subject" class="subject-tag">{{ subject }}</span>
-			</span>
 
 			<!-- Show subjects from other vocabularies if no local -->
 			<span ng-show="!vm.record.subjects[vm.vocab].length && !vm.record.subjects.place.length" ng-repeat="subject in vm.record.subjects.subject">
@@ -70,11 +70,6 @@
 			<!-- Genre/forms (May or may not belong to the local vocabulary) -->
 			<span ng-repeat="subject in vm.record.subjects.genre || []">
 				<a href="#" ng-click="vm.clickSubject(subject)" class="subject-tag genre" title="{{ 'GenreForm' | translate }}">{{ subject }}</a>
-			</span>
-
-			<!-- DDC -->
-			<span ng-repeat="subject in vm.record.class.ddc || []">
-				<span class="ddc-tag">{{ subject }}</span>
 			</span>
 
 		</div>

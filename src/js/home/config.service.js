@@ -52,25 +52,36 @@
 					name: 'Realfagstermer',
 					languages: ['nb', 'nn', 'en'],
 					defaultLanguage: 'nb',
-					uriPattern: 'http://data.ub.uio.no/realfagstermer/{id}'
+					uriPattern: 'http://data.ub.uio.no/realfagstermer/{id}',
+					show_vocabs: ['realfagstermer', 'ddc', 'ubo'],
 				},
 				humord: {
 					name: 'Humord',
 					languages: ['nb'],
 					defaultLanguage: 'nb',
-					uriPattern: 'http://data.ub.uio.no/humord/{id}'
+					uriPattern: 'http://data.ub.uio.no/humord/{id}',
+					show_vocabs: ['humord', 'ddc', 'ubo'],
 				},
 				tekord: {
 					name: 'Tekord',
 					languages: ['nb'],
 					defaultLanguage: 'nb',
-					uriPattern: 'http://data.ub.uio.no/tekord/{id}'
+					uriPattern: 'http://data.ub.uio.no/tekord/{id}',
+					show_vocabs: ['tekord'],
 				},
 				mrtermer: {
 					name: 'Human Rights Terms',
 					languages: ['en'],
 					defaultLanguage: 'en',
-					uriPattern: 'http://data.ub.uio.no/mrtermer/{id}'
+					uriPattern: 'http://data.ub.uio.no/mrtermer/{id}',
+					show_vocabs: ['mrtermer'],
+				},
+				ddc: {
+					name: 'DDC',
+					languages: ['nb'],
+					defaultLanguage: 'nb',
+					uriPattern: 'http://dewey.info/{id}',
+					show_vocabs: ['realfagstermer', 'humord', 'ddc'],
 				}
 			},
 			skosmos: {
