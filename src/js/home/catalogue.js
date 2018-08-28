@@ -236,7 +236,7 @@
             vm.stateChanging = false;
 
             //Call some code when a state change starts
-            $scope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
+            $scope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
                 vm.stateChanging = true;
             });
         }

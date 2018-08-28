@@ -181,7 +181,7 @@ gulp.task('imgs', false, [], function() {
 });
 
 gulp.task('templates', false, [], function () {
-	
+
 	console.log('Waiting for templates');
 	function ferdigVenta() {
 

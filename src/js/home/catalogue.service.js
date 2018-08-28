@@ -42,10 +42,10 @@
             }
 
             $http({
-              method: 'GET',
-              cache: true,
-              url: Config.catalogue.searchUrl,
-              params: params
+                method: 'GET',
+                cache: true,
+                url: Config.catalogue.searchUrl,
+                params: params
             }).
             then(function(response){
                 response.data.results = postProcessRecords(response.data.results, institution, params, broadSearch);
@@ -67,10 +67,10 @@
             }
 
             $http({
-              method: 'GET',
-              cache: true,
-              url: Config.catalogue.groupUrl.replace('{id}', id),
-              params: params,
+                method: 'GET',
+                cache: true,
+                url: Config.catalogue.groupUrl.replace('{id}', id),
+                params: params,
             }).
             then(function(response){
                 response.data.result.records = postProcessRecords(response.data.result.records, institution);

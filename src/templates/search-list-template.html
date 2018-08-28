@@ -4,12 +4,12 @@
 	<div id="{{id}}_dropdown" class="angucomplete-dropdown" ng-show="showDropdown">
 		<div class="angucomplete-searching" ng-show="searching" ng-bind="textSearching"></div>
 		<div class="angucomplete-searching" ng-show="!searching && (!results || results.length == 0)" ng-bind="textNoResults"></div>
-		
+
 		<div class="angucomplete-row" ng-repeat="result in results" ng-click="selectResult(result)" ng-mouseenter="hoverRow($index)" ng-class="{'angucomplete-selected-row': $index == currentIndex}">
-	
+
 			<span class="angucomplete-title" ng-if="matchClass" ng-bind-html="result.title"></span>
 			<span class="angucomplete-title" ng-if="!matchClass">{{ result.title }}</span>
-			
+
 			<span ng-bind-html="result.originalObject.searchListIcon"></span>
 
 			<span ng-if="matchClass && result.description && result.description != ''" class="angucomplete-description" ng-bind-html="result.description"></span>
