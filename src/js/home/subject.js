@@ -106,7 +106,6 @@
 			});
 
 			function transformRelatedSubject(k) {
-                console.log('rel', k);
 				return {
 					prefLabel: k.prefLabel[displayLang] || k.prefLabel[defaultLang],
                     notation: k.notation,

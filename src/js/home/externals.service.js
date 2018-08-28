@@ -11,8 +11,6 @@
 			return text ? String(text).replace(/<[^>]+>/gm, '') : '';
 		}
 
-		console.log('[Externals] Init');
-
 		var service = {
 			snl:snl,
 			wp:wp,
@@ -22,8 +20,6 @@
 		return service;
 
 		function snl(prefLabel) {
-
-			console.log('[Externals] SNL lookup');
 
 			var deferred = $q.defer();
 
@@ -35,8 +31,6 @@
 			}).
 			then(function(result){
 
-				console.log('snl',result.data);
-
 				result.data.name = "Store norske leksikon";
 				if (result.data.type == "no result") {
 					return deferred.resolve(null);
@@ -46,13 +40,11 @@
 			},function(error){
 				deferred.reject(error);
 			});
-			
+
 			return deferred.promise;
 		}
 
 		function ps(prefLabel) {
-
-			console.log('[Externals] PS lookup',prefLabel);
 
 			var deferred = $q.defer();
 
@@ -68,22 +60,18 @@
 				result.data.name = "Periodesystemet";
 				deferred.resolve(result.data);
 
-				console.log('ps',result.data);
-
 			},function(error){
 				deferred.reject(error);
 			});
-			
+
 			return deferred.promise;
 		}
 
 
 		function wp(prefLabel,lang,type,deferred) {
-	
+
 			if (type===undefined) type="exact";
 			if (!type) type="exact";
-	
-			console.log('[Externals] Wikipedia lookup ('+type+')');		
 
 			if (!deferred) {
 				deferred = $q.defer();
@@ -111,34 +99,32 @@
 					var processed;
 
 					for (var pageid in result.data.query.pages) {
-			
+
 						processed=result.data.query.pages[pageid];
 						break;
 					}
 
-					if (processed.missing===undefined) {		
+					if (processed.missing===undefined) {
 
 						var extract="";
 						if (processed.extract) {
-					
+
 							var paragraphs =  processed.extract.match(/<p>([^]*?)<\/p>/gi);
 							extract = htmlToPlaintext(paragraphs[0]);
 						}
-						
+
 						result.data = {
 							name: "Wikipedia",
 							url: processed.canonicalurl,
 							extract: extract,
 							type: type
 						};
-						deferred.resolve(result.data);	
+						deferred.resolve(result.data);
 					}
-					
+
 					else {
 						wp(prefLabel,lang,"search", deferred);
 					}
-						
-					console.log('wiki exact',result.data);
 
 				},function(error){
 					deferred.reject(error);
@@ -164,9 +150,9 @@
 				then(function(result){
 
 					var data = null;
-				
+
 					if (result.data.query.searchinfo.totalhits) {
-							
+
 						data = {
 							name: "Wikipedia",
 							url: "https://"+lang+".wikipedia.org/w/index.php?search="+prefLabel,
@@ -175,14 +161,12 @@
 						};
 					}
 
-					deferred.resolve(data);	
-
-					console.log('wiki search',data);
+					deferred.resolve(data);
 
 				},function(error){
 					deferred.reject(error);
 				});
-			}	
+			}
 
 			return deferred.promise;
 		}

@@ -60,7 +60,6 @@
         function expandGroup(id, institution) {
             var deferred = $q.defer();
             var params = {};
-            console.log('GNUX', institution);
 
             if (institution) {
                 params.institution = institution;
@@ -96,8 +95,6 @@
                 });
             });
 
-            console.log('queryParams', queryParams);
-
             function matchingRecord(rec) {
                 if (broadSearch) {
                     return true;
@@ -128,7 +125,6 @@
                 }
                 return false;
             });
-            console.log('Filter: from ' + nbefore + ' to ' + records.length);
 
             return records;
         }

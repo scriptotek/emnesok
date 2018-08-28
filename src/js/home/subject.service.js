@@ -26,13 +26,13 @@
 		////////////
 
 		function activate() {
-			
+
 			//This doesn't work...
 			//JsonldRest.setBaseUrl('http://data.ub.uio.no');
-			
+
 			//But this does
 			//Restangular.setBaseUrl('http://data.ub.uio.no');
-			
+
 			/*
 			//A handler to a server collection of persons with a local context interpretation
 			var people = JsonldRest.collection('realfagstermer').withContext({
@@ -40,13 +40,13 @@
 				"ubo": "http://data.ub.uio.no/onto#",
 				"grunnstoff": "ubo:elementSymbol"
 			});
-			
+
 			//We retrieve the person http://example.org/person/1
 			people.one('c012171').get().then(function(res){
 				console.log("Hello ", res.grunnstoff);
 			});
 			*/
-	
+
 
 		}
 
@@ -124,7 +124,6 @@
 
 		// Returns a normalized representation of a JSON LD resource for easier processing
 		function processResource(resources, uri) {
-			console.log('DSD', resources[uri]);
 			return {
 				prefLabel: indexByLanguage(arrayify(resources[uri].prefLabel), false),
 				altLabel: indexByLanguage(arrayify(resources[uri].altLabel), true),
@@ -150,14 +149,10 @@
 				rawResources[graph.uri] = graph;
 			});
 
-			console.log('graph', data.graph);
-
 			var processedResources = {};
 			data.graph.forEach(function(graph) {
 				processedResources[graph.uri] = processResource(rawResources, graph.uri);
 			});
-
-			console.log('processedResources', processedResources);
 
 			function expandResource(res) {
 				var x = processedResources[res.uri];
@@ -165,8 +160,6 @@
 				x.id = x.uri.substr(x.uri.lastIndexOf('/') + 1);
 				return x;
 			}
-
-			console.log('uri', uri);
 
 			var out = processedResources[uri];
 			out.related = _.get(out, 'related', []).map(expandResource);
@@ -225,7 +218,7 @@
 					data: processed,
 				};
 				notify(subject);
-	
+
 				deferred.resolve(subject);
 			}, function(error){
 				deferred.reject(error);
