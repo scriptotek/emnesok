@@ -54,7 +54,6 @@
 		}
 
 		function process(subject) {
-
 			var lang = Lang.language;
 			var displayLang = lang;
 			var defaultLang = Lang.defaultLanguage;
@@ -108,7 +107,8 @@
 			function transformRelatedSubject(k) {
 				return {
 					prefLabel: k.prefLabel[displayLang] || k.prefLabel[defaultLang],
-                    notation: k.notation,
+                    notation: k.notation.length ? k.notation[0] : null,
+                    uri: k.uri,
 					id: k.id,
                     type: k.type,
 				};
@@ -117,14 +117,14 @@
 			output = {
 				prefLabel: subject.data.prefLabel[displayLang],
 				altLabel: subject.data.altLabel[displayLang],
-                notation: subject.data.notation,
+                notation: subject.data.notation.length ? subject.data.notation[0] : null,
 				definition: subject.data.definition[displayLang] || subject.data.definition[defaultLang],
 				related: subject.data.related.map(transformRelatedSubject),
 				broader: subject.data.broader.map(transformRelatedSubject),
 				narrower: subject.data.narrower.map(transformRelatedSubject),
 				translations: translations,
 				elementSymbol: subject.data.elementSymbol,
-				uri: subject.uri,
+				uri: subject.data.uri,
 			};
 
 			if (subject.vocab == "realfagstermer") {

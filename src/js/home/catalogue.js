@@ -201,8 +201,8 @@
                 return;
             }
 
-            if (subject.data.replacedBy.length) {
-                var replacement = subject.data.replacedBy[0];
+            if (subject.data.isReplacedBy.length) {
+                var replacement = subject.data.isReplacedBy[0];
                 vm.busy = false;
                 var msg = gettext('This concept has been replaced by {{subject}}');
                 var replacementTitle = replacement.prefLabel[lang] ? replacement.prefLabel[lang] : replacement.prefLabel[defaultLang];
@@ -220,7 +220,7 @@
             vm.vocab = subject.vocab;
             vm.subject = subject;
             vm.indexTerm = subject.data.prefLabel[defaultLang];
-            vm.stringSearch = (subject.data.components.length > 0);
+            vm.stringSearch = (subject.data._components.length > 0);
             searchFromStart();
 
             angular.element($window).bind('scroll', onScroll);
@@ -318,14 +318,14 @@
             var lib = vm.selectedLibrary ? vm.selectedInstitution + vm.selectedLibrary : null;
             var topics = [], places = [], genres = [];
 
-            if (subject.data.components.length) {
-                places = subject.data.components.filter(function(component) {
+            if (subject.data._components.length) {
+                places = subject.data._components.filter(function(component) {
                     return component.type == 'Geographic';
                 });
-                genres = subject.data.components.filter(function(component) {
+                genres = subject.data._components.filter(function(component) {
                     return component.type == 'GenreForm';
                 });
-                topics = subject.data.components.filter(function(component) {
+                topics = subject.data._components.filter(function(component) {
                     return component.type == 'Topic';
                 });
                 topics.sort(function(a, b) {
@@ -361,8 +361,8 @@
             if (!vm.broadSearch) {
                 q.vocab = vm.vocab;
             }
-            if (subject.data.notation) {
-                q.subject = subject.data.notation;
+            if (subject.data.notation.length) {
+                q.subject = subject.data.notation[0];
             }
 
             vm.busy = true;

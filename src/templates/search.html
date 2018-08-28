@@ -10,9 +10,9 @@
 		</ul>
 	</div>
 
-	<div id="search" angucomplete-alt ng-keypress="($event.which === 13)?vm.enterKey():0" placeholder="{{'Enter a subject' | translate}}" maxlength="50" 
+	<div id="search" angucomplete-alt ng-keypress="($event.which === 13)?vm.enterKey():0" placeholder="{{'Enter a subject' | translate}}" maxlength="50"
 		pause="400"
-		selected-object="vm.selectSubject" 
+		selected-object="vm.selectSubject"
 		remote-api-handler="vm.search"
 		focus-in="vm.openSearcMenu()"
 		title-field="prefLabel"
@@ -48,7 +48,7 @@
   <div class="panel-heading"><h3 class="panel-title" translate>Search history</h3></div>
   <ul class="list-group">
     <li class="list-group-item" ng-repeat="subject in vm.searchHistory.slice(0, vm.searchHistory.length-1).reverse()">
-	    <a ui-sref="subject.search({ id: subject.id, term: null })">
+	    <a ui-sref="subject.search({ id: null, uri: subject.uri, term: null })">
 		  {{ subject.data.prefLabel[vm.lang] ? subject.data.prefLabel[vm.lang] : subject.data.prefLabel[vm.defaultLang] }}
 	    </a>
     </li>

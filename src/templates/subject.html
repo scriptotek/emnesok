@@ -13,7 +13,7 @@
 		<span class="term" ng-repeat-start="label in vm.subject.altLabel">{{ label }}</span>
 		<span class="term_separator" ng-repeat-end></span>
 	</div>
-	<div class="block"> 
+	<div class="block">
 		<div ng-repeat="translation in vm.subject.translations">
 			{{ translation.language.name }}: {{ translation.prefLabel }}
 			<span ng-show="translation.altLabel.length" class="alt_trans">
@@ -26,21 +26,21 @@
 	<div class="block" ng-show="vm.subject.related.length">
 		<span translate>See also:</span>
 		<span ng-repeat="related in vm.subject.related | orderBy:'prefLabel'">
-            <a class="subject-tag" ng-class="{ geographic: related.type == 'Geographic', genre: related.type == 'GenreForm' }" ui-sref="subject.search({ term: null, id: related.id })">{{ related.notation }} {{ related.prefLabel }}</a>
+            <a class="subject-tag" ng-class="{ geographic: related.type == 'Geographic', genre: related.type == 'GenreForm' }" ui-sref="subject.search({ term: null, id: null, uri: related.uri })">{{ related.notation }} {{ related.prefLabel }}</a>
 		</span>
 	</div>
 
 	<div class="block" ng-show="vm.subject.broader.length">
 		<span translate>Broader:</span>
 		<span ng-repeat="broader in vm.subject.broader | orderBy:'prefLabel'">
-            <a class="subject-tag" ng-class="{ geographic: broader.type == 'Geographic', genre: broader.type == 'GenreForm' }" ui-sref="subject.search({ term: null, id: broader.id })">{{broader.notation }} {{ broader.prefLabel }}</a>
+            <a class="subject-tag" ng-class="{ geographic: broader.type == 'Geographic', genre: broader.type == 'GenreForm' }" ui-sref="subject.search({ term: null, id: null, uri: broader.uri })">{{broader.notation }} {{ broader.prefLabel }}</a>
 		</span>
 	</div>
 
 	<div class="block" ng-show="vm.subject.narrower.length">
 		<span translate>Narrower:</span>
 		<span ng-repeat="narrower in vm.subject.narrower | orderBy:'prefLabel'">
-            <a class="subject-tag" ng-class="{ geographic: narrower.type == 'Geographic', genre: narrower.type == 'GenreForm' }" ui-sref="subject.search({ term: null, id: narrower.id })">{{ narrower.notation }} {{ narrower.prefLabel }}</a>
+            <a class="subject-tag" ng-class="{ geographic: narrower.type == 'Geographic', genre: narrower.type == 'GenreForm' }" ui-sref="subject.search({ term: null, id: null, uri: narrower.uri })">{{ narrower.notation }} {{ narrower.prefLabel }}</a>
 		</span>
 	</div>
 
@@ -49,9 +49,9 @@
 			<li class="list-group-item external" ng-if="external.type!='no result'" ng-repeat="external in vm.subject.externals | filter: {name:''} | orderBy:'name'">
 				{{external.extract}}
 				<a ng-if="external.type=='exact'" href="{{ external.url }}" target="external" translate>Read more in {{external.name}}</a>
-				<a ng-if="external.type=='search'" href="{{ external.url }}" target="external" translate>Search in {{external.name}}</a> 
-		
-			</li> 
+				<a ng-if="external.type=='search'" href="{{ external.url }}" target="external" translate>Search in {{external.name}}</a>
+
+			</li>
 		</ul>
 	</div>
 	<p style="font-size:80%; text-align:right; margin: 0;">

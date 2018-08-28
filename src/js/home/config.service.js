@@ -52,6 +52,7 @@
 					name: 'Realfagstermer',
 					languages: ['nb', 'nn', 'en'],
 					defaultLanguage: 'nb',
+					scheme: 'http://data.ub.uio.no/realfagstermer/',
 					uriPattern: 'http://data.ub.uio.no/realfagstermer/{id}',
 					show_vocabs: ['realfagstermer', 'ddc', 'ubo'],
 				},
@@ -59,6 +60,7 @@
 					name: 'Humord',
 					languages: ['nb'],
 					defaultLanguage: 'nb',
+					scheme: 'http://data.ub.uio.no/humord/',
 					uriPattern: 'http://data.ub.uio.no/humord/{id}',
 					show_vocabs: ['humord', 'ddc', 'ubo'],
 				},
@@ -66,6 +68,7 @@
 					name: 'Tekord',
 					languages: ['nb'],
 					defaultLanguage: 'nb',
+					scheme: 'http://data.ub.uio.no/tekord/',
 					uriPattern: 'http://data.ub.uio.no/tekord/{id}',
 					show_vocabs: ['tekord'],
 				},
@@ -73,6 +76,7 @@
 					name: 'Human Rights Terms',
 					languages: ['en'],
 					defaultLanguage: 'en',
+					scheme: 'http://data.ub.uio.no/mrtermer/',
 					uriPattern: 'http://data.ub.uio.no/mrtermer/{id}',
 					show_vocabs: ['mrtermer'],
 				},
@@ -80,6 +84,7 @@
 					name: 'DDC',
 					languages: ['nb'],
 					defaultLanguage: 'nb',
+					scheme: 'http://dewey.info/scheme/edition/e23/',
 					uriPattern: 'http://dewey.info/{id}',
 					show_vocabs: ['realfagstermer', 'humord', 'ddc'],
 				}
@@ -87,7 +92,8 @@
 			skosmos: {
 				vocabularyStatisticsUrl: 'https://data.ub.uio.no/skosmos/rest/v1/{vocab}/vocabularyStatistics',
 				dataUrl: 'https://data.ub.uio.no/skosmos/rest/v1/data?uri={uri}',
-				searchUrl: 'https://data.ub.uio.no/skosmos/rest/v1/search'
+				jskosUrl: 'https://ub-www01.uio.no/microservices/jskos.php?uri={uri}',
+				searchUrl: 'https://data.ub.uio.no/skosmos/rest/v1/search',
 			},
 			catalogue: {
 				searchUrl: 'https://ub-lsm.uio.no/primo/search',

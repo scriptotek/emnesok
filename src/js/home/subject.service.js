@@ -25,29 +25,53 @@
 
 		////////////
 
+        function preferredRdfType(types) {
+            if (types.indexOf('http://data.ub.uio.no/onto#Place') !== -1) {
+                gettext('Geographic');
+                return 'Geographic';
+            }
+            if (types.indexOf('http://data.ub.uio.no/onto#Time') !== -1) {
+                gettext('Temporal');
+                return 'Temporal';
+            }
+            if (types.indexOf('http://data.ub.uio.no/onto#GenreForm') !== -1) {
+                gettext('GenreForm');
+                return 'GenreForm';
+            }
+            if (types.indexOf('http://data.ub.uio.no/onto#KnuteTerm') !== -1) {
+                gettext('KnuteTerm');
+                return 'KnuteTerm';
+            }
+
+            gettext('Topic');
+            return 'Topic';
+        }
+
+        function getShortVocabularyCode(uri) {
+            var shortCodes = Object.keys(Config.vocabularies);
+            for (var i = 0; i < shortCodes.length; i++) {
+                if (Config.vocabularies[shortCodes[i]].scheme == uri) {
+                    return shortCodes[i];
+                }
+            }
+        }
+
+        function Subject(data) {
+
+            data.type = preferredRdfType(data.type);
+
+            ['_components', 'broader', 'narrower', 'related'].forEach(function (prop) {
+                data[prop].map(function (res) {
+                    res.type = preferredRdfType(res.type);
+                });
+            });
+
+            this.vocab = getShortVocabularyCode(_.get(data, 'inScheme.0.uri'));
+
+            this.data = data;
+        }
+
 		function activate() {
-
-			//This doesn't work...
-			//JsonldRest.setBaseUrl('http://data.ub.uio.no');
-
-			//But this does
-			//Restangular.setBaseUrl('http://data.ub.uio.no');
-
-			/*
-			//A handler to a server collection of persons with a local context interpretation
-			var people = JsonldRest.collection('realfagstermer').withContext({
-				"skos": "http://www.w3.org/2004/02/skos/core#",
-				"ubo": "http://data.ub.uio.no/onto#",
-				"grunnstoff": "ubo:elementSymbol"
-			});
-
-			//We retrieve the person http://example.org/person/1
-			people.one('c012171').get().then(function(res){
-				console.log("Hello ", res.grunnstoff);
-			});
-			*/
-
-
 		}
 
 		function clearSearchHistory() {
@@ -61,7 +85,7 @@
 
 		function notify(subject) {
 			var idx = service.searchHistory.reduce(function(prev, curr, idx) {
-				return (curr.uri == subject.uri) ? idx : prev;
+				return (curr.data.uri == subject.data.uri) ? idx : prev;
 			}, -1);
 
 			if (idx !== -1) {
@@ -100,75 +124,61 @@
 			return out;
 		}
 
-		function preferredRdfType(arr) {
-			if (arr.indexOf('http://data.ub.uio.no/onto#Place') !== -1) {
-				gettext('Geographic');
-				return 'Geographic';
-			}
-			if (arr.indexOf('http://data.ub.uio.no/onto#Time') !== -1) {
-				gettext('Temporal');
-				return 'Temporal';
-			}
-			if (arr.indexOf('http://data.ub.uio.no/onto#GenreForm') !== -1) {
-				gettext('GenreForm');
-				return 'GenreForm';
-			}
-			if (arr.indexOf('http://data.ub.uio.no/onto#KnuteTerm') !== -1) {
-				gettext('KnuteTerm');
-				return 'KnuteTerm';
-			}
-
-			gettext('Topic');
-			return 'Topic';
-		}
 
 		// Returns a normalized representation of a JSON LD resource for easier processing
-		function processResource(resources, uri) {
-			return {
-				prefLabel: indexByLanguage(arrayify(resources[uri].prefLabel), false),
-				altLabel: indexByLanguage(arrayify(resources[uri].altLabel), true),
-				notation: _.get(resources[uri], 'skos:notation'),
-				// TODO: MSC
-				related: arrayify(resources[uri].related),
-				broader: arrayify(resources[uri].broader),
-				narrower: arrayify(resources[uri].narrower),
-				definition: indexByLanguage(arrayify(resources[uri]['skos:definition'] || resources[uri].definition)),
-				type: preferredRdfType(arrayify(resources[uri].type)),
-				deprecated: _.get(resources[uri], 'owl:deprecated', false),
-				replacedBy: arrayify(resources[uri]['dct:isReplacedBy']),
-				elementSymbol: resources[uri]['http://data.ub.uio.no/onto#elementSymbol'],
-				components: arrayify(resources[uri]['http://data.ub.uio.no/onto#component']),
-			};
-		}
+		// function processResource(resources, uri) {
+
+		// 	return {
+		// 		prefLabel: indexByLanguage(arrayify(resources[uri].prefLabel), false),
+		// 		altLabel: indexByLanguage(arrayify(resources[uri].altLabel), true),
+		// 		notation: _.get(resources[uri], 'skos:notation'),
+		// 		// TODO: MSC
+		// 		related: arrayify(resources[uri].related),
+		// 		broader: arrayify(resources[uri].broader),
+		// 		narrower: arrayify(resources[uri].narrower),
+		// 		definition: indexByLanguage(arrayify(resources[uri]['skos:definition'] || resources[uri].definition)),
+		// 		type: preferredRdfType(arrayify(resources[uri].type)),
+		// 		deprecated: _.get(resources[uri], 'owl:deprecated', false),
+		// 		replacedBy: arrayify(resources[uri]['dct:isReplacedBy']),
+		// 		elementSymbol: resources[uri]['http://data.ub.uio.no/onto#elementSymbol'],
+		// 		components: arrayify(resources[uri]['http://data.ub.uio.no/onto#component']),
+		// 	};
+		// }
 
 		function processSubject(uri, data) {
 
+
+            // data.replacedBy = [];
+            // data.elementSymbol = null;
+            // data.components = [];
+            // data.definition = {};
+
 			// Make a uri => data lookup object
-			var rawResources = {};
-			data.graph.forEach(function(graph) {
-				rawResources[graph.uri] = graph;
-			});
+			// var rawResources = {};
+			// data.graph.forEach(function(graph) {
+			// 	rawResources[graph.uri] = graph;
+			// });
 
-			var processedResources = {};
-			data.graph.forEach(function(graph) {
-				processedResources[graph.uri] = processResource(rawResources, graph.uri);
-			});
+			// var processedResources = {};
+			// data.graph.forEach(function(graph) {
+			// 	processedResources[graph.uri] = processResource(rawResources, graph.uri);
+			// });
 
-			function expandResource(res) {
-				var x = processedResources[res.uri];
-				x.uri = res.uri;
-				x.id = x.uri.substr(x.uri.lastIndexOf('/') + 1);
-				return x;
-			}
+			// function expandResource(res) {
+			// 	var x = processedResources[res.uri];
+			// 	x.uri = res.uri;
+			// 	x.id = x.uri.substr(x.uri.lastIndexOf('/') + 1);
+			// 	return x;
+			// }
 
-			var out = processedResources[uri];
-			out.related = _.get(out, 'related', []).map(expandResource);
-			out.broader = _.get(out, 'broader', []).map(expandResource);
-			out.narrower = _.get(out, 'narrower', []).map(expandResource);
-			out.components = _.get(out, 'components', []).map(expandResource);
-			out.replacedBy = _.get(out, 'replacedBy', []).map(expandResource);
+			// var out = processedResources[uri];
+			// out.related = _.get(out, 'related', []).map(expandResource);
+			// out.broader = _.get(out, 'broader', []).map(expandResource);
+			// out.narrower = _.get(out, 'narrower', []).map(expandResource);
+			// out.components = _.get(out, 'components', []).map(expandResource);
+			// out.replacedBy = _.get(out, 'replacedBy', []).map(expandResource);
 
-			return out;
+			return data;
 		}
 
 		function search(q, vocab) {
@@ -190,8 +200,8 @@
 			  url: Config.skosmos.searchUrl,
 			  params: query
 			}).
-			then(function(data){
-				deferred.resolve(data.data);
+			then(function(response){
+				deferred.resolve(response.data);
 			}, function(error){
 				deferred.reject(error);
 			});
@@ -199,91 +209,66 @@
 			return deferred.promise;
 		}
 
-		function getByUri(uri) {
-			var deferred = $q.defer();
+        function getByUri(uri) {
+            var deferred = $q.defer();
+            $http({
+                method: 'GET',
+                cache: true,
+                url: Config.skosmos.jskosUrl.replace('{uri}', uri),
+            }).
+            then(function(response){
+                var subject = new Subject(response.data);
+                // {
+                //     uri: uri,
+                //     id: uri.split('/').pop(),
+                //     data: processSubject(uri, response.data),
+                // };
+                notify(subject);
 
-			$http({
-			  method: 'GET',
-			  cache: true,
-			  url: Config.skosmos.dataUrl.replace('{uri}', uri)
-			}).
-			then(function(data){
-				if (!data.data.graph) {
-					return deferred.resolve(null);
-				}
-				var processed = processSubject(uri, data.data);
-				var subject = {
-					uri: uri,
-					id: uri.split('/').pop(),
-					data: processed,
-				};
-				notify(subject);
+                deferred.resolve(subject);
+            }, function(error){
+                deferred.reject(error);
+            });
 
-				deferred.resolve(subject);
-			}, function(error){
-				deferred.reject(error);
-			});
-
-			return deferred.promise;
-		}
+            return deferred.promise;
+        }
 
 		function getById(id, vocab) {
-			if (!Config.vocabularies[vocab]) {
-				console.error('Unknown vocabulary ' + vocab + '!');
-				return;
-			}
-			var deferred = $q.defer();
-
-			var uri = Config.vocabularies[vocab].uriPattern.replace('{id}', id);
-
-			getByUri(uri).then(function(subject) {
-				if (subject) {
-					subject.id = id;
-					subject.vocab = vocab;
-				}
-				deferred.resolve(subject);
-			}, function(error) {
-				deferred.reject(error);
-			});
-
-			return deferred.promise;
-		}
-
-		function exists(term, vocab) {
-			var deferred = $q.defer();
-			search(term, vocab).then(function(response) {
-				if (!response.results.length) {
-					return deferred.resolve(null);
-				}
-				deferred.resolve(response.results[0]);
-			}, function(error) {
-				deferred.reject(error);
-			});
-			return deferred.promise;
+            var uri = Config.vocabularies[vocab].uriPattern.replace('{id}', id);
+            return getByUri(uri);
 		}
 
 		function getByTerm(term, vocab) {
 			var deferred = $q.defer();
-			search(term, vocab).then(function(response) {
+
+			search(term, vocab).
+            then(function(response) {
 				if (!response.results.length) {
 					return deferred.reject();
 				}
-				var uri = response.results[0].uri;
-				getByUri(uri).then(function(subject) {
-					if (!subject) {
-						deferred.reject('Ukjent feil #1');
-					} else {
-						subject.vocab = vocab;
-						deferred.resolve(subject);
-					}
-				}, function(error) {
-					deferred.reject(error);
-				});
+                getByUri(response.results[0].uri).
+                then(function(subject) {
+                    deferred.resolve(subject);
+                })
 			}, function(error) {
 				deferred.reject(error);
 			});
+
 			return deferred.promise;
 		}
+
+        function exists(term, vocab) {
+            var deferred = $q.defer();
+            search(term, vocab).then(function(response) {
+                if (!response.results.length) {
+                    return deferred.resolve(null);
+                }
+                deferred.resolve(response.results[0]);
+            }, function(error) {
+                deferred.reject(error);
+            });
+            return deferred.promise;
+        }
 
 		function getVocabulary(vocab) {
 			var deferred = $q.defer();

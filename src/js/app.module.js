@@ -137,7 +137,7 @@
 			}
 		})
 		.state('subject.search', {
-			url: '/search?term&id&broad&library',
+			url: '/search?term&id&uri&broad&library',
 			views: {
 				'catalogue': {
 					templateUrl: 'app/catalogue.html',
@@ -147,7 +147,9 @@
 			},
 			resolve: {
 				subject: ['SubjectService', '$stateParams', function(SubjectService, $stateParams){
-					if ($stateParams.term) {
+                    if ($stateParams.uri) {
+                        return SubjectService.getByUri($stateParams.uri);
+					} else if ($stateParams.term) {
 						return SubjectService.getByTerm($stateParams.term, $stateParams.vocab);
 					} else if ($stateParams.id) {
 						return SubjectService.getById($stateParams.id, $stateParams.vocab);
@@ -168,12 +170,13 @@
 		});
 
 		$rootScope.$on('$stateChangeStart', function (evt, toState, toParams, fromState, fromParams, error) {
-			if (!toParams.id && !toParams.term) {
+			if (!toParams.id && !toParams.term && !toParams.uri) {
 				SubjectService.clearSearchHistory();
 			}
 		});
 
 		$rootScope.$on('$stateChangeError', function (evt, toState, toParams, fromState, fromParams, error) {
+            console.error(error);
 			if (angular.isObject(error) && angular.isString(error.code)) {
 				switch (error.code) {
 					case 'NOT_AUTHENTICATED':

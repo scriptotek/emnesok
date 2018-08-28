@@ -28,7 +28,7 @@
 		vm.defaultLang = Lang.defaultLanguage;
 		vm.vocab = ($stateParams.vocab && $stateParams.vocab != 'all') ? $stateParams.vocab : null;
 		// vm.formatRequest = formatRequest;
-		// vm.formatResult = formatResult;
+		// vm.processResults = processResults;
 		vm.selectSubject = selectSubject;
 		vm.openSearcMenu = openSearcMenu;
 		vm.searchTruncation = searchTruncation;
@@ -69,7 +69,7 @@
 			vm.truncate  = truncate;
 			openSearcMenu();
 		}
-			
+
 		function formatRequest(str) {
 			var query;
 
@@ -96,90 +96,78 @@
 		}
 
 		function matchResult(str,query) {
+            if (!str || !query) return false;
+            str = str.toLocaleLowerCase();
+            query = query.toLocaleLowerCase();
 			if (!str) return false;
 
-			if (vm.truncate===0 && query == str.substr(0,query.length)) return "Starting with"; 
-			if (vm.truncate===1 && str.indexOf(query)>-1) return "Containing"; 
-			if (vm.truncate===2 && query == str.substr((str.length-query.length),query.length)) return "Ends with"; 
+			if (vm.truncate===0 && query == str.substr(0,query.length)) return "Starting with";
+			if (vm.truncate===1 && str.indexOf(query)>-1) return "Containing";
+			if (vm.truncate===2 && query == str.substr((str.length-query.length),query.length)) return "Ends with";
 			if (vm.truncate===3 && query == str) return "Exact Match";
 
 			return false;
-			
+
 		}
 
-		function formatResult(response,query) {
+		function processResults(response,query) {
 
-			//console.log('Got response',response);
-			var result = [];
-	
-			//Remove duplicates and add matchedPreflabel and some notation where there is a match
-			response.results.forEach(function (value, key) {
+            //Remove duplicates and add matchedPreflabel and some notation where there is a match
+            var results = _.uniqBy(response.results, function(x) {
+                return x.uri;
+            });
 
-				var searchListIcon=""; 
-				// Add Geographics/Temporal/GenreForm to list
-				for (var i=0; i<value.type.length; i++) {
-					var str = value.type[i].split("#")[1];
+            // Ignore results without prefLabel
+			results = results.filter(function(result) {
+                return result.prefLabel;
+            });
 
-					if (str=="Place") {
-						searchListIcon ="<span><i class=\"glyphicon glyphicon-map-marker\"></i><em> "+gettextCatalog.getString(str)+"</em></span>";
-						break;
-					}
-					else if (str=="Time") {
-						searchListIcon ="<span><i class=\"glyphicon glyphicon-time\"></i><em> "+gettextCatalog.getString(str)+"</em></span>";
-						break;	
-					}
-					else if (str=="GenreForm") {
-						searchListIcon ="<span><i class=\"glyphicon glyphicon-list-alt\"></i><em> "+gettextCatalog.getString(str)+"</em></span>";
-						break;
-					}
-				}
-					
-				if (value.prefLabel!==undefined) { 
-
-					//Check if match is on prefLabel
-					if (matchResult(value.prefLabel.toLocaleLowerCase(),query.toLocaleLowerCase())) {
-					
-						//PrefLabel might exist from before
-						if (!$filter('filter')(result, {localname : value.localname}, true).length){
-							result.push({searchListIcon:searchListIcon,prefLabel:value.prefLabel,localname:value.localname});
-						}	
-					}
-					//Check if match is on notation
-                    else if (matchResult(value.notation,query.toLocaleLowerCase())) {
-						//PrefLabel might exist from before
-						if (!$filter('filter')(result, {localname : value.localname}, true).length){
-							result.push({searchListIcon:searchListIcon,prefLabel:value.notation + ' ' + value.prefLabel,localname:value.localname});
-						}	
-
+            results.forEach(function(result) {
+                if (matchResult(result.prefLabel, query)) {
+                    // OK
+                } else if (matchResult(result.notation, query)) {
+                    result.prefLabel = value.notation + ' ' + value.prefLabel;
+                } else {
+                    // If we don't have a match on prefLabel in the current language,
+                    // we should show matchedPrefLabel or altLabel
+                    if (result.matchedPrefLabel) {
+                        result.description = '(' + result.matchedPrefLabel + ')';
                     }
-					//Or on matchedPrefLabel or altLabel
-					else {
-		
-						if (value.matchedPrefLabel){
-							if (!$filter('filter')(result, {localname : value.localname}, true).length){
-								result.push({searchListIcon:searchListIcon,prefLabel:value.prefLabel,localname:value.localname,description:"("+value.matchedPrefLabel+")"});
-							}
-						}
-						else if (value.altLabel){
-							if (!$filter('filter')(result, {localname : value.localname}, true).length){
-								result.push({searchListIcon:searchListIcon,prefLabel:value.prefLabel,localname:value.localname,description:"("+value.altLabel+")"});
+                    if (result.altLabel) {
+                        result.description = '(' + result.altLabel + ')';
+                    }
+                }
 
-							}
-						}
-					}
-				}
-			});
-			
-			return result;
+                // Add icon
+                result.searchListIcon = getSearchListIcon(result);
+            });
+
+			return results;
 		}
+
+        function getSearchListIcon(result) {
+            // Add Geographics/Temporal/GenreForm to list
+            result.type.forEach(function(resultType) {
+                resultType = resultType.split('#').pop();
+
+                var icons = {
+                    'Place': 'glyphicon-map-marker',
+                    'Time': 'glyphicon-time',
+                    'GenreForm': 'glyphicon-list-alt',
+                }
+
+                if (icons[resultType]) {
+                    return "<span><i class=\"glyphicon " + icons[resultType] + "\"></i><em> " + gettextCatalog.getString(resultType) + "</em></span>";
+                }
+            });
+            return "";
+        }
 
 		function search(query) {
 
 			vm.query=query;
 
 			var deferred = $q.defer();
-
-			//console.log('Searching with...',query);
 
 			vm.errorMsg = '';
 			$http({
@@ -191,7 +179,7 @@
 			}).
 			then(function(data){
 				vm.searchResults = data.data;
-				var processed = formatResult(vm.searchResults,query);
+				var processed = processResults(vm.searchResults,query);
 				deferred.resolve(processed);
 
 			}, function(error, q){
@@ -207,13 +195,10 @@
 		}
 
 		function selectSubject(item) {
-			//console.log('selectSubject');
 			if (item) {
-				// console.log(item.originalObject.localname);
-				console.log('[SearchController] Selecting subject: ' + item.originalObject.localname);
-
 				$state.go('subject.search', {
-					id: item.originalObject.localname,
+                    uri: item.originalObject.uri,
+					id: null,
 					term: null
 				});
 			}
