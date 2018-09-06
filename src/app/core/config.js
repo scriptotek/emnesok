@@ -33,6 +33,9 @@
             animation: 'slide'
         });
 
+        // Highlight untranslated strings
+        // gettextCatalog.debug = true;
+
     }
 
 })();

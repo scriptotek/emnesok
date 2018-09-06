@@ -3,8 +3,11 @@
 
     angular
 		.module('app.pages')
-		.controller('ErrorController', controller)
-		;
+		.component('appError', {
+            templateUrl: 'app/pages/error.html',
+            controller: 'ErrorController',
+            controllerAs: 'vm'
+        });
 
     controller.$inject = ['$state', '$stateParams', 'gettext', 'gettextCatalog'];
 

@@ -16,78 +16,44 @@
         $urlRouterProvider.when(/^\/(humord|realfagstermer|tekord|mrtermer)$/, '/$1/');
         $urlRouterProvider.otherwise('/');
 
-        var headerView = {
-            templateUrl: 'app/layout/header.html',
-            controller: 'HeaderController',
-            controllerAs: 'vm'
-        };
-
         $stateProvider
             .state('home', {
                 url: '/?lang',
                 data: {pageTitle: ''},
                 views: {
-                    'header': headerView,
-                    'main': {
-                        templateUrl: 'app/pages/home.html',
-                        controller: 'HomeController',
-                        controllerAs: 'vm'
-                    }
-                }
+                    'main': 'appHome',
+                },
             })
             .state('error', {
                 url: '/error?lang',
                 views: {
-                    'header': headerView,
-                    'main': {
-                        templateUrl: 'app/pages/error.html',
-                        controller: 'ErrorController',
-                        controllerAs: 'vm'
-                    }
-                }
+                    'main': 'appError',
+                },
             })
             .state('about', {
                 url: '/about?lang',
                 data: {pageTitle: 'About'},
                 views: {
-                    'header': headerView,
-                    'main': {
-                        templateUrl: 'app/pages/about.html',
-                        controller: 'AboutController',
-                        controllerAs: 'vm'
-                    }
-                }
+                    'main': 'appAbout',
+                },
             })
             .state('subject', {
                 url: '/:vocab?lang',
                 abstract: true,
                 views: {
-                    'header': headerView,
-                    'main': {
-                        templateUrl: 'app/layout/main.html',
-                    }
-                }
+                    'main': 'appMain',
+                },
             })
             .state('subject.vocab', {
                 url: '/',
                 views: {
-                    'catalogue': {
-                        templateUrl: function (stateParams) {
-                            return 'app/vocabulary/' + stateParams.vocab + '.html';
-                        },
-                        controller: 'VocabularyController',
-                        controllerAs: 'vm'
-                    }
-                }
+                    'catalogue': 'appVocabularyInfo',
+                },
             })
             .state('subject.search', {
                 url: '/search?term&id&uri&broad&library',
                 views: {
-                    'catalogue': {
-                        templateUrl: 'app/catalogue/catalogue.html',
-                        controller: 'CatalogueController',
-                        controllerAs: 'vm'
-                    }
+                    'catalogue': 'appCatalogueResults'
                 },
                 resolve: {
                     subject: /* @ngInject */ function (AuthorityService, $stateParams) {
@@ -106,7 +72,7 @@
     }
 
     /* @ngInject */
-    function run($rootScope, $state, $transitions, Lang, AuthorityService, TitleService) {
+    function run($rootScope, $state, $transitions, AuthorityService, TitleService) {
 
         $transitions.onStart({}, function (transition) {
             var toParams = transition.params('to');

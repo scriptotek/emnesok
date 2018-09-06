@@ -3,60 +3,37 @@
 
     angular
 		.module('app.authority')
-		.directive('modSubject', SubjectModule);
-
-    function SubjectModule() {
-
-        var directive = {
-            restrict: 'E',
-            templateUrl: 'app/authority/authority.html',
-            replace: true,
-            scope: {
-                subjectData: '='
-            },
+		.component('appAuthorityRecord', {
+            templateUrl: 'app/authority/authorityRecord.html',
+            controller: AuthorityRecordController,
             controllerAs: 'vm',
-            controller: controller,
-            bindToController: true
-        };
+            bindings: {
+                data: '<',
+            },
+        });
 
-        return directive;
-    }
-
-    controller.$inject = ['$scope', 'Config', 'Lang', 'Externals'];
-
-    function controller($scope, Config, Lang, Externals) {
+    /* @ngInject */
+    function AuthorityRecordController($scope, Config, langService, Externals) {
 		/*jshint validthis: true */
         var vm = this;
+
         vm.error = null;
         vm.subject = null;
 
-		//vm.expanded = $scope.expanded;
-
-        activate();
-
-		////////////
-
-        function activate() {
-            $scope.$watch('vm.subjectData', function(newValue, oldValue) {
-                if (newValue != oldValue) {
-                    update();
-                }
-            });
-            if (vm.subjectData) {
-                update();
+        this.$onChanges = function(changes) {
+            if (!vm.data) {
+                vm.error = null;
+                vm.subject = null;
+            } else {
+                vm.subject = process(vm.data);
+                vm.subject.vocab = vm.data.vocab;
             }
-        }
-
-        function update () {
-			// console.log('[Subject] update():', vm.subjectData.data.prefLabel.nb);
-            vm.subject = process(vm.subjectData);
-            vm.subject.vocab = vm.subjectData.vocab;
-        }
+        };
 
         function process(subject) {
-            var lang = Lang.language;
+            var lang = langService.language;
             var displayLang = lang;
-            var defaultLang = Lang.defaultLanguage;
+            var defaultLang = langService.defaultLanguage;
             var translations = [];
             var externals = [];
             var output = {};

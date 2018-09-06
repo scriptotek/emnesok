@@ -3,9 +3,9 @@
 
     angular
         .module('app.catalogue')
-        .component('modCatalogueResult', {
-            templateUrl: 'app/catalogue/catalogue-result.html',
-            controller: ModCatalogueResultController,
+        .component('appCatalogueResult', {
+            templateUrl: 'app/catalogue/catalogueResult.html',
+            controller: CatalogueResultController,
             controllerAs: 'vm',
             bindings: {
                 record: '<',
@@ -15,7 +15,7 @@
         });
 
     /* @ngInject */
-    function ModCatalogueResultController(Lang, Catalogue, Config, AuthorityService, $state, ngToast, gettext, gettextCatalog, $analytics, $stateParams) {
+    function CatalogueResultController(Catalogue, Config, AuthorityService, $state, ngToast, gettext, gettextCatalog, $analytics, $stateParams) {
         /*jshint validthis: true */
         var vm = this;
 

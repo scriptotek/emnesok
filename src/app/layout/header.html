@@ -11,7 +11,7 @@
       </button>
 
       <span class="navbar-brand">
-        <a ui-sref="home({ lang: vm.langState })" translate>Subject Search</a>
+        <a ui-sref="home({ lang: vm.lang })" translate>Subject Search</a>
         <span ng-show="vm.vocab">
         : <a ui-sref="subject.vocab()">{{ vm.vocab.name }}</a>
         </span>
@@ -21,7 +21,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="navbar-collapse" uib-collapse="vm.navCollapsed">
       <ul class="nav navbar-nav navbar-right">
-        <li><a ui-sref="about({ lang: vm.langState })" translate>About</a></li>
+        <li><a ui-sref="about({ lang: vm.lang })" translate>About</a></li>
         <li uib-dropdown>
 
           <a href id="language-dropdown-button" role="button" aria-haspopup="true" aria-expanded="false" uib-dropdown-toggle>

@@ -7,10 +7,17 @@
             'app.services.config',
             'app.services.title',
         ])
-		.controller('VocabularyController', VocabularyController);
+		.component('appVocabularyInfo', {
+            templateUrl: /* @ngInject */ function ($stateParams) {
+                console.log('INIT WITH', $stateParams);
+                return 'app/vocabulary/' + $stateParams.vocab + '.html';
+            },
+            controller: VocabularyInfoController,
+            controllerAs: 'vm',
+        });
 
     /* @ngInject */
-    function VocabularyController($stateParams, Config, TitleService, AuthorityService) {
+    function VocabularyInfoController($stateParams, Config, TitleService, AuthorityService) {
 		/*jshint validthis: true */
         var vm = this;
         var vocabName = Config.vocabularies[$stateParams.vocab].name;

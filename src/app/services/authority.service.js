@@ -8,7 +8,7 @@
         .factory('AuthorityService', AuthorityService);
 
     /* @ngInject */
-    function AuthorityService($http, $stateParams, $filter, $q, $rootScope, gettext, Config, Lang) {
+    function AuthorityService($http, $stateParams, $filter, $q, $rootScope, gettext, Config, langService) {
 
         var service = {
             search: search,
@@ -194,7 +194,7 @@
             var query = {
                 vocab: vocab,
                 query: q.replace('--', ' : '),
-                labellang: Lang.language
+                labellang: langService.language
             };
 
             $http({

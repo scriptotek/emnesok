@@ -3,13 +3,20 @@
 
     angular
         .module('app.catalogue')
-        .controller('CatalogueController', CatalogueController);
+        .component('appCatalogueResults', {
+            templateUrl: 'app/catalogue/catalogueResults.html',
+            controller: CatalogueResultsController,
+            controllerAs: 'vm',
+            bindings: {
+                subject: '<',
+            },
+        });
 
     /* @ngInject */
-    function CatalogueController($stateParams, $state, $scope, $window, $timeout, $transitions, ngToast, gettext, gettextCatalog, $analytics, Lang, Catalogue, Config, Session, TitleService, Institutions, subject) {
+    function CatalogueResultsController($stateParams, $state, $scope, $window, $timeout, $transitions, ngToast, gettext, gettextCatalog, $analytics, langService, Catalogue, Config, Session, TitleService, Institutions) {
         /*jshint validthis: true */
         var vm = this;
-        var defaultLang = Lang.defaultLanguage;
+        var defaultLang = langService.defaultLanguage;
 
         vm.vocab = '';
         vm.start = 0;
@@ -36,11 +43,8 @@
 
         vm.updateControlledSearch = updateControlledSearch;
 
-        activate();
 
-        ////////////
-
-        function activate() {
+        this.$onInit = function() {
             if ($stateParams.library && $stateParams.library.indexOf(':') != -1) {
                 vm.selectedInstitution = $stateParams.library.split(':')[0];
                 vm.selectedLibrary = $stateParams.library.split(':')[1];
@@ -54,15 +58,15 @@
             vm.broadSearch = ($stateParams.broad === undefined) ? false : ($stateParams.broad == 'true');
             vm.searchType = vm.broadSearch ? gettextCatalog.getString(bs) : gettextCatalog.getString(ns);
 
-            if (!subject) {
+            if (!vm.subject) {
                 vm.busy = false;
                 var msg = gettext('The subject was not found. It might have been deleted.');
                 vm.error = gettextCatalog.getString(msg);
                 return;
             }
 
-            if (subject.data.isReplacedBy.length) {
-                var replacement = subject.data.isReplacedBy[0];
+            if (vm.subject.data.isReplacedBy.length) {
+                var replacement = vm.subject.data.isReplacedBy[0];
                 vm.busy = false;
                 var msg = gettext('This concept has been replaced by {{subject}}');
                 var replacementTitle = replacement.prefLabel[lang] ? replacement.prefLabel[lang] : replacement.prefLabel[defaultLang];
@@ -70,17 +74,17 @@
                     subject: '<a ui-sref="subject.search({id: \'' + replacement.id + '\', term: null})">' + replacementTitle + '</a>'
                 });
                 return;
-            } else if (subject.data.deprecated) {
+            } else if (vm.subject.data.deprecated) {
                 vm.busy = false;
                 var msg = gettext('This concept has been depreacted');
                 vm.error = gettextCatalog.getString(msg);
                 return;
             }
 
-            vm.vocab = subject.vocab;
-            vm.subject = subject;
-            vm.indexTerm = subject.data.prefLabel[defaultLang];
-            vm.stringSearch = (subject.data._components.length > 0);
+            vm.vocab = vm.subject.vocab;
+            vm.subject = vm.subject;
+            vm.indexTerm = vm.subject.data.prefLabel[defaultLang];
+            vm.stringSearch = (vm.subject.data._components.length > 0);
             searchFromStart();
 
             angular.element($window).bind('scroll', onScroll);
@@ -88,8 +92,8 @@
                 angular.element($window).off('scroll', onScroll);
             });
 
-            var lang = Lang.language;
-            var pageTitle = subject.data.prefLabel[lang] ? subject.data.prefLabel[lang] : subject.data.prefLabel[defaultLang];
+            var lang = langService.language;
+            var pageTitle = vm.subject.data.prefLabel[lang] ? vm.subject.data.prefLabel[lang] : vm.subject.data.prefLabel[defaultLang];
             TitleService.set(pageTitle);
 
             //Flag that indicates if the state is changing
@@ -99,7 +103,10 @@
             $transitions.onStart({}, function() {
                 vm.stateChanging = true;
             });
-        }
+        };
+
+
+        ////////////
 
         function onScroll() {
             if (vm.error) {
@@ -191,28 +198,28 @@
             var lib = vm.selectedLibrary ? vm.selectedInstitution + vm.selectedLibrary : null;
             var topics = [], places = [], genres = [];
 
-            if (subject.data._components.length) {
-                places = subject.data._components.filter(function (component) {
+            if (vm.subject.data._components.length) {
+                places = vm.subject.data._components.filter(function (component) {
                     return component.type == 'Geographic';
                 });
-                genres = subject.data._components.filter(function (component) {
+                genres = vm.subject.data._components.filter(function (component) {
                     return component.type == 'GenreForm';
                 });
-                topics = subject.data._components.filter(function (component) {
+                topics = vm.subject.data._components.filter(function (component) {
                     return component.type == 'Topic';
                 });
                 topics.sort(function (a, b) {
                     var alab = a.prefLabel[defaultLang], blab = b.prefLabel[defaultLang],
-                        tlab = subject.data.prefLabel[defaultLang].split(' : ');
+                        tlab = vm.subject.data.prefLabel[defaultLang].split(' : ');
                     return tlab.indexOf(alab) - tlab.indexOf(blab);
                 });
             } else {
-                if (subject.data.type == 'Geographic') {
-                    places = [subject.data];
-                } else if (subject.data.type == 'GenreForm') {
-                    genres = [subject.data];
+                if (vm.subject.data.type == 'Geographic') {
+                    places = [vm.subject.data];
+                } else if (vm.subject.data.type == 'GenreForm') {
+                    genres = [vm.subject.data];
                 } else {
-                    topics = [subject.data];
+                    topics = [vm.subject.data];
                 }
             }
 
@@ -235,7 +242,7 @@
             if (!vm.broadSearch) {
                 q.vocab = vm.vocab;
             }
-            if (subject.data.notation.length) {
+            if (vm.subject.data.notation.length) {
                 q.subject = subject.data.notation[0];
             }
 

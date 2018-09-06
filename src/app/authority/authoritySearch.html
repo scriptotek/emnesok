@@ -1,4 +1,3 @@
-<!-- SEARCH.HTML -->
 
 <div class="input-group" style="margin-bottom:1.5em;">
 	<div class="input-group-btn" uib-dropdown uib-keyboard-nav>
@@ -23,7 +22,7 @@
 		clear-selected="true"
 		image-field="searchListIcon"
 		focus-first="true"
-		template-url="app/authority/search-list-template.html"
+		template-url="app/authority/authoritySearchListTemplate.html"
 		text-no-results="{{'No hits :(' | translate}}"
 		text-searching="{{'Looking…' | translate}}"
 	></div>
@@ -39,7 +38,7 @@
   <div class="panel-heading"><h3 class="panel-title" translate>Active subject</h3></div>
   <ul class="list-group">
     <li class="list-group-item">
-	    <mod-subject subject-data="vm.searchHistory[vm.searchHistory.length-1]"></mod-subject>
+		<app-authority-record data="vm.searchHistory[vm.searchHistory.length - 1]"></app-authority-record>
     </li>
   </ul>
 </div>

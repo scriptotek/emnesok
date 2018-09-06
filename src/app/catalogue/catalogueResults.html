@@ -65,7 +65,7 @@
 			</p>-->
 
 			<ul class="list-group">
-				<mod-catalogue-result ng-repeat="result in vm.results" record="result" vocab="vm.vocab" index-term="vm.indexTerm"></mod-catalogue-result>
+				<app-catalogue-result ng-repeat="result in vm.results" record="result" vocab="vm.vocab" index-term="vm.indexTerm"></app-catalogue-result>
 			</ul>
 
 			<p ng-show="vm.start && vm.last != vm.total_results" translate>
