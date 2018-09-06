@@ -39,10 +39,19 @@ var ENVOPTIONS = {'env=prod': 'Environment, set to "dev" or "prod"'};
 var paths = {
   build: 'build/',
   index: 'src/index.html',
-  scripts: ['src/js/**/*.js'],
-  styles: ['src/css/**/*.css'],
+  js: [
+      './src/app/**/*module*.js',
+      './src/app/**/*service*.js',
+      './src/app/**/*.js',
+  ],
+  css: [
+      'src/css/**/*.css'
+  ],
   imgs: ['src/img/**/*.png'],
-  templates: ['src/templates/**/*.html'],
+  templates: [
+      'src/app/**/*.html',
+      'src/templates/**/*.html',
+  ],
   vendor: {
     scripts: [
       'node_modules/angular/angular.js',
@@ -102,7 +111,7 @@ gulp.task('inject-env', 'Inject environment into index.html', [], function () {
 ------------------------------------- */
 
 gulp.task('jslint', 'Lints all javascript files', [], function() {
-  return gulp.src(paths.scripts)
+  return gulp.src(paths.js)
     .pipe(jshint())
     .pipe(jshint.reporter(stylish))
     .pipe(notify(function (file) {
@@ -151,7 +160,7 @@ gulp.task('vendor-fonts', false, [], function() {
 });
 
 gulp.task('scripts', false, ['jslint'], function() {
-  return gulp.src(paths.scripts)
+  return gulp.src(paths.js)
     .pipe(sourcemaps.init())
     .pipe(concat('app.js'))
     .pipe(gulp.dest(paths.build + 'js'))
@@ -165,7 +174,7 @@ gulp.task('scripts', false, ['jslint'], function() {
 });
 
 gulp.task('styles', false, [], function() {
-  return gulp.src(paths.styles)
+  return gulp.src(paths.css)
     .pipe(concat('app.css'))
     .pipe(gulp.dest(paths.build + 'css'))
     .pipe(rename({ suffix: '.min' }))
@@ -193,7 +202,8 @@ gulp.task('templates', false, [], function () {
 	  var tplOpts = {
 		filename: 'templates.js',
 		root: 'app',
-		standalone: true
+		standalone: true,
+        module: 'app.templates',
 	  };
 
 	  gulp.src(paths.templates)
@@ -212,7 +222,7 @@ gulp.task('templates', false, [], function () {
 ------------------------------------- */
 
 gulp.task('pot', 'Extracts translatable strings into emnesok.pot', [], function () {
-  return gulp.src(paths.templates.concat(paths.scripts))
+  return gulp.src(paths.templates.concat(paths.js))
     .pipe(gettext.extract('emnesok.pot', {
       // options to pass to angular-gettext-tools...
     }))
@@ -276,8 +286,8 @@ gulp.task('build', 'Builds the app', [
 gulp.task('serve', 'Starts development server', ['build', 'browsersync'], function () {
   //gulp.watch('app/scss/**/*.scss', ['sass']);
   gulp.watch(paths.templates, ['templates', browsersync.reload]);
-  gulp.watch(paths.styles, ['styles']);
+  gulp.watch(paths.css, ['styles']);
   gulp.watch(paths.imgs, ['imgs']);
-  gulp.watch(paths.scripts, ['scripts', browsersync.reload]);
+  gulp.watch(paths.js, ['scripts', browsersync.reload]);
   gulp.watch(paths.index, ['inject-env']);
 }, { options: ENVOPTIONS });

@@ -2,9 +2,10 @@
     'use strict';
 
     angular
-        .module('app.services.catalogue', ['app.services.config'])
-        .factory('Catalogue', ['$http', '$q', 'gettext', 'gettextCatalog', 'Institutions', 'Config', CatalogueService]);
+        .module('app.catalogue')
+        .factory('Catalogue', CatalogueService);
 
+    /* @ngInject */
     function CatalogueService($http, $q, gettext, gettextCatalog, Institutions, Config) {
         console.log('[CatalogueService] Init');
 

@@ -2,10 +2,13 @@
     'use strict';
 
     angular
-        .module('app.services.subject', ['app.services.config'])
-        .factory('SubjectService', ['$http', '$stateParams', '$filter', '$q', '$rootScope', 'gettext', 'Config', 'Lang', 'Restangular', SubjectService]);
+        .module('app.services.authority', [
+            'app.services.config',
+        ])
+        .factory('AuthorityService', AuthorityService);
 
-    function SubjectService($http, $stateParams, $filter, $q, $rootScope, gettext, Config, Lang, Restangular) {
+    /* @ngInject */
+    function AuthorityService($http, $stateParams, $filter, $q, $rootScope, gettext, Config, Lang) {
 
         var service = {
             search: search,

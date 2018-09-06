@@ -2,9 +2,12 @@
     'use strict';
 
     angular
-        .module('app.services.externals', ['app.services.config', 'ui.router'])
-        .factory('Externals', ['$http', '$q', '$filter', ExternalsFactory]);
+        .module('app.services.externals', [
+            'app.services.config',
+        ])
+        .factory('Externals', ExternalsFactory);
 
+    /* @ngInject */
     function ExternalsFactory($http, $q, $filter) {
 
         function htmlToPlaintext(text) {

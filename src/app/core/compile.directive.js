@@ -2,8 +2,8 @@
     'use strict';
 
     /* Source: https://stackoverflow.com/a/17426614/489916 */
-    angular.module('app.directives', [])
-        .directive('compile', ['$compile', function ($compile) {
+    angular.module('app.core')
+        .directive('compile', /* @ngInject */ function ($compile) {
             return function(scope, element, attrs) {
                 scope.$watch(
                     function(scope) {
@@ -23,6 +23,6 @@
                     }
                 );
             };
-        }]);
+        });
 
 })();

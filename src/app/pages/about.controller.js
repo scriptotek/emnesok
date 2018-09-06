@@ -2,8 +2,8 @@
     'use strict';
 
     angular
-		.module('app.modules.home', [])
-		.controller('HomeController', controller)
+		.module('app.about', [])
+		.controller('AboutController', controller)
 		;
 
     controller.$inject = ['$stateParams'];

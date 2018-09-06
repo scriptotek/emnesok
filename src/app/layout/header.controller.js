@@ -2,24 +2,11 @@
     'use strict';
 
     angular
-        .module('app.modules.header', ['app.services.lang', 'app.services.config'])
-        .directive('modHeader', HeaderModule);
+        .module('app.layout')
+        .controller('HeaderController', HeaderController);
 
-    function HeaderModule() {
-
-        var directive = {
-            restrict: 'A',
-            templateUrl: 'app/header.html',
-            replace: false,
-            scope: {},
-            controllerAs: 'vm',
-            controller: ['$state', '$stateParams', 'Lang', 'Config', controller]
-        };
-
-        return directive;
-    }
-
-    function controller($state, $stateParams, Lang, Config) {
+    /* @ngInject */
+    function HeaderController($state, $stateParams, Lang, Config) {
         /*jshint validthis: true */
         var vm = this;
 
@@ -32,11 +19,11 @@
 
         vm.helloHidden = localStorage.getItem('hideHello1');
 
-        vm.setLanguage = function(code) {
+        vm.setLanguage = function (code) {
             Lang.setLanguage(code);
         };
 
-        vm.hideHello = function() {
+        vm.hideHello = function () {
             localStorage.setItem('hideHello1', true);
             vm.helloHidden = true;
         };

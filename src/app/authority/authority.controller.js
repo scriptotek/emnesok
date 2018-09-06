@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-		.module('app.modules.subject', ['app.services.config', 'app.services.lang', 'app.services.subject','app.services.externals'])
+		.module('app.authority')
 		.directive('modSubject', SubjectModule);
 
     function SubjectModule() {

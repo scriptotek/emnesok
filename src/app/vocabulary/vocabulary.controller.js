@@ -2,18 +2,22 @@
     'use strict';
 
     angular
-		.module('app.modules.vocabulary', [])
-		.controller('VocabularyController', controller);
+		.module('app.vocabulary', [
+            'app.services.authority',
+            'app.services.config',
+            'app.services.title',
+        ])
+		.controller('VocabularyController', VocabularyController);
 
-    controller.$inject = ['$stateParams', 'Config', 'TitleService', 'SubjectService'];
-
-    function controller($stateParams, Config, TitleService, SubjectService) {
+    /* @ngInject */
+    function VocabularyController($stateParams, Config, TitleService, AuthorityService) {
 		/*jshint validthis: true */
         var vm = this;
         var vocabName = Config.vocabularies[$stateParams.vocab].name;
+
         TitleService.set(vocabName);
 
-        SubjectService.getVocabulary($stateParams.vocab).then(function(vocabulary) {
+        AuthorityService.getVocabulary($stateParams.vocab).then(function(vocabulary) {
             _.forOwn({
                 topicCount: 'Topic',
                 genreCount: 'GenreForm',

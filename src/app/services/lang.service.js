@@ -2,9 +2,12 @@
     'use strict';
 
     angular
-        .module('app.services.lang', ['app.services.config', 'ui.router', 'gettext'])
-        .factory('Lang', ['$state', '$rootScope', 'gettextCatalog', 'Config', LangFactory]);
+        .module('app.services.lang', [
+            'app.services.config',
+        ])
+        .factory('Lang', LangFactory);
 
+    /* @ngInject */
     function LangFactory($state, $rootScope, gettextCatalog, Config) {
 
         var service = {

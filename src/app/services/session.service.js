@@ -2,10 +2,12 @@
     'use strict';
 
     angular
-        .module('app.services.session', ['app.services.config'])
-        .factory('Session', ['Config', Session]);
+        .module('app.services.session', [
+            'app.services.config',
+        ])
+        .factory('Session', SessionService);
 
-    function Session(Config) {
+    function SessionService(Config) {
 
         var factory = {
             institutions: Config.institutions,

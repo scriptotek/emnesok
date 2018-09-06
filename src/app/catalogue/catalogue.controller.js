@@ -2,151 +2,11 @@
     'use strict';
 
     angular
-        .module('app.modules.catalogue', ['app.services.catalogue', 'app.services.subject', 'app.services.lang', 'app.services.config', 'app.services.session'])
-        .controller('CatalogueController', controller)
-        .directive('modCatalogueResult', CatalogueResultDirective)
-        .directive('modAvailability', AvailabilityDirective)
-        ;
+        .module('app.catalogue')
+        .controller('CatalogueController', CatalogueController);
 
-    /* ------------------------------------------------------------------------------- */
-
-    function AvailabilityDirective() {
-
-        var directive = {
-            restrict: 'EA',
-            templateUrl: 'app/availability.html',
-            replace: false,
-            scope: {
-                record: '='
-            },
-            controllerAs: 'vm',
-            controller: availabilityController,
-            bindToController: true // because the scope is isolated
-        };
-
-        return directive;
-    }
-
-    availabilityController.$inject = [];
-
-    function availabilityController() {
-        /*jshint validthis: true */
-        var vm = this;
-
-        ////////////
-    }
-
-    /* ------------------------------------------------------------------------------- */
-
-    function CatalogueResultDirective() {
-
-        var directive = {
-            restrict: 'EA',
-            templateUrl: 'app/catalogue-result.html',
-            replace: false,
-            scope: {
-                record: '=',
-                vocab: '=',
-                indexTerm: '='
-            },
-            controllerAs: 'vm',
-            controller: resultController,
-            bindToController: true // because the scope is isolated
-        };
-
-        return directive;
-    }
-
-    resultController.$inject = ['Lang', 'Catalogue', 'Config', 'SubjectService', '$state', 'ngToast', 'gettext', 'gettextCatalog', '$analytics', '$stateParams'];
-
-    function resultController(Lang, Catalogue, Config, SubjectService, $state, ngToast, gettext, gettextCatalog, $analytics, $stateParams) {
-        /*jshint validthis: true */
-        var vm = this;
-
-        vm.recordExpanded = false;
-        vm.clickSubject = clickSubject;
-        vm.expandGroup = expandGroup;
-        vm.versions = [];
-        vm.filterPrint = filterPrint;
-        vm.filterElectronic = filterElectronic;
-        vm.getStatus = getStatus;
-        vm.selectedInstitution = $stateParams.library ? $stateParams.library.split(':')[0] : null;
-        vm.vocabularies = Config.vocabularies;
-        vm.busy = false;
-
-
-        ////////////
-
-        function clickSubject(subject) {
-            if (vm.busy) {
-                return;
-            }
-            vm.busy = true;
-
-            $analytics.eventTrack('ClickTag', {category: 'UncontrolledTag', label: subject});
-
-            SubjectService.exists(subject, vm.vocab).then(function(response) {
-                vm.busy = false;
-                if (!response) {
-                    $analytics.eventTrack('TagLookupFailed', {
-                        category: 'UncontrolledTag',
-                        label: subject,
-                        nonInteraction: true
-                    });
-
-                    var msg = gettext('Sorry, the subject "{{subject}}" was not found in the current vocabulary.');
-                    var translated = gettextCatalog.getString(msg, { subject: subject });
-                    ngToast.danger(translated, 'danger');
-                } else {
-                    $analytics.eventTrack('TagLookupSuccess', {
-                        category: 'UncontrolledTag',
-                        label: subject,
-                        nonInteraction: true
-                    });
-                    $state.go('subject.search', {id: response.localname, term: null});
-                }
-            }, function(err) {
-
-            });
-        }
-
-        function expandGroup() {
-            var groupId = vm.record.id;
-            vm.busy = true;
-            Catalogue.expandGroup(groupId, vm.selectedInstitution).then(function(response) {
-                vm.busy = false;
-                vm.recordExpanded = true;
-                vm.versions = response.result.records;
-
-            }, function(error) {
-                vm.busy = false;
-                var msg = gettext('Failed to fetch list of editions.');
-                var translated = gettextCatalog.getString(msg);
-                ngToast.danger(translated, 'danger');
-            });
-        }
-
-        function filterPrint(component) {
-            return component.category == 'Alma-P';
-        }
-
-        function filterElectronic(component) {
-            return component.category !== undefined && component.category !== 'Alma-P';
-        }
-
-        function getStatus(status) {
-            var statuses = {
-                'check_holdings': 'might be available'
-            };
-            return statuses[status] || status;
-        }
-    }
-
-    /* ------------------------------------------------------------------------------- */
-
-    controller.$inject = ['$stateParams', '$state', '$scope', '$window', '$timeout', 'ngToast', 'gettext', 'gettextCatalog', '$analytics', 'Lang', 'Catalogue', 'Config', 'Session', 'TitleService', 'Institutions', 'subject'];
-
-    function controller($stateParams, $state, $scope, $window, $timeout, ngToast, gettext, gettextCatalog, $analytics, Lang, Catalogue, Config, Session, TitleService, Institutions, subject) {
+    /* @ngInject */
+    function CatalogueController($stateParams, $state, $scope, $window, $timeout, ngToast, gettext, gettextCatalog, $analytics, Lang, Catalogue, Config, Session, TitleService, Institutions, subject) {
         /*jshint validthis: true */
         var vm = this;
         var defaultLang = Lang.defaultLanguage;
@@ -224,7 +84,7 @@
             searchFromStart();
 
             angular.element($window).bind('scroll', onScroll);
-            $scope.$on('$destroy', function() {
+            $scope.$on('$destroy', function () {
                 angular.element($window).off('scroll', onScroll);
             });
 
@@ -241,7 +101,7 @@
             });
         }
 
-        function onScroll () {
+        function onScroll() {
             if (vm.error) {
                 return;
             }
@@ -250,12 +110,12 @@
 
         function checkScrollPos() {
             var scrollPosition = window.pageYOffset;
-            var windowHeight   = window.innerHeight;
-            var bodyHeight     = document.body.offsetHeight;
+            var windowHeight = window.innerHeight;
+            var bodyHeight = document.body.offsetHeight;
             var body = document.body,
                 html = document.documentElement;
-            var height = Math.max( body.scrollHeight, body.offsetHeight,
-                                   html.clientHeight, html.scrollHeight, html.offsetHeight );
+            var height = Math.max(body.scrollHeight, body.offsetHeight,
+                html.clientHeight, html.scrollHeight, html.offsetHeight);
 
             vm.distanceFromBottom = height - scrollPosition - windowHeight;
 
@@ -274,13 +134,13 @@
 
 
                 if (record.subjects.subject) {
-                    record.subjects.subject = record.subjects.subject.filter(function(s) {
+                    record.subjects.subject = record.subjects.subject.filter(function (s) {
                         return s != 'Electronic books';
                     });
                 }
 
                 if (record.subjects.genre) {
-                    record.subjects.genre = record.subjects.genre.filter(function(s) {
+                    record.subjects.genre = record.subjects.genre.filter(function (s) {
                         return s != 'Electronic books';
                     });
                 }
@@ -289,7 +149,7 @@
                 var genres = _.get(record, 'subjects.genre', []);
                 Object.keys(record.subjects).forEach(function (vocab) {
                     if (vocab == 'genre') return;
-                    record.subjects[vocab] = record.subjects[vocab].filter(function(s) {
+                    record.subjects[vocab] = record.subjects[vocab].filter(function (s) {
                         return genres.indexOf(s) === -1;
                     });
                 });
@@ -302,7 +162,7 @@
             vm.next = response.next;
             vm.last = vm.next ? vm.next - 1 : vm.total_results;
 
-            response.results.forEach(function(record) {
+            response.results.forEach(function (record) {
                 filterSubjects(record);
                 if (record.thumbnails && record.thumbnails.bibsys) {
                     record.thumbnails.bibsys = record.thumbnails.bibsys.replace('http:', 'https:');
@@ -334,17 +194,18 @@
             var topics = [], places = [], genres = [];
 
             if (subject.data._components.length) {
-                places = subject.data._components.filter(function(component) {
+                places = subject.data._components.filter(function (component) {
                     return component.type == 'Geographic';
                 });
-                genres = subject.data._components.filter(function(component) {
+                genres = subject.data._components.filter(function (component) {
                     return component.type == 'GenreForm';
                 });
-                topics = subject.data._components.filter(function(component) {
+                topics = subject.data._components.filter(function (component) {
                     return component.type == 'Topic';
                 });
-                topics.sort(function(a, b) {
-                    var alab = a.prefLabel[defaultLang], blab = b.prefLabel[defaultLang], tlab = subject.data.prefLabel[defaultLang].split(' : ');
+                topics.sort(function (a, b) {
+                    var alab = a.prefLabel[defaultLang], blab = b.prefLabel[defaultLang],
+                        tlab = subject.data.prefLabel[defaultLang].split(' : ');
                     return tlab.indexOf(alab) - tlab.indexOf(blab);
                 });
             } else {
@@ -359,17 +220,17 @@
 
             var q = {};
             if (places.length) {
-                q.place = places.map(function(subject) {
+                q.place = places.map(function (subject) {
                     return getPrefLabels(subject, places.length == 1);
                 }).join(' AND ');
             }
             if (genres.length) {
-                q.genre = genres.map(function(genre) {
+                q.genre = genres.map(function (genre) {
                     return getPrefLabels(genre, genres.length == 1);
                 }).join(' AND ');
             }
             if (topics.length) {
-                q.subject = topics.map(function(subject) {
+                q.subject = topics.map(function (subject) {
                     return getPrefLabels(subject, topics.length == 1);
                 }).join(vm.broadSearch ? ' AND ' : ' : ');
             }
@@ -385,7 +246,7 @@
 
             Catalogue.search(q, vm.next, inst, lib, vm.broadSearch).then(
                 gotResults,
-                function(error) {
+                function (error) {
                     var msg = gettext('Uh oh, some kind of server error occured.');
                     vm.error = gettextCatalog.getString(msg);
                     vm.busy = false;
