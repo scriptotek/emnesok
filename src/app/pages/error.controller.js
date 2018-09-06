@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-		.module('app.error', [])
+		.module('app.pages')
 		.controller('ErrorController', controller)
 		;
 

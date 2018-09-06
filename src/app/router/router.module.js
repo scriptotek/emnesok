@@ -17,7 +17,7 @@
         $urlRouterProvider.otherwise('/');
 
         var headerView = {
-            templateUrl: 'app/header.html',
+            templateUrl: 'app/layout/header.html',
             controller: 'HeaderController',
             controllerAs: 'vm'
         };
@@ -29,8 +29,8 @@
                 views: {
                     'header': headerView,
                     'main': {
-                        templateUrl: 'app/main.html',
-                        controller: 'MainController',
+                        templateUrl: 'app/pages/home.html',
+                        controller: 'HomeController',
                         controllerAs: 'vm'
                     }
                 }
@@ -40,7 +40,7 @@
                 views: {
                     'header': headerView,
                     'main': {
-                        templateUrl: 'app/error.html',
+                        templateUrl: 'app/pages/error.html',
                         controller: 'ErrorController',
                         controllerAs: 'vm'
                     }
@@ -52,7 +52,7 @@
                 views: {
                     'header': headerView,
                     'main': {
-                        templateUrl: 'app/about.html',
+                        templateUrl: 'app/pages/about.html',
                         controller: 'AboutController',
                         controllerAs: 'vm'
                     }
@@ -64,18 +64,7 @@
                 views: {
                     'header': headerView,
                     'main': {
-                        template: [
-                            '<div class="container-fluid">',
-                            '<div class="row">',
-                            '   <div id="left" class="col-md-5">',
-                            '       <div mod-search></div>',
-                            '   </div>',
-                            '   <div id="right" class="col-md-7">',
-                            '       <div ui-view="catalogue"></div>',
-                            '   </div>',
-                            '</div>',
-                            '</div>'
-                        ].join('')
+                        templateUrl: 'app/layout/main.html',
                     }
                 }
             })
@@ -84,7 +73,7 @@
                 views: {
                     'catalogue': {
                         templateUrl: function (stateParams) {
-                            return 'app/vocabs/' + stateParams.vocab + '.html';
+                            return 'app/vocabulary/' + stateParams.vocab + '.html';
                         },
                         controller: 'VocabularyController',
                         controllerAs: 'vm'

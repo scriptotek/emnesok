@@ -9,7 +9,7 @@
 
         var directive = {
             restrict: 'E',
-            templateUrl: 'app/subject.html',
+            templateUrl: 'app/authority/authority.html',
             replace: true,
             scope: {
                 subjectData: '='

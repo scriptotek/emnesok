@@ -2,11 +2,11 @@
     'use strict';
 
     angular
-        .module('app.layout')
-        .controller('MainController', MainController);
+        .module('app.pages')
+        .controller('HomeController', HomeController);
 
     /* @ngInject */
-    function MainController($stateParams) {
+    function HomeController($stateParams) {
         /*jshint validthis: true */
         var vm = this;
 

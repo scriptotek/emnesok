@@ -9,7 +9,7 @@
 
         var directive = {
             restrict: 'A',
-            templateUrl: 'app/search.html',
+            templateUrl: 'app/authority/search.html',
             replace: false,
             scope: {},
             controllerAs: 'vm',
