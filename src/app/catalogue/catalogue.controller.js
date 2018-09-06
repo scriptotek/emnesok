@@ -6,7 +6,7 @@
         .controller('CatalogueController', CatalogueController);
 
     /* @ngInject */
-    function CatalogueController($stateParams, $state, $scope, $window, $timeout, ngToast, gettext, gettextCatalog, $analytics, Lang, Catalogue, Config, Session, TitleService, Institutions, subject) {
+    function CatalogueController($stateParams, $state, $scope, $window, $timeout, $transitions, ngToast, gettext, gettextCatalog, $analytics, Lang, Catalogue, Config, Session, TitleService, Institutions, subject) {
         /*jshint validthis: true */
         var vm = this;
         var defaultLang = Lang.defaultLanguage;
@@ -96,7 +96,7 @@
             vm.stateChanging = false;
 
             //Call some code when a state change starts
-            $scope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+            $transitions.onStart({}, function() {
                 vm.stateChanging = true;
             });
         }

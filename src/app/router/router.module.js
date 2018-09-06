@@ -117,22 +117,25 @@
     }
 
     /* @ngInject */
-    function run($rootScope, $state, Lang, AuthorityService, TitleService) {
+    function run($rootScope, $state, $transitions, Lang, AuthorityService, TitleService) {
 
-        $rootScope.$on('$stateChangeSuccess', function listener(event, toState) {
-            if (toState.data && toState.data.pageTitle !== undefined) {
-                TitleService.set(toState.data.pageTitle);
-            }
-        });
-
-        $rootScope.$on('$stateChangeStart', function (evt, toState, toParams, fromState, fromParams, error) {
+        $transitions.onStart({}, function (transition) {
+            var toParams = transition.params('to');
             if (!toParams.id && !toParams.term && !toParams.uri) {
                 AuthorityService.clearSearchHistory();
             }
         });
 
-        $rootScope.$on('$stateChangeError', function (evt, toState, toParams, fromState, fromParams, error) {
-            console.error(error);
+        $transitions.onSuccess({}, function (transition) {
+            var data = transition.to().data;
+            if (data && data.pageTitle !== undefined) {
+                TitleService.set(data.pageTitle);
+            }
+        });
+
+        $transitions.onError({}, function (transition) {
+            var error = transition.error();
+            console.log("Error while transitioning to a new state: ", error);
             if (angular.isObject(error) && angular.isString(error.code)) {
                 switch (error.code) {
                     case 'NOT_AUTHENTICATED':
@@ -142,11 +145,18 @@
                     default:
                         // set the error object on the error state and go there
                         $state.get('error').error = error;
-                    // $state.go('error');
+                        // $state.go('error');
                 }
             } else {
+                if (angular.isObject(error)) {
+                    if (error.type == 5) {
+                        // No transition was necessary, this is fine.
+                        return;
+                    }
+                }
+
                 // unexpected error
-                // $state.go('error');
+                $state.go('error');
             }
         });
     }

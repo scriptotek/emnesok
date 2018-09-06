@@ -8,7 +8,7 @@
         .factory('Lang', LangFactory);
 
     /* @ngInject */
-    function LangFactory($state, $rootScope, gettextCatalog, Config) {
+    function LangFactory($state, $rootScope, $transitions, gettextCatalog, Config) {
 
         var service = {
             language: null,
@@ -28,7 +28,8 @@
             // Highlight untranslated strings
             // gettextCatalog.debug = true;
 
-            $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
+            $transitions.onStart({}, function(transition){
+                var toParams = transition.params('to');
                 // A new vocabulary might mean a new default language.
                 // E.g. when switching from Realfagstermer to Mrtermer, the default language
                 // should change from 'nb' to 'en'.
