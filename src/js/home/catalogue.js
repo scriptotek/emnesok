@@ -269,14 +269,29 @@
         }
 
         function filterSubjects(record) {
-            if (record.subjects && record.subjects.subject) {
-                record.subjects.subject = record.subjects.subject.filter(function(s) {
-                    return s != 'Electronic books';
-                });
-            }
-            if (record.subjects && record.subjects.genre) {
-                record.subjects.genre = record.subjects.genre.filter(function(s) {
-                    return s != 'Electronic books';
+            if (record.subjects) {
+                console.log(record.subjects);
+
+
+                if (record.subjects.subject) {
+                    record.subjects.subject = record.subjects.subject.filter(function(s) {
+                        return s != 'Electronic books';
+                    });
+                }
+
+                if (record.subjects.genre) {
+                    record.subjects.genre = record.subjects.genre.filter(function(s) {
+                        return s != 'Electronic books';
+                    });
+                }
+
+                // Genres are unfortunately duplicated as subjects. Remove those.
+                var genres = _.get(record, 'subjects.genre', []);
+                Object.keys(record.subjects).forEach(function (vocab) {
+                    if (vocab == 'genre') return;
+                    record.subjects[vocab] = record.subjects[vocab].filter(function(s) {
+                        return genres.indexOf(s) === -1;
+                    });
                 });
             }
         }
