@@ -73,6 +73,8 @@
 
         function wp(prefLabel,lang,type,deferred) {
 
+            var wpLang = (lang == 'nb') ? 'no' : lang;
+
             if (type===undefined) type='exact';
             if (!type) type='exact';
 
@@ -83,9 +85,9 @@
             if (type=='exact'){
 
                 $http({
-                    method: 'jsonp',
+                    method: 'GET',
                     cache: true,
-                    url: 'https://'+lang+'.wikipedia.org/w/api.php',
+                    url: 'https://'+wpLang+'.wikipedia.org/w/api.php',
                     params: {
                         action: 'query',
                         prop: 'extracts|info',
@@ -94,7 +96,7 @@
                         redirects:'',
                         titles:prefLabel,
                         format: 'json',
-                        callback: 'JSON_CALLBACK'
+                        origin: '*',  // Per https://www.mediawiki.org/wiki/Manual:CORS#Description
                     }
                 }).
                 then(function(result){
@@ -137,9 +139,9 @@
             if (type=='search') {
 
                 $http({
-                    method: 'jsonp',
+                    method: 'GET',
                     cache: true,
-                    url: 'https://'+lang+'.wikipedia.org/w/api.php',
+                    url: 'https://'+wpLang+'.wikipedia.org/w/api.php',
                     params :{
                         action: 'query',
                         list: 'search',
@@ -147,7 +149,7 @@
                         srinfo:'totalhits',
                         redirects:'',
                         format: 'json',
-                        callback: 'JSON_CALLBACK'
+                        origin: '*',  // Per https://www.mediawiki.org/wiki/Manual:CORS#Description
                     }
                 }).
                 then(function(result){
@@ -158,7 +160,7 @@
 
                         data = {
                             name: 'Wikipedia',
-                            url: 'https://'+lang+'.wikipedia.org/w/index.php?search='+prefLabel,
+                            url: 'https://'+wpLang+'.wikipedia.org/w/index.php?search='+prefLabel,
                             extract: '',
                             type: type
                         };
