@@ -130,8 +130,6 @@
 
         function filterSubjects(record) {
             if (record.subjects) {
-                console.log(record.subjects);
-
 
                 if (record.subjects.subject) {
                     record.subjects.subject = record.subjects.subject.filter(function (s) {
