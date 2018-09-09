@@ -1,10 +1,7 @@
-(function() {
-    'use strict';
+import template from './main.html';
 
-    angular
-        .module('app.layout')
-        .component('appMain', {
-            templateUrl: 'app/layout/main.html',
-        });
+export const mainComponentName = 'appMain';
 
-2})();
+export const mainComponent = {
+    template,
+};

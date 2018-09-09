@@ -1,76 +1,119 @@
 {
   "name": "emnesok",
   "version": "0.1.0",
+  "author": "UiO Realfagsbiblioteket",
   "description": "Realfagsbibliotekets emnesøk",
-  "main": "index.js",
+  "license": "MIT",
+  "homepage": "https://github.com/scriptotek/emnesok#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scriptotek/emnesok.git"
+  },
+  "bugs": {
+    "url": "https://github.com/scriptotek/emnesok/issues"
+  },
+  "scripts": {
+    "transifex:push": "node scripts/transifex push",
+    "transifex:pull": "node scripts/transifex pull",
+    "update-pot": "angular-gettext-cli --files 'src/app/**/*.+(js|html)' --dest 'src/po/emnesok.pot' && yarpm run transifex:push",
+    "compile-po": "yarpm run transifex:pull && angular-gettext-cli --compile --files 'src/po/**/*.po' --format json --dest src/app/services/translations.json",
+    "trans": "yarpm run compile-po && yarpm run update-pot",
+    "dev": "webpack-dev-server --config webpack/webpack.config.dev.js",
+    "build": "webpack --config webpack/webpack.config.prod.js --colors --progress"
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": true
+    },
+    "parserOptions": {
+      "ecmaVersion": 6,
+      "sourceType": "module"
+    },
+    "extends": "eslint:recommended",
+    "rules": {
+      "indent": [
+        "error",
+        4
+      ],
+      "linebreak-style": [
+        "error",
+        "unix"
+      ],
+      "quotes": [
+        "error",
+        "single"
+      ],
+      "semi": [
+        "error",
+        "always"
+      ]
+    }
+  },
+  "babel": {
+    "presets": [
+      "es2015"
+    ],
+    "plugins": [
+      [
+        "angularjs-annotate",
+        {
+          "explicitOnly": true
+        }
+      ],
+      "syntax-dynamic-import"
+    ]
+  },
   "devDependencies": {
+    "angular-gettext-cli": "^1.2.0",
     "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-plugin-angularjs-annotate": "^0.9.0",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-es2015": "^6.24.1",
     "babelify": "^8.0.0",
     "browser-sync": "^2.24.7",
     "browserify": "^16.2.2",
+    "clean-webpack-plugin": "^0.1.19",
     "connect-history-api-fallback": "^1.1.0",
-    "del": "^2.2.0",
-    "dotenv": "^2.0.0",
-    "gulp": "^3.9.1",
-    "gulp-angular-gettext": "^2.1.0",
-    "gulp-angular-templatecache": "^2.2.1",
-    "gulp-cache-bust": "^1.4.0",
-    "gulp-changed": "^1.3.0",
-    "gulp-concat": "^2.6.0",
-    "gulp-help": "^1.6.1",
-    "gulp-jshint": "^2.0.0",
-    "gulp-minify-css": "^1.2.2",
-    "gulp-minify-html": "^1.0.4",
-    "gulp-notify": "^2.2.0",
-    "gulp-rename": "^1.4.0",
-    "gulp-replace": "^0.5.4",
-    "gulp-size": "^2.0.0",
-    "gulp-sourcemaps": "^2.2.0",
-    "gulp-transifex": "^0.1.17",
-    "gulp-uglify": "^2.0.0",
-    "gulp-useref": "^3.0.4",
-    "gulp-util": "^3.0.7",
-    "jshint": "^2.9.6",
-    "jshint-stylish": "^2.1.0",
-    "vinyl-buffer": "^1.0.1",
-    "vinyl-source-stream": "^2.0.0",
-    "yargs": "^6.3.0"
+    "copy-webpack-plugin": "^4.5.2",
+    "css-loader": "^1.0.0",
+    "dotenv": "^6.0.0",
+    "ejs-loader": "^0.3.1",
+    "eslint": "^5.4.0",
+    "eslint-loader": "^2.1.0",
+    "extract-loader": "^3.0.0",
+    "file-loader": "^2.0.0",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "loglevel": "^1.6.1",
+    "mini-css-extract-plugin": "^0.4.2",
+    "node-sass": "^4.9.3",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.22.1",
+    "transifex-api-es6": "^0.2.3",
+    "webpack": "^4.17.1",
+    "webpack-bundle-analyzer": "^2.13.1",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.5",
+    "webpack-merge": "^4.1.4",
+    "yarpm": "^0.2.1"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/scriptotek/emnesok.git"
-  },
-  "author": [
-    "Kyrre T. Låberg <k.t.laberg@ub.uio.no>",
-    "Dan Michael O. Heggø <d.m.heggo@ub.uio.no>"
-  ],
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/scriptotek/emnesok/issues"
-  },
-  "homepage": "https://github.com/scriptotek/emnesok#readme",
   "dependencies": {
     "angucomplete-alt": "~2.5.0",
-    "angular": "~1.7.3",
-    "angular-animate": "~1.7.3",
+    "angular": "^1.7.4",
+    "angular-animate": "^1.7.4",
     "angular-gettext": "~2.4.1",
     "angular-jsonld": "~0.2.0",
     "angular-loading-bar": "~0.9.0",
-    "angular-sanitize": "~1.7.3",
+    "angular-sanitize": "^1.7.4",
     "angular-ui-bootstrap": "~2.5.6",
     "angular-ui-router": "~1.0.20",
     "angulartics": "~1.6.0",
     "angulartics-google-analytics": "~0.5.0",
-    "babel-plugin-angularjs-annotate": "^0.9.0",
+    "babel-polyfill": "^6.26.0",
     "bootstrap": "~3.3.7",
     "jsonld": "~0.4.11",
-    "lodash": "^4.17.10",
-    "ng-toast": "~2.0.0",
-    "restangular": "~1.5.2"
+    "lodash": "^4.17.10"
   }
 }

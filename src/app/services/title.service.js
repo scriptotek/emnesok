@@ -1,29 +1,32 @@
-(function() {
-    'use strict';
+import angular from 'angular';
 
-    angular
-        .module('app.services.title', [])
-        .factory('TitleService', TitleService);
+const moduleName = 'app.services.title';
 
-    /* @ngInject */
-    function TitleService($rootScope, $state, $timeout, gettext, gettextCatalog) {
+angular
+    .module(moduleName, [])
+    .factory('TitleService', TitleService);
 
-        var service = {
-            set: setTitle,
-        };
+export default moduleName;
 
-        return service;
+/////
 
-        ////////////
+/* @ngInject */
+function TitleService($rootScope, $state, $timeout, gettext, gettextCatalog) {
 
-        function setTitle(title, track) {
-            var msg = gettext('Subject Search');
-            if (title) {
-                title = title + ' - ';
-            }
-            title += gettextCatalog.getString(msg);
-            $rootScope.$emit('pageTitleChanged', title);
+    var service = {
+        set: setTitle,
+    };
+
+    return service;
+
+    ////////////
+
+    function setTitle(title) {
+        var msg = gettext('Subject Search');
+        if (title) {
+            title = title + ' - ';
         }
+        title += gettextCatalog.getString(msg);
+        $rootScope.$emit('pageTitleChanged', title);
     }
-
-})();
+}

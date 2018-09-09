@@ -1,47 +1,50 @@
-(function() {
-    'use strict';
+import template from './catalogueResult.html';
+import * as log from 'loglevel';
 
-    angular
-        .module('app.catalogue')
-        .component('appCatalogueResult', {
-            templateUrl: 'app/catalogue/catalogueResult.html',
-            controller: CatalogueResultController,
-            controllerAs: 'vm',
-            bindings: {
-                record: '<',
-                vocab: '<',
-                indexTerm: '<',
-            },
-        });
+export const catalogueResultComponentName = 'appCatalogueResult';
 
-    /* @ngInject */
-    function CatalogueResultController(Catalogue, Config, AuthorityService, $state, ngToast, gettext, gettextCatalog, $analytics, $stateParams) {
-        /*jshint validthis: true */
-        var vm = this;
+export const catalogueResultComponent = {
+    template,
+    controller: CatalogueResultController,
+    controllerAs: 'vm',
+    bindings: {
+        record: '<',
+        vocab: '<',
+        indexTerm: '<',
+    },
+};
 
-        vm.recordExpanded = false;
-        vm.clickSubject = clickSubject;
-        vm.expandGroup = expandGroup;
-        vm.versions = [];
-        vm.filterPrint = filterPrint;
-        vm.filterElectronic = filterElectronic;
-        vm.getStatus = getStatus;
-        vm.selectedInstitution = $stateParams.library ? $stateParams.library.split(':')[0] : null;
-        vm.vocabularies = Config.vocabularies;
-        vm.busy = false;
+/////
+
+/* @ngInject */
+function CatalogueResultController(Catalogue, Config, AuthorityService, $state, gettext, gettextCatalog, $analytics, $stateParams) {
+    /*jshint validthis: true */
+    var vm = this;
+
+    vm.recordExpanded = false;
+    vm.clickSubject = clickSubject;
+    vm.expandGroup = expandGroup;
+    vm.versions = [];
+    vm.filterPrint = filterPrint;
+    vm.filterElectronic = filterElectronic;
+    vm.getStatus = getStatus;
+    vm.selectedInstitution = $stateParams.library ? $stateParams.library.split(':')[0] : null;
+    vm.vocabularies = Config.vocabularies;
+    vm.busy = false;
 
 
-        ////////////
+    ////////////
 
-        function clickSubject(subject) {
-            if (vm.busy) {
-                return;
-            }
-            vm.busy = true;
+    function clickSubject(subject) {
+        if (vm.busy) {
+            return;
+        }
+        vm.busy = true;
 
-            $analytics.eventTrack('ClickTag', {category: 'UncontrolledTag', label: subject});
+        $analytics.eventTrack('ClickTag', {category: 'UncontrolledTag', label: subject});
 
-            AuthorityService.exists(subject, vm.vocab).then(function (response) {
+        AuthorityService.exists(subject, vm.vocab).then(
+            function (response) {
                 vm.busy = false;
                 if (!response) {
                     $analytics.eventTrack('TagLookupFailed', {
@@ -51,8 +54,8 @@
                     });
 
                     var msg = gettext('Sorry, the subject "{{subject}}" was not found in the current vocabulary.');
-                    var translated = gettextCatalog.getString(msg, {subject: subject});
-                    ngToast.danger(translated, 'danger');
+                    gettextCatalog.getString(msg, {subject: subject});
+                    // ngToast.danger(translated, 'danger');
                 } else {
                     $analytics.eventTrack('TagLookupSuccess', {
                         category: 'UncontrolledTag',
@@ -61,41 +64,43 @@
                     });
                     $state.go('subject.search', {id: response.localname, term: null});
                 }
-            }, function (err) {
+            },
+            function (error) {
+                log.error(error);
+            }
+        );
+    }
 
-            });
-        }
-
-        function expandGroup() {
-            var groupId = vm.record.id;
-            vm.busy = true;
-            Catalogue.expandGroup(groupId, vm.selectedInstitution).then(function (response) {
+    function expandGroup() {
+        var groupId = vm.record.id;
+        vm.busy = true;
+        Catalogue.expandGroup(groupId, vm.selectedInstitution).then(
+            function (response) {
                 vm.busy = false;
                 vm.recordExpanded = true;
                 vm.versions = response.result.records;
 
-            }, function (error) {
+            },
+            function () {
                 vm.busy = false;
                 var msg = gettext('Failed to fetch list of editions.');
-                var translated = gettextCatalog.getString(msg);
-                ngToast.danger(translated, 'danger');
-            });
-        }
-
-        function filterPrint(component) {
-            return component.category == 'Alma-P';
-        }
-
-        function filterElectronic(component) {
-            return component.category !== undefined && component.category !== 'Alma-P';
-        }
-
-        function getStatus(status) {
-            var statuses = {
-                'check_holdings': 'might be available'
-            };
-            return statuses[status] || status;
-        }
+                gettextCatalog.getString(msg);
+            }
+        );
     }
 
-})();
+    function filterPrint(component) {
+        return component.category == 'Alma-P';
+    }
+
+    function filterElectronic(component) {
+        return component.category !== undefined && component.category !== 'Alma-P';
+    }
+
+    function getStatus(status) {
+        var statuses = {
+            'check_holdings': 'might be available'
+        };
+        return statuses[status] || status;
+    }
+}

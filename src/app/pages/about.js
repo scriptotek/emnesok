@@ -1,17 +1,14 @@
-(function() {
-    'use strict';
+import template from './about.html';
 
-    angular
-		.module('app.pages')
-        .component('appAbout', {
-            templateUrl: 'app/pages/about.html',
-            controller: AboutController,
-            controllerAs: 'vm',
-        });
+export const aboutComponentName = 'appAbout';
 
-    /* @ngInject */
-    function AboutController(langService) {
-        this.lang = langService.language;
-    }
+export const aboutComponent = {
+    template,
+    controller: AboutController,
+    controllerAs: 'vm',
+};
 
-})();
+/* @ngInject */
+function AboutController(langService) {
+    this.lang = langService.language;
+}

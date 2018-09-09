@@ -1,37 +1,43 @@
-(function() {
-    'use strict';
+import angular from 'angular';
+import configService from './config.service';
 
-    angular
-        .module('app.services.externals', [
-            'app.services.config',
-        ])
-        .factory('Externals', ExternalsFactory);
+const moduleName = 'app.services.externals';
 
-    /* @ngInject */
-    function ExternalsFactory($http, $q, $filter) {
+angular
+    .module(moduleName, [
+        configService,
+    ])
+    .factory('Externals', ExternalsFactory);
 
-        function htmlToPlaintext(text) {
-            return text ? String(text).replace(/<[^>]+>/gm, '') : '';
-        }
+export default moduleName;
 
-        var service = {
-            snl:snl,
-            wp:wp,
-            ps:ps
-        };
+/////
 
-        return service;
+/* @ngInject */
+function ExternalsFactory($http, $q) {
 
-        function snl(prefLabel) {
+    function htmlToPlaintext(text) {
+        return text ? String(text).replace(/<[^>]+>/gm, '') : '';
+    }
 
-            var deferred = $q.defer();
+    var service = {
+        snl:snl,
+        wp:wp,
+        ps:ps
+    };
 
-            $http({
-                method: 'GET',
-                cache: true,
-                url: 'https://services.biblionaut.net/api/snl.php',
-                params: {query: prefLabel}
-            }).
+    return service;
+
+    function snl(prefLabel) {
+
+        var deferred = $q.defer();
+
+        $http({
+            method: 'GET',
+            cache: true,
+            url: 'https://services.biblionaut.net/api/snl.php',
+            params: {query: prefLabel}
+        }).
             then(function(result){
 
                 result.data.name = 'Store norske leksikon';
@@ -44,22 +50,21 @@
                 deferred.reject(error);
             });
 
-            return deferred.promise;
-        }
+        return deferred.promise;
+    }
 
-        function ps(prefLabel) {
+    function ps(prefLabel) {
 
-            var deferred = $q.defer();
+        var deferred = $q.defer();
 
-            $http({
-                method: 'GET',
-                cache: true,
-                url: 'https://services.biblionaut.net/api/ps.php',
-                params: {ele: prefLabel}
-            }).
+        $http({
+            method: 'GET',
+            cache: true,
+            url: 'https://services.biblionaut.net/api/ps.php',
+            params: {ele: prefLabel}
+        }).
             then(function(result){
 
-                result.data = result.data;
                 result.data.name = 'Periodesystemet';
                 deferred.resolve(result.data);
 
@@ -67,38 +72,38 @@
                 deferred.reject(error);
             });
 
-            return deferred.promise;
+        return deferred.promise;
+    }
+
+
+    function wp(prefLabel,lang,type,deferred) {
+
+        var wpLang = (lang == 'nb') ? 'no' : lang;
+
+        if (type===undefined) type='exact';
+        if (!type) type='exact';
+
+        if (!deferred) {
+            deferred = $q.defer();
         }
 
+        if (type=='exact'){
 
-        function wp(prefLabel,lang,type,deferred) {
-
-            var wpLang = (lang == 'nb') ? 'no' : lang;
-
-            if (type===undefined) type='exact';
-            if (!type) type='exact';
-
-            if (!deferred) {
-                deferred = $q.defer();
-            }
-
-            if (type=='exact'){
-
-                $http({
-                    method: 'GET',
-                    cache: true,
-                    url: 'https://'+wpLang+'.wikipedia.org/w/api.php',
-                    params: {
-                        action: 'query',
-                        prop: 'extracts|info',
-                        exintro:'',
-                        inprop: 'url',
-                        redirects:'',
-                        titles:prefLabel,
-                        format: 'json',
-                        origin: '*',  // Per https://www.mediawiki.org/wiki/Manual:CORS#Description
-                    }
-                }).
+            $http({
+                method: 'GET',
+                cache: true,
+                url: 'https://'+wpLang+'.wikipedia.org/w/api.php',
+                params: {
+                    action: 'query',
+                    prop: 'extracts|info',
+                    exintro:'',
+                    inprop: 'url',
+                    redirects:'',
+                    titles:prefLabel,
+                    format: 'json',
+                    origin: '*',  // Per https://www.mediawiki.org/wiki/Manual:CORS#Description
+                }
+            }).
                 then(function(result){
 
                     var processed;
@@ -134,24 +139,24 @@
                 },function(error){
                     deferred.reject(error);
                 });
-            }
+        }
 
-            if (type=='search') {
+        if (type=='search') {
 
-                $http({
-                    method: 'GET',
-                    cache: true,
-                    url: 'https://'+wpLang+'.wikipedia.org/w/api.php',
-                    params :{
-                        action: 'query',
-                        list: 'search',
-                        srsearch:prefLabel,
-                        srinfo:'totalhits',
-                        redirects:'',
-                        format: 'json',
-                        origin: '*',  // Per https://www.mediawiki.org/wiki/Manual:CORS#Description
-                    }
-                }).
+            $http({
+                method: 'GET',
+                cache: true,
+                url: 'https://'+wpLang+'.wikipedia.org/w/api.php',
+                params :{
+                    action: 'query',
+                    list: 'search',
+                    srsearch:prefLabel,
+                    srinfo:'totalhits',
+                    redirects:'',
+                    format: 'json',
+                    origin: '*',  // Per https://www.mediawiki.org/wiki/Manual:CORS#Description
+                }
+            }).
                 then(function(result){
 
                     var data = null;
@@ -171,9 +176,8 @@
                 },function(error){
                     deferred.reject(error);
                 });
-            }
-
-            return deferred.promise;
         }
+
+        return deferred.promise;
     }
-})();
+}

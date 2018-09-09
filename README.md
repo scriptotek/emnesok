@@ -13,22 +13,26 @@ The frontend uses a [Skosmos](https://github.com/NatLibFi/Skosmos) instance to q
 After cloning the repository, run `npm install`
 to fetch dependencies.
 To make a development build in the `build` folder and start a
-development server, run `gulp serve`.
-To make a production build, run `gulp build --env=prod`.
-For a list of available Gulp tasks, run `gulp help`.
+development server, run `npm run dev`.
+To make a production build, run `npm run build`.
 
 ## Translation
 
-The application is translated [on Transifex](https://www.transifex.com/university-of-oslo-library/subject-search/), and the translation workflow is supported by [angular-gettext](https://github.com/rubenv/angular-gettext), [angular-gulp-gettext](https://github.com/gabegorelick/gulp-angular-gettext) and
-[gulp-transifex](https://github.com/NEURS/gulp-transifex).
+The application is translated [on Transifex](https://www.transifex.com/university-of-oslo-library/subject-search/),
+and the translation workflow is supported by
+[angular-gettext](https://github.com/rubenv/angular-gettext),
+[angular-gettext-cli](https://github.com/huston007/angular-gettext-cli) and
+[transifex-api-es6](https://github.com/alexanderwallin/transifex-api-es6).
 
-* After source strings have been added or modified, run `gulp transifex-push` to
+* After source strings have been added or modified, run `npm run update-pot` to
   extract translatable strings from the application into the PO template file
   `po/emnesok.pot` and push it to Transifex. For this to work, your Transifex
   credentials must be stored in the `.env` file.
 
-* Running `gulp build` will call the `transifex-pull` task that saves the latest translations from Transifex
-  into the `po` folder, then the `translations` task that compiles these into the JavaScript file `build/js/translations.js`.
+* `npm run compile-po` fetches the latest translations from Transifex into the
+  `po` folder and compiles these into `src/app/services/translations.json`.
+
+* `npm run trans` combines the two commands above for a full sync.
 
 ## Code style
 

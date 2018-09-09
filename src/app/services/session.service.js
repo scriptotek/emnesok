@@ -1,35 +1,39 @@
-(function() {
-    'use strict';
+import angular from 'angular';
+import configService from './config.service';
 
-    angular
-        .module('app.services.session', [
-            'app.services.config',
-        ])
-        .factory('Session', SessionService);
+const moduleName = 'app.services.session';
 
-    function SessionService(Config) {
+angular
+    .module(moduleName, [
+        configService,
+    ])
+    .factory('Session', SessionService);
 
-        var factory = {
-            institutions: Config.institutions,
-            selectedInstitution: null,
-            selectedLibrary: null,
-            selectInstitution: selectInstitution,
-            selectLibrary: selectLibrary
-        };
+export default moduleName;
 
-        return factory;
+/////
 
-        ///////////
+function SessionService(Config) {
 
-        function selectInstitution(institution) {
-            factory.selectedInstitution = institution;
-            factory.selectedLibrary = null;
-        }
+    var factory = {
+        institutions: Config.institutions,
+        selectedInstitution: null,
+        selectedLibrary: null,
+        selectInstitution: selectInstitution,
+        selectLibrary: selectLibrary
+    };
 
-        function selectLibrary(library) {
-            factory.selectedLibrary = library;
-        }
+    return factory;
 
+    ///////////
+
+    function selectInstitution(institution) {
+        factory.selectedInstitution = institution;
+        factory.selectedLibrary = null;
     }
 
-})();
+    function selectLibrary(library) {
+        factory.selectedLibrary = library;
+    }
+
+}

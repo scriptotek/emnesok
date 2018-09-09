@@ -1,19 +1,17 @@
-(function() {
-    'use strict';
+import template from './availability.html';
 
-    angular
-        .module('app.catalogue')
-        .component('appAvailability', {
-            templateUrl: 'app/catalogue/availability.html',
-            controller: AvailabilityController,
-            controllerAs: 'vm',
-            bindings: {
-                record: '<'
-            },
-        });
+export const availabilityComponentName = 'appAvailability';
 
-    function AvailabilityController() {
-        var vm = this;
-    }
+export const availabilityComponent = {
+    template,
+    controller: AvailabilityController,
+    controllerAs: 'vm',
+    bindings: {
+        record: '<',
+    },
+};
 
-})();
+/////
+
+function AvailabilityController() {
+}

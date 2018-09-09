@@ -1,17 +1,14 @@
-(function() {
-    'use strict';
+import template from './home.html';
 
-    angular
-        .module('app.pages')
-        .component('appHome', {
-            templateUrl: 'app/pages/home.html',
-            controller: HomeController,
-            controllerAs: 'vm',
-        });
+export const homeComponentName = 'appHome';
 
-    /* @ngInject */
-    function HomeController(langService) {
-        this.lang = langService.language;
-    }
+export const homeComponent = {
+    template,
+    controller: HomeController,
+    controllerAs: 'vm',
+};
 
-})();
+/* @ngInject */
+function HomeController(langService) {
+    this.lang = langService.language;
+}
