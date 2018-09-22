@@ -13,6 +13,7 @@ export default moduleName;
 
 /////
 
+/* @ngInject */
 function SessionService(Config) {
 
     var factory = {

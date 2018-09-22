@@ -10,9 +10,9 @@ module.exports = merge(common, {
     mode: 'production',
     devtool: 'source-map',
     stats: 'errors-only',
-    // optimization: {
-    //     minimize: true
-    // },
+    optimization: {
+        minimize: true
+    },
     plugins: [
         new webpack.DefinePlugin({
             'BASE_HREF': JSON.stringify('/ub/emnesok/'),
