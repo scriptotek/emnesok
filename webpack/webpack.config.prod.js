@@ -15,10 +15,10 @@ module.exports = merge(common, {
     },
     plugins: [
         new webpack.DefinePlugin({
-            'BASE_HREF': JSON.stringify('/ub/emnesok/'),
-            'GA_URL': JSON.stringify('//vrtx.uio.no/js/analytics/v2/analytics.js'),
-            'GA_IPP': JSON.stringify('useIppProxy()'),
-            'GA_ID': JSON.stringify('UA-72054416-3'),
+            'process.env.BASE_HREF': JSON.stringify('/ub/emnesok/'),
+            'process.env.GA_URL': JSON.stringify('//vrtx.uio.no/js/analytics/v2/analytics.js'),
+            'process.env.GA_IPP': JSON.stringify('useIppProxy()'),
+            'process.env.GA_ID': JSON.stringify('UA-72054416-3'),
             'process.env.NODE_ENV': JSON.stringify('production'),
         }),
         // compiling mode “scope hoisting”
