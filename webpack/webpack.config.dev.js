@@ -18,6 +18,9 @@ module.exports = merge(common, {
         historyApiFallback: true,
         // disableDotRule: true,
     },
+    output: {
+        publicPath: '/',
+    },
     plugins: [
         // new CopyWebpackPlugin([
         //     { from: path.resolve(__dirname, '../public'), to: 'public' }

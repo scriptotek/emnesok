@@ -20,7 +20,6 @@ module.exports = {
     },
     output: {
         path: dest,
-        publicPath: '/ub/emnesok/',
         filename: '[name].[chunkhash].bundle.js',
     },
     plugins: [

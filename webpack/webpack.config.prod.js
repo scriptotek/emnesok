@@ -13,6 +13,9 @@ module.exports = merge(common, {
     optimization: {
         minimize: true
     },
+    output: {
+        publicPath: '/ub/emnesok/',
+    },
     plugins: [
         new webpack.DefinePlugin({
             'process.env.BASE_HREF': JSON.stringify('/ub/emnesok/'),
