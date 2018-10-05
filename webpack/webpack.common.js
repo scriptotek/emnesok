@@ -8,6 +8,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const dest = path.join(__dirname, '../dist');
 
+const sourcePath = path.resolve(__dirname, '../src');
+
 module.exports = {
     entry: {
         polyfills: path.resolve(__dirname, './polyfills'),
@@ -80,6 +82,29 @@ module.exports = {
             {
                 test: /\.ejs$/,
                 use: 'ejs-loader',
+            },
+
+            // https://github.com/vsternbach/angularjs-typescript-webpack
+            {
+              test: /\.ts$/,
+              exclude: /node_modules/,
+              use: [
+                {
+                  loader: 'ng-annotate-loader',
+                  options: {
+                    ngAnnotate: 'ng-annotate-patched',
+                    sourcemap: true // !isProd,
+                  },
+                },
+                {
+                  loader: 'ts-loader',
+                  options: {
+                    // configFile: sourcePath + '/tsconfig.app.json',
+                    // disable type checker - we will use it in fork plugin
+                    transpileOnly: true,
+                  }
+                }
+              ]
             },
         ]
     }
