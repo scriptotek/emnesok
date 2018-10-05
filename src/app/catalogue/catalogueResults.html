@@ -4,7 +4,7 @@
 	 <!-- Single button with keyboard nav -->
 	 <div class="pull-right">
 
-		<div class="btn-group" ng-show="vm.vocab && vm.subject.data.type != 'Geographic'">
+		<div class="btn-group" ng-show="vm.vocab && vm.subject.type != 'Geographic'">
 	        <label class="btn btn-default" ng-model="vm.broadSearch" ng-change="vm.updateControlledSearch()" uib-btn-radio="true" tooltip-append-to-body="true" uib-tooltip="{{'Search all subject vocabularies' | translate}}" translate analytics-on="click" analytics-event="SetBroadSearch" analytics-category="RefineSearch">Broad</label>
 	        <label class="btn btn-default" ng-model="vm.broadSearch" ng-change="vm.updateControlledSearch()" uib-btn-radio="false" tooltip-append-to-body="true" uib-tooltip="{{'Search '+vm.vocab+' only' |translate}}" translate analytics-on="click" analytics-event="SetNarrowSearch" analytics-category="RefineSearch">Narrow</label>
 	    </div>
@@ -36,23 +36,23 @@
 
 	<div uib-alert ng-if="vm.error" class="alert-danger" compile="vm.error"></div>
 
-	<p ng-if="!vm.busy && !vm.error && !vm.total_results && vm.subject.data.type !== 'KnuteTerm'" class="bg-danger">
+	<p ng-if="!vm.busy && !vm.error && !vm.total_results && vm.subject.type !== 'KnuteTerm'" class="bg-danger">
 		<span translate>
 			How odd! Not a single document on that subject could be found using the current subject vocabulary.
 		</span>
-		<span ng-if="!vm.broadSearch && vm.subject.data.type !== 'Geographic'" translate>
+		<span ng-if="!vm.broadSearch && vm.subject.type !== 'Geographic'" translate>
 			You could try expanding the search to a <a ui-sref="subject.search({broad:true})">broad search</a>.
 		</span>
-		<span ng-if="vm.broadSearch && vm.selectedInstitution && vm.subject.data.type !== 'Geographic'" translate>
+		<span ng-if="vm.broadSearch && vm.selectedInstitution && vm.subject.type !== 'Geographic'" translate>
 			You could try expanding the search to <a ui-sref="subject.search({library:null})">all libraries</a>.
 		</span>
 	</p>
 
-	<p ng-if="vm.subject.data.type == 'Geographic'" class="text-muted">
+	<p ng-if="vm.subject.type == 'Geographic'" class="text-muted">
 		The broad/narrow filter is not available for geographical names.
 	</p>
 
-	<p ng-if="vm.subject.data.type == 'KnuteTerm'" class="bg-warning">
+	<p ng-if="vm.subject.type == 'KnuteTerm'" class="bg-warning">
 		This concept is a “KnuteTerm”, so there should not be any search results.
 	</p>
 
@@ -76,7 +76,7 @@
 				Found {{ vm.results.length }} documents about this topic using {{vm.searchType}}.
 			</p>
 
-			<div class="panel panel-default" ng-show="vm.start && vm.last == vm.total_results && vm.total_results != 0 && !vm.broadSearch && vm.subject.data.type !== 'Geographic'">
+			<div class="panel panel-default" ng-show="vm.start && vm.last == vm.total_results && vm.total_results != 0 && !vm.broadSearch && vm.subject.type !== 'Geographic'">
 				<div class="panel-body">
 					<span translate>Interested in more results?</span>
 					<a ui-sref="subject.search({broad:true})" class="btn btn-default" translate>Expand to broad search</a>

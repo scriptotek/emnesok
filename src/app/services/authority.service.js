@@ -15,6 +15,128 @@ export default moduleName;
 
 /////
 
+function preferredRdfType(types) {
+    if (types.indexOf('http://data.ub.uio.no/onto#Place') !== -1) {
+        return 'Geographic';
+    }
+    if (types.indexOf('http://data.ub.uio.no/onto#Time') !== -1) {
+        return 'Temporal';
+    }
+    if (types.indexOf('http://data.ub.uio.no/onto#GenreForm') !== -1) {
+        return 'GenreForm';
+    }
+    if (types.indexOf('http://data.ub.uio.no/onto#KnuteTerm') !== -1) {
+        return 'KnuteTerm';
+    }
+
+    return 'Topic'; //     gettext('Topic');
+}
+
+class Subject {
+
+    constructor(Config, langService, data) {
+        this.Config = Config;
+        this.langService = langService;
+
+        Object.keys(data).forEach((key) => {
+            this[key] = data[key];
+        });
+
+        this.type = preferredRdfType(data.type);
+
+        ['_components', 'broader', 'narrower', 'related'].forEach((prop) => {
+            if (data[prop] !== undefined) {
+                this[prop] = (get(data, prop) || []).map((res) => new Subject(Config, langService, res));
+            }
+        });
+
+        this.notation = get(data, 'notation.0');
+
+        let vocabularyMap = [
+            { pattern: 'http://data.ub.uio.no/humord/', name: 'humord', label: 'Humord'},
+            { pattern: 'http://data.ub.uio.no/realfagstermer/', name: 'realfagstermer', label: 'Realfagstermer'},
+            { pattern: 'http://data.ub.uio.no/tekord/', name: 'tekord', label: 'Tekord'},
+            { pattern: 'http://dewey.info/', name: 'ddc', label: 'DDC23/NO'},
+        ];
+
+        this['mappings'] = (get(data, 'mappings') || []).map((m) => {
+            console.log('MAPP', m);
+            let ret = {
+                from: get(m, 'from.memberSet.0', {}),
+                to: get(m, 'to.memberSet.0', {}),
+                type: get(m, 'type.0'),
+            };
+            ret.typeLabel = {
+                'skos:exactMatch': 'Tilsvarer',
+                'skos:closeMatch': 'Tilsvarer omtrent',
+                'skos:broadMatch': 'Overordnet',
+                'skos:relatedMatch': 'Se også',
+            }[ret.type];
+            vocabularyMap.forEach((x) => {
+                if (ret.to.uri.match(x.pattern)) {
+                    ret.to.vocabulary = x.name;
+                    ret.to.vocabularyLabel = x.label;
+                }
+            });
+            ret.to.getPrefLabel = () => {
+                let labels = get(ret.to, 'prefLabel', {});
+                return labels[langService.language]
+                    || labels[langService.defaultLanguage]
+                    || labels['en']
+                    || Object.values(labels)[0];
+            };
+
+            ret.to.scheme = get(m, 'toScheme', {});
+            return ret;
+        });
+
+        // Sort mappings by type
+        let typeOrder = ['skos:exactMatch', 'skos:closeMatch', 'skos:broadMatch', 'skos:relatedMatch'];
+        this['mappings'].sort(x => typeOrder.indexOf(x.type));
+
+        // Extract Wikidata mapping
+        let wikidata = this.mappings.filter(mapping => mapping.to.uri.match('http://www.wikidata.org'));
+        this.wikidata = wikidata.length && wikidata[0] || null;
+        this['mappings'] = this['mappings'].filter(x => x.to.vocabulary !== undefined);
+
+        function getShortVocabularyCode(uri) {
+            var shortCodes = Object.keys(Config.vocabularies);
+            for (var i = 0; i < shortCodes.length; i++) {
+                if (Config.vocabularies[shortCodes[i]].scheme == uri) {
+                    return shortCodes[i];
+                }
+            }
+        }
+
+        this.vocab = getShortVocabularyCode(get(data, 'inScheme.0.uri'));
+
+        // this.data = data;
+    }
+
+    get(key, def = null) {
+        return get(this, key) || def;
+    }
+
+    getPrefLabel() {
+        return get(this.prefLabel, this.langService.language);
+        // fallback?
+    }
+
+    feedbackUri() {
+        if (this.vocab == 'realfagstermer') {
+            var uri_id = this.uri.split('/').pop();
+            var ident = uri_id.replace('c', 'REAL');
+            var emnesokUrl = 'https://app.uio.no/ub/emnesok/realfagstermer/search?id=' + encodeURIComponent(uri_id);
+            var katapiUrl  = 'http://ub-viz01.uio.no/okapi2/#/search?q=' + encodeURIComponent('realfagstermer:"' + this.getPrefLabel() + '"');
+            var soksedUrl = 'http://ub-soksed.uio.no/concepts/' + ident ;
+            var issueTitle = this.getPrefLabel();
+            var issueBody = encodeURIComponent('\n\n\n\n---\n*' + ident + ' (' + this.getPrefLabel() + ') i [Emnesøk](' + emnesokUrl + '), [Skosmos]('+ this.uri + '), [Okapi](' + katapiUrl + '), [Soksed](' + soksedUrl + ')*');
+            return 'https://github.com/realfagstermer/realfagstermer/issues/new?title=' + issueTitle + '&body=' + issueBody;
+        }
+    }
+}
+
+
 /* @ngInject */
 function AuthorityService($http, $stateParams, $filter, $q, $rootScope, gettext, Config, langService) {
 
@@ -36,53 +158,12 @@ function AuthorityService($http, $stateParams, $filter, $q, $rootScope, gettext,
 
     ////////////
 
-    function preferredRdfType(types) {
-        if (types.indexOf('http://data.ub.uio.no/onto#Place') !== -1) {
-            gettext('Geographic');
-            return 'Geographic';
-        }
-        if (types.indexOf('http://data.ub.uio.no/onto#Time') !== -1) {
-            gettext('Temporal');
-            return 'Temporal';
-        }
-        if (types.indexOf('http://data.ub.uio.no/onto#GenreForm') !== -1) {
-            gettext('GenreForm');
-            return 'GenreForm';
-        }
-        if (types.indexOf('http://data.ub.uio.no/onto#KnuteTerm') !== -1) {
-            gettext('KnuteTerm');
-            return 'KnuteTerm';
-        }
-
-        gettext('Topic');
-        return 'Topic';
-    }
-
-    function getShortVocabularyCode(uri) {
-        var shortCodes = Object.keys(Config.vocabularies);
-        for (var i = 0; i < shortCodes.length; i++) {
-            if (Config.vocabularies[shortCodes[i]].scheme == uri) {
-                return shortCodes[i];
-            }
-        }
-    }
-
-    function Subject(data) {
-
-        data.type = preferredRdfType(data.type);
-
-        ['_components', 'broader', 'narrower', 'related'].forEach(function (prop) {
-            data[prop].map(function (res) {
-                res.type = preferredRdfType(res.type);
-            });
-        });
-
-        this.vocab = getShortVocabularyCode(get(data, 'inScheme.0.uri'));
-
-        this.data = data;
-    }
-
     function activate() {
+        gettext('Temporal');
+        gettext('Geographic');
+        gettext('GenreForm');
+        gettext('KnuteTerm');
+        gettext('Topic');
     }
 
     function clearSearchHistory() {
@@ -96,7 +177,7 @@ function AuthorityService($http, $stateParams, $filter, $q, $rootScope, gettext,
 
     function notify(subject) {
         var idx = service.searchHistory.reduce(function(prev, curr, idx) {
-            return (curr.data.uri == subject.data.uri) ? idx : prev;
+            return (curr.uri == subject.uri) ? idx : prev;
         }, -1);
 
         if (idx !== -1) {
@@ -228,7 +309,8 @@ function AuthorityService($http, $stateParams, $filter, $q, $rootScope, gettext,
             url: Config.skosmos.jskosUrl.replace('{uri}', uri),
         }).
             then(function(response){
-                var subject = new Subject(response.data);
+                var subject = new Subject(Config, langService, response.data);
+                console.log(subject);
                 // {
                 //     uri: uri,
                 //     id: uri.split('/').pop(),

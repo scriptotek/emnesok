@@ -67,8 +67,8 @@ function CatalogueResultsController($stateParams, $state, $scope, $window, $time
             return;
         }
 
-        if (vm.subject.data.isReplacedBy.length) {
-            var replacement = vm.msgsubject.data.isReplacedBy[0];
+        if (vm.subject.isReplacedBy.length) {
+            var replacement = vm.subject.isReplacedBy[0];
             vm.busy = false;
             var replacementTitle = replacement.prefLabel[lang] ? replacement.prefLabel[lang] : replacement.prefLabel[defaultLang];
             vm.error = gettextCatalog.getString(
@@ -78,7 +78,7 @@ function CatalogueResultsController($stateParams, $state, $scope, $window, $time
                 }
             );
             return;
-        } else if (vm.subject.data.deprecated) {
+        } else if (vm.subject.deprecated) {
             vm.busy = false;
             vm.error = gettextCatalog.getString(
                 gettext('This concept has been deprecated')
@@ -87,8 +87,8 @@ function CatalogueResultsController($stateParams, $state, $scope, $window, $time
         }
 
         vm.vocab = vm.subject.vocab;
-        vm.indexTerm = vm.subject.data.prefLabel[defaultLang];
-        vm.stringSearch = (vm.subject.data._components.length > 0);
+        vm.indexTerm = vm.subject.prefLabel[defaultLang];
+        vm.stringSearch = (vm.subject._components.length > 0);
         searchFromStart();
 
         angular.element($window).bind('scroll', onScroll);
@@ -97,7 +97,7 @@ function CatalogueResultsController($stateParams, $state, $scope, $window, $time
         });
 
         var lang = langService.language;
-        var pageTitle = vm.subject.data.prefLabel[lang] ? vm.subject.data.prefLabel[lang] : vm.subject.data.prefLabel[defaultLang];
+        var pageTitle = vm.subject.prefLabel[lang] ? vm.subject.prefLabel[lang] : vm.subject.prefLabel[defaultLang];
         TitleService.set(pageTitle);
 
         //Flag that indicates if the state is changing
@@ -197,28 +197,28 @@ function CatalogueResultsController($stateParams, $state, $scope, $window, $time
         var lib = vm.selectedLibrary ? vm.selectedInstitution + vm.selectedLibrary : null;
         var topics = [], places = [], genres = [];
 
-        if (vm.subject.data._components.length) {
-            places = vm.subject.data._components.filter(function (component) {
+        if (vm.subject._components.length) {
+            places = vm.subject._components.filter(function (component) {
                 return component.type == 'Geographic';
             });
-            genres = vm.subject.data._components.filter(function (component) {
+            genres = vm.subject._components.filter(function (component) {
                 return component.type == 'GenreForm';
             });
-            topics = vm.subject.data._components.filter(function (component) {
+            topics = vm.subject._components.filter(function (component) {
                 return component.type == 'Topic';
             });
             topics.sort(function (a, b) {
                 var alab = a.prefLabel[defaultLang], blab = b.prefLabel[defaultLang],
-                    tlab = vm.subject.data.prefLabel[defaultLang].split(' : ');
+                    tlab = vm.subject.prefLabel[defaultLang].split(' : ');
                 return tlab.indexOf(alab) - tlab.indexOf(blab);
             });
         } else {
-            if (vm.subject.data.type == 'Geographic') {
-                places = [vm.subject.data];
-            } else if (vm.subject.data.type == 'GenreForm') {
-                genres = [vm.subject.data];
+            if (vm.subject.type == 'Geographic') {
+                places = [vm.subject];
+            } else if (vm.subject.type == 'GenreForm') {
+                genres = [vm.subject];
             } else {
-                topics = [vm.subject.data];
+                topics = [vm.subject];
             }
         }
 
@@ -241,8 +241,8 @@ function CatalogueResultsController($stateParams, $state, $scope, $window, $time
         if (!vm.broadSearch) {
             q.vocab = vm.vocab;
         }
-        if (vm.subject.data.notation.length) {
-            q.subject = vm.subject.data.notation[0];
+        if (vm.subject.notation) {
+            q.subject = vm.subject.notation;
         }
 
         vm.busy = true;
