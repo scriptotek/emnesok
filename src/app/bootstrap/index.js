@@ -14,6 +14,7 @@ import pages from '../pages';
 import layout from '../layout';
 import config from './config';
 import {compileDirectiveName, compileDirective} from './compile.directive';
+import {objectKeysFilterName, objectKeysFilter} from './objectKeys.filter';
 
 const moduleName = 'app.bootstrap';
 
@@ -40,7 +41,7 @@ angular
         layout,
     ])
     .config(config)
-    .directive(compileDirectiveName, compileDirective);
-
+    .directive(compileDirectiveName, compileDirective)
+    .filter(objectKeysFilterName, objectKeysFilter);
 
 export default moduleName;

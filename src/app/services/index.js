@@ -7,6 +7,7 @@ import langModule from './lang.service';
 import sessionModule from'./session.service';
 import titleModule from './title.service';
 import authorityModule from './authority.service';
+import wikidataModule from './wikidata.service';
 
 const moduleName = 'app.services';
 
@@ -18,6 +19,7 @@ angular.module(moduleName, [
     sessionModule,
     titleModule,
     authorityModule,
+    wikidataModule,
 ]);
 
 export default moduleName;

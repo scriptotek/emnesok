@@ -60,7 +60,6 @@ class Subject {
         ];
 
         this['mappings'] = (get(data, 'mappings') || []).map((m) => {
-            console.log('MAPP', m);
             let ret = {
                 from: get(m, 'from.memberSet.0', {}),
                 to: get(m, 'to.memberSet.0', {}),
@@ -310,7 +309,6 @@ function AuthorityService($http, $stateParams, $filter, $q, $rootScope, gettext,
         }).
             then(function(response){
                 var subject = new Subject(Config, langService, response.data);
-                console.log(subject);
                 // {
                 //     uri: uri,
                 //     id: uri.split('/').pop(),
