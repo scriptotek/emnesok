@@ -11,6 +11,7 @@ module.exports = merge(common, {
     mode: 'development',
     devtool: 'cheap-eval-source-map',
     devServer: {
+        clientLogLevel: 'error',
         // contentBase: dest,
         // publicPath: '/',
         // inline: true,
