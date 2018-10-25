@@ -91,6 +91,8 @@ function ConfigService() {
                 defaultLanguage: 'nb',
                 scheme: 'http://dewey.info/scheme/edition/e23/',
                 uriPattern: 'http://dewey.info/{id}',
+                showWikipedia: false,
+                supportsBroadSearch: false,
                 show_vocabs: ['realfagstermer', 'humord', 'ddc'],
             }
         },

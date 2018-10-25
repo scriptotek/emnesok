@@ -238,7 +238,7 @@ function CatalogueResultsController($stateParams, $state, $scope, $window, $time
                 return getPrefLabels(subject, topics.length == 1);
             }).join(vm.broadSearch ? ' AND ' : ' : ');
         }
-        if (!vm.broadSearch) {
+        if (Config.vocabularies[vm.subject.vocab].supportsBroadSearch === false || !vm.broadSearch) {
             q.vocab = vm.vocab;
         }
         if (vm.subject.notation) {
