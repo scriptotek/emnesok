@@ -1,3 +1,4 @@
+import { find } from 'lodash/collection';
 
 export const catalogueServiceName = 'Catalogue';
 
@@ -19,8 +20,6 @@ export const catalogueService = /* @ngInject */ function CatalogueService(
     ////////////
 
     function search(query, start, institution, library, broadSearch) {
-        var deferred = $q.defer();
-
         var params = {
             expand_groups: true,  // in order to filter we need this, since it's random which edition we get data for in frbr groups
             repr: 'full',
@@ -42,7 +41,7 @@ export const catalogueService = /* @ngInject */ function CatalogueService(
             params.library = library;
         }
 
-        $http({
+        return $http({
             method: 'GET',
             cache: true,
             url: Config.catalogue.searchUrl,
@@ -50,12 +49,10 @@ export const catalogueService = /* @ngInject */ function CatalogueService(
         }).
             then(function(response){
                 response.data.results = postProcessRecords(response.data.results, institution, params, broadSearch);
-                deferred.resolve(response.data);
+                return response.data;
             }, function(error){
                 deferred.reject(error);
             });
-
-        return deferred.promise;
     }
 
     function expandGroup(id, institution) {
@@ -87,7 +84,7 @@ export const catalogueService = /* @ngInject */ function CatalogueService(
         return self.indexOf(value) === index;
     }
 
-    function postProcessRecords(records, selectedInstitution, queryParams, broadSearch) {
+    function postProcessRecords(records, selectedInstitution, params, broadSearch) {
         records.forEach(function(record) {
             simplifyAvailability(record, selectedInstitution);
             record.pubEdYear = formatPubEdYearString(record);
@@ -97,21 +94,24 @@ export const catalogueService = /* @ngInject */ function CatalogueService(
         });
 
         function matchingRecord(rec) {
-            var firstTerm;
+            let firstTerm;
             if (broadSearch) {
                 return true;
             }
-            if (queryParams && queryParams.vocabulary && queryParams.subject) {
-                firstTerm = queryParams.subject.split(' OR ').shift();
-                if (rec.subjects[queryParams.vocabulary].indexOf(firstTerm) == -1) { return false; }
+            if (!params) {
+                return true;
             }
-            if (queryParams && queryParams.place) {
-                firstTerm = queryParams.place.split(' OR ').shift();
-                if (rec.subjects.place.indexOf(firstTerm) == -1) { return false; }
+            if (params.vocabulary && params.subject) {
+                firstTerm = params.subject.split(' OR ').shift().toLowerCase();
+                return find(rec.subjects[params.vocabulary], x => x.toLowerCase() == firstTerm);
             }
-            if (queryParams && queryParams.genre) {
-                firstTerm = queryParams.genre.split(' OR ').shift();
-                if (rec.subjects.genre.indexOf(firstTerm) == -1) { return false; }
+            if (params.place) {
+                firstTerm = params.place.split(' OR ').shift().toLowerCase();
+                return find(rec.subjects.place, x => x.toLowerCase() == firstTerm);
+            }
+            if (params.genre) {
+                firstTerm = params.genre.split(' OR ').shift().toLowerCase();
+                return find(rec.subjects.genre, x => x.toLowerCase() == firstTerm);
             }
             return true;
         }

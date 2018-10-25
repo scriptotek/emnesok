@@ -2,14 +2,12 @@
 <div style="border: 1px solid #eee;">
 
     <div style="padding: 1em;">
-        <div>
-            <strong>
+        <h3 style="background: #efefef; border-bottom: 1px solid #eee; margin: -1em -1em 0 -1em; padding: 1em; font-size: 14px;">
                 {{ vm.subject.notation }} {{ vm.subject.getPrefLabel() }}
                 <!--
                     <span ng-show="vm.subject.elementSymbol"> ({{vm.subject.elementSymbol}}) <img src="./assets/element.png" title="{{'Chemical element' | translate}}"></span>
                 -->
-            </strong>
-        </div>
+        </h3>
 
         <div class="block definition" ng-show="vm.subject.get('definition')">
             {{ vm.subject.get('definition.' + vm.lang) }}

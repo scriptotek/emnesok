@@ -11,10 +11,7 @@
       </button>
 
       <span class="navbar-brand">
-        <a ui-sref="home({ lang: vm.lang })" translate>Subject Search</a>
-        <span ng-show="vm.vocab">
-        : <a ui-sref="subject.vocab()">{{ vm.vocab.name }}</a>
-        </span>
+        <a ui-sref="home({ lang: vm.lang, q: null, vocab: null })" translate>Subject Search</a>
       </span>
     </div><!-- /.navbar-header -->
 
@@ -41,7 +38,7 @@
 
   </div><!-- /.container-fluid -->
 </nav>
-
+<!--
 <div class="container-fluid" ng-show="!vm.helloHidden">
   <uib-alert class="alert-success" close="vm.hideHello();">
     <div>
@@ -52,3 +49,4 @@
     </div>
   </uib-alert>
 </div>
+-->

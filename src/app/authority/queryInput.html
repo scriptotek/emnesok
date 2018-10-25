@@ -1,0 +1,23 @@
+<div>
+    <angucomplete-alt
+        disable-input="$ctrl.disabled"
+        pause="300"
+        initial-value="$ctrl.initialValue"
+        placeholder="{{'Enter a subject' | translate}}"
+        maxlength="50"
+        selected-object="$ctrl.selectSuggestion"
+        remote-api-handler="$ctrl.search"
+        focus-in="$ctrl.openSearcMenu()"
+        title-field="prefLabel"
+        description-field="description"
+        minlength="2"
+        match-class="highlight"
+        input-changed="$ctrl.inputChanged"
+        clear-selected="true"
+        image-field="searchListIcon"
+        focus-first="true"
+        text-no-results="{{'No hits :(' | translate}}"
+        text-searching="{{'Looking…' | translate}}"
+    ></angucomplete-alt>
+    {{ $ctrl.data.type }}
+</div>

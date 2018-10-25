@@ -24,10 +24,11 @@ function configure($stateProvider, $urlRouterProvider) {
 
     $stateProvider
         .state('home', {
-            url: '/?lang',
+            url: '/?q&lang&vocab',
             data: {pageTitle: ''},
+            dynamic: false,
             views: {
-                'main': 'appHome',
+                'main': 'appSearch',
             },
         })
         .state('error', {

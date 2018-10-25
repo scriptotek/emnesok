@@ -1,8 +1,9 @@
 import angular from 'angular';
 import configModule from './config.service';
-import {get} from 'lodash/object';
+import { get } from 'lodash/object';
+import { uniqBy } from 'lodash/array';
 import * as log from 'loglevel';
-
+import urljoin from 'url-join';
 const moduleName = 'app.services.authority';
 
 angular
@@ -16,6 +17,8 @@ export default moduleName;
 /////
 
 function preferredRdfType(types) {
+    if (types === undefined) return 'Topic';
+
     if (types.indexOf('http://data.ub.uio.no/onto#Place') !== -1) {
         return 'Geographic';
     }
@@ -133,11 +136,15 @@ class Subject {
             return 'https://github.com/realfagstermer/realfagstermer/issues/new?title=' + issueTitle + '&body=' + issueBody;
         }
     }
+
+    asQuery() {
+        return this.getPrefLabel();
+    }
 }
 
 
 /* @ngInject */
-function AuthorityService($http, $stateParams, $filter, $q, $rootScope, gettext, Config, langService) {
+function AuthorityService($http, $stateParams, $filter, $rootScope, gettext, Config, langService) {
 
     var service = {
         search: search,
@@ -272,56 +279,54 @@ function AuthorityService($http, $stateParams, $filter, $q, $rootScope, gettext,
     //     return data;
     // }
 
-    function search(q, vocab) {
-        if (!Config.vocabularies[vocab]) {
-            log.error('Unknown vocabulary ' + vocab + '!');
-            return;
-        }
-        var deferred = $q.defer();
+    // vocabularyStatisticsUrl: 'https://data.ub.uio.no/skosmos/rest/v1/{vocab}/vocabularyStatistics',
+    // dataUrl: 'https://data.ub.uio.no/skosmos/rest/v1/data?uri={uri}',
+    // jskosUrl: 'https://ub-www01.uio.no/microservices/jskos.php?uri={uri}&expandMappings=true',
+    // searchUrl: 'https://data.ub.uio.no/skosmos/rest/v1/search',
 
-        var query = {
-            vocab: vocab,
-            query: q.replace('--', ' : '),
-            labellang: langService.language
-        };
+    function apiCall(url, params = {}) {
+        if (url.indexOf('http') !== 0) url = urljoin(Config.skosmos.baseUrl, url);
+        return new Promise((resolve, reject) => {
+            $http({
+                method: 'GET',
+                cache: true,
+                url: url,
+                params: params
+            }).then(
+                (res) => resolve(res.data),
+                (err) => reject(err)
+            );
+        });
+    }
 
-        $http({
-            method: 'GET',
-            cache: true,
-            url: Config.skosmos.searchUrl,
-            params: query
-        }).
-            then(function(response){
-                deferred.resolve(response.data);
-            }, function(error){
-                deferred.reject(error);
-            });
+    function search(query, vocab) {
+        // if (vocab && !Config.vocabularies[vocab]) {
+        //     log.error('Unknown vocabulary ' + vocab + '!');
+        //     return;
+        // }
 
-        return deferred.promise;
+        return apiCall(
+            'search',
+            {
+                vocab: vocab,
+                query: query.replace('--', ' : '),
+                labellang: langService.language
+            }
+        ).then(
+            data => uniqBy(data.results, x => x.uri)
+        );
     }
 
     function getByUri(uri) {
-        var deferred = $q.defer();
-        $http({
-            method: 'GET',
-            cache: true,
-            url: Config.skosmos.jskosUrl.replace('{uri}', uri),
-        }).
-            then(function(response){
-                var subject = new Subject(Config, langService, response.data);
-                // {
-                //     uri: uri,
-                //     id: uri.split('/').pop(),
-                //     data: processSubject(uri, response.data),
-                // };
+        return apiCall(
+            Config.skosmos.jskosUrl.replace('{uri}', uri)
+        ).then(
+            data => {
+                let subject = new Subject(Config, langService, data);
                 notify(subject);
-
-                deferred.resolve(subject);
-            }, function(error){
-                deferred.reject(error);
-            });
-
-        return deferred.promise;
+                return subject;
+            }
+        );
     }
 
     function getById(id, vocab) {
@@ -330,51 +335,25 @@ function AuthorityService($http, $stateParams, $filter, $q, $rootScope, gettext,
     }
 
     function getByTerm(term, vocab) {
-        var deferred = $q.defer();
+        return search(term, vocab).then(
+            results => {
+                if (!results.length) return null;
 
-        search(term, vocab).
-            then(function(response) {
-                if (!response.results.length) {
-                    return deferred.reject();
-                }
-                getByUri(response.results[0].uri).
-                    then(function(subject) {
-                        deferred.resolve(subject);
-                    });
-            }, function(error) {
-                deferred.reject(error);
-            });
-
-        return deferred.promise;
+                return getByUri(results[0].uri);
+            }
+        );
     }
 
     function exists(term, vocab) {
-        var deferred = $q.defer();
-        search(term, vocab).then(function(response) {
-            if (!response.results.length) {
-                return deferred.resolve(null);
+        return search(term, vocab).then(
+            results => {
+                if (!results.length) return null;
+                return results[0];
             }
-            deferred.resolve(response.results[0]);
-        }, function(error) {
-            deferred.reject(error);
-        });
-        return deferred.promise;
+        );
     }
 
     function getVocabulary(vocab) {
-        var deferred = $q.defer();
-
-        $http({
-            method: 'GET',
-            cache: true,
-            url: Config.skosmos.vocabularyStatisticsUrl.replace('{vocab}', vocab)
-        }).
-            then(function(response){
-                deferred.resolve(response.data);
-            }, function(error){
-                deferred.reject(error);
-            });
-
-        return deferred.promise;
+        return apiCall(`${vocab}/vocabularyStatistics`);
     }
 }

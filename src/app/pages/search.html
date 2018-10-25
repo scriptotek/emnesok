@@ -1,0 +1,62 @@
+<div style="padding: 1em;">
+    Gje meg nån bøker om...
+
+    <form ng-submit="$ctrl.submit()" accept-charset="utf-8">
+
+        <div class="row" style="display: flex; padding: 1.2em;">
+
+            <div class="col">
+                <app-query-input :data="queryPart" :vocab="$ctrl.vocabs[$ctrl.selectedVocab].id" ng-repeat="queryPart in $ctrl.queryParts"></app-query-input>
+            </div>
+
+            <div class="col">
+                <div class="btn-group" uib-dropdown is-open="status.isopen" keyboard-nav="true">
+                    <button id="single-button" type="button" class="btn btn-link" uib-dropdown-toggle ng-disabled="disabled">
+                        {{ $ctrl.vocabs[$ctrl.selectedVocab].label }} <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                        <li role="menuitem" ng-repeat="vocab in $ctrl.vocabs"><a href="#" ng-click="$ctrl.selectVocab($index)">{{ vocab.label }}</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col">
+                <button type="submit" class="btn btn-primary">Søk</button>
+            </div>
+
+        </div>
+
+    </form>
+
+    <div ng-if="$ctrl.busy">
+        Loading...
+    </div>
+
+    <div style="margin: 1em;">
+        Ting du søkte etter:
+        <div ng-repeat="c in $ctrl.queryParts" style="margin-left: 1em;">
+            <div ng-if="c.concept">
+                <span style="background: #eee; border-radius: 5px; margin: 2px 2px; padding: 3px; display: inline-block;">{{ c.results[0].getPrefLabel() }}</span>
+                <div style="float:right; width:350px;">
+                    <app-authority-record :data="c.concept"></app-authority-record>
+                </div>
+            </div>
+            <div ng-if="c.matches.length > 1">
+                Kanskje noen av disse? ({{ c.matches.length }})
+                <div ng-repeat="sub in c.matches" style="margin-left: 1em;">
+                    <a ui-sref="home({vocab: sub.vocab, q: 'uri:' + sub.uri})" title="">{{ sub.prefLabel }} / {{ sub.vocab }} / {{ sub.type }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div ng-if="$ctrl.catalogueRecords.length">
+
+        {{ $ctrl.catalogueRecordsTotal }} treff:
+        <div ng-repeat="res in $ctrl.catalogueRecords" style="border: 1px solid #eee; padding: 1em; margin: 1em;">
+            {{res}}
+        </div>
+
+    </div>
+
+</div>

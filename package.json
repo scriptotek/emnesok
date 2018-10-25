@@ -102,6 +102,7 @@
     "style-loader": "^0.22.1",
     "transifex-api-es6": "^0.2.3",
     "ts-loader": "^5.2.1",
+    "url-join": "^4.0.0",
     "webpack": "^4.17.1",
     "webpack-bundle-analyzer": "^2.13.1",
     "webpack-cli": "^3.1.0",
