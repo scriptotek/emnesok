@@ -90,7 +90,7 @@
             </li>
         </ul>
         <p style="font-size:80%; text-align:right; margin: 0;">
-            <a ng-href="{{ vm.subject.uri }}" target="external" translate>» View in Skosmos</a>
+            <a ng-href="https://data.ub.uio.no/skosmos/{{ vm.subject.vocab }}/page/?uri={{ vm.subject.uri | encodeURIComponent }}" target="external" translate>» View in Skosmos</a>
         </p>
     </div>
 </div>
