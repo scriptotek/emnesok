@@ -23,9 +23,9 @@ class WikidataItem {
 
     getArticleExtract(preferredLang) {
         let langChain = {
-            'nb': ['no', 'nn', 'da', 'sv', 'en'],
-            'nn': ['nn', 'no', 'da', 'sv', 'en'],
-            'en': ['en', 'no', 'nn', 'da', 'sv'],
+            'nb': ['no', 'nn', 'da', 'sv', 'en', 'de', 'fr', 'es'],
+            'nn': ['nn', 'no', 'da', 'sv', 'en', 'de', 'fr', 'es'],
+            'en': ['en', 'no', 'nn', 'da', 'sv', 'de', 'fr', 'es'],
         }[preferredLang];
 
         return new Promise((resolve, reject) => {

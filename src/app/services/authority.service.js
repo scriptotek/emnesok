@@ -117,8 +117,14 @@ class Subject {
     }
 
     getPrefLabel() {
-        return get(this.prefLabel, this.langService.language);
-        // fallback?
+        let lang = this.langService.language;
+        let keys = Object.keys(this.prefLabel);
+        if (keys.indexOf(lang) !== -1) {
+            return get(this.prefLabel, this.langService.language);
+        } else {
+            // Fallback
+            return get(this.prefLabel, keys[0]);
+        }
     }
 
     feedbackUri() {
