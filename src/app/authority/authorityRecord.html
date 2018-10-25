@@ -79,14 +79,15 @@
     <app-wikidata ng-if="vm.showWikipedia" :mapping="vm.subject.wikidata" :subject="vm.subject"></app-wikidata>
 
     <div style="padding:1em; border-top: 1px solid #eee; font-size: 90%; background: #fafafa" v-if="vm.subject.mappings.length">
-        <div>From other vocabularies:</div>
+        <div>Related concepts in other vocabularies:</div>
         <ul style="margin: 0;">
             <li ng-repeat="mapping in vm.subject.mappings">
-                <span>{{ mapping.typeLabel }}</span>
+                <span translate>{{ mapping.typeLabel }}</span>
                 <a ui-sref="subject.search({ vocab: mapping.to.vocabulary, term: null, id: null, uri: mapping.to.uri })">
                     {{ mapping.to.notation }} {{ mapping.to.getPrefLabel() }}
                 </a>
-                <span>i {{ mapping.to.vocabularyLabel }}</span>
+                <span translate>in</span>
+                {{ mapping.to.vocabularyLabel }}
             </li>
         </ul>
         <p style="font-size:80%; text-align:right; margin: 0;">

@@ -66,10 +66,11 @@ class Subject {
                 type: get(m, 'type.0'),
             };
             ret.typeLabel = {
-                'skos:exactMatch': 'Tilsvarer',
-                'skos:closeMatch': 'Tilsvarer omtrent',
-                'skos:broadMatch': 'Overordnet',
-                'skos:relatedMatch': 'Se også',
+                'skos:exactMatch': 'Equivalent concept',
+                'skos:closeMatch': 'Similar concept',
+                'skos:broadMatch': 'Broader concept',
+                'skos:narrowMatch': 'Narrower concept',
+                'skos:relatedMatch': 'Related concept',
             }[ret.type];
             vocabularyMap.forEach((x) => {
                 if (ret.to.uri.match(x.pattern)) {
@@ -90,8 +91,8 @@ class Subject {
         });
 
         // Sort mappings by type
-        let typeOrder = ['skos:exactMatch', 'skos:closeMatch', 'skos:broadMatch', 'skos:relatedMatch'];
-        this['mappings'].sort(x => typeOrder.indexOf(x.type));
+        let typeOrder = ['skos:exactMatch', 'skos:closeMatch', 'skos:broadMatch', 'skos:narrowMatch', 'skos:relatedMatch'];
+        this['mappings'].sort((a, b) => typeOrder.indexOf(a.type) - typeOrder.indexOf(b.type));
 
         // Extract Wikidata mapping
         let wikidata = this.mappings.filter(mapping => mapping.to.uri.match('http://www.wikidata.org'));
