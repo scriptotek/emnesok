@@ -76,6 +76,7 @@ function ConfigService() {
                 scheme: 'http://data.ub.uio.no/tekord/',
                 uriPattern: 'http://data.ub.uio.no/tekord/{id}',
                 show_vocabs: ['tekord'],
+                notationSearch: false,
             },
             mrtermer: {
                 name: 'Human Rights Terms',

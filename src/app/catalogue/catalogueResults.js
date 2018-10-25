@@ -241,7 +241,7 @@ function CatalogueResultsController($stateParams, $state, $scope, $window, $time
         if (Config.vocabularies[vm.subject.vocab].supportsBroadSearch === false || !vm.broadSearch) {
             q.vocab = vm.vocab;
         }
-        if (vm.subject.notation) {
+        if (vm.subject.notation && Config.vocabularies[vm.subject.vocab].notationSearch !== false) {
             q.subject = vm.subject.notation;
         }
 
