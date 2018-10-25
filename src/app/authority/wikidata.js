@@ -27,7 +27,7 @@ function wikidataController(wikidataService, langService) {
     this.$onChanges = () => {
         if (this.mapping) {
             let item = this.mapping.to.uri.split('/').pop();
-            wikidataService.fromEntityId(item).then(data => {
+            wikidataService.fromEntityId(item, langService.language).then(data => {
                 this.data = data;
                 this.verified = true;
             });

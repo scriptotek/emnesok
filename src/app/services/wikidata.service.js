@@ -21,9 +21,15 @@ class WikidataItem {
         this.data = data;
     }
 
-    getArticleExtract() {
+    getArticleExtract(preferredLang) {
+        let langChain = {
+            'nb': ['no', 'nn', 'da', 'sv', 'en'],
+            'nn': ['nn', 'no', 'da', 'sv', 'en'],
+            'en': ['en', 'no', 'nn', 'da', 'sv'],
+        }[preferredLang];
+
         return new Promise((resolve, reject) => {
-            for (let siteLang of ['no', 'nn', 'da', 'sv', 'en']) {
+            for (let siteLang of langChain) {
                 let siteId = `${siteLang}wiki`;
                 let site = get(this.data, `sitelinks.${siteId}`);
                 if (site) {
@@ -111,14 +117,14 @@ function WikidataFactory($http, $q) {
         });
     }
 
-    function fromEntityId(item) {
+    function fromEntityId(item, preferredLang) {
         let out = {};
 
         return getItem(item)
             .then(res => {
                 out.item = res;
                 return $q.all([
-                    out.item.getArticleExtract().then(x => out.article = x),
+                    out.item.getArticleExtract(preferredLang).then(x => out.article = x),
                     out.item.getImage().then(x => out.image = x),
                 ]);
             })
