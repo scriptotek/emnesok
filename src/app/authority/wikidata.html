@@ -2,10 +2,6 @@
 
     <div ng-if="vm.data.article || vm.data.item" style="padding:1em; border-top: 1px solid #eee; font-size: 90%; background: #fafafa">
 
-
-        <span ng-if="vm.verified" style="color: #aaa;">Verifisert mapping:</span>
-        <span ng-if="!vm.verified" class="guess" style="color: #aaa;">Foreslått betydning:</span>
-
         <!-- Image -->
 
         <img ng-if="vm.data.image" ng-src="{{ vm.data.image.thumburl }}" style="float:right; margin-left: 0.8em;" ng-style="{'width': vm.data.image.thumbwidth + 'px', 'height': vm.data.image.thumbheight + 'px'}" alt="">
@@ -16,10 +12,17 @@
 
         <!-- Links -->
 
-        <p style="text-align: right">
-            <a ng-if="vm.data.article" ng-href="{{ vm.data.article.canonicalurl }}">» Les mer på {{ vm.data.article.siteName }} ({{ vm.data.article.pagelanguagehtmlcode }})</a>
-            <a ng-href="https://www.wikidata.org/wiki/{{ vm.data.item.data.id }}">» Wikidata</a>
-        </p>
+        <div style="display:flex">
+            <div style="flex:1 1 auto">
+                <span ng-if="vm.verified" style="color: #aaa; font-style: italic;">Verifisert artikkel</span>
+                <span ng-if="!vm.verified" class="guess" style="color: #aaa; font-style: italic;">Foreslått artikkel</span>
+            </div>
+            <div style="flex:1 1 auto; text-align:right;">
+                <a ng-if="vm.data.article" ng-href="{{ vm.data.article.canonicalurl }}">» Les mer på {{ vm.data.article.siteName }} ({{ vm.data.article.pagelanguagehtmlcode }})</a>
+                <a ng-href="https://www.wikidata.org/wiki/{{ vm.data.item.data.id }}">» Wikidata</a>
+            </div>
+        </div>
+
 
         <!-- Structured data -->
 
@@ -40,6 +43,10 @@
         </div>
 
         <div style="clear: both;"></div>
+    </div>
+
+    <div v-else style="padding:1em; border-top: 1px solid #eee; font-size: 90%; background: #fafafa">
+        <a ng-href="{{ vm.getSearchUrl() }}" target="external" translate >Search for «{{ vm.subject.getPrefLabel() }}» in Wikipedia</a>
     </div>
 
 </div>

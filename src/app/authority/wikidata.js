@@ -19,6 +19,11 @@ function wikidataController(wikidataService, langService) {
 
     this.data = {};
 
+    this.getSearchUrl = () => {
+        let term = encodeURIComponent(this.subject.getPrefLabel());
+        return `https://${langService.language}.wikipedia.org/w/index.php?search=${term}`;
+    }
+
     this.$onChanges = () => {
         if (this.mapping) {
             let item = this.mapping.to.uri.split('/').pop();
@@ -28,7 +33,7 @@ function wikidataController(wikidataService, langService) {
             });
         } else {
             let label = this.subject.getPrefLabel();
-            wikidataService.fromSearch(langService.language, label).then(data => {
+            wikidataService.fromTitle(langService.language, label).then(data => {
                 this.data = data;
                 this.verified = false;
             });

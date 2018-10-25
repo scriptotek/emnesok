@@ -90,6 +90,7 @@ function WikidataFactory($http, $q) {
         getArticleExtract,
         getImage,
         fromSearch,
+        fromTitle,
     };
 
     return api;
@@ -154,7 +155,7 @@ function WikidataFactory($http, $q) {
             action: 'query',
             prop: 'extracts|info|pageprops|coordinates',
             exintro: '1',
-            pprop: 'wikibase_item',
+            ppprop: 'wikibase_item',
             redirects: '1',
             inprop: 'url|displaytitle',
         };
@@ -205,7 +206,7 @@ function WikidataFactory($http, $q) {
         });
     }
 
-    function fromSearch(lang, title) {
+    function fromWikipedia(lang, title, useSearch) {
         return new Promise((resolve, reject) => {
             let out = {};
             let site = {
@@ -215,7 +216,7 @@ function WikidataFactory($http, $q) {
             }[lang];
             if (!site) return;
 
-            getArticleExtract(site, title, true).then(article => {
+            getArticleExtract(site, title, useSearch).then(article => {
                 out.article = article;
                 let entityId = get(article, 'pageprops.wikibase_item');
                 if (entityId) {
@@ -237,4 +238,11 @@ function WikidataFactory($http, $q) {
         });
     }
 
+    function fromSearch(lang, title) {
+        return fromWikipedia(lang, title, true);
+    }
+
+    function fromTitle(lang, title) {
+        return fromWikipedia(lang, title, false);
+    }
 }
