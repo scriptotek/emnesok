@@ -38,7 +38,7 @@
 
 	<p ng-if="!vm.busy && !vm.error && !vm.total_results && vm.subject.type !== 'KnuteTerm'" class="bg-danger">
 		<span translate>
-			How odd! Not a single document on that subject could be found using the current subject vocabulary.
+            Ouch, not a single document was found.
 		</span>
 		<span ng-if="!vm.broadSearch && vm.subject.type !== 'Geographic'" translate>
 			You could try expanding the search to a <a ui-sref="subject.search({broad:true})">broad search</a>.

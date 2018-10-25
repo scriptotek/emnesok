@@ -14,8 +14,8 @@
 
         <div style="display:flex">
             <div style="flex:1 1 auto">
-                <span ng-if="vm.verified" style="color: #aaa; font-style: italic;">Verifisert artikkel</span>
-                <span ng-if="!vm.verified" class="guess" style="color: #aaa; font-style: italic;">Foreslått artikkel</span>
+                <span ng-if="vm.verified" style="color: #aaa; font-style: italic;" translate>Verified match</span>
+                <span ng-if="!vm.verified" class="guess" style="color: #aaa; font-style: italic;" translate>Article suggestion</span>
             </div>
             <div style="flex:1 1 auto; text-align:right;">
                 <a ng-if="vm.data.article" ng-href="{{ vm.data.article.canonicalurl }}">» Les mer på {{ vm.data.article.siteName }} ({{ vm.data.article.pagelanguagehtmlcode }})</a>
@@ -45,7 +45,7 @@
         <div style="clear: both;"></div>
     </div>
 
-    <div v-else style="padding:1em; border-top: 1px solid #eee; font-size: 90%; background: #fafafa">
+    <div ng-if="!vm.data.article && !vm.data.item" style="padding:1em; border-top: 1px solid #eee; font-size: 90%; background: #fafafa">
         <a ng-href="{{ vm.getSearchUrl() }}" target="external" translate >Search for «{{ vm.subject.getPrefLabel() }}» in Wikipedia</a>
     </div>
 

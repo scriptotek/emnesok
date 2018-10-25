@@ -1,56 +1,63 @@
 
-<div style="border: 1px solid #eee;">
+<div style="border: 1px solid #eee;" class="subject">
 
     <div style="padding: 1em;">
-        <div>
-            <strong>
-                {{ vm.subject.notation }} {{ vm.subject.getPrefLabel() }}
-                <!--
-                    <span ng-show="vm.subject.elementSymbol"> ({{vm.subject.elementSymbol}}) <img src="./assets/element.png" title="{{'Chemical element' | translate}}"></span>
-                -->
-            </strong>
+        <div style="font-size: 110%; margin-bottom: .4em; font-weight: bold;">
+            {{ vm.subject.notation }} {{ vm.subject.getPrefLabel() }}
+            <!--
+                <span ng-show="vm.subject.elementSymbol"> ({{vm.subject.elementSymbol}}) <img src="./assets/element.png" title="{{'Chemical element' | translate}}"></span>
+            -->
         </div>
 
-        <div class="block definition" ng-show="vm.subject.get('definition')">
-            {{ vm.subject.get('definition.' + vm.lang) }}
-        </div>
+        <table class="authority_record">
+            <tbody>
 
-        <div class="block" ng-show="vm.subject.get('altLabel.' + vm.lang)">
-            <span translate>Used for:</span>
-            <span class="term" ng-repeat-start="label in vm.subject.get('altLabel.' + vm.lang)">{{ label }}</span>
-            <span class="term_separator" ng-repeat-end></span>
-        </div>
+                <tr ng-show="vm.subject.get('definition.' + vm.lang)">
+                    <th translate>Definition:</th>
+                    <td>
+                        {{ vm.subject.get('definition.' + vm.lang) }}
+                    </td>
+                </tr>
+                <tr ng-show="vm.subject.get('altLabel.' + vm.lang)">
+                    <th translate>Other terms:</th>
+                    <td>
+                        <span class="term" ng-repeat-start="label in vm.subject.get('altLabel.' + vm.lang)">{{ label }}</span>
+                        <span class="term_separator" ng-repeat-end></span>
+                    </td>
+                </tr>
+                <tr ng-repeat="lang in vm.subject.get('prefLabel') | objectKeys | filter: '!'+vm.lang">
+                    <th>
+                    {{ vm.languageLabels[lang] }}:
+                    </th>
+                    <td>
+                        <span class="term_separator">{{ vm.subject.get('prefLabel.' + lang) }}</span>
+                        <span class="term_separator" ng-repeat="label in vm.subject.get('altLabel.' + lang)">{{label}}</span>
+                    </td>
+                </tr>
+                <tr ng-show="vm.subject.get('related').length">
+                    <th translate>See also:</th>
+                    <td>
+                        <a ng-repeat="related in vm.subject.get('related') | orderBy:'prefLabel'" class="subject-tag" ng-class="{ geographic: related.type == 'Geographic', genre: related.type == 'GenreForm' }" ui-sref="subject.search({ term: null, id: null, uri: related.uri })">{{ related.notation }} {{ related.getPrefLabel() }}</a>
+                    </td>
+                </tr>
 
-        <div class="block">
-            <div ng-repeat="lang in vm.subject.get('prefLabel') | objectKeys | filter: '!'+vm.lang">
-                {{ vm.languageLabels[lang] }}: {{ vm.subject.get('prefLabel.' + lang) }}
-                <span ng-show="vm.subject.get('altLabel.' + lang).length" class="alt_trans">
-                    (<span translate>Used for:</span>
-                    <span class="term_separator" ng-repeat="label in vm.subject.get('altLabel.' + lang)">{{label}}</span>)
-                </span>
-            </div>
-        </div>
+                <tr class="block" ng-show="vm.subject.broader.length">
+                    <th translate>Broader:</th>
+                    <td>
+                        <a ng-repeat="broader in vm.subject.broader | orderBy:'prefLabel'" class="subject-tag" ng-class="{ geographic: broader.type == 'Geographic', genre: broader.type == 'GenreForm' }" ui-sref="subject.search({ term: null, id: null, uri: broader.uri })">{{broader.notation }} {{ broader.getPrefLabel() }}</a>
+                    </td>
+                </tr>
 
-        <div class="block" ng-show="vm.subject.get('related').length">
-            <span translate>See also:</span>
-            <span ng-repeat="related in vm.subject.get('related') | orderBy:'prefLabel'">
-                <a class="subject-tag" ng-class="{ geographic: related.type == 'Geographic', genre: related.type == 'GenreForm' }" ui-sref="subject.search({ term: null, id: null, uri: related.uri })">{{ related.notation }} {{ related.getPrefLabel() }}</a>
-            </span>
-        </div>
+                <tr class="block" ng-show="vm.subject.narrower.length">
+                    <th translate>Narrower:</th>
+                    <td>
+                        <a ng-repeat="narrower in vm.subject.narrower | orderBy:'prefLabel'" class="subject-tag" ng-class="{ geographic: narrower.type == 'Geographic', genre: narrower.type == 'GenreForm' }" ui-sref="subject.search({ term: null, id: null, uri: narrower.uri })">{{ narrower.notation }} {{ narrower.getPrefLabel() }}</a>
+                    </td>
+                </tr>
 
-        <div class="block" ng-show="vm.subject.broader.length">
-            <span translate>Broader:</span>
-            <span ng-repeat="broader in vm.subject.broader | orderBy:'prefLabel'">
-                <a class="subject-tag" ng-class="{ geographic: broader.type == 'Geographic', genre: broader.type == 'GenreForm' }" ui-sref="subject.search({ term: null, id: null, uri: broader.uri })">{{broader.notation }} {{ broader.getPrefLabel() }}</a>
-            </span>
-        </div>
 
-        <div class="block" ng-show="vm.subject.narrower.length">
-            <span translate>Narrower:</span>
-            <span ng-repeat="narrower in vm.subject.narrower | orderBy:'prefLabel'">
-                <a class="subject-tag" ng-class="{ geographic: narrower.type == 'Geographic', genre: narrower.type == 'GenreForm' }" ui-sref="subject.search({ term: null, id: null, uri: narrower.uri })">{{ narrower.notation }} {{ narrower.getPrefLabel() }}</a>
-            </span>
-        </div>
+            </tbody>
+        </table>
 
         <div ng-show="vm.subject.externals.length">
             <ul class="list-group">

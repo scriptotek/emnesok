@@ -242,7 +242,23 @@ li.noaccess:before {
   font-size: 90%;
 }
 
-.subject .term_separator:not(:last-child)::after {
+.subject th {
+  vertical-align: top;
+  font-weight: normal;
+  white-space: nowrap;
+  text-align: right;
+  font-size: 85%;
+  color: #555;
+  padding-left: .4em;
+  padding-right: .4em;
+  padding-top: .2em;
+}
+
+.subject td {
+  vertical-align: top;
+}
+
+.term_separator:not(:last-child)::after {
   content: ' • ';
 }
 
