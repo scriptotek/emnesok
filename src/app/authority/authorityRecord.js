@@ -22,6 +22,7 @@ function AuthorityRecordController($scope, Config, langService) {
     vm.subject = null;
     vm.lang = langService.language;
     vm.languageLabels = Config.languageLabels;
+    vm.showWikipedia = false;
 
     this.$onChanges = function() {
         if (!vm.data) {
@@ -29,7 +30,9 @@ function AuthorityRecordController($scope, Config, langService) {
             vm.subject = null;
         } else {
             vm.subject = vm.data;
-            // vm.vocab = vm.data.vocab;
+
+            // Defaults to true
+            vm.showWikipedia = !(Config.vocabularies[vm.subject.vocab].showWikipedia === false);
         }
     };
 }

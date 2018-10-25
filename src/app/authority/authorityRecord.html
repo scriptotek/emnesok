@@ -76,7 +76,7 @@
         </p>
     </div>
 
-    <app-wikidata :mapping="vm.subject.wikidata" :subject="vm.subject"></app-wikidata>
+    <app-wikidata ng-if="vm.showWikipedia" :mapping="vm.subject.wikidata" :subject="vm.subject"></app-wikidata>
 
     <div style="padding:1em; border-top: 1px solid #eee; font-size: 90%; background: #fafafa" v-if="vm.subject.mappings.length">
         <div>From other vocabularies:</div>
