@@ -1,0 +1,23 @@
+image: node:lts
+
+cache:
+  paths:
+    - node_modules/
+
+deploy_staging:
+  stage: deploy
+  environment:
+    name: staging
+    url: https://ub-emne.uio.no
+  tags:
+    - deploy
+    - staging
+  only:
+    - master
+    - dev
+  script:
+    - rm ./package-lock.json
+    - npm install
+    - npm run build
+    - cd dist
+    - ls
