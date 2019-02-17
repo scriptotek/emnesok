@@ -18,8 +18,8 @@
     "update-pot": "angular-gettext-cli --files 'src/app/**/*.+(js|html)' --dest 'src/po/emnesok.pot' && yarpm run transifex:push",
     "compile-po": "yarpm run transifex:pull && angular-gettext-cli --compile --files 'src/po/**/*.po' --format json --dest src/app/services/translations.json",
     "trans": "yarpm run compile-po && yarpm run update-pot",
-    "dev": "webpack-dev-server --config webpack/webpack.config.dev.js",
-    "build": "webpack --config webpack/webpack.config.prod.js --colors --progress"
+    "dev": "NODE_ENV=development webpack-dev-server --config webpack/webpack.config.dev.js",
+    "build": "NODE_ENV=production webpack --config webpack/webpack.config.prod.js --colors --progress"
   },
   "eslintConfig": {
     "env": {

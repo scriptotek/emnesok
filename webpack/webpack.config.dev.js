@@ -4,11 +4,11 @@ const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
+require('dotenv').config();
 
 const dest = path.join(__dirname, '../dist');
 
 module.exports = merge(common, {
-    mode: 'development',
     devtool: 'cheap-eval-source-map',
     devServer: {
         clientLogLevel: 'error',
@@ -19,21 +19,6 @@ module.exports = merge(common, {
         historyApiFallback: true,
         // disableDotRule: true,
     },
-    output: {
-        publicPath: '/',
-    },
-    plugins: [
-        // new CopyWebpackPlugin([
-        //     { from: path.resolve(__dirname, '../public'), to: 'public' }
-        // ]),
-        new webpack.DefinePlugin({
-            'process.env.BASE_HREF': JSON.stringify('/'),
-            'process.env.GA_URL': JSON.stringify(''),
-            'process.env.GA_IPP': JSON.stringify(''),
-            'process.env.GA_ID': JSON.stringify(''),
-            'process.env.NODE_ENV': JSON.stringify('development')
-        })
-    ],
     module: {
         rules: [
             {

@@ -1,4 +1,5 @@
 'use strict';
+require('dotenv').config();
 
 const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
@@ -11,6 +12,10 @@ const dest = path.join(__dirname, '../dist');
 const sourcePath = path.resolve(__dirname, '../src');
 
 module.exports = {
+    mode: process.env.NODE_ENV,
+    output: {
+        publicPath: process.env.BASE_HREF,
+    },
     entry: {
         polyfills: path.resolve(__dirname, './polyfills'),
         app: path.resolve(__dirname, '../src/app/index'),
