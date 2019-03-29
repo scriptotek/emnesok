@@ -89,7 +89,8 @@ function AuthoritySearchController($scope, $state, $stateParams, $timeout, $root
             type: 'skos:Concept', // to avoid skos:Collection
             query: query,
             labellang: vm.lang,
-            vocab: vm.vocab
+            vocab: vm.vocab,
+            type: 'skos:Concept',
         };
     }
 

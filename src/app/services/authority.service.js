@@ -289,7 +289,8 @@ function AuthorityService($http, $stateParams, $filter, $q, $rootScope, gettext,
         var query = {
             vocab: vocab,
             query: q.replace('--', ' : '),
-            labellang: langService.language
+            labellang: langService.language,
+            type: 'skos:Concept',
         };
 
         $http({
