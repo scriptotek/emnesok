@@ -22,7 +22,10 @@ export default /* @ngInject */ function configure(
     });
 
     // HTML5-mode navigation
-    $locationProvider.html5Mode(true);
+    $locationProvider.html5Mode({
+        enabled: true,
+        requireBase: false,
+    });
 
     // Highlight untranslated strings
     // gettextCatalog.debug = true;
