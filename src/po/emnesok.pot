@@ -25,10 +25,6 @@ msgstr ""
 msgid "About"
 msgstr ""
 
-#: src/app/authority/authoritySearch.html:38
-msgid "Active subject"
-msgstr ""
-
 #: src/app/catalogue/catalogueResults.html:28
 msgid "All branches"
 msgstr ""
@@ -41,6 +37,10 @@ msgstr ""
 msgid "An unknown error occured."
 msgstr ""
 
+#: src/app/authority/wikidata.html:18
+msgid "Article suggestion"
+msgstr ""
+
 #: src/app/pages/about.html:29
 msgid "As an experiment we've disabled all GA cookies. While we need some statistics on visits and usage, we believe that tracking <em>users</em> is not really needed for this tool. Users tracking also has a lot of flaws."
 msgstr ""
@@ -49,16 +49,20 @@ msgstr ""
 msgid "Broad"
 msgstr ""
 
-#: src/app/authority/authorityRecord.html:34
+#: src/app/authority/authorityRecord.html:45
 msgid "Broader:"
 msgstr ""
 
-#: src/app/authority/authorityRecord.html:4
+#: src/app/authority/authorityRecord.html:8
 msgid "Chemical element"
 msgstr ""
 
 #: src/app/authority/authoritySearch.js:34
 msgid "Containing"
+msgstr ""
+
+#: src/app/authority/authorityRecord.html:16
+msgid "Definition:"
 msgstr ""
 
 #: src/app/catalogue/catalogueResults.html:35
@@ -94,8 +98,8 @@ msgstr ""
 msgid "Fetching editions…"
 msgstr ""
 
-#: src/app/pages/home.html:5
-msgid "Find books and more about a specific topic in the collections of Norwegian academic libraries. Start by choosing a vocabulary from the list below. A vocabulary is a controlled set of subjects. Searching all vocabularies at the same time isn't yet supported, but definitely something we would like to support in the future."
+#: src/app/pages/home.html:3
+msgid "Find books and other material about a specific topic in the collections of Norwegian academic libraries. Start by choosing a vocabulary from the list below. A vocabulary is a controlled set of topics. Searching all vocabularies at the same time isn't yet supported, but definitely something we would like to add support for in the future."
 msgstr ""
 
 #: src/app/pages/about.html:24
@@ -111,28 +115,23 @@ msgid "Found {{ vm.results.length }} documents about this topic using {{vm.searc
 msgstr ""
 
 #: src/app/catalogue/catalogueResult.html:85
-#: src/app/services/authority.service.js:49
+#: src/app/services/authority.service.js:170
 msgid "GenreForm"
 msgstr ""
 
 #: src/app/catalogue/catalogueResult.html:80
-#: src/app/services/authority.service.js:41
+#: src/app/services/authority.service.js:169
 msgid "Geographic"
 msgstr ""
 
-#: src/app/catalogue/catalogueResults.html:40
-msgid "How odd! Not a single document on that subject could be found using the current subject vocabulary."
-msgstr ""
-
-#: src/app/pages/home.html:31
+#: src/app/pages/home.html:28
 msgid "Human rights"
 msgstr ""
 
-#: src/app/pages/home.html:21
-msgid "Humanities and social sciences"
+#: src/app/pages/home.html:13
+msgid "Humanities and social sciences (Humord)"
 msgstr ""
 
-#: src/app/pages/home.html:22
 #: src/app/pages/vocabularyInfo/humord.html:5
 msgid "Humord is the best portal to the humanities and social sciences. The vocabulary also has a relatively large amount of interdisciplinary subject headings. This vocabulary has only Norwegian Bokmål terms."
 msgstr ""
@@ -141,8 +140,12 @@ msgstr ""
 msgid "Interested in more results?"
 msgstr ""
 
-#: src/app/services/authority.service.js:53
+#: src/app/services/authority.service.js:171
 msgid "KnuteTerm"
+msgstr ""
+
+#: src/app/pages/home.html:33
+msgid "Law (L scheme)"
 msgstr ""
 
 #: src/app/catalogue/catalogueResults.html:71
@@ -157,7 +160,7 @@ msgstr ""
 msgid "Narrow"
 msgstr ""
 
-#: src/app/authority/authorityRecord.html:41
+#: src/app/authority/authorityRecord.html:52
 msgid "Narrower:"
 msgstr ""
 
@@ -165,7 +168,7 @@ msgstr ""
 msgid "No hits :("
 msgstr ""
 
-#: src/app/authority/authoritySearch.js:183
+#: src/app/authority/authoritySearch.js:184
 msgid "No network connection"
 msgstr ""
 
@@ -173,8 +176,16 @@ msgstr ""
 msgid "Note: Results from a single branch will not include e-books."
 msgstr ""
 
-#: src/app/pages/home.html:11
-msgid "Once in, you can toggle between <em>broad</em> and <em>narrow</em> search. With <em>narrow</em> search, you will only get highly relevant results carefully indexed by skilled librarians and subject specialists using the selected vocabulary. <em>Broad</em> search will give you more results, matching subjects from other vocabularies or even keywords from a variety of sources, but sometimes at the expense of precision."
+#: src/app/pages/home.html:9
+msgid "Once in, you can toggle between <em>broad</em> and <em>narrow</em> search. With <em>narrow</em> search, you will only get highly relevant results carefully indexed by librarians and subject specialists. By switching to <em>broad</em> search, you will get more results, but without the same level of precision."
+msgstr ""
+
+#: src/app/authority/authorityRecord.html:22
+msgid "Other terms:"
+msgstr ""
+
+#: src/app/catalogue/catalogueResults.html:40
+msgid "Ouch, not a single document was found."
 msgstr ""
 
 #: src/app/catalogue/catalogue.service.js:207
@@ -200,16 +211,12 @@ msgstr ""
 msgid "Privacy"
 msgstr ""
 
-#: src/app/authority/authorityRecord.html:51
+#: src/app/authority/authorityRecord.html:66
 msgid "Read more in {{external.name}}"
 msgstr ""
 
-#: src/app/authority/authorityRecord.html:59
-msgid "Report problem"
-msgstr ""
-
-#: src/app/pages/home.html:16
-msgid "Science"
+#: src/app/pages/home.html:18
+msgid "Science, technology, engineering and mathematics (Science Terms)"
 msgstr ""
 
 #: src/app/catalogue/catalogueResults.html:9
@@ -224,19 +231,23 @@ msgstr ""
 msgid "Search for scientific concepts. <em>Realfagstermer</em> is a controlled vocabulary maintained by the science libraries at the University at Oslo and Bergen, and is the best portal to our collections. Realfagstermer is a multilingual vocabulary that can be searched in Bokmål, Nynorsk (translation in progress), English (translation in progress) and Latin (scientific names)."
 msgstr ""
 
-#: src/app/pages/home.html:17
-msgid "Search for scientific terms. <em>Realfagstermer</em> is a controlled vocabulary maintained by the science libraries at the University at Oslo and Bergen, and is the best portal to our collections. Realfagstermer is a multilingual vocabulary that can be searched in Bokmål, Nynorsk (translation in progress), English (translation in progress) and Latin (scientific names)."
+#: src/app/authority/wikidata.html:49
+msgid "Search for «{{ vm.subject.getPrefLabel() }}» in Wikipedia"
 msgstr ""
 
-#: src/app/authority/authoritySearch.html:47
+#: src/app/authority/authoritySearch.html:54
 msgid "Search history"
 msgstr ""
 
-#: src/app/authority/authorityRecord.html:52
+#: src/app/authority/authorityRecord.html:67
 msgid "Search in {{external.name}}"
 msgstr ""
 
-#: src/app/authority/authorityRecord.html:27
+#: src/app/pages/home.html:19
+msgid "Search the science, technology and mathematics collections of University of Oslo and Bergen using Norwegian Bokmål, Nynorsk, English or the scientific names of species."
+msgstr ""
+
+#: src/app/authority/authorityRecord.html:38
 msgid "See also:"
 msgstr ""
 
@@ -261,21 +272,23 @@ msgid "Starting with"
 msgstr ""
 
 #: src/app/layout/header.html:14
-#: src/app/pages/home.html:3
 #: src/app/services/title.service.js:25
 msgid "Subject Search"
 msgstr ""
 
-#: src/app/pages/home.html:26
-msgid "Technology and engineering"
+#: src/app/pages/home.html:24
+msgid "Subject search for the technical and engineering literature of NTNU is provided by Tekord. Search is only available in Norwegian Bokmål, but terms are mapped to UDC, providing possibilities for multilingual search in the future."
 msgstr ""
 
-#: src/app/pages/home.html:27
+#: src/app/pages/home.html:23
+msgid "Technology and engineering (Tekord)"
+msgstr ""
+
 #: src/app/pages/vocabularyInfo/tekord.html:5
 msgid "Tekord is a vocabulary created at NTNU (Norwegian University of Science and Technology). It is an especially useful search portal to technical and engineering literature. This vocabulary has only Norwegian Bokmål terms."
 msgstr ""
 
-#: src/app/services/authority.service.js:45
+#: src/app/services/authority.service.js:168
 msgid "Temporal"
 msgstr ""
 
@@ -291,12 +304,24 @@ msgstr ""
 msgid "The Subject Search is developed by the University of Oslo Science Library. Vocabulary search and retrieval is powered by a <a href=\"http://skosmos.org/\">Skosmos</a> instance using data from <a href=\"http://data.ub.uio.no\">data.ub.uio.no</a>, while library catalogue search and retrieval is powered by <a href=\"https://developers.exlibrisgroup.com/primo/apis/webservices/xservices/search/briefsearch\">Primo</a> through <a href=\"https://github.com/scriptotek/lsm\">a locally developed middleware</a>."
 msgstr ""
 
+#: src/app/pages/home.html:29
+msgid "The University of Oslo Library has a small vocabulary to search its human rights collections. This vocabulary is only available in English."
+msgstr ""
+
+#: src/app/pages/home.html:34
+msgid "The collections of the University of Oslo Law Library can be searched and navigated using a special classification scheme."
+msgstr ""
+
 #: src/app/authority/authoritySearch.html:33
 msgid "The search went out in error:"
 msgstr ""
 
 #: src/app/catalogue/catalogueResults.js:65
 msgid "The subject was not found. It might have been deleted."
+msgstr ""
+
+#: src/app/pages/home.html:14
+msgid "The university libraries of Oslo, Bergen, Trondheim and Tromsø collaborate on the Humord vocabulary to provide multilingual (Norwegian Bokmål and English) subject search to their humanities and social science collections."
 msgstr ""
 
 #: src/app/pages/vocabularyInfo/realfagstermer.html:9
@@ -325,7 +350,7 @@ msgstr ""
 msgid "This is a subject from another vocabulary. It might not exist in the current vocabulary."
 msgstr ""
 
-#: src/app/services/authority.service.js:57
+#: src/app/services/authority.service.js:172
 msgid "Topic"
 msgstr ""
 
@@ -333,13 +358,8 @@ msgstr ""
 msgid "Uh oh, some kind of server error occured."
 msgstr ""
 
-#: src/app/authority/authorityRecord.html:12
-#: src/app/authority/authorityRecord.html:20
-msgid "Used for:"
-msgstr ""
-
-#: src/app/authority/authorityRecord.html:61
-msgid "View concept in Skosmos"
+#: src/app/authority/wikidata.html:17
+msgid "Verified match"
 msgstr ""
 
 #: src/app/pages/about.html:20
@@ -348,10 +368,6 @@ msgstr ""
 
 #: src/app/pages/about.html:28
 msgid "We're proxying all data through <a href=\"https://github.com/unioslo/ipproxy\">ipproxy</a>, which masks the last part of your IP address, meaning that your full IP address is never sent to any third party (Google)."
-msgstr ""
-
-#: src/app/pages/home.html:32
-msgid "Yes, we have a controlled subject vocabulary just for human rights terms! Developed and maintained by the Norwegian Centre for Human Rights’ (SMR), the vocabulary has only English terms."
 msgstr ""
 
 #: src/app/catalogue/catalogueResults.html:46
@@ -366,10 +382,26 @@ msgstr ""
 msgid "broad search"
 msgstr ""
 
+#: src/app/authority/authorityRecord.html:89
+msgid "in"
+msgstr ""
+
 #: src/app/catalogue/catalogueResults.js:58
 msgid "narrow search"
 msgstr ""
 
+#: src/app/authority/authorityRecord.html:85
+msgid "{{ mapping.typeLabel }}"
+msgstr ""
+
 #: src/app/catalogue/catalogueResult.html:41
 msgid "{{vm.record.number_of_editions}} editions"
+msgstr ""
+
+#: src/app/authority/authorityRecord.html:74
+msgid "» Report problem"
+msgstr ""
+
+#: src/app/authority/authorityRecord.html:94
+msgid "» View in Skosmos"
 msgstr ""
