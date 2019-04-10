@@ -32,7 +32,11 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin([dest], { root: path.resolve(__dirname, '..') }),
         new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, '../src/app/index.ejs')
+            template: path.resolve(__dirname, '../src/app/index.ejs'),
+            base: process.env.BASE_HREF,
+            GA_IPP: process.env.GA_IPP,
+            GA_ID: process.env.GA_ID,
+            GA_URL: process.env.GA_URL,
         }),
         // new BundleAnalyzerPlugin(),
     ],
