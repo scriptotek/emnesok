@@ -28,7 +28,7 @@ class WikidataItem {
             'en': ['en', 'no', 'nn', 'da', 'sv', 'de', 'fr', 'es'],
         }[preferredLang];
 
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             for (let siteLang of langChain) {
                 let siteId = `${siteLang}wiki`;
                 let site = get(this.data, `sitelinks.${siteId}`);
@@ -42,7 +42,7 @@ class WikidataItem {
     }
 
     getImage() {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             let value = get(this.data, 'claims.P18.0.mainsnak.datavalue.value');
             if (!value) {
                 resolve(null);
@@ -128,7 +128,7 @@ function WikidataFactory($http, $q) {
                     out.item.getImage().then(x => out.image = x),
                 ]);
             })
-            .then(res => {
+            .then(() => {
                 return out;
             });
     }
@@ -213,7 +213,7 @@ function WikidataFactory($http, $q) {
     }
 
     function fromWikipedia(lang, title, useSearch) {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             let out = {};
             let site = {
                 'nb': 'no.wikipedia.org',
@@ -231,7 +231,7 @@ function WikidataFactory($http, $q) {
                         if (res) {
                             out.item.getImage()
                                 .then(x => out.image = x)
-                                .then(_ => resolve(out));
+                                .then(() => resolve(out));
                         } else {
                             resolve(out);
                         }

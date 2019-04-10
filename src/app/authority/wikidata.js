@@ -22,7 +22,7 @@ function wikidataController(wikidataService, langService) {
     this.getSearchUrl = () => {
         let term = encodeURIComponent(this.subject.getPrefLabel());
         return `https://${langService.language}.wikipedia.org/w/index.php?search=${term}`;
-    }
+    };
 
     this.$onChanges = () => {
         if (this.mapping) {

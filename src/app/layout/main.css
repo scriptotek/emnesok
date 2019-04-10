@@ -12,6 +12,10 @@ h2 {
   margin-top: 0;
 }
 
+uib-alert {
+  margin-bottom: .5em;
+}
+
 .subject-tag, .ddc-tag {
   margin: 4px 3px 0 0;
   display: inline-block;
