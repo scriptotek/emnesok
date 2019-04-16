@@ -19,7 +19,7 @@
                     </td>
                 </tr>
                 <tr ng-show="vm.subject.get('altLabel.' + vm.lang)">
-                    <th translate>Other terms:</th>
+                    <th translate>Used for:</th>
                     <td>
                         <span class="term" ng-repeat-start="label in vm.subject.get('altLabel.' + vm.lang)">{{ label }}</span>
                         <span class="term_separator" ng-repeat-end></span>
