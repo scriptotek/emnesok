@@ -90,7 +90,6 @@ function AuthoritySearchController($scope, $state, $stateParams, $timeout, $root
             query: query,
             labellang: vm.lang,
             vocab: vm.vocab,
-            type: 'skos:Concept',
         };
     }
 
