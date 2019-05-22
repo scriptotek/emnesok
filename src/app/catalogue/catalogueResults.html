@@ -68,15 +68,15 @@
 				<app-catalogue-result ng-repeat="result in vm.results" record="result" vocab="vm.vocab" index-term="vm.indexTerm"></app-catalogue-result>
 			</ul>
 
-			<p ng-show="vm.start && vm.last != vm.total_results" translate>
-				Loaded {{ vm.results.length }} records so far, about {{ vm.total_results - vm.last }} left, hold on…
+			<p ng-show="vm.start && vm.offset != vm.total_results" translate>
+				Loaded {{ vm.results.length }} records so far, about {{ vm.total_results - vm.offset }} left, hold on…
 			</p>
 
-			<p ng-show="vm.start && vm.last == vm.total_results" translate>
+			<p ng-show="vm.start && vm.offset == vm.total_results" translate>
 				Found {{ vm.results.length }} documents about this topic using {{vm.searchType}}.
 			</p>
 
-			<div class="panel panel-default" ng-show="vm.start && vm.last == vm.total_results && vm.total_results != 0 && !vm.broadSearch && vm.subject.type !== 'Geographic'">
+			<div class="panel panel-default" ng-show="vm.start && vm.offset == vm.total_results && vm.total_results != 0 && !vm.broadSearch && vm.subject.type !== 'Geographic'">
 				<div class="panel-body">
 					<span translate>Interested in more results?</span>
 					<a ui-sref="subject.search({broad:true})" class="btn btn-default" translate>Expand to broad search</a>

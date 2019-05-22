@@ -1,13 +1,14 @@
+import { get, mapValues } from 'lodash/object';
+import { keyBy } from 'lodash/collection';
 
 export const catalogueServiceName = 'Catalogue';
 
 export const catalogueService = /* @ngInject */ function CatalogueService(
     $http,
-    $q,
-    gettext,
-    gettextCatalog,
-    Institutions,
-    Config
+    Config,
+    PnxRecord,
+    langService,
+    QueryBuilder
 ) {
     var service = {
         search: search,
@@ -18,207 +19,114 @@ export const catalogueService = /* @ngInject */ function CatalogueService(
 
     ////////////
 
-    function search(query, start, institution, library, broadSearch) {
-        var deferred = $q.defer();
-
+    function search(query, offset, institution, library, broadSearch) {
         var params = {
             expand_groups: true,  // in order to filter we need this, since it's random which edition we get data for in frbr groups
             repr: 'full',
             sort: 'date',
-            vocabulary: query.vocab,
-            subject: query.subject,
-            genre: query.genre,
-            place: query.place
+            q: query.q,
+            qInclude: query.qInclude,
         };
 
-        if (start) {
-            params.start = start;
+        if (offset) {
+            params.offset = offset;
         }
         if (institution) {
-            params.institution = institution;
-            params.scope = institution;
+            let institutionObj = Config.institutions[institution];
+            params.inst = institutionObj.inst;   // Do we need this?
+            params.scope = institutionObj.scope;   // or this?
+            if (institutionObj.facet) {
+                params.qInclude.push(institutionObj.facet);
+            }
         }
         if (library) {
-            params.library = library;
+            params.qInclude.push(`facet_library,exact,${library}`);
         }
 
-        $http({
+        return $http({
             method: 'GET',
             cache: true,
             url: Config.catalogue.searchUrl,
-            params: params
-        }).
-            then(function(response){
-                response.data.results = postProcessRecords(response.data.results, institution, params, broadSearch);
-                deferred.resolve(response.data);
-            }, function(error){
-                deferred.reject(error);
-            });
-
-        return deferred.promise;
+            params: params,
+        }).then(response => processResponse(response.data, institution, params, broadSearch));
     }
+    
+    function expandGroup(id, institution, lang) {
+        let query = (new QueryBuilder({}, false, lang))
+            .where('facet_frbrgroupid', 'exact', id);
 
-    function expandGroup(id, institution) {
-        var deferred = $q.defer();
-        var params = {};
-
+        var params = {
+            repr: 'full',
+            sort: 'date',
+            q: query.q,
+            qInclude: query.qInclude,
+        };
         if (institution) {
             params.institution = institution;
             params.scope = institution;
         }
 
-        $http({
+        return $http({
             method: 'GET',
             cache: true,
-            url: Config.catalogue.groupUrl.replace('{id}', id),
-            params: params,
-        }).
-            then(function(response){
-                response.data.result.records = postProcessRecords(response.data.result.records, institution);
-                deferred.resolve(response.data);
-            }, function(error){
-                deferred.reject(error);
-            });
-
-        return deferred.promise;
+            url: Config.catalogue.searchUrl,
+            params: query,
+        }).then(response => processResponse(response.data, institution));
     }
 
     function onlyUnique(value, index, self) {
         return self.indexOf(value) === index;
     }
 
-    function postProcessRecords(records, selectedInstitution, queryParams, broadSearch) {
-        records.forEach(function(record) {
-            simplifyAvailability(record, selectedInstitution);
-            record.pubEdYear = formatPubEdYearString(record);
-            Object.keys(record.subjects).forEach(function(k) {
-                record.subjects[k] = record.subjects[k].filter(onlyUnique);
-            });
-        });
+    function processResponse(data, selectedInstitution) {
+        return {
+            total_results: data.info.total - 0,
+            first: data.info.first - 0,
+            last: data.info.last - 0,
+            records: processDocs(data.docs, selectedInstitution),
+        };
+    }
+    function processDocs(records, selectedInstitution, queryParams, broadSearch) {
+        records = records.map(doc => new PnxRecord(doc.pnx));
 
-        function matchingRecord(rec) {
-            var firstTerm;
-            if (broadSearch) {
-                return true;
-            }
-            if (queryParams && queryParams.vocabulary && queryParams.subject) {
-                firstTerm = queryParams.subject.split(' OR ').shift();
-                if (rec.subjects[queryParams.vocabulary].indexOf(firstTerm) == -1) { return false; }
-            }
-            if (queryParams && queryParams.place) {
-                firstTerm = queryParams.place.split(' OR ').shift();
-                if (rec.subjects.place.indexOf(firstTerm) == -1) { return false; }
-            }
-            if (queryParams && queryParams.genre) {
-                firstTerm = queryParams.genre.split(' OR ').shift();
-                if (rec.subjects.genre.indexOf(firstTerm) == -1) { return false; }
-            }
-            return true;
-        }
+        records.forEach(rec => rec.simplifyAvailability(selectedInstitution));
 
-        // Since Oria doesn't support exact search, we must post-filter
-        records = records.filter(function(rec) {
-            if (rec.type == 'group') {
-                var matching = rec.records.map(matchingRecord);
-                if (matching.indexOf(true) != -1) { return true; }
-            } else if (matchingRecord(rec)) {
-                return true;
-            }
-            return false;
-        });
+        // ------------
+        // TODO:
+        // ------------
+
+        // function matchingRecord(rec) {
+        //     var firstTerm;
+        //     if (broadSearch) {
+        //         return true;
+        //     }
+        //     if (queryParams && queryParams.vocabulary && queryParams.subject) {
+        //         firstTerm = queryParams.subject.split(' OR ').shift();
+        //         if (rec.subjects[queryParams.vocabulary].indexOf(firstTerm) == -1) { return false; }
+        //     }
+        //     if (queryParams && queryParams.place) {
+        //         firstTerm = queryParams.place.split(' OR ').shift();
+        //         if (rec.subjects.place.indexOf(firstTerm) == -1) { return false; }
+        //     }
+        //     if (queryParams && queryParams.genre) {
+        //         firstTerm = queryParams.genre.split(' OR ').shift();
+        //         if (rec.subjects.genre.indexOf(firstTerm) == -1) { return false; }
+        //     }
+        //     return true;
+        // }
+
+        // // Since Oria doesn't support exact search, we must post-filter
+        // records = records.filter(function(rec) {
+        //     if (rec.type == 'group') {
+        //         var matching = rec.records.map(matchingRecord);
+        //         if (matching.indexOf(true) != -1) { return true; }
+        //     } else if (matchingRecord(rec)) {
+        //         return true;
+        //     }
+        //     return false;
+        // });
 
         return records;
     }
 
-    function formatPubEdYearString(record) {
-        var tmp = '';
-        var ed = (record.edition && record.type == 'record') ? record.edition : '';
-        if (record.publisher) {
-            tmp += record.publisher;
-            if (ed) {
-                tmp += ', ';
-            }
-        }
-        tmp += ed;
-        if (record.date) {
-            if (tmp.length) {
-                tmp += ' ';
-            }
-            tmp += record.date;
-        }
-        return tmp;
-    }
-
-    function simplifyAvailability(record, selectedInstitution) {
-        // @TODO: Show libraries if selectedInstitution
-
-        record.availability = {};
-
-        if (record.type == 'group') {
-            return;
-        }
-
-        var myInstitution = selectedInstitution || 'UBO';  // @TODO: Default based on IP address
-
-        // Print availability
-        var printInstitutions = [];
-        record.components.forEach(function(component) {
-            if (component.holdings) {
-                component.holdings.forEach(function(holding) {
-                    var library = holding.library.replace(/[0-9]+/, '');
-                    if (printInstitutions.indexOf(library) === -1 && library) {
-                        printInstitutions.push(library);
-                    }
-                });
-                component.holdings = null;
-            }
-        });
-
-        if (printInstitutions.length > 0) {
-            var printInstitutionsStr = '';
-            if (printInstitutions.indexOf(myInstitution) != -1) {
-                if (printInstitutions.length > 1) {
-                    // MyLibrary and n other libraries
-                    printInstitutionsStr = gettextCatalog.getPlural(printInstitutions.length - 1,
-                        'Print copy at {{library}} and one other library.',
-                        'Print copy at {{library}} and {{$count}} other libraries.',
-                        {library: Institutions.getName(myInstitution)}
-                    );
-                } else {
-                    // MyLibrary
-                    printInstitutionsStr = gettextCatalog.getString('Print copy at {{library}}.', {
-                        library: Institutions.getName(myInstitution)
-                    });
-                }
-            } else if (printInstitutions.length == 1) {
-                // Lib1
-                printInstitutionsStr = gettextCatalog.getString('Print copy at {{library}}.', {
-                    library: Institutions.getName(printInstitutions[0])
-                });
-            } else if (printInstitutions.length <= 4) {
-                // Lib1, Lib2, Lib3 and lib 4
-                var last = printInstitutions.pop();
-                printInstitutionsStr = gettextCatalog.getString('Print copy at {{institutions}} and {{lastInstitution}}.', {
-                    institutions: printInstitutions.map(function(k) { return Institutions.getName(k); }).join(', '),
-                    lastInstitution: Institutions.getName(last)
-                });
-            } else {
-                // Lib1, Lib2, Lib3 and n. more libraries (where n >= 2)
-                printInstitutionsStr = gettextCatalog.getString('Print copy at {{institutions}} and {{count}} more libraries.', {
-                    institutions: printInstitutions.slice(0, 4).map(function(k) { return Institutions.getName(k); }).join(', '),
-                    count: printInstitutions.length - 3
-                });
-            }
-            record.availability.print = printInstitutionsStr;
-        }
-
-        // Electronic availability
-        if (record.urls.length > 0) {
-            gettext('E-book');
-            record.availability.electronic = {
-                url: record.urls[0].url,
-                description: gettextCatalog.getString(record.urls[0].description)
-            };
-        }
-    }
 };

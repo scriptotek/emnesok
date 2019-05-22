@@ -17,7 +17,7 @@ export const catalogueResultComponent = {
 /////
 
 /* @ngInject */
-function CatalogueResultController(Catalogue, Config, AuthorityService, $state, gettext, gettextCatalog, $analytics, $stateParams) {
+function CatalogueResultController(Catalogue, Config, AuthorityService, $state, gettext, gettextCatalog, langService, $analytics, $stateParams) {
     /*jshint validthis: true */
     var vm = this;
 
@@ -74,7 +74,7 @@ function CatalogueResultController(Catalogue, Config, AuthorityService, $state, 
     function expandGroup() {
         var groupId = vm.record.id;
         vm.busy = true;
-        Catalogue.expandGroup(groupId, vm.selectedInstitution).then(
+        Catalogue.expandGroup(groupId, vm.selectedInstitution, langService.defaultLanguage).then(
             function (response) {
                 vm.busy = false;
                 vm.recordExpanded = true;

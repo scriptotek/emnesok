@@ -23,6 +23,8 @@ function ConfigService() {
         institutions: {
             'UBO': {
                 label: 'UiO',
+                scope: 'default_scope',
+                facet: 'facet_local4,exact,UBO',
                 libraries: {
                     '1030310': {label: 'Realfagsbiblioteket VB'},
                     '1030317': {label: 'Informatikkbiblioteket'},
@@ -35,6 +37,8 @@ function ConfigService() {
             },
             'UBB': {
                 label: 'UiB',
+                scope: 'default_scope',
+                facet: 'facet_local4,exact,UBB',
                 libraries: {
                     '1120104': {label: 'Bibliotek for realfag'},
                     '1120100': {label: 'Bibliotek for humaniora'},
@@ -43,14 +47,22 @@ function ConfigService() {
             },
             'NTNU_UB': {
                 label: 'NTNU',
+                scope: 'default_scope',
+                facet: 'facet_local4,exact,NTNU',
                 libraries: {
                     '1160133': {label: 'DORA'},
                     '1160103': {label: 'Realfagbiblioteket'},
                     '1160101': {label: 'Teknologibiblioteket'}
                 }
             },
-            'UBTO': {label: 'UiT'},
-            'NMBU': {label: 'NMBU'}
+            'UBTO': {
+                label: 'UiT',
+                facet: 'facet_local4,exact,UBTO'
+            },
+            'NMBU': {
+                label: 'NMBU',
+                facet: 'facet_local4,exact,NMBU'
+            },
         },
         vocabularies: {
             realfagstermer: {
@@ -60,6 +72,7 @@ function ConfigService() {
                 scheme: 'http://data.ub.uio.no/realfagstermer/',
                 uriPattern: 'http://data.ub.uio.no/realfagstermer/{id}',
                 show_vocabs: ['realfagstermer', 'ddc', 'ubo'],
+                primo_index: 'lsr20',
             },
             humord: {
                 name: 'Humord',
@@ -68,6 +81,7 @@ function ConfigService() {
                 scheme: 'http://data.ub.uio.no/humord/',
                 uriPattern: 'http://data.ub.uio.no/humord/{id}',
                 show_vocabs: ['humord', 'ddc', 'ubo'],
+                primo_index: 'lsr14',
             },
             tekord: {
                 name: 'Tekord',
@@ -77,6 +91,7 @@ function ConfigService() {
                 uriPattern: 'http://data.ub.uio.no/tekord/{id}',
                 show_vocabs: ['tekord'],
                 notationSearch: false,
+                primo_index: 'lsr12',
             },
             mrtermer: {
                 name: 'Human Rights Terms',
@@ -85,6 +100,7 @@ function ConfigService() {
                 scheme: 'http://data.ub.uio.no/mrtermer/',
                 uriPattern: 'http://data.ub.uio.no/mrtermer/{id}',
                 show_vocabs: ['mrtermer'],
+                primo_index: 'lsr19',
             },
             ddc: {
                 name: 'DDC',
@@ -95,7 +111,8 @@ function ConfigService() {
                 showWikipedia: false,
                 supportsBroadSearch: false,
                 show_vocabs: ['realfagstermer', 'humord', 'ddc'],
-            }
+                primo_index: 'lsr10',
+            },
         },
         skosmos: {
             vocabularyStatisticsUrl: 'https://data.ub.uio.no/skosmos/rest/v1/{vocab}/vocabularyStatistics',
@@ -104,8 +121,7 @@ function ConfigService() {
             searchUrl: 'https://data.ub.uio.no/skosmos/rest/v1/search',
         },
         catalogue: {
-            searchUrl: 'https://ub-lsm.uio.no/primo/search',
-            groupUrl: 'https://ub-lsm.uio.no/primo/groups/{id}'
+            searchUrl: 'https://ub-lsm.uio.no/primo/v2/search',
         }
     };
     return factory;

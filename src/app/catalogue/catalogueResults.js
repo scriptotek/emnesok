@@ -15,18 +15,19 @@ export const catalogueResultsComponent = {
 /////
 
 /* @ngInject */
-function CatalogueResultsController($stateParams, $state, $scope, $window, $timeout, $transitions, gettext, gettextCatalog, $analytics, langService, Catalogue, Config, Session, TitleService) {
+function CatalogueResultsController(
+    $stateParams, $state, $scope, $window, $timeout, $transitions, gettext, gettextCatalog, $analytics, langService, Catalogue, Config, Session, TitleService, QueryBuilder
+) {
     /*jshint validthis: true */
     var vm = this;
     var defaultLang = langService.defaultLanguage;
 
     vm.vocab = '';
     vm.start = 0;
-    vm.last = 0;
-    vm.next = 1;
+    vm.offset = 0;
     vm.busy = true;
     vm.error = null;
-    vm.total_results = 0;
+    vm.total_results = -1;
     vm.results = [];
     vm.getMoreRecords = getMoreRecords;
     vm.stringSearch = false;
@@ -40,7 +41,7 @@ function CatalogueResultsController($stateParams, $state, $scope, $window, $time
 
     vm.broadSearch = false;
     vm.searchType = '';
-    vm.searchQuery = '';
+    vm.query = null;
 
     vm.updateControlledSearch = updateControlledSearch;
 
@@ -161,99 +162,53 @@ function CatalogueResultsController($stateParams, $state, $scope, $window, $time
     }
 
     function gotResults(response) {
+        console.log('Got results', response);
+        
         vm.total_results = response.total_results;
         vm.start = response.first;
-        vm.next = response.next;
-        vm.last = vm.next ? vm.next - 1 : vm.total_results;
+        vm.offset = response.last;
+        // vm.offset = (vm.last != vm.total_results) ? vm.last + 1 : null;
+        
+        // response.docs.forEach(function (record) {
+        //     filterSubjects(record);
+        //     if (record.thumbnails && record.thumbnails.bibsys) {
+        //         record.thumbnails.bibsys = record.thumbnails.bibsys.replace('http:', 'https:');
+        //     }
+        // });
 
-        response.results.forEach(function (record) {
-            filterSubjects(record);
-            if (record.thumbnails && record.thumbnails.bibsys) {
-                record.thumbnails.bibsys = record.thumbnails.bibsys.replace('http:', 'https:');
-            }
-        });
-
-        vm.results = vm.results.concat(response.results);
+        vm.results = vm.results.concat(response.records);
         vm.busy = false;
         $timeout(checkScrollPos, 500);
     }
 
     function getMoreRecords() {
-        if (vm.vocab && vm.next && !vm.busy) {
+        if (vm.vocab && vm.offset != vm.total_results && !vm.busy) {
             search();
         }
-    }
-
-    function getPrefLabels(subject, includeEnglish) {
-        var prefLabels = subject.prefLabel[defaultLang];
-        if (includeEnglish && subject.prefLabel.en !== undefined && subject.prefLabel.en !== subject.prefLabel[defaultLang]) {
-            prefLabels = prefLabels + ' OR ' + subject.prefLabel.en;
-        }
-        return prefLabels;
     }
 
     function search() {
         var inst = vm.selectedInstitution ? vm.selectedInstitution : null;
         var lib = vm.selectedLibrary ? vm.selectedInstitution + vm.selectedLibrary : null;
-        var topics = [], places = [], genres = [];
 
-        if (vm.subject._components.length) {
-            places = vm.subject._components.filter(function (component) {
-                return component.type == 'Geographic';
-            });
-            genres = vm.subject._components.filter(function (component) {
-                return component.type == 'GenreForm';
-            });
-            topics = vm.subject._components.filter(function (component) {
-                return component.type == 'Topic';
-            });
-            topics.sort(function (a, b) {
-                var alab = a.prefLabel[defaultLang], blab = b.prefLabel[defaultLang],
-                    tlab = vm.subject.prefLabel[defaultLang].split(' : ');
-                return tlab.indexOf(alab) - tlab.indexOf(blab);
-            });
-        } else {
-            if (vm.subject.type == 'Geographic') {
-                places = [vm.subject];
-            } else if (vm.subject.type == 'GenreForm') {
-                genres = [vm.subject];
-            } else {
-                topics = [vm.subject];
-            }
-        }
+        var query = (new QueryBuilder({}, vm.broadSearch, langService.defaultLanguage))
+            .whereSubject(vm.subject);
 
-        var q = {};
-        if (places.length) {
-            q.place = places.map(function (subject) {
-                return getPrefLabels(subject, places.length == 1);
-            }).join(' AND ');
-        }
-        if (genres.length) {
-            q.genre = genres.map(function (genre) {
-                return getPrefLabels(genre, genres.length == 1);
-            }).join(' AND ');
-        }
-        if (topics.length) {
-            q.subject = topics.map(function (subject) {
-                return getPrefLabels(subject, topics.length == 1);
-            }).join(vm.broadSearch ? ' AND ' : ' : ');
-        }
-        if (Config.vocabularies[vm.subject.vocab].supportsBroadSearch === false || !vm.broadSearch) {
-            q.vocab = vm.vocab;
-        }
-        if (vm.subject.notation && Config.vocabularies[vm.subject.vocab].notationSearch !== false) {
-            q.subject = vm.subject.notation;
-        }
+        console.log('QUERY', query);
+        query.where('facet_local4', inst)
+            .where('facet_library', lib);
+
 
         vm.busy = true;
-        vm.searchQuery = q;
+        vm.query = query;
 
-        Catalogue.search(q, vm.next, inst, lib, vm.broadSearch).then(
+        Catalogue.search(query.build(), vm.offset, inst, lib, vm.broadSearch).then(
             gotResults,
-            function () {
+            function (err) {
+                console.error(err);
                 vm.error = gettextCatalog.getString(
                     gettext('Uh oh, some kind of server error occured.')
-                );
+                ) + '<br>' + err;
                 vm.busy = false;
                 // @TODO Handle error
             }
@@ -263,7 +218,8 @@ function CatalogueResultsController($stateParams, $state, $scope, $window, $time
     function searchFromStart() {
         vm.results = [];
         vm.start = 0;
-        vm.next = 1;
+        vm.offset = 0;
+        vm.total_results = -1;
         search();
     }
 
