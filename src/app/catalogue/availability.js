@@ -14,4 +14,5 @@ export const availabilityComponent = {
 /////
 
 function AvailabilityController() {
+    var vm = this;
 }

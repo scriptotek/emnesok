@@ -14,7 +14,7 @@ export const pnxRecordService = /* @ngInject */ function(
      */
     function PnxRecord(data) {
 
-        let vid = 'UBO'; // @TODO: Get this from Config and selected inst
+        let vid = 'UIO'; // @TODO: Get this from Config and selected inst
 
         this.id = get(data, 'control.recordid.0');
         this.source = get(data, 'control.sourcesystem.0');
@@ -74,6 +74,16 @@ export const pnxRecordService = /* @ngInject */ function(
                     // priority: get(field, 'P'),
                 };
             });
+
+            let delivery = {}
+            get(data, 'delivery.delcategory', []).forEach(delcategory => {
+                let [category, institution] = delcategory.split('$$I');
+                if (!delivery.hasOwnProperty(category)) {
+                    delivery[category] = [];
+                }
+                delivery[category].push(institution);
+            });
+            this.delivery = delivery;
         }
 
         this.urls = get(data, 'links.linktorsrc', [])
@@ -81,7 +91,7 @@ export const pnxRecordService = /* @ngInject */ function(
                 'U': 'url',
                 'E': 'description',
             }));
-
+        
         this.pubEdYear = this.formatPubEdYearString();
     }
 
@@ -136,10 +146,6 @@ export const pnxRecordService = /* @ngInject */ function(
         return tmp;
     };
 
-
-    // -----------
-    // TODO
-    // ------------
     PnxRecord.prototype.simplifyAvailability = function(selectedInstitution) {
         // @TODO: Show libraries if selectedInstitution
 
@@ -201,8 +207,15 @@ export const pnxRecordService = /* @ngInject */ function(
             }
             this.availability.print = printInstitutionsStr;
         }
-
         // Electronic availability
+        if ('Alma-E' in this.delivery) {
+            if (this.delivery['Alma-E'].indexOf(myInstitution) !== -1) {
+                this.availability.electronic = {
+                    description: 'E-book',
+                    url: this.links.primo,
+                };    
+            }
+        }
         if (this.urls.length > 0) {
             gettext('E-book');
             this.availability.electronic = {
