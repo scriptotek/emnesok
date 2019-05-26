@@ -194,10 +194,31 @@ function CatalogueResultsController(
         var query = (new QueryBuilder({}, vm.broadSearch, langService.defaultLanguage))
             .whereSubject(vm.subject);
 
-        console.log('QUERY', query);
+        var mappingRelations = vm.broadSearch ? ['skos:exactMatch', 'skos:closeMatch'] : ['skos:exactMatch'];
+        var mappingVocabularies = Object.keys(Config.vocabularies);
+
+        var useMappingExpansion = true; // TODO: Make user configurable
+
+        let mappings = vm.subject.mappings.filter(
+            x => mappingVocabularies.indexOf(x.to.vocabulary) !== -1
+            && mappingRelations.indexOf(x.type) !== -1
+        );
+        vm.mappings = mappings;
+
+        if (useMappingExpansion) {
+            mappings.forEach(mapping => {
+                var vocab = Config.vocabularies[mapping.to.vocabulary];
+                let value = vocab.notationSearch ? mapping.to.notation : mapping.to.prefLabel[vocab.defaultLanguage];
+                query.orWhere(vocab.primo_index, 'exact', value);
+                // TODO: Make a repr() method on the model instead
+                mapping.to.repr = `«${value}» i ${vocab.name}`;
+            });   
+        }
+        
         query.where('facet_local4', inst)
             .where('facet_library', lib);
 
+        console.log('QUERY:', query);
 
         vm.busy = true;
         vm.query = query;
@@ -217,6 +238,7 @@ function CatalogueResultsController(
 
     function searchFromStart() {
         vm.results = [];
+        vm.mappings = [];
         vm.start = 0;
         vm.offset = 0;
         vm.total_results = -1;

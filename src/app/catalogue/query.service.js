@@ -85,6 +85,19 @@ export const queryBuilderService = /* @ngInject */ function(
         if (value === undefined || value === null) {
             return this;
         }
+        this.q.push([key, op, value, 'AND']);
+
+        return this; // for chaining
+    };
+
+    QueryBuilder.prototype.orWhere = function(key, op, value) {
+        if (value === undefined || value === null) {
+            return this;
+        }
+        if (this.q.length) {
+            // Yes, this is weird, but the Primo API...
+            this.q[this.q.length - 1][3] = 'OR';
+        }
         this.q.push([key, op, value]);
 
         return this; // for chaining
@@ -100,7 +113,7 @@ export const queryBuilderService = /* @ngInject */ function(
 
     QueryBuilder.prototype.build = function() {
         return {
-            q: this.q.map(x => x.join(',')).join(',AND;') || null,
+            q: this.q.map(x => x.join(',')).join(';') || null,
             qInclude: this.qInclude.map(x => x.join(',')) || null,
         };
     };

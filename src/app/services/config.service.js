@@ -111,6 +111,7 @@ function ConfigService() {
                 showWikipedia: false,
                 supportsBroadSearch: false,
                 show_vocabs: ['realfagstermer', 'humord', 'ddc'],
+                notationSearch: true,
                 primo_index: 'lsr10',
             },
         },

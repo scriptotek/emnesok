@@ -34,6 +34,12 @@
 
 	<h2 translate>Documents</h2>
 
+	<div ng-if="!vm.error && vm.mappings.length" class="text-muted small">
+		Søket ble utvidet med ett eller flere mappede begreper
+		(<span ng-repeat="mapping in vm.mappings"><span>{{ mapping.to.repr }}</span><span ng-if="!$last">, </span></span>).
+		<!--<a href="">Søk kun etter emneordet</a>.-->
+	</div>
+
 	<div uib-alert ng-if="vm.error" class="alert-danger" compile="vm.error"></div>
 
 	<p ng-if="!vm.busy && !vm.error && !vm.total_results && vm.subject.type !== 'KnuteTerm'" class="bg-danger">
@@ -90,7 +96,8 @@
 	</div>
 
 	<div ng-show="vm.busy" class="loader"></div>
-
-	<div ng-if="!vm.error" class="text-muted small">Search query: ‘{{vm.searchQuery}}’</div>
-
+	<div ng-if="!vm.error" class="text-muted small">
+		Query: {{vm.query}}
+	</div>
+	
 </div>
