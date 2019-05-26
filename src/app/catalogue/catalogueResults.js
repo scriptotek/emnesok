@@ -135,31 +135,31 @@ function CatalogueResultsController(
         }
     }
 
-    function filterSubjects(record) {
-        if (record.subjects) {
+    // function filterSubjects(record) {
+    //     if (record.subjects) {
 
-            if (record.subjects.subject) {
-                record.subjects.subject = record.subjects.subject.filter(function (s) {
-                    return s != 'Electronic books';
-                });
-            }
+    //         if (record.subjects.subject) {
+    //             record.subjects.subject = record.subjects.subject.filter(function (s) {
+    //                 return s != 'Electronic books';
+    //             });
+    //         }
 
-            if (record.subjects.genre) {
-                record.subjects.genre = record.subjects.genre.filter(function (s) {
-                    return s != 'Electronic books';
-                });
-            }
+    //         if (record.subjects.genre) {
+    //             record.subjects.genre = record.subjects.genre.filter(function (s) {
+    //                 return s != 'Electronic books';
+    //             });
+    //         }
 
-            // Genres are unfortunately duplicated as subjects. Remove those.
-            var genres = get(record, 'subjects.genre', []);
-            Object.keys(record.subjects).forEach(function (vocab) {
-                if (vocab == 'genre') return;
-                record.subjects[vocab] = record.subjects[vocab].filter(function (s) {
-                    return genres.indexOf(s) === -1;
-                });
-            });
-        }
-    }
+    //         // Genres are unfortunately duplicated as subjects. Remove those.
+    //         var genres = get(record, 'subjects.genre', []);
+    //         Object.keys(record.subjects).forEach(function (vocab) {
+    //             if (vocab == 'genre') return;
+    //             record.subjects[vocab] = record.subjects[vocab].filter(function (s) {
+    //                 return genres.indexOf(s) === -1;
+    //             });
+    //         });
+    //     }
+    // }
 
     function gotResults(response) {
         console.log('Got results', response);
@@ -169,11 +169,8 @@ function CatalogueResultsController(
         vm.offset = response.last;
         // vm.offset = (vm.last != vm.total_results) ? vm.last + 1 : null;
         
-        // response.docs.forEach(function (record) {
+        // response.records.forEach(function (record) {
         //     filterSubjects(record);
-        //     if (record.thumbnails && record.thumbnails.bibsys) {
-        //         record.thumbnails.bibsys = record.thumbnails.bibsys.replace('http:', 'https:');
-        //     }
         // });
 
         vm.results = vm.results.concat(response.records);

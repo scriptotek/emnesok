@@ -9,12 +9,20 @@ export const pnxRecordService = /* @ngInject */ function(
     Institutions
 ) {
 
+    function Subject(data) {
+        this.id = get(data, 'id');
+        this.term = get(data, 'term').trim();
+        this.vocabulary = get(data, 'vocabulary');
+        this.type = 'topic';
+    }
+
     /**
      * Constructor, with class name
      */
-    function PnxRecord(data) {
+    function PnxRecord(data, institution) {
 
-        let vid = 'UIO'; // @TODO: Get this from Config and selected inst
+        this.currentInstitution = institution;
+        let vid = institution.vid || institution.id;
 
         this.id = get(data, 'control.recordid.0');
         this.source = get(data, 'control.sourcesystem.0');
@@ -38,15 +46,20 @@ export const pnxRecordService = /* @ngInject */ function(
         //         record.subjects[k] = record.subjects[k].filter(onlyUnique);
         //     });
 
-        this.places = get(data, 'facets.lfc17');
-        this.subjects = {
-            realfagstermer: extractSubjects(data, 'NOUBOMN', this.places),
-            mrtermer: extractSubjects(data, 'NOUBOMR', this.places),
-            humord: extractSubjects(data, 'HUMORD', this.places),
-            tekord: extractSubjects(data, 'TEKORD', this.places),
-            mesh: extractSubjects(data, 'MESH', this.places),
+        this.places = get(data, 'facets.lfc17', []);
+        this.genres = get(data, 'facets.genre', []);
 
-            ddc: get(data, 'facets.lfc10'),
+        this.subjects = {
+            realfagstermer: extractSubjects(data, 'NOUBOMN', this.places, this.genres),
+            mrtermer: extractSubjects(data, 'NOUBOMR', this.places, this.genres),
+            humord: extractSubjects(data, 'HUMORD', this.places, this.genres),
+            tekord: extractSubjects(data, 'TEKORD', this.places, this.genres),
+            mesh: extractSubjects(data, 'MESH', this.places, this.genres),
+
+            ddc: get(data, 'facets.lfc10', []).map(x => new Subject({term: x, vocabulary: 'ddc'})),
+
+            // genre: ?
+            // place: ?
             // osv.
         };
 
@@ -74,25 +87,42 @@ export const pnxRecordService = /* @ngInject */ function(
                     // priority: get(field, 'P'),
                 };
             });
-
-            let delivery = {}
-            get(data, 'delivery.delcategory', []).forEach(delcategory => {
-                let [category, institution] = delcategory.split('$$I');
-                if (!delivery.hasOwnProperty(category)) {
-                    delivery[category] = [];
-                }
-                delivery[category].push(institution);
-            });
-            this.delivery = delivery;
         }
+
+        let delivery = {};
+        get(data, 'delivery.delcategory', []).forEach(delcategory => {
+            let [category, institution] = delcategory.split('$$I');
+            if (!delivery.hasOwnProperty(category)) {
+                delivery[category] = [];
+            }
+            delivery[category].push(institution);
+        });
+        this.delivery = delivery;
 
         this.urls = get(data, 'links.linktorsrc', [])
             .map(x => proccessField(x, {
                 'U': 'url',
                 'E': 'description',
             }));
+        this.urls = this.urls.map(x => {
+            if (x.description == 'linktorsrc') x.description = 'Fulltext';
+            return x;
+        });
         
         this.pubEdYear = this.formatPubEdYearString();
+
+        this.thumbnails = keyBy(get(data, 'links.thumbnail', []).map(x => proccessField(x, {
+            'T': 'service',
+            '1': 'param',
+        })), 'service');
+
+        if ('BIBSYS_thumb' in this.thumbnails) {
+            this.thumbnail = `https://innhold.bibsys.no/bilde/forside/?size=mini&id${this.thumbnails.BIBSYS_thumb.param}`;
+        } else {
+            this.thumbnail = 'https://ub-lsm.uio.no/primo/records/' + encodeURIComponent(this.id) + '/cover';
+        }
+
+        console.log(this);
     }
 
     function proccessField(line, keyMap) {
@@ -107,8 +137,7 @@ export const pnxRecordService = /* @ngInject */ function(
         return out;
     }
 
-    function extractSubjects(data, vocabulary, blacklist) {
-        if (!blacklist) blacklist = [];
+    function extractSubjects(data, vocabulary, places, genres) {
         return get(data, 'browse.subject', [])
             .map(x => proccessField(x, {
                 'D': 'term',
@@ -118,10 +147,43 @@ export const pnxRecordService = /* @ngInject */ function(
                 'P': 'preferred',
             }))
             .filter(x => x.vocabulary == vocabulary)
-            .filter(x => x.preferred == 'Y')
-            .filter(x => blacklist.indexOf(x.term) === -1)  // Very primitive way to filter out placenames. Might catch too much.
-            .map(x => x.term);  // FOR NOW... Would be better to return object, so we can use IDs later on.
+            .filter(x => x.preferred != 'N')  // For Tekord mangler den helt
+            .map(x => new Subject(x))
+            .map(x => {
+                if (places.indexOf(x.term) !== -1) x.type = 'geographic';
+                if (genres.indexOf(x.term) !== -1) x.type = 'genre';
+
+                return x;
+            })
     }
+
+    PnxRecord.prototype.subjectMatchesQuery = function(subject, queryTerm) {
+        if (subject.term.trim().toLowerCase() == queryTerm.trim().toLowerCase()) {
+            subject.matchesQuery = true;
+            return true;
+        }
+        return false;
+    };
+
+    PnxRecord.prototype.matchesQuery = function(params, vocabularies) {
+        var matches = 0;
+        for (let q of params.q.split(';')) {
+            let [vocab, op, term, op2] = q.split(',');
+
+            for (let voc in this.subjects) {
+                if (vocabularies.hasOwnProperty(voc) && vocabularies[voc].primo_index == vocab) {
+                    for (let sub of this.subjects[voc]) {
+                        if (this.subjectMatchesQuery(sub, term)) {
+                            // In principle we could return here, but we want
+                            // to indicate all matches (subjectMatchesQuery has a side effect)
+                            matches++;
+                        }
+                    }
+                }
+            }
+        }
+        return matches > 0;
+    };
 
     PnxRecord.prototype.formatPubEdYearString = function() {
         var tmp = '';
@@ -155,7 +217,7 @@ export const pnxRecordService = /* @ngInject */ function(
             return;
         }
 
-        var myInstitution = selectedInstitution || 'UBO';  // @TODO: Default based on IP address
+        var myInstitution = this.currentInstitution.id;
 
         // Print availability
         var printInstitutions = [];

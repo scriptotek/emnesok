@@ -5,14 +5,14 @@
 
 		<!-- FRBRized version -->
 		<img ng-if="vm.record.type == 'group' && vm.recordExpanded"
-			ng-src="{{ vm.versions[0].thumbnails.bibsys ? vm.versions[0].thumbnails.bibsys : 'https://ub-lsm.uio.no/primo/records/' + vm.versions[0].id + '/cover' }}"
+			ng-src="{{ vm.versions[0].thumbnail }}"
 			style=" display: block; padding-right: 10px; margin-left:auto; margin-right: auto; max-width: 80px; max-height: 80px;"
 		>
 
 		<!-- Single item -->
 		<img
 			ng-if="vm.record.type != 'group'"
-			ng-src="{{ vm.record.thumbnails.bibsys ? vm.record.thumbnails.bibsys : 'https://ub-lsm.uio.no/primo/records/' + vm.record.id + '/cover' }}"
+			ng-src="{{ vm.record.thumbnail }}"
 			style=" display: block; padding-right: 10px; margin-left:auto; margin-right: auto; max-width: 80px; max-height: 80px;"
 		>
 	</div>
@@ -62,7 +62,12 @@
 		<!-- Subjects -->
 	 	<div ng-repeat="v in vm.vocabularies[vm.vocab].show_vocabs">
 			<span ng-repeat="subject in vm.record.subjects[v]">
-				<a ui-sref="subject.search({vocab:v, id: null, uri: null, term: subject})" class="subject-tag" ng-if="vm.indexTerm != subject" analytics-on="click" analytics-event="ClickTag" analytics-category="ControlledTag" analytics-label="{{ subject }}" title="{{ subject }} i {{v}}">{{ subject }}</a><span ng-if="vm.indexTerm == subject" class="subject-tag">{{ subject }}</span>
+				<a ui-sref="subject.search({vocab:v, id: subject.id, uri: null, term: subject.term})"
+				   class="subject-tag {{subject.type}}"
+				   ng-if="!subject.matchesQuery"
+				   analytics-on="click" analytics-event="ClickTag" analytics-category="ControlledTag" analytics-label="{{ subject.term }}"
+				   title="{{ subject.term }} i {{v}}">{{ subject.term }}</a>
+				<span ng-if="subject.matchesQuery" class="subject-tag">{{ subject.term }}</span>
 			</span>
 	 	</div>
 

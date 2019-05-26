@@ -20,24 +20,25 @@ export const catalogueService = /* @ngInject */ function CatalogueService(
     ////////////
 
     function search(query, offset, institution, library, broadSearch) {
-        var params = {
-            expand_groups: true,  // in order to filter we need this, since it's random which edition we get data for in frbr groups
-            repr: 'full',
-            sort: 'date',
-            q: query.q,
-            qInclude: query.qInclude,
-        };
+
+        // @TODO: Default based on IP address instead
+        var selectedInstitution = Config.institutions['UBO'],
+            params = {
+                expand_groups: true,  // in order to filter we need this, since it's random which edition we get data for in frbr groups
+                repr: 'full',
+                sort: 'date',
+                q: query.q,
+                qInclude: query.qInclude,
+            };
 
         if (offset) {
             params.offset = offset;
         }
         if (institution) {
-            let institutionObj = Config.institutions[institution];
-            params.inst = institutionObj.inst;   // Do we need this?
-            params.scope = institutionObj.scope;   // or this?
-            if (institutionObj.facet) {
-                params.qInclude.push(institutionObj.facet);
-            }
+            selectedInstitution = Config.institutions[institution];
+            params.inst = selectedInstitution.inst;   // Do we need this?
+            params.scope = selectedInstitution.scope;   // or this?
+            params.qInclude.push(`facet_local4,exact,${selectedInstitution.id}`);
         }
         if (library) {
             params.qInclude.push(`facet_library,exact,${library}`);
@@ -48,7 +49,7 @@ export const catalogueService = /* @ngInject */ function CatalogueService(
             cache: true,
             url: Config.catalogue.searchUrl,
             params: params,
-        }).then(response => processResponse(response.data, institution, params, broadSearch));
+        }).then(response => processResponse(response.data, selectedInstitution, params, broadSearch));
     }
     
     function expandGroup(id, institution, lang) {
@@ -78,53 +79,25 @@ export const catalogueService = /* @ngInject */ function CatalogueService(
         return self.indexOf(value) === index;
     }
 
-    function processResponse(data, selectedInstitution) {
+    function processResponse(data, selectedInstitution, params, broadSearch) {
         return {
             total_results: data.info.total - 0,
             first: data.info.first - 0,
             last: data.info.last - 0,
-            records: processDocs(data.docs, selectedInstitution),
+            records: processDocs(data.docs, selectedInstitution, params, broadSearch),
         };
     }
     function processDocs(records, selectedInstitution, queryParams, broadSearch) {
-        records = records.map(doc => new PnxRecord(doc.pnx));
+        records = records.map(doc => new PnxRecord(doc.pnx, selectedInstitution));
 
-        records.forEach(rec => rec.simplifyAvailability(selectedInstitution));
+        records.forEach(rec => rec.simplifyAvailability());
 
-        // ------------
-        // TODO:
-        // ------------
-
-        // function matchingRecord(rec) {
-        //     var firstTerm;
-        //     if (broadSearch) {
-        //         return true;
-        //     }
-        //     if (queryParams && queryParams.vocabulary && queryParams.subject) {
-        //         firstTerm = queryParams.subject.split(' OR ').shift();
-        //         if (rec.subjects[queryParams.vocabulary].indexOf(firstTerm) == -1) { return false; }
-        //     }
-        //     if (queryParams && queryParams.place) {
-        //         firstTerm = queryParams.place.split(' OR ').shift();
-        //         if (rec.subjects.place.indexOf(firstTerm) == -1) { return false; }
-        //     }
-        //     if (queryParams && queryParams.genre) {
-        //         firstTerm = queryParams.genre.split(' OR ').shift();
-        //         if (rec.subjects.genre.indexOf(firstTerm) == -1) { return false; }
-        //     }
-        //     return true;
-        // }
-
-        // // Since Oria doesn't support exact search, we must post-filter
-        // records = records.filter(function(rec) {
-        //     if (rec.type == 'group') {
-        //         var matching = rec.records.map(matchingRecord);
-        //         if (matching.indexOf(true) != -1) { return true; }
-        //     } else if (matchingRecord(rec)) {
-        //         return true;
-        //     }
-        //     return false;
-        // });
+        // Since Oria doesn't support exact search, we must post-filter
+        if (!broadSearch) {
+            records = records.filter(
+                rec => rec.matchesQuery(queryParams, Config.vocabularies)
+            );
+        }
 
         return records;
     }

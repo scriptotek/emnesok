@@ -74,8 +74,8 @@ export const queryBuilderService = /* @ngInject */ function(
 
         // Type is normal concept
         } else {
-            let term = this.broadSearch ? this.getTerms(subject).join(' OR ') : subject.prefLabel[this.lang];
-            this.where(indices[subject.type], 'exact', term);
+            let term = this.broadSearch ? this.getTerms(subject, true).join(' OR ') : subject.prefLabel[this.lang];
+            this.where(indices[subject.type], 'contains', term);
         }
 
         return this; // for chaining

@@ -22,9 +22,9 @@ function ConfigService() {
         defaultLanguage: 'nb',
         institutions: {
             'UBO': {
+                id: 'UBO',
                 label: 'UiO',
-                scope: 'default_scope',
-                facet: 'facet_local4,exact,UBO',
+                vid: 'UIO',  // if it differs from id
                 libraries: {
                     '1030310': {label: 'Realfagsbiblioteket VB'},
                     '1030317': {label: 'Informatikkbiblioteket'},
@@ -36,9 +36,8 @@ function ConfigService() {
                 }
             },
             'UBB': {
+                id: 'UBB',
                 label: 'UiB',
-                scope: 'default_scope',
-                facet: 'facet_local4,exact,UBB',
                 libraries: {
                     '1120104': {label: 'Bibliotek for realfag'},
                     '1120100': {label: 'Bibliotek for humaniora'},
@@ -46,9 +45,8 @@ function ConfigService() {
                 }
             },
             'NTNU_UB': {
+                id: 'NTNU_UB',
                 label: 'NTNU',
-                scope: 'default_scope',
-                facet: 'facet_local4,exact,NTNU_UB',
                 libraries: {
                     '1160133': {label: 'DORA'},
                     '1160103': {label: 'Realfagbiblioteket'},
@@ -56,12 +54,12 @@ function ConfigService() {
                 }
             },
             'UBTO': {
+                id: 'UBTO',
                 label: 'UiT',
-                facet: 'facet_local4,exact,UBTO'
             },
             'NMBU': {
+                id: 'NMBU',
                 label: 'NMBU',
-                facet: 'facet_local4,exact,NMBU'
             },
         },
         vocabularies: {
