@@ -48,7 +48,7 @@ function ConfigService() {
             'NTNU_UB': {
                 label: 'NTNU',
                 scope: 'default_scope',
-                facet: 'facet_local4,exact,NTNU',
+                facet: 'facet_local4,exact,NTNU_UB',
                 libraries: {
                     '1160133': {label: 'DORA'},
                     '1160103': {label: 'Realfagbiblioteket'},
