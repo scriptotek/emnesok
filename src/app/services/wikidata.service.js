@@ -66,6 +66,7 @@ class WikidataItem {
             let value = stmt.mainsnak.datavalue.value;
             let urlPatterns = {
                 'P815': 'https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=$1',
+                'P846': 'https://www.gbif.org/species/$1',
             };
             let url = urlPatterns[prop].replace('$1', value);
             return `<a href="${url}">${value}</a>`;

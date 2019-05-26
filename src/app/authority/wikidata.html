@@ -42,6 +42,13 @@
             <div style="flex: 0 0 50%" ng-bind-html="vm.data.item.formatClaim('P815')"></div>
         </div>
 
+        <div style="display:flex;" ng-if="vm.data.item.hasClaim('P846')">
+            <div style="flex: 0 0 50%">
+                GBIF:
+            </div>
+            <div style="flex: 0 0 50%" ng-bind-html="vm.data.item.formatClaim('P846')"></div>
+        </div>
+    
         <div style="clear: both;"></div>
     </div>
 
