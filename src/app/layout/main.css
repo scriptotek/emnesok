@@ -71,6 +71,13 @@ a.subject-tag:active {
   content: "\e062";
 }
 
+.vocabulary-info {
+  max-width:800px;
+  padding: 10px;
+  margin-right:auto;
+  margin-left:75px;
+}
+
 /*****************************************
  * Catalogue view
  *****************************************/
@@ -170,7 +177,7 @@ li.noaccess:before {
 }
 
 /*****************************************
- * Search / subject view
+ * Search box (Angucomplete)
  *****************************************/
 
 .highlight {
@@ -195,11 +202,11 @@ li.noaccess:before {
   float:none !important;
 }
 
-#search{
+#searchbox{
   width:100%;
 }
 
-#search_dropdown {
+#searchbox_dropdown {
   margin-top: 32px !important;
   max-height:50vh;
   width:80%;
@@ -237,7 +244,7 @@ li.noaccess:before {
   background-color:#F9F9F9 !important;
 }
 
-.search_history{
+.searchbox_history{
   margin-top:30px;
 }
 
