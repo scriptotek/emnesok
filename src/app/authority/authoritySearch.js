@@ -34,7 +34,6 @@ function AuthoritySearchController($scope, $state, $stateParams, $timeout, $root
     vm.truncations = [gettext('Starting with'), gettext('Containing'), gettext('Ends with'), gettext('Exact match')];
     vm.search = search;
     vm.errorMsg = '';
-    vm.searchHistory = [];
 
     var vocabulary = Config.vocabularies[vm.vocab] || null;
 
@@ -43,10 +42,6 @@ function AuthoritySearchController($scope, $state, $stateParams, $timeout, $root
     ////////////
 
     function activate() {
-        vm.searchHistory = AuthorityService.searchHistory;
-        AuthorityService.onSubject($scope, function () {
-            vm.searchHistory = AuthorityService.searchHistory;
-        });
         angular.element(document).ready(function () {
             var sv = document.getElementById('search_value');
             if (sv) {

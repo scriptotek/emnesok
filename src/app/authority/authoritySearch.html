@@ -1,5 +1,5 @@
 
-<div class="input-group" style="margin-bottom:1.5em;">
+<div class="input-group" style="margin-left:80px">
 	<div class="input-group-btn" uib-dropdown uib-keyboard-nav>
 		<button id="simple-btn-keyboard-nav" type="button" class="truncate_button btn btn-default" uib-dropdown-toggle>
 			<span>{{vm.truncations[vm.truncate] | translate}}</span> <span class="caret"></span>
@@ -51,38 +51,10 @@
        </div>
     </div>
     </script>
-
-
 </div>
 
-<uib-alert type="danger" ng-show="vm.errorMsg">
+<uib-alert type="danger" ng-show="vm.errorMsg" style="margin-top: 1em;">
 	<span translate>The search went out in error:</span>
 	{{ vm.errorMsg | translate }}
 </uib-alert>
 
-
-<app-authority-record
-    data="vm.searchHistory[vm.searchHistory.length - 1]"
-    ng-show="vm.searchHistory.length > 0"
-></app-authority-record>
-<!--
-    <div class="subject panel panel-success" ng-show="vm.searchHistory.length > 0">
-  <div class="panel-heading"><h3 class="panel-title" translate>Active subject</h3></div>
-  <ul class="list-group">
-    <li class="list-group-item">
-
-    </li>
-  </ul>
-</div>
--->
-
-<div class="panel panel-default hidden-xs" ng-show="vm.searchHistory.length > 1">
-  <div class="panel-heading"><h3 class="panel-title" translate>Search history</h3></div>
-  <ul class="list-group">
-    <li class="list-group-item" ng-repeat="subject in vm.searchHistory.slice(0, vm.searchHistory.length-1).reverse()">
-	    <a ui-sref="subject.search({ id: null, uri: subject.uri, term: null })">
-		  {{ subject.prefLabel[vm.lang] ? subject.prefLabel[vm.lang] : subject.prefLabel[vm.defaultLang] }}
-	    </a>
-    </li>
-  </ul>
-</div>

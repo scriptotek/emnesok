@@ -1,6 +1,7 @@
 import angular from 'angular';
 import {authorityRecordComponentName, authorityRecordComponent} from './authorityRecord.js';
 import {authoritySearchComponentName, authoritySearchComponent} from './authoritySearch.js';
+import {authorityViewComponentName, authorityViewComponent} from './authorityView.js';
 import {wikidataComponentName, wikidataComponent} from './wikidata.js';
 
 const moduleName = 'app.authority';
@@ -18,4 +19,5 @@ angular
     )
     .component(authorityRecordComponentName, authorityRecordComponent)
     .component(authoritySearchComponentName, authoritySearchComponent)
+    .component(authorityViewComponentName, authorityViewComponent)
     .component(wikidataComponentName, wikidataComponent);
