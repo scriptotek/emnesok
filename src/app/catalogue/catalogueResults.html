@@ -34,10 +34,18 @@
 
 	<h2 translate>Documents</h2>
 
-	<div ng-if="!vm.error && vm.mappings.length" class="text-muted small">
-		Søket ble utvidet med ett eller flere mappede begreper
-		(<span ng-repeat="mapping in vm.mappings"><span>{{ mapping.to.repr }}</span><span ng-if="!$last">, </span></span>).
-		<!--<a href="">Søk kun etter emneordet</a>.-->
+	<div ng-if="!vm.error && vm.mappings.length" style="margin: .6em 0; border-radius: 4px; padding: 2px 10px">
+		<div ng-if="vm.useMappingExpansion">
+			<span class="glyphicon glyphicon-transfer" aria-hidden="true"></span>
+			Søket ble utvidet med ett eller flere tilknyttede begreper
+			(<span ng-repeat="mapping in vm.mappings"><span>{{ mapping.to.repr }}</span><span ng-if="!$last">, </span></span>).
+			<a href="#" ng-click="vm.setMappingExpansion(false)">Ikke utvid søket</a>.
+		</div>
+		<div ng-if="!vm.useMappingExpansion">
+			<span class="glyphicon glyphicon-transfer" aria-hidden="true"></span>
+			Vil du ha flere treff?
+			<a href="#" ng-click="vm.setMappingExpansion(true)">Prøv kontrollert søkeutvidelse</a>.	
+		</div>
 	</div>
 
 	<div uib-alert ng-if="vm.error" class="alert-danger" compile="vm.error"></div>
@@ -71,7 +79,12 @@
 			</p>-->
 
 			<ul class="list-group">
-				<app-catalogue-result ng-repeat="result in vm.results" record="result" vocab="vm.vocab" index-term="vm.indexTerm"></app-catalogue-result>
+				<app-catalogue-result
+					ng-repeat="result in vm.results"
+					record="result"
+					vocab="vm.vocab"
+					index-term="vm.indexTerm"
+					broad-search="vm.broadSearch"></app-catalogue-result>
 			</ul>
 
 			<p ng-show="vm.start && vm.offset != vm.total_results" translate>

@@ -11,6 +11,7 @@ export const catalogueResultComponent = {
         record: '<',
         vocab: '<',
         indexTerm: '<',
+        broadSearch: '<',
     },
 };
 

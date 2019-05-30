@@ -60,16 +60,21 @@
 		<app-availability record="vm.record"></app-availability>
 
 		<!-- Subjects -->
-	 	<div ng-repeat="v in vm.vocabularies[vm.vocab].show_vocabs">
-			<span ng-repeat="subject in vm.record.subjects[v]">
-				<a ui-sref="subject.search({vocab:v, id: subject.id, uri: null, term: subject.term})"
-				   class="subject-tag {{subject.type}}"
-				   ng-if="!subject.matchesQuery"
-				   analytics-on="click" analytics-event="ClickTag" analytics-category="ControlledTag" analytics-label="{{ subject.term }}"
-				   title="{{ subject.term }} i {{v}}">{{ subject.term }}</a>
-				<span ng-if="subject.matchesQuery" class="subject-tag">{{ subject.term }}</span>
-			</span>
-	 	</div>
+		<div ng-if="!vm.broadSearch">
+			<div ng-repeat="v in vm.vocabularies[vm.vocab].show_vocabs">
+				<span ng-repeat="subject in vm.record.subjects[v]">
+					<a ui-sref="subject.search({vocab:v, id: subject.id, uri: null, term: subject.term})"
+					class="subject-tag {{subject.type}}"
+					ng-if="!subject.matchesQuery"
+					analytics-on="click" analytics-event="ClickTag" analytics-category="ControlledTag" analytics-label="{{ subject.term }}"
+					title="{{ subject.term }} i {{v}}">{{ subject.term }}</a>
+					<span ng-if="subject.matchesQuery" class="subject-tag">{{ subject.term }}</span>
+				</span>
+			</div>
+		</div>
+		<div ng-if="vm.broadSearch">
+			TODO: Show all subjects from any vocabulary
+		</div>
 
 		<div ng-show="vm.record.subjects[vm.vocab]">
 

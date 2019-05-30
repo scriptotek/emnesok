@@ -34,6 +34,7 @@ function CatalogueResultsController(
 
     vm.selectInstitution = selectInstitution;
     vm.selectLibrary = selectLibrary;
+    vm.setMappingExpansion = setMappingExpansion;
 
     vm.institutions = Config.institutions;
     vm.selectedInstitution = null;
@@ -194,7 +195,9 @@ function CatalogueResultsController(
         var mappingRelations = vm.broadSearch ? ['skos:exactMatch', 'skos:closeMatch'] : ['skos:exactMatch'];
         var mappingVocabularies = Object.keys(Config.vocabularies);
 
-        var useMappingExpansion = true; // TODO: Make user configurable
+        var useMappingExpansion = (sessionStorage.getItem('emnesok_mappingExpansion', 'true') == 'true'); 
+        console.log('Use mapping exp?', useMappingExpansion);
+        vm.useMappingExpansion = useMappingExpansion;
 
         let mappings = vm.subject.mappings.filter(
             x => mappingVocabularies.indexOf(x.to.vocabulary) !== -1
@@ -205,6 +208,7 @@ function CatalogueResultsController(
         if (useMappingExpansion) {
             mappings.forEach(mapping => {
                 var vocab = Config.vocabularies[mapping.to.vocabulary];
+                console.log(vocab);
                 let value = vocab.notationSearch ? mapping.to.notation : mapping.to.prefLabel[vocab.defaultLanguage];
                 query.orWhere(vocab.primo_index, 'exact', value);
                 // TODO: Make a repr() method on the model instead
@@ -231,6 +235,11 @@ function CatalogueResultsController(
                 // @TODO Handle error
             }
         );
+    }
+
+    function setMappingExpansion(state) {
+        sessionStorage.setItem('emnesok_mappingExpansion', state);
+        searchFromStart();
     }
 
     function searchFromStart() {
