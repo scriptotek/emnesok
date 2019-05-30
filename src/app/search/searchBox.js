@@ -16,9 +16,33 @@ export const searchBoxComponent = {
 /////
 
 /* @ngInject */
-function SearchBoxController($scope, $state, $stateParams, $timeout, $rootScope, $q, $http, $filter, gettext, gettextCatalog, Config, langService, AuthorityService) {
+function SearchBoxController(
+    $scope,
+    $state,
+    $stateParams,
+    $timeout,
+    $rootScope,
+    $q,
+    $http,
+    $filter,
+    $analytics,
+    gettext,
+    gettextCatalog,
+    Config,
+    langService,
+    AuthorityService
+) {
     /*jshint validthis: true */
     var vm = this;
+
+    vm.institutions = Config.institutions;
+    vm.selectedInstitution = null;
+    vm.selectedLibrary = null;
+    vm.broadSearch = false;
+    vm.hasSelectedSubject = (AuthorityService.currentSubject !== null);
+    vm.selectInstitution = selectInstitution;
+    vm.selectLibrary = selectLibrary;
+    vm.updateControlledSearch = updateControlledSearch;
 
     // vm.searchUrl = Config.skosmos.searchUrl;
     vm.lang = langService.language;
@@ -31,26 +55,42 @@ function SearchBoxController($scope, $state, $stateParams, $timeout, $rootScope,
     vm.searchTruncation = searchTruncation;
     vm.truncate = 0;
     vm.query = '';
-    vm.truncations = [gettext('Starting with'), gettext('Containing'), gettext('Ends with'), gettext('Exact match')];
+    vm.truncations = [
+        gettext('Starting with'),
+        gettext('Containing'),
+        gettext('Ends with'),
+        gettext('Exact match'),
+    ];
     vm.search = search;
     vm.errorMsg = '';
 
     var vocabulary = Config.vocabularies[vm.vocab] || null;
 
-    activate();
+    this.$onInit = function() {
+        console.log('[searchBox] onInit');
 
-    vm.activate = activate;
+        if ($stateParams.library && $stateParams.library.indexOf(':') != -1) {
+            vm.selectedInstitution = $stateParams.library.split(':')[0];
+            vm.selectedLibrary = $stateParams.library.split(':')[1];
+        } else {
+            vm.selectedInstitution = $stateParams.library;
+            vm.selectedLibrary = null;
+        }
 
-    ////////////
+        var bs = gettext('broad search');
+        var ns = gettext('narrow search');
+        vm.broadSearch = ($stateParams.broad === undefined) ? false : ($stateParams.broad == 'true');
+        vm.searchType = vm.broadSearch ? gettextCatalog.getString(bs) : gettextCatalog.getString(ns);
 
-    function activate() {
         if (AuthorityService.currentSubject) {
+            vm.hasSelectedSubject = (AuthorityService.currentSubject !== null);
             let label = AuthorityService.currentSubject.getPrefLabel();
             vm.query = label;
             // In case the autocomplete box already loaded:
             $scope.$broadcast('angucomplete-alt:changeInput', 'searchbox', label);
         }
         AuthorityService.onSubject($scope, function (evt, newSubject) {
+            vm.hasSelectedSubject = (AuthorityService.currentSubject !== null);
             if (!newSubject) {
                 $scope.$broadcast('angucomplete-alt:clearInput', 'searchbox');
             } else {
@@ -65,7 +105,28 @@ function SearchBoxController($scope, $state, $stateParams, $timeout, $rootScope,
                 sv.focus();
             }
         });
+    };
+
+    ////////////
+
+    function selectInstitution(institution) {
+        $analytics.eventTrack('SetInstitution', {category: 'RefineSearch', label: institution});
+        $state.go($state.current.name, {library: institution});
     }
+
+    function selectLibrary(library) {
+        $analytics.eventTrack('SetLibrary', {category: 'RefineSearch', label: library});
+        if (library) {
+            $state.go($state.current.name, {library: vm.selectedInstitution + ':' + library});
+        } else {
+            $state.go($state.current.name, {library: vm.selectedInstitution});
+        }
+    }
+
+    function updateControlledSearch() {
+        $state.go($state.current.name, {broad: vm.broadSearch});
+    }
+
 
     //Temporary solution until angucomplete gets a proper search-on-focus behaviour
     function openSearcMenu() {
@@ -208,6 +269,7 @@ function SearchBoxController($scope, $state, $stateParams, $timeout, $rootScope,
 
     function selectSubject(item) {
         if (item) {
+            vm.hasSelectedSubject = true;
             $state.go('subject.search', {
                 uri: item.originalObject.uri,
                 id: null,

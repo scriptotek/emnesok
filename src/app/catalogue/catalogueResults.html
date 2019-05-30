@@ -1,36 +1,5 @@
 
-<div id="catalogueContainer" style="margin-top:6px">
-
-	 <!-- Single button with keyboard nav -->
-	 <div class="pull-right">
-
-		<div class="btn-group" ng-show="vm.vocab && vm.subject.type != 'Geographic'">
-	        <label class="btn btn-default" ng-model="vm.broadSearch" ng-change="vm.updateControlledSearch()" uib-btn-radio="true" tooltip-append-to-body="true" uib-tooltip="{{'Search all subject vocabularies' | translate}}" translate analytics-on="click" analytics-event="SetBroadSearch" analytics-category="RefineSearch">Broad</label>
-	        <label class="btn btn-default" ng-model="vm.broadSearch" ng-change="vm.updateControlledSearch()" uib-btn-radio="false" tooltip-append-to-body="true" uib-tooltip="{{'Search '+vm.vocab+' only' |translate}}" translate analytics-on="click" analytics-event="SetNarrowSearch" analytics-category="RefineSearch">Narrow</label>
-	    </div>
-
-	    <div class="btn-group" uib-dropdown uib-keyboard-nav>
-	        <button id="simple-btn-keyboard-nav" type="button" class="btn btn-default" uib-dropdown-toggle>
-	            {{ vm.selectedInstitution ? vm.institutions[vm.selectedInstitution].label : 'All libraries' | translate }} <span class="caret"></span>
-	        </button>
-	        <ul uib-dropdown-menu class="dropdown-menu-right" role="menu" aria-labelledby="simple-btn-keyboard-nav">
-	            <li role="menuitem"><a href ng-click="vm.selectInstitution(null)" translate>All libraries</a></li>
-	            <li class="divider"></li>
-	            <li role="menuitem" ng-repeat="(key, val) in vm.institutions"><a href ng-click="vm.selectInstitution(key)">{{ val.label }}</a></li>
-	        </ul>
-	    </div>
-
-	    <div class="btn-group" ng-show="vm.selectedInstitution && vm.institutions[vm.selectedInstitution].libraries" uib-dropdown uib-keyboard-nav tooltip-append-to-body="true" tooltip-placement="left" uib-tooltip="{{ 'Note: Results from a single branch will not include e-books.' | translate }}">
-	        <button id="simple-btn-keyboard-nav2" type="button" class="btn btn-default" uib-dropdown-toggle>
-	            {{ vm.selectedLibrary ? vm.institutions[vm.selectedInstitution].libraries[vm.selectedLibrary].label : 'All branches' | translate }} <span class="caret"></span>
-	        </button>
-	        <ul uib-dropdown-menu class="dropdown-menu-right" role="menu" aria-labelledby="simple-btn-keyboard-nav2">
-	            <li role="menuitem"><a href ng-click="vm.selectLibrary(null)" translate>All branches</a></li>
-	            <li class="divider"></li>
-	            <li role="menuitem" ng-repeat="(key, val) in vm.institutions[vm.selectedInstitution].libraries"><a href ng-click="vm.selectLibrary(key)">{{ val.label }}</a></li>
-	        </ul>
-	    </div>
-	</div>
+<div id="catalogueContainer" style="margin-top:6px; clear:both;">
 
 	<div style="margin-left:70px">
 

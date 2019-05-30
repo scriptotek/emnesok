@@ -22,7 +22,7 @@ function CatalogueResultsController(
     var vm = this;
     var defaultLang = langService.defaultLanguage;
 
-    vm.vocab = '';
+    vm.vocab = $stateParams.vocab;
     vm.start = 0;
     vm.offset = 0;
     vm.busy = true;
@@ -32,20 +32,11 @@ function CatalogueResultsController(
     vm.getMoreRecords = getMoreRecords;
     vm.stringSearch = false;
 
-    vm.selectInstitution = selectInstitution;
-    vm.selectLibrary = selectLibrary;
     vm.setMappingExpansion = setMappingExpansion;
-
-    vm.institutions = Config.institutions;
-    vm.selectedInstitution = null;
-    vm.selectedLibrary = null;
 
     vm.broadSearch = false;
     vm.searchType = '';
     vm.query = null;
-
-    vm.updateControlledSearch = updateControlledSearch;
-
 
     this.$onInit = function() {
         if ($stateParams.library && $stateParams.library.indexOf(':') != -1) {
@@ -63,9 +54,6 @@ function CatalogueResultsController(
 
         if (!vm.subject) {
             vm.busy = false;
-            vm.error = gettextCatalog.getString(
-                gettext('The subject was not found. It might have been deleted.')
-            );
             return;
         }
 
@@ -250,24 +238,6 @@ function CatalogueResultsController(
         vm.offset = 0;
         vm.total_results = -1;
         search();
-    }
-
-    function selectInstitution(institution) {
-        $analytics.eventTrack('SetInstitution', {category: 'RefineSearch', label: institution});
-        $state.go('subject.search', {library: institution});
-    }
-
-    function selectLibrary(library) {
-        $analytics.eventTrack('SetLibrary', {category: 'RefineSearch', label: library});
-        if (library) {
-            $state.go('subject.search', {library: vm.selectedInstitution + ':' + library});
-        } else {
-            $state.go('subject.search', {library: vm.selectedInstitution});
-        }
-    }
-
-    function updateControlledSearch() {
-        $state.go('subject.search', {broad: vm.broadSearch});
     }
 
 }

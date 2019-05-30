@@ -6,7 +6,7 @@
       ng-show="vm.currentSubject"
   ></app-authority-record>
 
-  <div class="panel panel-default hidden-xs" ng-show="vm.history.length > 0" style="margin-top:1.2em;">
+  <div class="panel panel-default hidden-xs" ng-show="vm.currentSubject && vm.history.length > 0" style="margin-top:1.2em;">
     <div class="panel-heading"><h3 class="panel-title" translate>Search history</h3></div>
     <ul class="list-group">
       <li class="list-group-item" ng-repeat="historyItem in vm.history">

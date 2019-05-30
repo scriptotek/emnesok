@@ -1,4 +1,8 @@
 
+<div id="vocabularyInfoContainer" ng-if="!vm.hasSelectedSubject" class="fade-x">
+	<app-vocabulary-info></app-vocabulary-info>
+</div>
+
 <div class="input-group" style="margin-left:80px">
 	<div class="input-group-btn" uib-dropdown uib-keyboard-nav>
 		<button id="simple-btn-keyboard-nav" type="button" class="truncate_button btn btn-default" uib-dropdown-toggle>
@@ -29,9 +33,9 @@
 		text-no-results="{{'No hits :(' | translate}}"
 		text-searching="{{'Looking…' | translate}}"
 	></div>
-
-    <script type="text/ng-template" id="/authoritySearchListTemplate.html">
-    	<div class="angucomplete-holder" ng-class="{'angucomplete-dropdown-visible': showDropdown}">
+</div>
+<script type="text/ng-template" id="/authoritySearchListTemplate.html">
+    <div class="angucomplete-holder" ng-class="{'angucomplete-dropdown-visible': showDropdown}">
     <input id="{{id}}_value" name="{{inputName}}" tabindex="{{fieldTabindex}}" ng-class="{'angucomplete-input-not-empty': notEmpty}" ng-model="searchStr" ng-disabled="disableInput" type="{{inputType}}" placeholder="{{placeholder}}" maxlength="{{maxlength}}" ng-focus="onFocusHandler()" class="{{inputClass}}" ng-focus="resetHideResults()" ng-blur="hideResults($event)" autocapitalize="off" autocorrect="off" autocomplete="off" ng-change="inputChangeHandler(searchStr)"/>
        <div id="{{id}}_dropdown" class="angucomplete-dropdown" ng-show="showDropdown">
          <div class="angucomplete-searching" ng-show="searching" ng-bind="textSearching"></div>
@@ -51,11 +55,48 @@
          </div>
        </div>
     </div>
-    </script>
+</script>
+
+<div>
+	 <!-- Single button with keyboard nav -->
+	 <div class="pull-right">
+
+		<div class="btn-group" ng-show="vm.vocab && vm.subject.type != 'Geographic'">
+	        <label class="btn btn-default" ng-model="vm.broadSearch" ng-change="vm.updateControlledSearch()" uib-btn-radio="true" tooltip-append-to-body="true" uib-tooltip="{{'Search all subject vocabularies' | translate}}" translate analytics-on="click" analytics-event="SetBroadSearch" analytics-category="RefineSearch">Broad</label>
+	        <label class="btn btn-default" ng-model="vm.broadSearch" ng-change="vm.updateControlledSearch()" uib-btn-radio="false" tooltip-append-to-body="true" uib-tooltip="{{'Search '+vm.vocab+' only' |translate}}" translate analytics-on="click" analytics-event="SetNarrowSearch" analytics-category="RefineSearch">Narrow</label>
+	    </div>
+
+	    <div class="btn-group" uib-dropdown uib-keyboard-nav>
+	        <button id="simple-btn-keyboard-nav" type="button" class="btn btn-default" uib-dropdown-toggle>
+	            {{ vm.selectedInstitution ? vm.institutions[vm.selectedInstitution].label : 'All libraries' | translate }} <span class="caret"></span>
+	        </button>
+	        <ul uib-dropdown-menu class="dropdown-menu-right" role="menu" aria-labelledby="simple-btn-keyboard-nav">
+	            <li role="menuitem"><a href ng-click="vm.selectInstitution(null)" translate>All libraries</a></li>
+	            <li class="divider"></li>
+	            <li role="menuitem" ng-repeat="(key, val) in vm.institutions"><a href ng-click="vm.selectInstitution(key)">{{ val.label }}</a></li>
+	        </ul>
+	    </div>
+
+	    <div class="btn-group" ng-show="vm.selectedInstitution && vm.institutions[vm.selectedInstitution].libraries" uib-dropdown uib-keyboard-nav tooltip-append-to-body="true" tooltip-placement="left" uib-tooltip="{{ 'Note: Results from a single branch will not include e-books.' | translate }}">
+	        <button id="simple-btn-keyboard-nav2" type="button" class="btn btn-default" uib-dropdown-toggle>
+	            {{ vm.selectedLibrary ? vm.institutions[vm.selectedInstitution].libraries[vm.selectedLibrary].label : 'All branches' | translate }} <span class="caret"></span>
+	        </button>
+	        <ul uib-dropdown-menu class="dropdown-menu-right" role="menu" aria-labelledby="simple-btn-keyboard-nav2">
+	            <li role="menuitem"><a href ng-click="vm.selectLibrary(null)" translate>All branches</a></li>
+	            <li class="divider"></li>
+	            <li role="menuitem" ng-repeat="(key, val) in vm.institutions[vm.selectedInstitution].libraries"><a href ng-click="vm.selectLibrary(key)">{{ val.label }}</a></li>
+	        </ul>
+	    </div>
+	</div>
 </div>
 
-<uib-alert type="danger" ng-show="vm.errorMsg" style="margin-top: 1em;">
+<uib-alert type="danger" ng-show="vm.errorMsg" style="margin-top: 1em; clear:both;">
 	<span translate>The search went out in error:</span>
 	{{ vm.errorMsg | translate }}
 </uib-alert>
+
+<div ng-if="!vm.hasSelectedSubject" class="fade-x">
+	<app-vocabulary-nav></app-vocabulary-nav>
+</div>
+
 

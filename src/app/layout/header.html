@@ -13,7 +13,7 @@
       <span class="navbar-brand">
         <a ui-sref="home({ lang: vm.lang })" translate>Subject Search</a>
         <span ng-show="vm.vocab">
-        : <a ui-sref="subject.vocab()">{{ vm.vocab.name }}</a>
+        : <a ui-sref="subject.search({ term: null, uri: null })">{{ vm.vocab.name }}</a>
         </span>
       </span>
     </div><!-- /.navbar-header -->

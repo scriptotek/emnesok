@@ -13,7 +13,7 @@ export const headerComponent = {
 };
 
 /* @ngInject */
-function HeaderController($transitions, langService, Config) {
+function HeaderController($transitions, langService, Config, $state) {
     /*jshint validthis: true */
     var vm = this;
 

@@ -19,7 +19,9 @@ export default moduleName;
 function configure($stateProvider, $urlRouterProvider) {
 
     // Configure router
-    $urlRouterProvider.when(/^\/(humord|realfagstermer|tekord|mrtermer)$/, '/$1/');
+    $urlRouterProvider.when(/^\/(humord|realfagstermer|tekord|mrtermer)$/, '/$1/search');
+    $urlRouterProvider.when(/^\/(humord|realfagstermer|tekord|mrtermer)\/$/, '/$1/search');
+
     $urlRouterProvider.otherwise('/');
 
     $stateProvider
@@ -50,16 +52,13 @@ function configure($stateProvider, $urlRouterProvider) {
                 'main': 'appMain',
             },
         })
-        .state('subject.vocab', {
-            url: '/',
-            views: {
-                'info': 'appVocabularyInfo',
-            },
-        })
         .state('subject.search', {
             url: '/search?term&id&uri&broad&library',
             views: {
-                'catalogue': 'appCatalogueResults'
+                'searchBox': 'appSearchBox',
+                'catalogue': 'appCatalogueResults',
+                'concept': 'appAuthorityView',
+                'info': 'appVocabularyInfo',
             },
             resolve: {
                 subject: /* @ngInject */ function (AuthorityService, $stateParams) {
@@ -84,7 +83,7 @@ function run($rootScope, $state, $transitions, AuthorityService, TitleService) {
         var toParams = transition.params('to');
 
         if (!toParams.id && !toParams.term && !toParams.uri) {
-            AuthorityService.clearHistory();
+            AuthorityService.clearCurrentSubject();
         }
     });
 

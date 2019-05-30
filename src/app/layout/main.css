@@ -306,6 +306,32 @@ li.noaccess:before {
  * Animations
  *****************************************/
 
+/* The starting CSS styles for the enter animation */
+.fade-x {
+  overflow: hidden;
+}
+.fade-x.ng-enter {
+  transition:0.3s ease-in-out all;
+  opacity:0;
+  max-height: 0;
+}
+
+/* The finishing CSS styles for the enter animation */
+.fade-x.ng-enter.ng-enter-active {
+  opacity:1;
+  max-height: 200px;
+}
+/* now the element will fade out before it is removed from the DOM */
+.fade-x.ng-leave {
+  transition:0.3s ease-in-out all;
+  opacity:1;
+  max-height: 200px;
+}
+.fade-x.ng-leave.ng-leave-active {
+  opacity:0;
+  max-height: 0;
+}
+
 .slideInUp.ng-hide-add         { animation:0.4s fadeOut ease-out; }
 
 /* when showing the picture */

@@ -1,10 +1,8 @@
 <div class="container-fluid">
 
-    <div ui-view="info"></div>
-
     <div class="row">
         <div id="left" class="col-md-8">
-		    <app-search-box></app-search-box>
+            <div ui-view="searchBox"></div>
         </div>
     </div>
 
@@ -13,7 +11,7 @@
             <div ui-view="catalogue"></div>
         </div>
         <div id="right" class="col-md-4">
-            <app-authority-view></app-authority-view>
+            <div ui-view="concept"></div>
         </div>
     </div>
 </div>
