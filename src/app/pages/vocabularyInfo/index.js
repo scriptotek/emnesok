@@ -35,6 +35,8 @@ function VocabularyInfoController($stateParams, Config, TitleService, AuthorityS
 
     TitleService.set(vocabName);
 
+    AuthorityService.clearCurrentSubject();
+
     AuthorityService.getVocabulary($stateParams.vocab).then(function(vocabulary) {
         forOwn({
             topicCount: 'Topic',

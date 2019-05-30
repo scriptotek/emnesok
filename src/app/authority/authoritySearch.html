@@ -10,7 +10,7 @@
 	</div>
 
 	<div angucomplete-alt
-		id="search"
+		id="searchbox"
 		ng-keypress="($event.which === 13) ? vm.enterKey() : 0"
 		minlength="2"
 		maxlength="50"
@@ -20,6 +20,7 @@
 		focus-in="vm.openSearcMenu()"
 		title-field="prefLabel"
 		description-field="description"
+		initial-value="vm.query"
 		input-class="form-control form-control-small"
 		match-class="highlight"
 		focus-first="true"

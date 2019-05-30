@@ -39,12 +39,28 @@ function AuthoritySearchController($scope, $state, $stateParams, $timeout, $root
 
     activate();
 
+    vm.activate = activate;
+
     ////////////
 
     function activate() {
+        if (AuthorityService.currentSubject) {
+            let prefLabel = AuthorityService.currentSubject.getPrefLabel();
+            vm.query = prefLabel;
+            // In case the autocomplete box already loaded:
+            $scope.$broadcast('angucomplete-alt:changeInput', 'searchbox', prefLabel);
+        }
+        AuthorityService.onSubject($scope, function (evt, newSubject) {
+            if (!newSubject) {
+                $scope.$broadcast('angucomplete-alt:clearInput', 'searchbox');
+            } else {
+                $scope.$broadcast('angucomplete-alt:changeInput', 'searchbox', newSubject.getPrefLabel());
+            }
+        });
+
         angular.element(document).ready(function () {
-            var sv = document.getElementById('search_value');
-            if (sv) {
+            var sv = document.getElementById('searchbox_value');
+            if (sv && !vm.query.length) {
                 sv.focus();
             }
         });
@@ -53,7 +69,7 @@ function AuthoritySearchController($scope, $state, $stateParams, $timeout, $root
     //Temporary solution until angucomplete gets a proper search-on-focus behaviour
     function openSearcMenu() {
 
-        var query = document.getElementById('search_value');
+        var query = document.getElementById('searchbox_value');
 
         angular.element(query).triggerHandler('input');
         angular.element(query).triggerHandler('keyup');

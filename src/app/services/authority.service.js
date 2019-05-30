@@ -154,6 +154,8 @@ function AuthorityService($http, $stateParams, $filter, $q, $rootScope, gettext,
         getVocabulary: getVocabulary,
         exists: exists,
         onSubject: onSubject,
+        currentSubject: null,
+        clearCurrentSubject: clearCurrentSubject,
         searchHistory: [],
         clearSearchHistory: clearSearchHistory
     };
@@ -181,15 +183,25 @@ function AuthorityService($http, $stateParams, $filter, $q, $rootScope, gettext,
         scope.$on('$destroy', handler);
     }
 
-    function notify(subject) {
-        var idx = service.searchHistory.reduce(function(prev, curr, idx) {
-            return (curr.uri == subject.uri) ? idx : prev;
-        }, -1);
+    function clearCurrentSubject() {
+        setCurrentSubject(null);
+    }
 
-        if (idx !== -1) {
-            service.searchHistory.splice(idx, 1);
+    function setCurrentSubject(subject) {
+        service.currentSubject = subject;
+
+        if (subject !== null) {
+
+            var idx = service.searchHistory.reduce(function(prev, curr, idx) {
+                return (curr.uri == subject.uri) ? idx : prev;
+            }, -1);
+
+            if (idx !== -1) {
+                service.searchHistory.splice(idx, 1);
+            }
+            service.searchHistory.push(subject);
         }
-        service.searchHistory.push(subject);
+
         $rootScope.$emit('subject-service-new-subject-event', subject);
     }
 
@@ -322,7 +334,7 @@ function AuthorityService($http, $stateParams, $filter, $q, $rootScope, gettext,
                 //     id: uri.split('/').pop(),
                 //     data: processSubject(uri, response.data),
                 // };
-                notify(subject);
+                setCurrentSubject(subject);
 
                 deferred.resolve(subject);
             }, function(error){
