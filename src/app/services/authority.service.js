@@ -162,7 +162,7 @@ function AuthorityService($http, $stateParams, $filter, $q, $rootScope, gettext,
         currentSubject: null,
         clearCurrentSubject: clearCurrentSubject,
         history: [],
-        clearhistory: clearhistory,
+        clearHistory: clearHistory,
         storeHistory: storeHistory
     };
 
@@ -185,7 +185,7 @@ function AuthorityService($http, $stateParams, $filter, $q, $rootScope, gettext,
         }));
     }
 
-    function clearhistory() {
+    function clearHistory() {
         service.history = [];
     }
 
