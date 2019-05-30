@@ -84,7 +84,7 @@ function run($rootScope, $state, $transitions, AuthorityService, TitleService) {
         var toParams = transition.params('to');
 
         if (!toParams.id && !toParams.term && !toParams.uri) {
-            AuthorityService.clearSearchHistory();
+            AuthorityService.clearHistory();
         }
     });
 

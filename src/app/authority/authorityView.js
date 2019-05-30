@@ -19,16 +19,19 @@ function AuthorityViewController($scope, $state, $stateParams, $timeout, $rootSc
     /*jshint validthis: true */
     var vm = this;
 
-    vm.searchHistory = [];
+    vm.history = [];
+    vm.currentSubject = null;
 
     activate();
 
     /////
 
     function activate() {
-        vm.searchHistory = AuthorityService.searchHistory;
+        vm.history = AuthorityService.history;
+        vm.currentSubject = AuthorityService.currentSubject;
         AuthorityService.onSubject($scope, function () {
-            vm.searchHistory = AuthorityService.searchHistory;
+            vm.history = AuthorityService.history;
+            vm.currentSubject = AuthorityService.currentSubject;
         });
     }
 }

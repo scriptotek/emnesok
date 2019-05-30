@@ -110,7 +110,7 @@ class Subject {
 
         this.vocab = getShortVocabularyCode(get(data, 'inScheme.0.uri'));
 
-        // this.data = data;
+        this.data = data; // Keep a copy
     }
 
     get(key, def = null) {
@@ -156,8 +156,9 @@ function AuthorityService($http, $stateParams, $filter, $q, $rootScope, gettext,
         onSubject: onSubject,
         currentSubject: null,
         clearCurrentSubject: clearCurrentSubject,
-        searchHistory: [],
-        clearSearchHistory: clearSearchHistory
+        history: [],
+        clearhistory: clearhistory,
+        storeHistory: storeHistory
     };
 
     activate();
@@ -172,10 +173,15 @@ function AuthorityService($http, $stateParams, $filter, $q, $rootScope, gettext,
         gettext('GenreForm');
         gettext('KnuteTerm');
         gettext('Topic');
+
+        service.history = JSON.parse(sessionStorage.getItem('emnesok-history', '[]')).map(historyItem => ({
+            time: historyItem.time,
+            subject: new Subject(Config, langService, historyItem.data),
+        }));
     }
 
-    function clearSearchHistory() {
-        service.searchHistory = [];
+    function clearhistory() {
+        service.history = [];
     }
 
     function onSubject(scope, callback) {
@@ -192,17 +198,32 @@ function AuthorityService($http, $stateParams, $filter, $q, $rootScope, gettext,
 
         if (subject !== null) {
 
-            var idx = service.searchHistory.reduce(function(prev, curr, idx) {
-                return (curr.uri == subject.uri) ? idx : prev;
+            let historyItem = {
+                subject: subject,
+                time: new Date(),
+            };
+
+            var idx = service.history.reduce(function(prev, curr, idx) {
+                return (curr.subject.uri == subject.uri) ? idx : prev;
             }, -1);
 
             if (idx !== -1) {
-                service.searchHistory.splice(idx, 1);
+                service.history.splice(idx, 1);
             }
-            service.searchHistory.push(subject);
+            service.history.unshift(historyItem);
         }
 
         $rootScope.$emit('subject-service-new-subject-event', subject);
+
+        service.storeHistory();
+    }
+
+    function storeHistory() {
+        let data = service.history.map(historyItem => ({
+            time: historyItem.time,
+            data: historyItem.subject.data,
+        }));
+        sessionStorage.setItem('emnesok-history', JSON.stringify(data));
     }
 
     // Make value an array if not already

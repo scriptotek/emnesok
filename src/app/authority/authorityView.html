@@ -1,27 +1,17 @@
 
 <div style="margin-top:42px;">
-  
+
   <app-authority-record
-      data="vm.searchHistory[vm.searchHistory.length - 1]"
-      ng-show="vm.searchHistory.length > 0"
+      data="vm.currentSubject"
+      ng-show="vm.currentSubject"
   ></app-authority-record>
-  <!--
-      <div class="subject panel panel-success" ng-show="vm.searchHistory.length > 0">
-    <div class="panel-heading"><h3 class="panel-title" translate>Active subject</h3></div>
-    <ul class="list-group">
-      <li class="list-group-item">
 
-      </li>
-    </ul>
-  </div>
-  -->
-
-  <div class="panel panel-default hidden-xs" ng-show="vm.searchHistory.length > 1">
+  <div class="panel panel-default hidden-xs" ng-show="vm.history.length > 0" style="margin-top:1.2em;">
     <div class="panel-heading"><h3 class="panel-title" translate>Search history</h3></div>
     <ul class="list-group">
-      <li class="list-group-item" ng-repeat="subject in vm.searchHistory.slice(0, vm.searchHistory.length-1).reverse()">
-        <a ui-sref="subject.search({ id: null, uri: subject.uri, term: null })">
-        {{ subject.prefLabel[vm.lang] ? subject.prefLabel[vm.lang] : subject.prefLabel[vm.defaultLang] }}
+      <li class="list-group-item" ng-repeat="historyItem in vm.history">
+        <a ui-sref="subject.search({ id: null, uri: historyItem.subject.uri, term: null })">
+        {{ historyItem.subject.getPrefLabel() }}
         </a>
       </li>
     </ul>
