@@ -2,6 +2,7 @@ import angular from 'angular';
 import * as log from 'loglevel';
 import appBootstrap from './bootstrap';
 import authorityModule from './authority';
+import searchModule from './search';
 import catalogueModule from './catalogue';
 
 // CSS
@@ -15,5 +16,6 @@ log.enableAll();
 angular.module('app', [
     appBootstrap,
     authorityModule,
+    searchModule,
     catalogueModule,
 ]);

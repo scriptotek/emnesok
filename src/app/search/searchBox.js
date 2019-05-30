@@ -1,12 +1,12 @@
 import angular from 'angular';
 import {uniqBy} from 'lodash/array';
-import template from './authoritySearch.html';
+import template from './searchBox.html';
 
-export const authoritySearchComponentName = 'appAuthoritySearch';
+export const searchBoxComponentName = 'appSearchBox';
 
-export const authoritySearchComponent = {
+export const searchBoxComponent = {
     template,
-    controller: AuthoritySearchController,
+    controller: SearchBoxController,
     controllerAs: 'vm',
     bindings: {
         'data': '<',
@@ -16,7 +16,7 @@ export const authoritySearchComponent = {
 /////
 
 /* @ngInject */
-function AuthoritySearchController($scope, $state, $stateParams, $timeout, $rootScope, $q, $http, $filter, gettext, gettextCatalog, Config, langService, AuthorityService) {
+function SearchBoxController($scope, $state, $stateParams, $timeout, $rootScope, $q, $http, $filter, gettext, gettextCatalog, Config, langService, AuthorityService) {
     /*jshint validthis: true */
     var vm = this;
 
