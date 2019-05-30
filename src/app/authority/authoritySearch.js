@@ -129,15 +129,17 @@ function AuthoritySearchController($scope, $state, $stateParams, $timeout, $root
             return x.uri;
         });
 
-        // Ignore results without prefLabel
+        // Ignore results without notation nor prefLabel
         results = results.filter(function (result) {
-            return result.prefLabel;
+            return result.notation || result.prefLabel;
         });
 
         results.forEach(function (result) {
-            if (vocabulary.notationSearch) {
-                result.prefLabel = result.notation + ' ' + result.prefLabel;
-            }
+            let label = [];
+            if (vocabulary.notationSearch && result.notation) label.push(result.notation);
+            if (result.prefLabel) label.push(result.prefLabel);
+            result.prefLabel = label.join(' ');
+
             if (!matchResult(result.prefLabel, query)) {
                 // If we don't have a match on prefLabel in the current language,
                 // we should show matchedPrefLabel or altLabel
