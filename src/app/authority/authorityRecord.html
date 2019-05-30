@@ -4,6 +4,7 @@
     <div style="padding: 1em;">
         <div style="font-size: 110%; margin-bottom: .4em; font-weight: bold;">
             {{ vm.subject.notation }} {{ vm.subject.getPrefLabel() }}
+            <span style="font-weight: normal;" ng-if="vm.subject.type != 'Topic'">({{ vm.subject.type | translate }})</span>
             <!--
                 <span ng-show="vm.subject.elementSymbol"> ({{vm.subject.elementSymbol}}) <img src="./assets/element.png" title="{{'Chemical element' | translate}}"></span>
             -->
