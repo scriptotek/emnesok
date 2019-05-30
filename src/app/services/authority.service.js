@@ -99,16 +99,14 @@ class Subject {
         this.wikidata = wikidata.length && wikidata[0] || null;
         this['mappings'] = this['mappings'].filter(x => x.to.vocabulary !== undefined);
 
-        function getShortVocabularyCode(uri) {
-            var shortCodes = Object.keys(Config.vocabularies);
-            for (var i = 0; i < shortCodes.length; i++) {
-                if (Config.vocabularies[shortCodes[i]].scheme == uri) {
-                    return shortCodes[i];
-                }
+        // Find vocabulary
+        let schemeUri = get(data, 'inScheme.0.uri');
+        for (let shortCode in Config.vocabularies) {
+            if (Config.vocabularies[shortCode].scheme === schemeUri) {
+                this.vocab = shortCode;
+                this.vocabulary = Config.vocabularies[shortCode];
             }
         }
-
-        this.vocab = getShortVocabularyCode(get(data, 'inScheme.0.uri'));
 
         this.data = data; // Keep a copy
     }
@@ -120,12 +118,19 @@ class Subject {
     getPrefLabel() {
         let lang = this.langService.language;
         let keys = Object.keys(this.prefLabel);
+        let label = '';
         if (keys.indexOf(lang) !== -1) {
-            return get(this.prefLabel, this.langService.language);
+            label = get(this.prefLabel, this.langService.language);
         } else {
             // Fallback
-            return get(this.prefLabel, keys[0]);
+            label = get(this.prefLabel, keys[0]);
         }
+        if (this.vocabulary && this.vocabulary.notationSearch) {
+            console.log('ADD NOT')
+            label = `${this.notation} ${label}`;
+        }
+
+        return label;
     }
 
     feedbackUri() {
@@ -174,7 +179,7 @@ function AuthorityService($http, $stateParams, $filter, $q, $rootScope, gettext,
         gettext('KnuteTerm');
         gettext('Topic');
 
-        service.history = JSON.parse(sessionStorage.getItem('emnesok-history', '[]')).map(historyItem => ({
+        service.history = JSON.parse(sessionStorage.getItem('emnesok-history') || '[]').map(historyItem => ({
             time: historyItem.time,
             subject: new Subject(Config, langService, historyItem.data),
         }));

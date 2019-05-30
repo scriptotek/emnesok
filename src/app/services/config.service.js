@@ -102,7 +102,7 @@ function ConfigService() {
                 primo_index: 'lsr19',
             },
             ddc: {
-                name: 'DDC',
+                name: 'Norsk WebDewey',
                 languages: ['nb'],
                 defaultLanguage: 'nb',
                 scheme: 'http://dewey.info/scheme/edition/e23/',

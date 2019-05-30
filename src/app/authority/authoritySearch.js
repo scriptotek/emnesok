@@ -45,16 +45,17 @@ function AuthoritySearchController($scope, $state, $stateParams, $timeout, $root
 
     function activate() {
         if (AuthorityService.currentSubject) {
-            let prefLabel = AuthorityService.currentSubject.getPrefLabel();
-            vm.query = prefLabel;
+            let label = AuthorityService.currentSubject.getPrefLabel();
+            vm.query = label;
             // In case the autocomplete box already loaded:
-            $scope.$broadcast('angucomplete-alt:changeInput', 'searchbox', prefLabel);
+            $scope.$broadcast('angucomplete-alt:changeInput', 'searchbox', label);
         }
         AuthorityService.onSubject($scope, function (evt, newSubject) {
             if (!newSubject) {
                 $scope.$broadcast('angucomplete-alt:clearInput', 'searchbox');
             } else {
-                $scope.$broadcast('angucomplete-alt:changeInput', 'searchbox', newSubject.getPrefLabel());
+                let label = AuthorityService.currentSubject.getPrefLabel();
+                $scope.$broadcast('angucomplete-alt:changeInput', 'searchbox', label);
             }
         });
 

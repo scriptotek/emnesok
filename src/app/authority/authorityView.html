@@ -10,9 +10,8 @@
     <div class="panel-heading"><h3 class="panel-title" translate>Search history</h3></div>
     <ul class="list-group">
       <li class="list-group-item" ng-repeat="historyItem in vm.history">
-        <a ui-sref="subject.search({ id: null, uri: historyItem.subject.uri, term: null })">
-        {{ historyItem.subject.getPrefLabel() }}
-        </a>
+        <a ui-sref="subject.search({ id: null, uri: historyItem.subject.uri, term: null })">{{ historyItem.subject.getPrefLabel() }}</a>
+        <span class="text-muted">i {{ historyItem.subject.vocabulary.name }}</span>
       </li>
     </ul>
   </div>
