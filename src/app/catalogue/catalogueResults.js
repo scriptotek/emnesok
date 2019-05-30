@@ -195,7 +195,7 @@ function CatalogueResultsController(
         var mappingRelations = vm.broadSearch ? ['skos:exactMatch', 'skos:closeMatch'] : ['skos:exactMatch'];
         var mappingVocabularies = Object.keys(Config.vocabularies);
 
-        var useMappingExpansion = (sessionStorage.getItem('emnesok_mappingExpansion', 'true') == 'true'); 
+        var useMappingExpansion = (sessionStorage.getItem('emnesok_mappingExpansion', 'false') == 'true'); 
         console.log('Use mapping exp?', useMappingExpansion);
         vm.useMappingExpansion = useMappingExpansion;
 
