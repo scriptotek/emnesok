@@ -63,8 +63,16 @@ function ConfigService() {
             },
         },
         vocabularies: {
+            findByUri: function(uri) {
+                for (const [code, vocab] of Object.entries(factory.vocabularies)) {
+                    if (vocab.scheme === uri) {
+                        return vocab;
+                    }
+                }
+            },
             realfagstermer: {
                 name: 'Realfagstermer',
+                code: 'realfagstermer',
                 languages: ['nb', 'nn', 'en'],
                 defaultLanguage: 'nb',
                 scheme: 'http://data.ub.uio.no/realfagstermer/',
@@ -75,6 +83,7 @@ function ConfigService() {
             },
             humord: {
                 name: 'Humord',
+                code: 'humord',
                 languages: ['nb'],
                 defaultLanguage: 'nb',
                 scheme: 'http://data.ub.uio.no/humord/',
@@ -84,6 +93,7 @@ function ConfigService() {
             },
             tekord: {
                 name: 'Tekord',
+                code: 'tekord',
                 languages: ['nb'],
                 defaultLanguage: 'nb',
                 scheme: 'http://data.ub.uio.no/tekord/',
@@ -94,6 +104,7 @@ function ConfigService() {
             },
             mrtermer: {
                 name: 'Human Rights Terms',
+                code: 'mrtermer',
                 languages: ['en'],
                 defaultLanguage: 'en',
                 scheme: 'http://data.ub.uio.no/mrtermer/',
@@ -103,6 +114,7 @@ function ConfigService() {
             },
             ddc: {
                 name: 'Norsk WebDewey',
+                code: 'ddc',
                 languages: ['nb'],
                 defaultLanguage: 'nb',
                 scheme: 'http://dewey.info/scheme/edition/e23/',

@@ -56,7 +56,7 @@ class Subject {
             { pattern: 'http://data.ub.uio.no/humord/', name: 'humord', label: 'Humord'},
             { pattern: 'http://data.ub.uio.no/realfagstermer/', name: 'realfagstermer', label: 'Realfagstermer'},
             { pattern: 'http://data.ub.uio.no/tekord/', name: 'tekord', label: 'Tekord'},
-            { pattern: 'http://dewey.info/', name: 'ddc', label: 'DDC23/NO'},
+            { pattern: 'http://dewey.info/', name: 'ddc', label: 'Norsk WebDewey'},
         ];
 
         this['mappings'] = (get(data, 'mappings') || []).map((m) => {
@@ -101,12 +101,8 @@ class Subject {
 
         // Find vocabulary
         let schemeUri = get(data, 'inScheme.0.uri');
-        for (let shortCode in Config.vocabularies) {
-            if (Config.vocabularies[shortCode].scheme === schemeUri) {
-                this.vocab = shortCode;
-                this.vocabulary = Config.vocabularies[shortCode];
-            }
-        }
+        this.vocabulary = Config.vocabularies.findByUri(schemeUri)
+        this.vocab = this.vocabulary.code; // for backwards compat
 
         this.data = data; // Keep a copy
     }
@@ -126,7 +122,6 @@ class Subject {
             label = get(this.prefLabel, keys[0]);
         }
         if (this.vocabulary && this.vocabulary.notationSearch) {
-            console.log('ADD NOT')
             label = `${this.notation} ${label}`;
         }
 
