@@ -258,6 +258,10 @@ msgstr ""
 msgid "Subject Search"
 msgstr ""
 
+#: src/app/pages/home.html:3
+msgid "Subject search"
+msgstr ""
+
 #: src/app/pages/vocabularyInfo/tekord.html:4
 msgid "Subject search for the technical and engineering literature of NTNU is provided by Tekord. Search is only available in Norwegian Bokmål, but terms are mapped to UDC, providing possibilities for multilingual search in the future."
 msgstr ""
