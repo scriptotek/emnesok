@@ -202,6 +202,7 @@ function CatalogueResultsController(
         let mappings = vm.subject.mappings.filter(
             x => mappingVocabularies.indexOf(x.to.vocabulary) !== -1
             && mappingRelations.indexOf(x.type) !== -1
+            && get(x, 'to.notation', '').indexOf('--') === -1  // Remove table numbers
         );
         vm.mappings = mappings;
 
