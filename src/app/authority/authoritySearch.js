@@ -36,6 +36,8 @@ function AuthoritySearchController($scope, $state, $stateParams, $timeout, $root
     vm.errorMsg = '';
     vm.searchHistory = [];
 
+    var vocabulary = Config.vocabularies[vm.vocab] || null;
+
     activate();
 
     ////////////
@@ -86,7 +88,7 @@ function AuthoritySearchController($scope, $state, $stateParams, $timeout, $root
         }
 
         return {
-            type: 'skos:Concept', // to avoid skos:Collection
+            type: (vocabulary.concept_types || ['skos:Concept']).join(' '),  // to avoid skos:Collection and complex concepts
             query: query,
             labellang: vm.lang,
             vocab: vm.vocab,
