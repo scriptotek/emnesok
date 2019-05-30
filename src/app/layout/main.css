@@ -79,6 +79,25 @@ a.subject-tag:active {
 }
 
 /*****************************************
+ * Landing page
+ *****************************************/
+
+.landing_page {
+  max-width:800px;
+  padding: 10px;
+  margin-left:80px;
+}
+.landing_page ul {
+  list-style-type: none;
+    padding-left:.4em;
+}
+.landing_page li {
+  padding: 3px 0;
+    margin-left:0;
+
+}
+
+/*****************************************
  * Catalogue view
  *****************************************/
 

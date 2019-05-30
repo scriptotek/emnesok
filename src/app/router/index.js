@@ -53,7 +53,7 @@ function configure($stateProvider, $urlRouterProvider) {
         .state('subject.vocab', {
             url: '/',
             views: {
-                'catalogue': 'appVocabularyInfo',
+                'info': 'appVocabularyInfo',
             },
         })
         .state('subject.search', {

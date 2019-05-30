@@ -1,37 +1,42 @@
-<div style="max-width:800px; padding: 10px; margin-left:auto;margin-right:auto;">
+<div class="landing_page">
+
+	<h2>Subject search</h2>
 
 	<p translate>
-		Find books and other material about a specific topic in the collections of Norwegian academic libraries. Start by choosing a vocabulary from the list below. A vocabulary is a controlled set of topics. Searching all vocabularies at the same time isn't yet supported, but definitely something we would like to add support for in the future.
-	</p>
-		<!--You can also try to search in <a ui-sref="subject.vocab({vocab:'all'})">all of the vocabularies at the same time</a>,
-		but this is currently not very user friendly as overlapping concepts from different vocabularies
-		do not cluster, but rather shows up as duplicates.-->
-	<p translate>
-		Once in, you can toggle between <em>broad</em> and <em>narrow</em> search. With <em>narrow</em> search, you will only get highly relevant results carefully indexed by librarians and subject specialists. By switching to <em>broad</em> search, you will get more results, but without the same level of precision.
+		I would like to find books about:
 	</p>
 
-	<h3>» <a ui-sref="subject.vocab({vocab:'humord', lang: vm.lang})" translate>Humanities and social sciences (Humord)</a></h3>
-	<p translate>
-        The university libraries of Oslo, Bergen, Trondheim and Tromsø collaborate on the Humord vocabulary to provide multilingual (Norwegian Bokmål and English) subject search to their humanities and social science collections.
-	</p>
+	<ul>
+		<li>
+			<a ui-sref="subject.vocab({vocab:'humord', lang: vm.lang})">
+				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+				{{ 'Humanities and social sciences (Humord)' | translate }}
+			</a>
+		</li>
+		<li>
+			<a ui-sref="subject.vocab({vocab:'realfagstermer', lang: vm.lang})">
+				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+				{{ 'Science (Realfagstermer)' | translate }}
+			</a>
+		</li>
+		<li>
+			<a ui-sref="subject.vocab({vocab:'tekord', lang: vm.lang})">
+				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+				{{ 'Technology and engineering (Tekord)' | translate }}
+			</a>
+		</li>
+		<li>
+			<a ui-sref="subject.vocab({vocab:'mrtermer', lang: vm.lang})">
+				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+				{{ 'Human rights (Human Rights terms)' | translate }}
+			</a>
+		</li>
+		<li>
+			<a href="https://app.uio.no/ub/ujur/l-skjema/">
+				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+				{{ 'Law (L scheme)' | translate }}
+			</a>
+		</li>
+	</ul>
 
-	<h3>» <a ui-sref="subject.vocab({vocab: 'realfagstermer', lang: vm.lang})" translate>Science, technology, engineering and mathematics (Science Terms)</a></h3>
-	<p translate>
-       Search the science, technology and mathematics collections of University of Oslo and Bergen using Norwegian Bokmål, Nynorsk, English or the scientific names of species.
-	</p>
-
-	<h3>» <a ui-sref="subject.vocab({vocab:'tekord', lang: vm.lang})" translate>Technology and engineering (Tekord)</a></h3>
-	<p translate>
-		Subject search for the technical and engineering literature of NTNU is provided by Tekord. Search is only available in Norwegian Bokmål, but terms are mapped to UDC, providing possibilities for multilingual search in the future.
-	</p>
-
-	<h3>» <a ui-sref="subject.vocab({vocab:'mrtermer', lang: vm.lang})" translate>Human rights</a></h3>
-	<p translate>
-		The University of Oslo Library has a small vocabulary to search its human rights collections. This vocabulary is only available in English.
-	</p>
-
-	<h3>» <a href="https://app.uio.no/ub/ujur/l-skjema/" translate>Law (L scheme)</a></h3>
-	<p translate>
-		The collections of the University of Oslo Law Library can be searched and navigated using a special classification scheme.
-	</p>
 </div>

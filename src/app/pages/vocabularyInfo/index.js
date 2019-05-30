@@ -32,22 +32,6 @@ function VocabularyInfoController($stateParams, Config, TitleService, AuthorityS
     /*jshint validthis: true */
     var vm = this;
     var vocabName = Config.vocabularies[$stateParams.vocab].name;
-
     TitleService.set(vocabName);
-
     AuthorityService.clearCurrentSubject();
-
-    AuthorityService.getVocabulary($stateParams.vocab).then(function(vocabulary) {
-        forOwn({
-            topicCount: 'Topic',
-            genreCount: 'GenreForm',
-            placeCount: 'Place',
-            timeCount: 'Time',
-            compoundConceptCount: 'CompoundConcept',
-            virtualCompoundConceptCount: 'VirtualCompoundConcept'
-        }, function(val, key) {
-            vm[key] = result(find(vocabulary.subTypes, { 'type': 'http://data.ub.uio.no/onto#' + val }), 'count');
-        });
-    });
-
 }
