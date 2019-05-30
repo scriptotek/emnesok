@@ -123,11 +123,10 @@ function AuthoritySearchController($scope, $state, $stateParams, $timeout, $root
         });
 
         results.forEach(function (result) {
-            if (matchResult(result.prefLabel, query)) {
-                // OK
-            } else if (matchResult(result.notation, query)) {
+            if (vocabulary.notationSearch) {
                 result.prefLabel = result.notation + ' ' + result.prefLabel;
-            } else {
+            }
+            if (!matchResult(result.prefLabel, query)) {
                 // If we don't have a match on prefLabel in the current language,
                 // we should show matchedPrefLabel or altLabel
                 if (result.matchedPrefLabel) {
