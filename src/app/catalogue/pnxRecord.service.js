@@ -25,12 +25,10 @@ export const pnxRecordService = /* @ngInject */ function(
         let vid = institution.vid || institution.id;
 
         this.id = get(data, 'control.recordid.0');
+        this.group_id = get(data, 'facets.frbrgroupid.0');
         this.source = get(data, 'control.sourcesystem.0');
         this.number_of_editions = parseInt(get(data, 'display.version', 1));
         this.type = (get(data, 'facets.frbrtype') != '6' && this.number_of_editions != 1) ? 'group' : 'record';
-        this.links = {
-            primo: `https://bibsys-almaprimo.hosted.exlibrisgroup.com/primo-explore/fulldisplay?vid=${vid}&docid=${this.id}`,
-        };
         // this.is_group = this.type == 'group';
 
         this.title = get(data, 'display.title.0');
@@ -121,6 +119,16 @@ export const pnxRecordService = /* @ngInject */ function(
         } else {
             this.thumbnail = 'https://ub-lsm.uio.no/primo/records/' + encodeURIComponent(this.id) + '/cover';
         }
+
+        // Add links
+        this.links = {};
+        if (this.type == 'group') {
+            this.links.primo = `https://bibsys-almaprimo.hosted.exlibrisgroup.com/primo-explore/search?vid=${vid}&query=any,contains,${encodeURIComponent(this.title)}&facet=frbrgroupid,include,${this.group_id}`;
+                             // https://bibsys-almaprimo.hosted.exlibrisgroup.com/primo-explore/search?query=any,contains,whatever&vid=UIO&facet=frbrgroupid,include,209044763
+        } else {
+            this.links.primo = `https://bibsys-almaprimo.hosted.exlibrisgroup.com/primo-explore/fulldisplay?vid=${vid}&docid=${this.id}`;
+        }
+
 
         console.log(this);
     }

@@ -38,7 +38,12 @@
 		</div>
 
 		<div ng-show="vm.record.type == 'group' && !vm.recordExpanded">
-			<a href="#" ng-click="vm.expandGroup()" translate>{{vm.record.number_of_editions}} editions</a>
+
+			<!-- TODO: Make ng-click="vm.expandGroup()" work again, but that requires an update on LSM too -->
+			<a href="#"
+				ng-href="{{ vm.record.links.primo }}"
+				target="external"
+				translate>{{vm.record.number_of_editions}} editions</a>
 			<span ng-show="busy"><span translate>Fetching editions…</span></span>
 		</div>
 
