@@ -9,23 +9,50 @@
 		</ul>
 	</div>
 
-	<div id="search" angucomplete-alt ng-keypress="($event.which === 13)?vm.enterKey():0" placeholder="{{'Enter a subject' | translate}}" maxlength="50"
+	<div angucomplete-alt
+		id="search"
+		ng-keypress="($event.which === 13) ? vm.enterKey() : 0"
+		minlength="2"
+		maxlength="50"
 		pause="400"
 		selected-object="vm.selectSubject"
 		remote-api-handler="vm.search"
 		focus-in="vm.openSearcMenu()"
 		title-field="prefLabel"
 		description-field="description"
-		minlength="2"
 		input-class="form-control form-control-small"
 		match-class="highlight"
 		clear-selected="true"
-		image-field="searchListIcon"
 		focus-first="true"
-
+		template-url="/authoritySearchListTemplate.html"
+		placeholder="{{'Enter a subject' | translate}}"
 		text-no-results="{{'No hits :(' | translate}}"
 		text-searching="{{'Looking…' | translate}}"
-	></div><!-- template-url="./authoritySearchListTemplate.html"-->
+	></div>
+
+    <script type="text/ng-template" id="/authoritySearchListTemplate.html">
+    	<div class="angucomplete-holder" ng-class="{'angucomplete-dropdown-visible': showDropdown}">
+    <input id="{{id}}_value" name="{{inputName}}" tabindex="{{fieldTabindex}}" ng-class="{'angucomplete-input-not-empty': notEmpty}" ng-model="searchStr" ng-disabled="disableInput" type="{{inputType}}" placeholder="{{placeholder}}" maxlength="{{maxlength}}" ng-focus="onFocusHandler()" class="{{inputClass}}" ng-focus="resetHideResults()" ng-blur="hideResults($event)" autocapitalize="off" autocorrect="off" autocomplete="off" ng-change="inputChangeHandler(searchStr)"/>
+       <div id="{{id}}_dropdown" class="angucomplete-dropdown" ng-show="showDropdown">
+         <div class="angucomplete-searching" ng-show="searching" ng-bind="textSearching"></div>
+         <div class="angucomplete-searching" ng-show="!searching && (!results || results.length == 0)" ng-bind="textNoResults"></div>
+         <div class="angucomplete-row" ng-repeat="result in results" ng-click="selectResult(result)" ng-mouseenter="hoverRow($index)" ng-class="{'angucomplete-selected-row': $index == currentIndex}">
+           <div ng-if="imageField" class="angucomplete-image-holder">
+             <img ng-if="result.image && result.image != ''" ng-src="{{result.image}}" class="angucomplete-image"/>
+             <div ng-if="!result.image && result.image != ''" class="angucomplete-image-default"></div>
+           </div>
+
+           <div class="angucomplete-title" ng-if="matchClass" ng-bind-html="result.title"></div>
+
+		   <span ng-bind-html="result.originalObject.searchListIcon" class="angucomplete-description"></span>
+
+           <div ng-if="matchClass && result.description && result.description != ''" class="angucomplete-description" ng-bind-html="result.description"></div>
+
+         </div>
+       </div>
+    </div>
+    </script>
+
 
 </div>
 

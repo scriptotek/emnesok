@@ -145,7 +145,7 @@ function AuthoritySearchController($scope, $state, $stateParams, $timeout, $root
 
     function getSearchListIcon(result) {
         // Add Geographics/Temporal/GenreForm to list
-        result.type.forEach(function (resultType) {
+        for (let resultType of result.type) {
             resultType = resultType.split('#').pop();
 
             var icons = {
@@ -157,7 +157,7 @@ function AuthoritySearchController($scope, $state, $stateParams, $timeout, $root
             if (icons[resultType]) {
                 return '<span><i class="glyphicon ' + icons[resultType] + '"></i><em> ' + gettextCatalog.getString(resultType) + '</em></span>';
             }
-        });
+        }
         return '';
     }
 
