@@ -22,7 +22,7 @@ export const queryBuilderService = /* @ngInject */ function(
         let indices = {
             'Topic': this.broadSearch ? 'sub' : vocab.primo_index,
             'Geographic': 'lsr17',  // 'facet_local17',
-            'GenreForm': 'facet_genre',
+            'GenreForm': 'lsr46',
         };
 
         // If vocabulary is a classification scheme, search using the notation, not the class heading
