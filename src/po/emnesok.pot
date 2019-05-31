@@ -8,20 +8,16 @@ msgstr ""
 msgid "(no access)"
 msgstr ""
 
-#: src/app/catalogue/catalogueResults.html:97
-msgid "<em>Found {{ vm.results.length }} documents about this topic using {{vm.searchType}}.</em>"
-msgstr ""
-
 #: src/app/layout/header.html:24
 #: src/app/pages/about.html:2
 msgid "About"
 msgstr ""
 
-#: src/app/catalogue/catalogueResults.html:28
+#: src/app/search/searchBox.html:85
 msgid "All branches"
 msgstr ""
 
-#: src/app/catalogue/catalogueResults.html:17
+#: src/app/search/searchBox.html:74
 msgid "All libraries"
 msgstr ""
 
@@ -37,7 +33,7 @@ msgstr ""
 msgid "As an experiment we've disabled all GA cookies. While we need some statistics on visits and usage, we believe that tracking <em>users</em> is not really needed for this tool. Users tracking also has a lot of flaws."
 msgstr ""
 
-#: src/app/catalogue/catalogueResults.html:8
+#: src/app/search/searchBox.html:65
 msgid "Broad"
 msgstr ""
 
@@ -49,7 +45,7 @@ msgstr ""
 msgid "Chemical element"
 msgstr ""
 
-#: src/app/authority/authoritySearch.js:34
+#: src/app/search/searchBox.js:60
 msgid "Containing"
 msgstr ""
 
@@ -62,19 +58,19 @@ msgstr ""
 msgid "E-book"
 msgstr ""
 
-#: src/app/authority/authoritySearch.js:34
+#: src/app/search/searchBox.js:61
 msgid "Ends with"
 msgstr ""
 
-#: src/app/authority/authoritySearch.html:28
+#: src/app/search/searchBox.html:32
 msgid "Enter a subject"
 msgstr ""
 
-#: src/app/authority/authoritySearch.js:34
+#: src/app/search/searchBox.js:62
 msgid "Exact match"
 msgstr ""
 
-#: src/app/catalogue/catalogueResults.html:110
+#: src/app/catalogue/catalogueResults.html:79
 msgid "Expand to broad search"
 msgstr ""
 
@@ -92,6 +88,14 @@ msgstr ""
 
 #: src/app/pages/about.html:10
 msgid "For information about the subject vocabularies, see the <a ui-sref=\"home({lang: vm.lang})\">start page</a>."
+msgstr ""
+
+#: src/app/catalogue/catalogueResults.html:67
+msgid "Found {{ vm.results.length }} documents about this topic using {{vm.searchType}}."
+msgstr ""
+
+#: src/app/authority/wikidata.html:40
+msgid "GBIF:"
 msgstr ""
 
 #: src/app/catalogue/catalogueResult.html:97
@@ -116,7 +120,11 @@ msgstr ""
 msgid "I would like to find books about:"
 msgstr ""
 
-#: src/app/catalogue/catalogueResults.html:109
+#: src/app/authority/wikidata.html:35
+msgid "ITIS TSN:"
+msgstr ""
+
+#: src/app/catalogue/catalogueResults.html:78
 msgid "Interested in more results?"
 msgstr ""
 
@@ -134,15 +142,15 @@ msgstr ""
 msgid "Learn more about the vocabulary"
 msgstr ""
 
-#: src/app/catalogue/catalogueResults.html:103
+#: src/app/catalogue/catalogueResults.html:72
 msgid "Loaded {{ vm.results.length }} records so far, about {{ vm.total_results - vm.offset }} left, hold on…"
 msgstr ""
 
-#: src/app/authority/authoritySearch.html:30
+#: src/app/search/searchBox.html:34
 msgid "Looking…"
 msgstr ""
 
-#: src/app/catalogue/catalogueResults.html:9
+#: src/app/search/searchBox.html:66
 msgid "Narrow"
 msgstr ""
 
@@ -150,23 +158,23 @@ msgstr ""
 msgid "Narrower:"
 msgstr ""
 
-#: src/app/pages/vocabularyInfo/humord.html:8
+#: src/app/pages/vocabularyNav/humord_nav.html:2
 msgid "Navigate the vocabulary"
 msgstr ""
 
-#: src/app/authority/authoritySearch.html:29
+#: src/app/search/searchBox.html:33
 msgid "No hits :("
 msgstr ""
 
-#: src/app/authority/authoritySearch.js:199
+#: src/app/search/searchBox.js:260
 msgid "No network connection"
 msgstr ""
 
-#: src/app/catalogue/catalogueResults.html:23
+#: src/app/search/searchBox.html:80
 msgid "Note: Results from a single branch will not include e-books."
 msgstr ""
 
-#: src/app/catalogue/catalogueResults.html:56
+#: src/app/catalogue/catalogueResults.html:25
 msgid "Ouch, not a single document was found."
 msgstr ""
 
@@ -197,19 +205,27 @@ msgstr ""
 msgid "Read more in {{external.name}}"
 msgstr ""
 
+#: src/app/authority/authorityRecord.html:83
+msgid "Related concepts in other vocabularies:"
+msgstr ""
+
 #: src/app/pages/home.html:19
 msgid "Science (Realfagstermer)"
 msgstr ""
 
-#: src/app/catalogue/catalogueResults.html:9
+#: src/app/authority/wikidata.html:30
+msgid "Scientific name:"
+msgstr ""
+
+#: src/app/search/searchBox.html:66
 msgid "Search '+vm.vocab+' only"
 msgstr ""
 
-#: src/app/catalogue/catalogueResults.html:8
+#: src/app/search/searchBox.html:65
 msgid "Search all subject vocabularies"
 msgstr ""
 
-#: src/app/authority/wikidata.html:56
+#: src/app/authority/wikidata.html:48
 msgid "Search for «{{ vm.subject.getPrefLabel() }}» in Wikipedia"
 msgstr ""
 
@@ -219,10 +235,6 @@ msgstr ""
 
 #: src/app/authority/authorityRecord.html:68
 msgid "Search in {{external.name}}"
-msgstr ""
-
-#: src/app/pages/vocabularyInfo/humord.html:99
-msgid "Search it"
 msgstr ""
 
 #: src/app/pages/vocabularyInfo/realfagstermer.html:4
@@ -249,7 +261,7 @@ msgstr ""
 msgid "Sorry, the subject \"{{subject}}\" was not found in the current vocabulary."
 msgstr ""
 
-#: src/app/authority/authoritySearch.js:34
+#: src/app/search/searchBox.js:59
 msgid "Starting with"
 msgstr ""
 
@@ -302,12 +314,8 @@ msgstr ""
 msgid "The University of Oslo Library has a small vocabulary to search its human rights collections. This vocabulary is only available in English."
 msgstr ""
 
-#: src/app/authority/authoritySearch.html:58
+#: src/app/search/searchBox.html:94
 msgid "The search went out in error:"
-msgstr ""
-
-#: src/app/catalogue/catalogueResults.js:67
-msgid "The subject was not found. It might have been deleted."
 msgstr ""
 
 #: src/app/pages/vocabularyInfo/humord.html:4
@@ -318,11 +326,11 @@ msgstr ""
 msgid "Third party licenses"
 msgstr ""
 
-#: src/app/catalogue/catalogueResults.js:86
+#: src/app/catalogue/catalogueResults.js:74
 msgid "This concept has been deprecated"
 msgstr ""
 
-#: src/app/catalogue/catalogueResults.js:77
+#: src/app/catalogue/catalogueResults.js:65
 msgid "This concept has been replaced by {{subject}}"
 msgstr ""
 
@@ -334,7 +342,7 @@ msgstr ""
 msgid "Topic"
 msgstr ""
 
-#: src/app/catalogue/catalogueResults.js:233
+#: src/app/catalogue/catalogueResults.js:221
 msgid "Uh oh, some kind of server error occured."
 msgstr ""
 
@@ -354,15 +362,16 @@ msgstr ""
 msgid "We're proxying all data through <a href=\"https://github.com/unioslo/ipproxy\">ipproxy</a>, which masks the last part of your IP address, meaning that your full IP address is never sent to any third party (Google)."
 msgstr ""
 
-#: src/app/catalogue/catalogueResults.html:62
+#: src/app/catalogue/catalogueResults.html:31
 msgid "You could try expanding the search to <a ui-sref=\"subject.search({library:null})\">all libraries</a>."
 msgstr ""
 
-#: src/app/catalogue/catalogueResults.html:59
+#: src/app/catalogue/catalogueResults.html:28
 msgid "You could try expanding the search to a <a ui-sref=\"subject.search({broad:true})\">broad search</a>."
 msgstr ""
 
-#: src/app/catalogue/catalogueResults.js:59
+#: src/app/catalogue/catalogueResults.js:50
+#: src/app/search/searchBox.js:80
 msgid "broad search"
 msgstr ""
 
@@ -370,7 +379,8 @@ msgstr ""
 msgid "in"
 msgstr ""
 
-#: src/app/catalogue/catalogueResults.js:60
+#: src/app/catalogue/catalogueResults.js:51
+#: src/app/search/searchBox.js:81
 msgid "narrow search"
 msgstr ""
 

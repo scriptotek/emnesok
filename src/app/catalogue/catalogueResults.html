@@ -63,8 +63,8 @@
 
 	<div style="margin-left:80px">
 
-		<div ng-show="vm.start && vm.offset == vm.total_results" translate style="padding: 1.2em 0">
-			<em>Found {{ vm.results.length }} documents about this topic using {{vm.searchType}}.</em>
+		<div ng-show="vm.start && vm.offset == vm.total_results" style="padding: 1.2em 0">
+			<em translate>Found {{ vm.results.length }} documents about this topic using {{vm.searchType}}.</em>
 		</div>
 
 		<div ng-show="vm.busy" class="loader" style="margin-bottom: 1.2em"></div>

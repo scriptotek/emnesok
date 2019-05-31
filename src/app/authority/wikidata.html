@@ -27,33 +27,25 @@
         <!-- Structured data -->
 
         <div style="display:flex; margin-top: 1em;" ng-if="vm.data.item.hasClaim('P225')">
-            <div style="flex: 0 0 50%">
-                Vitenskapelig navn:
-            </div>
-            <div style="flex: 0 0 50%">
-                {{ vm.data.item.formatClaim('P225') }}
-            </div>
+            <div style="flex: 0 0 50%" translate>Scientific name:</div>
+            <div style="flex: 0 0 50%" ng-bind-html="vm.data.item.formatClaim('P225')"></div>
         </div>
 
         <div style="display:flex;" ng-if="vm.data.item.hasClaim('P815')">
-            <div style="flex: 0 0 50%">
-                ITIS TSN:
-            </div>
+            <div style="flex: 0 0 50%" translate>ITIS TSN:</div>
             <div style="flex: 0 0 50%" ng-bind-html="vm.data.item.formatClaim('P815')"></div>
         </div>
 
         <div style="display:flex;" ng-if="vm.data.item.hasClaim('P846')">
-            <div style="flex: 0 0 50%">
-                GBIF:
-            </div>
+            <div style="flex: 0 0 50%" translate>GBIF:</div>
             <div style="flex: 0 0 50%" ng-bind-html="vm.data.item.formatClaim('P846')"></div>
         </div>
-    
+
         <div style="clear: both;"></div>
     </div>
 
     <div ng-if="!vm.data.article && !vm.data.item" style="padding:1em; border-top: 1px solid #eee; font-size: 90%; background: #fafafa">
-        <a ng-href="{{ vm.getSearchUrl() }}" target="external" translate >Search for «{{ vm.subject.getPrefLabel() }}» in Wikipedia</a>
+        <a ng-href="{{ vm.getSearchUrl() }}" target="external" translate>Search for «{{ vm.subject.getPrefLabel() }}» in Wikipedia</a>
     </div>
 
 </div>

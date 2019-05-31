@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Subject Search\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2019-05-30 21:25+0200\n"
+"PO-Revision-Date: 2019-05-31 13:43+0200\n"
 "Last-Translator: Dan Michael O. Heggø <danmichaelo@gmail.com>\n"
 "Language-Team: Norwegian Nynorsk (http://www.transifex.com/university-of-"
 "oslo-library/subject-search/language/nn/)\n"
@@ -22,22 +22,15 @@ msgstr ""
 msgid "(no access)"
 msgstr "(ingen tilgang)"
 
-#: src/app/catalogue/catalogueResults.html:97
-msgid ""
-"<em>Found {{ vm.results.length }} documents about this topic using {{vm."
-"searchType}}.</em>"
-msgstr ""
-"Fann {{ vm.results.length }} dokument om dette emnet med {{vm.searchType}}."
-
 #: src/app/layout/header.html:24 src/app/pages/about.html:2
 msgid "About"
 msgstr "Om"
 
-#: src/app/catalogue/catalogueResults.html:28
+#: src/app/search/searchBox.html:85
 msgid "All branches"
 msgstr "Alle avdelingar"
 
-#: src/app/catalogue/catalogueResults.html:17
+#: src/app/search/searchBox.html:74
 msgid "All libraries"
 msgstr "Alle bibliotek"
 
@@ -47,7 +40,7 @@ msgstr "Det oppsto ein ukjend feil."
 
 #: src/app/authority/wikidata.html:18
 msgid "Article suggestion"
-msgstr "Artikkelforslag:"
+msgstr "Artikkelforslag"
 
 #: src/app/pages/about.html:29
 msgid ""
@@ -60,7 +53,7 @@ msgstr ""
 "spore <em>brukarar</em> av dette verktøyet. Brukarsporing har i tillegg "
 "mange manglar."
 
-#: src/app/catalogue/catalogueResults.html:8
+#: src/app/search/searchBox.html:65
 msgid "Broad"
 msgstr "Breitt"
 
@@ -72,7 +65,7 @@ msgstr "Overordna:"
 msgid "Chemical element"
 msgstr "Grunnstoff"
 
-#: src/app/authority/authoritySearch.js:34
+#: src/app/search/searchBox.js:60
 msgid "Containing"
 msgstr "Inneheld"
 
@@ -85,25 +78,25 @@ msgstr "Definisjon:"
 msgid "E-book"
 msgstr "E-bok"
 
-#: src/app/authority/authoritySearch.js:34
+#: src/app/search/searchBox.js:61
 msgid "Ends with"
 msgstr "Sluttar med"
 
-#: src/app/authority/authoritySearch.html:28
+#: src/app/search/searchBox.html:32
 msgid "Enter a subject"
 msgstr "Søk etter emne"
 
-#: src/app/authority/authoritySearch.js:34
+#: src/app/search/searchBox.js:62
 msgid "Exact match"
 msgstr "Eksakt lik"
 
-#: src/app/catalogue/catalogueResults.html:110
+#: src/app/catalogue/catalogueResults.html:79
 msgid "Expand to broad search"
 msgstr "Utvid til breitt søk"
 
 #: src/app/catalogue/catalogueResult.js:87
 msgid "Failed to fetch list of editions."
-msgstr "Klarte ikkje å hente liste over utgåver"
+msgstr "Klarte ikkje hente liste over utgåver."
 
 #: src/app/catalogue/catalogueResult.html:46
 msgid "Fetching editions…"
@@ -119,7 +112,7 @@ msgstr ""
 "For statistikk planla vi opphaveleg å bruke open kjeldekode-verktøyet Piwik, "
 "men vi vart overtalde til å bruke Google Analytics, som er gjennomgripande "
 "på universitetet. Merk at to ekstra tiltak er sette i verk av omsyn til "
-"personvernet ditt."
+"personvernet ditt:"
 
 #: src/app/pages/about.html:10
 msgid ""
@@ -128,6 +121,17 @@ msgid ""
 msgstr ""
 "For informasjon om ordtilfanga, gå til <a ui-sref=\"home({lang: vm."
 "lang})\">heimesida</a>."
+
+#: src/app/catalogue/catalogueResults.html:67
+msgid ""
+"Found {{ vm.results.length }} documents about this topic using {{vm."
+"searchType}}."
+msgstr ""
+"Fann {{ vm.results.length }} dokument om dette emnet med {{vm.searchType}}."
+
+#: src/app/authority/wikidata.html:40
+msgid "GBIF:"
+msgstr "GBIF:"
 
 #: src/app/catalogue/catalogueResult.html:97
 #: src/app/services/authority.service.js:173
@@ -151,7 +155,11 @@ msgstr "Humaniora og samfunnsfag (Humord)"
 msgid "I would like to find books about:"
 msgstr "Eg ynskjer å finne bøker om:"
 
-#: src/app/catalogue/catalogueResults.html:109
+#: src/app/authority/wikidata.html:35
+msgid "ITIS TSN:"
+msgstr "ITIS TSN:"
+
+#: src/app/catalogue/catalogueResults.html:78
 msgid "Interested in more results?"
 msgstr "Interessert i fleire resultat?"
 
@@ -169,19 +177,19 @@ msgstr "Jus (L-skjema)"
 msgid "Learn more about the vocabulary"
 msgstr "Les meir om vokabularet"
 
-#: src/app/catalogue/catalogueResults.html:103
+#: src/app/catalogue/catalogueResults.html:72
 msgid ""
 "Loaded {{ vm.results.length }} records so far, about {{ vm.total_results - "
 "vm.offset }} left, hold on…"
 msgstr ""
 "Henta {{ vm.results.length }} poster så langt, {{ vm.total_results - vm."
-"offset }} står att, vi skundar oss sakte..."
+"offset }} står att, vi skundar oss sakte…"
 
-#: src/app/authority/authoritySearch.html:30
+#: src/app/search/searchBox.html:34
 msgid "Looking…"
-msgstr "Leitar..."
+msgstr "Leitar…"
 
-#: src/app/catalogue/catalogueResults.html:9
+#: src/app/search/searchBox.html:66
 msgid "Narrow"
 msgstr "Snevert"
 
@@ -189,23 +197,23 @@ msgstr "Snevert"
 msgid "Narrower:"
 msgstr "Underordna:"
 
-#: src/app/pages/vocabularyInfo/humord.html:8
+#: src/app/pages/vocabularyNav/humord_nav.html:2
 msgid "Navigate the vocabulary"
 msgstr "Naviger i vokabularet"
 
-#: src/app/authority/authoritySearch.html:29
+#: src/app/search/searchBox.html:33
 msgid "No hits :("
 msgstr "Ingen treff :("
 
-#: src/app/authority/authoritySearch.js:199
+#: src/app/search/searchBox.js:260
 msgid "No network connection"
 msgstr "Inkje nettverkssamband"
 
-#: src/app/catalogue/catalogueResults.html:23
+#: src/app/search/searchBox.html:80
 msgid "Note: Results from a single branch will not include e-books."
 msgstr "Merk: Resultat frå berre ei avdeling vil ikkje inkludere e-bøkar."
 
-#: src/app/catalogue/catalogueResults.html:56
+#: src/app/catalogue/catalogueResults.html:25
 msgid "Ouch, not a single document was found."
 msgstr "Beklagar, vi fann ikkje eit einaste dokument."
 
@@ -236,19 +244,27 @@ msgstr "Personvern"
 msgid "Read more in {{external.name}}"
 msgstr "Les meir i {{external.name}}"
 
+#: src/app/authority/authorityRecord.html:83
+msgid "Related concepts in other vocabularies:"
+msgstr "Beslekta omgrep frå andre vokabular:"
+
 #: src/app/pages/home.html:19
 msgid "Science (Realfagstermer)"
 msgstr "Realfag (Realfagstermar)"
 
-#: src/app/catalogue/catalogueResults.html:9
-msgid "Search '+vm.vocab+' only"
-msgstr "Søk berre i '+vm.vocab+' "
+#: src/app/authority/wikidata.html:30
+msgid "Scientific name:"
+msgstr "Vitskapeleg namn:"
 
-#: src/app/catalogue/catalogueResults.html:8
+#: src/app/search/searchBox.html:66
+msgid "Search '+vm.vocab+' only"
+msgstr "Søk berre i '+vm.vocab+'"
+
+#: src/app/search/searchBox.html:65
 msgid "Search all subject vocabularies"
 msgstr "Søk i alle emneordtilfang"
 
-#: src/app/authority/wikidata.html:56
+#: src/app/authority/wikidata.html:48
 msgid "Search for «{{ vm.subject.getPrefLabel() }}» in Wikipedia"
 msgstr "Søk etter «{{ vm.subject.getPrefLabel() }}» på Wikipedia"
 
@@ -259,10 +275,6 @@ msgstr "Søkehistorikk"
 #: src/app/authority/authorityRecord.html:68
 msgid "Search in {{external.name}}"
 msgstr "Søk i {{external.name}}"
-
-#: src/app/pages/vocabularyInfo/humord.html:99
-msgid "Search it"
-msgstr "Søk"
 
 #: src/app/pages/vocabularyInfo/realfagstermer.html:4
 msgid ""
@@ -287,7 +299,7 @@ msgid ""
 "build this search. A list is provided below together with their licenses."
 msgstr ""
 "Ei rekkje supre open kjelde-komponentar er nytta for å byggje opp "
-"emneordsøket. Desse er lista opp saman med lisensane dei er underlagde. "
+"emneordsøket. Desse er lista opp saman med lisensane dei er underlagde."
 
 #: src/app/pages/about.html:16
 msgid ""
@@ -305,7 +317,7 @@ msgid ""
 "Sorry, the subject \"{{subject}}\" was not found in the current vocabulary."
 msgstr "Orsak, emnet «{{subject}}» vart ikkje funne i dette ordtilfanget."
 
-#: src/app/authority/authoritySearch.js:34
+#: src/app/search/searchBox.js:59
 msgid "Starting with"
 msgstr "Startar med"
 
@@ -388,13 +400,9 @@ msgstr ""
 "Universitetsbiblioteket i Oslo har eit lite vokabular for "
 "mennnesketrettsamlingene. Vokabularet er kun tilgjengeleg på engelsk."
 
-#: src/app/authority/authoritySearch.html:58
+#: src/app/search/searchBox.html:94
 msgid "The search went out in error:"
-msgstr "Søket gjekk ut i feil"
-
-#: src/app/catalogue/catalogueResults.js:67
-msgid "The subject was not found. It might have been deleted."
-msgstr "Emnet vart ikkje funne. Det kan ha blitt sletta."
+msgstr "Søket gjekk ut i feil:"
 
 #: src/app/pages/vocabularyInfo/humord.html:4
 msgid ""
@@ -410,11 +418,11 @@ msgstr ""
 msgid "Third party licenses"
 msgstr "Tredjepartslisensar"
 
-#: src/app/catalogue/catalogueResults.js:86
+#: src/app/catalogue/catalogueResults.js:74
 msgid "This concept has been deprecated"
-msgstr "Dette omgrepet er tatt ut av bruk."
+msgstr "Dette omgrepet er tatt ut av bruk"
 
-#: src/app/catalogue/catalogueResults.js:77
+#: src/app/catalogue/catalogueResults.js:65
 msgid "This concept has been replaced by {{subject}}"
 msgstr "Dette omgrepet har vorte erstatta av {{subject}}"
 
@@ -430,7 +438,7 @@ msgstr ""
 msgid "Topic"
 msgstr "Emne"
 
-#: src/app/catalogue/catalogueResults.js:233
+#: src/app/catalogue/catalogueResults.js:221
 msgid "Uh oh, some kind of server error occured."
 msgstr "Orsak, det oppsto ein serverfeil."
 
@@ -454,9 +462,9 @@ msgid ""
 msgstr ""
 "Vi sender all data gjennom <a href=\"https://github.com/unioslo/ipproxy"
 "\">ipproxy</a>, som maskerer siste delen av IP-adressa di. Det betyr at "
-"ingen tredjepart (Google) kan sjå heile IP-adressa di. "
+"ingen tredjepart (Google) kan sjå heile IP-adressa di."
 
-#: src/app/catalogue/catalogueResults.html:62
+#: src/app/catalogue/catalogueResults.html:31
 msgid ""
 "You could try expanding the search to <a ui-sref=\"subject.search({library:"
 "null})\">all libraries</a>."
@@ -464,7 +472,7 @@ msgstr ""
 "Prøv gjerne å utvide søket til <a ui-sref=\"subject.search({library:"
 "null})\">alle bibliotek</a>."
 
-#: src/app/catalogue/catalogueResults.html:59
+#: src/app/catalogue/catalogueResults.html:28
 msgid ""
 "You could try expanding the search to a <a ui-sref=\"subject.search({broad:"
 "true})\">broad search</a>."
@@ -472,7 +480,7 @@ msgstr ""
 "Prøv gjerne å utvide søket til eit <a ui-sref=\"subject.search({broad:"
 "true})\">breitt søk</a>."
 
-#: src/app/catalogue/catalogueResults.js:59
+#: src/app/catalogue/catalogueResults.js:50 src/app/search/searchBox.js:80
 msgid "broad search"
 msgstr "breitt søk"
 
@@ -480,7 +488,7 @@ msgstr "breitt søk"
 msgid "in"
 msgstr "i"
 
-#: src/app/catalogue/catalogueResults.js:60
+#: src/app/catalogue/catalogueResults.js:51 src/app/search/searchBox.js:81
 msgid "narrow search"
 msgstr "snevert søk"
 
@@ -499,6 +507,12 @@ msgstr "» Meld frå om problem"
 #: src/app/authority/authorityRecord.html:95
 msgid "» View in Skosmos"
 msgstr "» Vis i Skosmos"
+
+#~ msgid "Search it"
+#~ msgstr "Søk"
+
+#~ msgid "The subject was not found. It might have been deleted."
+#~ msgstr "Emnet vart ikkje funne. Det kan ha blitt sletta."
 
 #~ msgid ""
 #~ "<a href=\"http://www.bibsys.no/files/out/humord/\" target=\"external"
