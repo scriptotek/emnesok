@@ -179,7 +179,7 @@ export const pnxRecordService = /* @ngInject */ function(
             let [vocab, op, term, op2] = q.split(',');
 
             for (let voc in this.subjects) {
-                if ((vocabularies.hasOwnProperty(voc) && [vocabularies[voc].primo_index, 'lsr17', 'lsr46'].indexOf(vocab))) {
+                if (vocabularies.hasOwnProperty(voc) && [vocabularies[voc].primo_index, 'lsr17', 'lsr46'].indexOf(vocab) !== -1) {
                     for (let sub of this.subjects[voc]) {
                         if (this.subjectMatchesQuery(sub, term)) {
                             // In principle we could return here, but we want
