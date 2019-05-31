@@ -11,7 +11,7 @@ export const pnxRecordService = /* @ngInject */ function(
 
     function Subject(data) {
         this.id = get(data, 'id');
-        this.term = get(data, 'term').trim();
+        this.term = get(data, 'term').trim().replace(/ -- /g, ' : ');
         this.vocabulary = get(data, 'vocabulary');
         this.type = 'topic';
     }
@@ -165,31 +165,39 @@ export const pnxRecordService = /* @ngInject */ function(
             })
     }
 
-    PnxRecord.prototype.subjectMatchesQuery = function(subject, queryTerm) {
-        if (subject.term.trim().toLowerCase() == queryTerm.trim().toLowerCase()) {
-            subject.matchesQuery = true;
-            return true;
-        }
-        return false;
-    };
-
     PnxRecord.prototype.matchesQuery = function(params, vocabularies) {
         var matches = 0;
         for (let q of params.q.split(';')) {
+            // Note: We adopt a relaxed matching for subject strings. A search for "Fisker : Atferd"
+            // will also match books having "Fisker" AND "Atferd" as separate terms. The reason
+            // is that many catalogue records have not been updated correctly, in the example case
+            // of "Fiske : Atferd", 3 out of 4 records had the subject strings as separate
+            // subject headings.
+            // The complexity of the test below is awful though. I hope we can simplify it at some point.
             let [vocab, op, term, op2] = q.split(',');
-
+            let termParts = term.split(' : ').map(x => x.trim().toLowerCase());
+            let termMatches = 0;
+            let termMatchesNeeded = termParts.length;
             for (let voc in this.subjects) {
                 if (vocabularies.hasOwnProperty(voc) && [vocabularies[voc].primo_index, 'lsr17', 'lsr46'].indexOf(vocab) !== -1) {
-                    for (let sub of this.subjects[voc]) {
-                        if (this.subjectMatchesQuery(sub, term)) {
-                            // In principle we could return here, but we want
-                            // to indicate all matches (subjectMatchesQuery has a side effect)
-                            matches++;
+                    for (let subject of this.subjects[voc]) {
+                        let subParts = subject.term.split(':').map(x => x.trim().toLowerCase());
+                        for (let subPart of subParts) {
+                            for (let termPart of termParts) {
+                                if (termPart == subPart) {
+                                    subject.matchesQuery = true;
+                                    termMatches++;
+                                }
+                            }
                         }
                     }
                 }
             }
+            if (termMatches >= termMatchesNeeded) matches++;
         }
+
+        // We're good if we match at least one of the query terms, since the query terms
+        // are connected by OR.
         return matches > 0;
     };
 

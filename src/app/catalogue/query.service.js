@@ -49,7 +49,7 @@ export const queryBuilderService = /* @ngInject */ function(
             
             // Join the topic parts together if we're using narrow search
             if (!this.broadSearch) {
-                parts['Topic'].sort(function (a, b) {
+                parts['Topic'].sort((a, b) => {
                     var alab = a.prefLabel[this.lang], blab = b.prefLabel[this.lang],
                         tlab = subject.prefLabel[this.lang].split(' : ');
                     return tlab.indexOf(alab) - tlab.indexOf(blab);
@@ -68,7 +68,7 @@ export const queryBuilderService = /* @ngInject */ function(
                     let terms = parts[key].map(
                         subject => this.broadSearch ? this.getTerms(subject).join(' OR ') : subject.prefLabel[this.lang]
                     ).join(' AND ');
-                    this.where(indices[key], 'exact', terms);
+                    this.where(indices[key], 'contains', terms);
                 }
             });
 
