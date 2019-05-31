@@ -79,7 +79,13 @@ function ConfigService() {
                 uriPattern: 'http://data.ub.uio.no/realfagstermer/{id}',
                 show_vocabs: ['realfagstermer', 'ddc', 'ubo'],
                 primo_index: 'lsr20',
-                concept_types: ['http://data.ub.uio.no/onto#Topic', 'http://data.ub.uio.no/onto#Place', 'http://data.ub.uio.no/onto#Time', 'http://data.ub.uio.no/onto#GenreForm'],
+                concept_types: [
+                    'http://data.ub.uio.no/onto#Topic',
+                    'http://data.ub.uio.no/onto#Place',
+                    'http://data.ub.uio.no/onto#Time',
+                    'http://data.ub.uio.no/onto#GenreForm',
+                    'http://data.ub.uio.no/onto#ComplexConcept',
+                ],
             },
             humord: {
                 name: 'Humord',
