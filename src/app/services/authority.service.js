@@ -152,6 +152,7 @@ function AuthorityService($http, $stateParams, $filter, $q, $rootScope, gettext,
         getByUri: getByUri,
         getByTerm: getByTerm,
         getVocabulary: getVocabulary,
+        lookupUboClassification: lookupUboClassification,
         exists: exists,
         onSubject: onSubject,
         currentSubject: null,
@@ -387,6 +388,32 @@ function AuthorityService($http, $stateParams, $filter, $q, $rootScope, gettext,
             });
 
         return deferred.promise;
+    }
+
+    async function lookupUboClassification(term) {
+        var deferred = $q.defer();
+
+        const vocs = [
+            {
+                code: 'acm-ccs-ubo',
+                params: {library: 'UBO:1030317'}
+            },
+            {
+                code: 'msc-ubo',
+                params: {library: 'UBO:1030310'}
+            },
+        ]
+
+        for (let voc of vocs) {
+            try {
+                await getByTerm(term, voc.code)
+                return Object.assign({
+                    vocab: voc.code,
+                    term: term,
+                }, voc.params)
+            } catch {
+            }
+        }
     }
 
     function exists(term, vocab) {

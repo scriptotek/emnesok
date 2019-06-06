@@ -65,29 +65,28 @@ function configure($stateProvider, $urlRouterProvider) {
                     if ($stateParams.vocab == 'ubo') {
                         var deferred = $q.defer();
 
-                        // 1. Sjekk om vi får treff i acm-ccs-ubo
-                        AuthorityService.getByTerm($stateParams.term, 'acm-ccs-ubo')
-                            .then(
-                                response => {
+                        AuthorityService.lookupUboClassification($stateParams.term)
+                           .then(
+                                result => {
                                     $state.go('subject.search', {
-                                        vocab: 'acm-ccs-ubo',
-                                        term: $stateParams.term,
-                                        library: 'UBO:1030317',
+                                        vocab: result.vocab,
+                                        term: result.term,
+                                        library: result.library,
+                                        lang: result.lang,
                                         id: null,
                                         uri: null,
-                                        lang: 'en',
                                     });
                                     return deferred.reject('Redirecting');
                                 },
                                 err => {
-                                    console.log('It errd')
-                                    return deferred.reject('Not found');
                                 }
                             )
+                           .catch(
+                               err => {
+                                    return deferred.reject('Concept Not Found');
+                               }
+                            )
 
-
-                        // 2. Sjekk om vi får treff i msc
-                        // TODO
 
                         return deferred.promise;
                     }
@@ -148,6 +147,10 @@ function run($rootScope, $state, $transitions, AuthorityService, TitleService) {
                 return;
             }
             if (error.detail == 'Redirecting') {
+                // The transition has been superseded by a different transition, also fine.
+                return;
+            }
+            if (error.detail == 'Concept Not Found') {
                 // The transition has been superseded by a different transition, also fine.
                 return;
             }
