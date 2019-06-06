@@ -56,6 +56,7 @@ class Subject {
             { pattern: 'http://data.ub.uio.no/humord/', name: 'humord', label: 'Humord'},
             { pattern: 'http://data.ub.uio.no/realfagstermer/', name: 'realfagstermer', label: 'Realfagstermer'},
             { pattern: 'http://data.ub.uio.no/tekord/', name: 'tekord', label: 'Tekord'},
+            { pattern: 'http://data.ub.uio.no/mrtermer/', name: 'mrtermer', label: 'Menneskerettighetstermer'},
             { pattern: 'http://dewey.info/', name: 'ddc', label: 'Norsk WebDewey'},
         ];
 
