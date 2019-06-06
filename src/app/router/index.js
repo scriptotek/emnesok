@@ -52,6 +52,13 @@ function configure($stateProvider, $urlRouterProvider) {
                 'main': 'appMain',
             },
         })
+        .state('subject.error', {
+            url: '/error',
+            views: {
+                'searchBox': 'appSearchBox',
+                'catalogue': 'appError',
+            },
+        })
         .state('subject.search', {
             url: '/search?term&id&uri&broad&library',
             views: {
@@ -61,9 +68,14 @@ function configure($stateProvider, $urlRouterProvider) {
                 'info': 'appVocabularyInfo',
             },
             resolve: {
-                subject: /* @ngInject */ function (AuthorityService, $stateParams, $q, $state) {
+                subject: /* @ngInject */ function (AuthorityService, $stateParams, $q, $state, $timeout) {
+                    var deferred = $q.defer();
+
+                    if (!$stateParams.term && !$stateParams.id && !$stateParams.uri) {
+                        return
+                    }
+
                     if ($stateParams.vocab == 'ubo') {
-                        var deferred = $q.defer();
 
                         AuthorityService.lookupUboClassification($stateParams.term)
                            .then(
@@ -77,29 +89,24 @@ function configure($stateProvider, $urlRouterProvider) {
                                         uri: null,
                                     });
                                     return deferred.reject('Redirecting');
-                                },
-                                err => {
                                 }
                             )
-                           .catch(
-                               err => {
-                                    return deferred.reject('Concept Not Found');
-                               }
-                            )
+                           .catch(err => deferred.reject(`The classification code ${stateParams.term} was not found in any of the supported classification schemes.`));
 
-
-                        return deferred.promise;
-                    }
-
-                    if ($stateParams.uri) {
-                        return AuthorityService.getByUri($stateParams.uri);
-                    } else if ($stateParams.term) {
-                        return AuthorityService.getByTerm($stateParams.term, $stateParams.vocab);
-                    } else if ($stateParams.id) {
-                        return AuthorityService.getById($stateParams.id, $stateParams.vocab);
                     } else {
-                        // Exception
+
+                        AuthorityService.lookup($stateParams)
+                            .then(result => deferred.resolve(result))
+                            .catch(err => {
+                                if ($stateParams.term) {
+                                    deferred.reject(`The search term "${$stateParams.term}" was not found in this vocabulary.`);
+                                } else {
+                                    deferred.reject('The search term was not found in this vocabulary.');
+                                }
+                            })
+
                     }
+                    return deferred.promise;
                 }
             }
         });
@@ -125,22 +132,19 @@ function run($rootScope, $state, $transitions, AuthorityService, TitleService) {
 
     $transitions.onError({}, function (transition) {
         var error = transition.error();
-        console.log(error);
+        var targetStateParams = transition.targetState().params();
         log.error('Error while transitioning to a new state: ', error);
         if (angular.isObject(error) && angular.isString(error.code)) {
             switch (error.code) {
             case 'NOT_AUTHENTICATED':
                 // go to the login page
                 $state.go('login');
-                break;
+                return;
             default:
                 // set the error object on the error state and go there
-                $state.get('error').error = error;
-                    // $state.go('error');
+                $state.get('error').message = error.message;
             }
-            return;
-        }
-        if (angular.isObject(error)) {
+        } else if (angular.isObject(error)) {
             console.log('Trans error', error.type, error.message)
             if (error.type == 5) {
                 // No transition was necessary, this is fine.
@@ -150,12 +154,13 @@ function run($rootScope, $state, $transitions, AuthorityService, TitleService) {
                 // The transition has been superseded by a different transition, also fine.
                 return;
             }
-            if (error.detail == 'Concept Not Found') {
-                // The transition has been superseded by a different transition, also fine.
-                return;
-            }
 
             // unexpected error
+            $state.get('error').message = error.detail;
+        }
+        if (targetStateParams.vocab) {
+            $state.go('subject.error', {vocab: targetStateParams.vocab});
+        } else {
             $state.go('error');
         }
     });

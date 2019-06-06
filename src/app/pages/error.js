@@ -13,11 +13,12 @@ function ErrorController($state, $stateParams, gettext, gettextCatalog) {
     /*jshint validthis: true */
     var vm = this;
 
-    if ($state.get('error').error) {
-        vm.message = $state.get('error').error.message;
+    var msg = gettext('An unknown error occured');
+    var translated = gettextCatalog.getString(msg);
+
+    if ($state.get('error').message) {
+        vm.message = translated + ': ' + $state.get('error').message;
     } else {
-        var msg = gettext('An unknown error occured.');
-        var translated = gettextCatalog.getString(msg);
-        vm.message = translated;
+        vm.message = translated + '.';
     }
 }

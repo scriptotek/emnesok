@@ -152,6 +152,7 @@ function AuthorityService($http, $stateParams, $filter, $q, $rootScope, gettext,
         getByUri: getByUri,
         getByTerm: getByTerm,
         getVocabulary: getVocabulary,
+        lookup: lookup,
         lookupUboClassification: lookupUboClassification,
         exists: exists,
         onSubject: onSubject,
@@ -388,6 +389,23 @@ function AuthorityService($http, $stateParams, $filter, $q, $rootScope, gettext,
             });
 
         return deferred.promise;
+    }
+
+    async function lookup(params) {
+        try {
+            if (params.uri) {
+                return await getByUri(params.uri);
+            }
+            if (params.term) {
+                return await getByTerm(params.term, params.vocab);
+            }
+            if (params.id) {
+                return await getById(params.id, params.vocab);
+            }
+        } catch (err) {
+            throw new Error('Concept not found');
+        }
+        throw new Error('Unknown search parameters');
     }
 
     async function lookupUboClassification(term) {
