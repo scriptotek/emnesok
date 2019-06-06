@@ -186,7 +186,7 @@ li.printed:before {
 
 li.noaccess:before {
     /*Using a Bootstrap glyphicon as the bullet point*/
-    content: "\2601";
+    content: "\e090";
     font-family: 'Glyphicons Halflings';
     font-size: 11px;
     float: left;

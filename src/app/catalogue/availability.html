@@ -15,7 +15,11 @@
 	</ul>
 
 	<ul style="padding-left:20px; margin-bottom:0;" ng-if="vm.record.type == 'record' && !vm.record.availability.print && !vm.record.availability.electronic">
-		<li class="noaccess"><span translate>E-book</span> <small translate>(no access)</small></li>
+
+		<li ng-if="vm.record.material.indexOf('e-books') !== -1" class="noaccess"><span translate>E-book</span> <small translate>(no access)</small></li>
+
+		<li ng-if="vm.record.material.indexOf('print-books') !== -1" class="noaccess"><span translate>Print book not available at any library</span></li>
+
 	</ul>
 
 </div>
