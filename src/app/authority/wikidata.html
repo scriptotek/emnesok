@@ -4,7 +4,9 @@
 
         <!-- Image -->
 
-        <img ng-if="vm.data.image" ng-src="{{ vm.data.image.thumburl }}" style="float:right; margin-left: 0.8em;" ng-style="{'width': vm.data.image.thumbwidth + 'px', 'height': vm.data.image.thumbheight + 'px'}" alt="">
+        <a ng-href="{{ vm.data.image.descriptionurl }}" target="_blank">
+            <img ng-if="vm.data.image" ng-src="{{ vm.data.image.thumburl }}" style="float:right; margin-left: 0.8em;" ng-style="{'width': vm.data.image.thumbwidth + 'px', 'height': vm.data.image.thumbheight + 'px'}" alt="Illustrasjonsbilde fra Wikidata">
+        </a>
 
         <!-- Article extract -->
 
