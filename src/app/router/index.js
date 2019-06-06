@@ -61,7 +61,37 @@ function configure($stateProvider, $urlRouterProvider) {
                 'info': 'appVocabularyInfo',
             },
             resolve: {
-                subject: /* @ngInject */ function (AuthorityService, $stateParams) {
+                subject: /* @ngInject */ function (AuthorityService, $stateParams, $q, $state) {
+                    if ($stateParams.vocab == 'ubo') {
+                        var deferred = $q.defer();
+
+                        // 1. Sjekk om vi får treff i acm-ccs-ubo
+                        AuthorityService.getByTerm($stateParams.term, 'acm-ccs-ubo')
+                            .then(
+                                response => {
+                                    $state.go('subject.search', {
+                                        vocab: 'acm-ccs-ubo',
+                                        term: $stateParams.term,
+                                        library: 'UBO:1030317',
+                                        id: null,
+                                        uri: null,
+                                        lang: 'en',
+                                    });
+                                    return deferred.reject('Redirecting');
+                                },
+                                err => {
+                                    console.log('It errd')
+                                    return deferred.reject('Not found');
+                                }
+                            )
+
+
+                        // 2. Sjekk om vi får treff i msc
+                        // TODO
+
+                        return deferred.promise;
+                    }
+
                     if ($stateParams.uri) {
                         return AuthorityService.getByUri($stateParams.uri);
                     } else if ($stateParams.term) {
@@ -96,6 +126,7 @@ function run($rootScope, $state, $transitions, AuthorityService, TitleService) {
 
     $transitions.onError({}, function (transition) {
         var error = transition.error();
+        console.log(error);
         log.error('Error while transitioning to a new state: ', error);
         if (angular.isObject(error) && angular.isString(error.code)) {
             switch (error.code) {
@@ -108,12 +139,17 @@ function run($rootScope, $state, $transitions, AuthorityService, TitleService) {
                 $state.get('error').error = error;
                     // $state.go('error');
             }
-        } else {
-            if (angular.isObject(error)) {
-                if (error.type == 5) {
-                    // No transition was necessary, this is fine.
-                    return;
-                }
+            return;
+        }
+        if (angular.isObject(error)) {
+            console.log('Trans error', error.type, error.message)
+            if (error.type == 5) {
+                // No transition was necessary, this is fine.
+                return;
+            }
+            if (error.detail == 'Redirecting') {
+                // The transition has been superseded by a different transition, also fine.
+                return;
             }
 
             // unexpected error

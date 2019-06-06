@@ -55,6 +55,10 @@ export const pnxRecordService = /* @ngInject */ function(
             mesh: extractSubjects(data, 'MESH', this.places, this.genres),
 
             ddc: get(data, 'facets.lfc10', []).map(x => new Subject({term: x, vocabulary: 'ddc'})),
+            ubo: get(data, 'facets.lfc18', []).map(x => new Subject({
+                term: x.split('$$')[0],
+                vocabulary: 'ubo',
+            })),
 
             // genre: ?
             // place: ?
