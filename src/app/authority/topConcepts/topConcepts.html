@@ -1,0 +1,8 @@
+<div class="vocabulary-info" ng-show="vm.topConcepts.length">
+	<h3 translate>Navigate the vocabulary</h3>
+	<ul style="column-width: 14em;">
+		<li ng-repeat="topConcept in vm.topConcepts">
+			<a ui-sref="subject.search({ uri: topConcept.uri, term: null, broad: false })">{{ topConcept.notation }} {{ topConcept.label }}</a>
+		</li>
+	</ul>
+</div>

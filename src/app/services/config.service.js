@@ -173,6 +173,7 @@ function ConfigService() {
             },
         },
         skosmos: {
+            baseUrl: 'https://data.ub.uio.no/skosmos/rest/v1',
             vocabularyStatisticsUrl: 'https://data.ub.uio.no/skosmos/rest/v1/{vocab}/vocabularyStatistics',
             dataUrl: 'https://data.ub.uio.no/skosmos/rest/v1/data?uri={uri}',
             jskosUrl: 'https://ub-www01.uio.no/microservices/jskos.php?uri={uri}&expandMappings=true',
