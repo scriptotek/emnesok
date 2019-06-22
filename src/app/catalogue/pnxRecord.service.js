@@ -158,7 +158,7 @@ export const pnxRecordService = /* @ngInject */ function(
                 'I': 'identifier',
                 'P': 'preferred',
             }))
-            .filter(x => x.vocabulary == vocabulary)
+            .filter(x => x.vocabulary && x.vocabulary.toLowerCase() == vocabulary.toLowerCase())
             .filter(x => x.preferred != 'N')  // For Tekord mangler den helt
             .map(x => new Subject(x))
             .map(x => {
