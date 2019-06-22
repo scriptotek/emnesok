@@ -5,12 +5,14 @@ import humord from './humord.html';
 import mrtermer from './mrtermer.html';
 import realfagstermer from './realfagstermer.html';
 import tekord from './tekord.html';
+import usvd from './usvd.html';
 
 const templates = {
     humord,
     mrtermer,
     realfagstermer,
     tekord,
+    usvd,
 };
 
 export const vocabularyInfoComponentName = 'appVocabularyInfo';
