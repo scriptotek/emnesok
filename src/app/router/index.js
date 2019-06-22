@@ -91,7 +91,7 @@ function configure($stateProvider, $urlRouterProvider) {
                                     return deferred.reject('Redirecting');
                                 }
                             )
-                           .catch(err => deferred.reject(`The classification code ${stateParams.term} was not found in any of the supported classification schemes.`));
+                           .catch(err => deferred.reject(`The classification code ${$stateParams.term} was not found in any of the supported classification schemes.`));
 
                     } else {
 
