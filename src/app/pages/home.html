@@ -2,8 +2,9 @@
 
 	<h2 translate>Subject search</h2>
 
-	<p translate>
-		I would like to find books about:
+	<p style="margin-top: 2em">
+		<span class="glyphicon glyphicon-chevron-right" aria-hidden="true" style="transform: rotate(90deg);"></span>
+		{{ 'I would like to find books about:' | translate }}
 	</p>
 
 	<ul>
@@ -26,17 +27,44 @@
 			</a>
 		</li>
 		<li>
-			<a ui-sref="subject.search({vocab:'mrtermer', lang: vm.lang})">
-				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-				{{ 'Human rights (Human Rights terms)' | translate }}
-			</a>
-		</li>
-		<li>
 			<a href="https://app.uio.no/ub/ujur/l-skjema/">
 				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 				{{ 'Law (L scheme)' | translate }}
 			</a>
 		</li>
 	</ul>
+
+	<p style="margin-top: 2em">
+		<span class="glyphicon glyphicon-chevron-right" aria-hidden="true" style="transform: rotate(90deg);"></span>
+		{{ 'For librarians:' | translate }}
+	</p>
+
+	<ul>
+		<li>
+			<a ui-sref="subject.search({vocab:'mrtermer', lang: vm.lang})">
+				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+				{{ 'Human Rights Terms (–2018)' | translate }}
+			</a>
+		</li>
+		<li>
+			<a ui-sref="subject.search({vocab:'ddc', lang: vm.lang})">
+				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+				{{ 'Norwegian WebDewey' | translate }}
+			</a>
+		</li>
+		<li>
+			<a ui-sref="subject.search({vocab:'msc-ubo', lang: vm.lang})">
+				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+				{{ 'Mathematical Subject Classification' | translate }}
+			</a>
+		</li>
+		<li>
+			<a ui-sref="subject.search({vocab:'acm-ccs-ubo', lang: vm.lang})">
+				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+				{{ 'Computing Classification System' | translate }}
+			</a>
+		</li>
+	</ul>
+
 
 </div>
