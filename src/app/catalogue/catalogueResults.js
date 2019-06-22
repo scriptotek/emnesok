@@ -57,6 +57,11 @@ function CatalogueResultsController(
             return;
         }
 
+        if (vm.subject.type == 'KnuteTerm') {
+            vm.busy = false;
+            return;
+        }
+
         if (vm.subject.isReplacedBy.length) {
             var replacement = vm.subject.isReplacedBy[0];
             vm.busy = false;

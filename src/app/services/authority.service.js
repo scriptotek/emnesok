@@ -149,6 +149,7 @@ function AuthorityService($http, $stateParams, $filter, $q, $rootScope, gettext,
 
     var service = {
         getTopConcepts: getTopConcepts,
+        getChildren: getChildren,
         search: search,
         getById: getById,
         getByUri: getByUri,
@@ -333,6 +334,32 @@ function AuthorityService($http, $stateParams, $filter, $q, $rootScope, gettext,
             params: query
         }).then(function(response){
             return response.data.topconcepts;
+        });
+    }
+
+    function getChildren(vocab, uri) {
+        if (!Config.vocabularies[vocab]) {
+            log.error('Unknown vocabulary ' + vocab + '!');
+            return;
+        }
+
+        var query = {
+            uri: uri,
+            lang: langService.language,
+        };
+
+        return $http({
+            method: 'GET',
+            cache: true,
+            url: `${Config.skosmos.baseUrl}/${vocab}/children`,
+            params: query
+        }).then(function(response){
+            return response.data.narrower.map(function(x) {
+                if (!x.label && x.prefLabel) {
+                    x.label = x.prefLabel;
+                }
+                return x;
+            });
         });
     }
 

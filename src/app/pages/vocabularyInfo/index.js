@@ -34,10 +34,7 @@ export const vocabularyInfoComponent = {
 };
 
 /* @ngInject */
-function VocabularyInfoController($stateParams, Config, TitleService, AuthorityService) {
+function VocabularyInfoController() {
     /*jshint validthis: true */
     var vm = this;
-    var vocabName = Config.vocabularies[$stateParams.vocab].name;
-    TitleService.set(vocabName);
-    AuthorityService.clearCurrentSubject();
 }

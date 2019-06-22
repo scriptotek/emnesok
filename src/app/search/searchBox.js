@@ -30,6 +30,7 @@ function SearchBoxController(
     gettextCatalog,
     Config,
     langService,
+    TitleService,
     AuthorityService
 ) {
     /*jshint validthis: true */
@@ -39,7 +40,7 @@ function SearchBoxController(
     vm.selectedInstitution = null;
     vm.selectedLibrary = null;
     vm.broadSearch = false;
-    vm.hasSelectedSubject = (AuthorityService.currentSubject !== null);
+    vm.currentSubject = AuthorityService.currentSubject;
     vm.selectInstitution = selectInstitution;
     vm.selectLibrary = selectLibrary;
     vm.updateControlledSearch = updateControlledSearch;
@@ -83,14 +84,18 @@ function SearchBoxController(
         vm.searchType = vm.broadSearch ? gettextCatalog.getString(bs) : gettextCatalog.getString(ns);
 
         if (AuthorityService.currentSubject) {
-            vm.hasSelectedSubject = (AuthorityService.currentSubject !== null);
+            vm.currentSubject = AuthorityService.currentSubject;
             let label = AuthorityService.currentSubject.getPrefLabel();
             vm.query = label;
             // In case the autocomplete box already loaded:
             $scope.$broadcast('angucomplete-alt:changeInput', 'searchbox', label);
+        } else {
+            console.log('Clear current subject');
+            TitleService.set(vocabulary.name);
+            AuthorityService.clearCurrentSubject();
         }
         AuthorityService.onSubject($scope, function (evt, newSubject) {
-            vm.hasSelectedSubject = (AuthorityService.currentSubject !== null);
+            vm.currentSubject = AuthorityService.currentSubject;
             if (!newSubject) {
                 $scope.$broadcast('angucomplete-alt:clearInput', 'searchbox');
             } else {
@@ -269,7 +274,7 @@ function SearchBoxController(
 
     function selectSubject(item) {
         if (item) {
-            vm.hasSelectedSubject = true;
+            vm.currentSubject = true;
             $state.go('subject.search', {
                 uri: item.originalObject.uri,
                 id: null,

@@ -1,0 +1,8 @@
+<div ng-show="vm.children.length">
+	<h3 translate>Browse</h3>
+	<ul style="column-width: 14em;">
+		<li ng-repeat="child in vm.children">
+			<a ui-sref="subject.search({ uri: child.uri, term: null, broad: false })">{{ child.notation }} {{ child.label }}</a>
+		</li>
+	</ul>
+</div>

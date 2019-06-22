@@ -1,5 +1,5 @@
 
-<div id="vocabularyInfoContainer" ng-if="!vm.hasSelectedSubject" class="fade-x">
+<div id="vocabularyInfoContainer" ng-if="!vm.currentSubject || vm.currentSubject.type == 'KnuteTerm'" class="fade-x">
 	<app-vocabulary-info></app-vocabulary-info>
 </div>
 
@@ -61,7 +61,7 @@
 	 <!-- Single button with keyboard nav -->
 	 <div class="pull-right">
 
-		<div class="btn-group" ng-show="vm.vocab && vm.subject.type != 'Geographic'">
+		<div class="btn-group" ng-show="vm.vocab && vm.currentSubject.type != 'Geographic'">
 	        <label class="btn btn-default" ng-model="vm.broadSearch" ng-change="vm.updateControlledSearch()" uib-btn-radio="true" tooltip-append-to-body="true" uib-tooltip="{{'Search all subject vocabularies' | translate}}" translate analytics-on="click" analytics-event="SetBroadSearch" analytics-category="RefineSearch">Broad</label>
 	        <label class="btn btn-default" ng-model="vm.broadSearch" ng-change="vm.updateControlledSearch()" uib-btn-radio="false" tooltip-append-to-body="true" uib-tooltip="{{'Search '+vm.vocab+' only' |translate}}" translate analytics-on="click" analytics-event="SetNarrowSearch" analytics-category="RefineSearch">Narrow</label>
 	    </div>
@@ -94,9 +94,3 @@
 	<span translate>The search went out in error:</span>
 	{{ vm.errorMsg | translate }}
 </uib-alert>
-
-<div ng-if="!vm.hasSelectedSubject" class="fade-x" style="clear:both;">
-	<app-top-concepts></app-top-concepts>
-</div>
-
-

@@ -3,6 +3,14 @@
 
 	<div style="margin-left:70px">
 
+		<div ng-if="!vm.subject" class="fade-x" style="clear:both;">
+			<app-child-list top-concepts="true"></app-child-list>
+		</div>
+		<div ng-if="vm.subject && vm.subject.type == 'KnuteTerm'" class="fade-x" style="clear:both;">
+			<app-child-list uri="vm.subject.uri"></app-child-list>
+		</div>
+
+
 		<div ng-if="!vm.error && vm.mappings.length" style="margin-bottom: 1em 0; padding: 2px 10px;">
 			<div ng-if="vm.useMappingExpansion">
 				<span class="glyphicon glyphicon-transfer" aria-hidden="true"></span>
@@ -21,24 +29,23 @@
 
 		<div style="clear:both;"></div>
 
-		<p ng-if="!vm.busy && !vm.error && !vm.total_results && vm.subject.type !== 'KnuteTerm'" class="bg-danger">
-			<span translate>
-	            Ouch, not a single document was found.
-			</span>
-			<span ng-if="!vm.broadSearch && vm.subject.type !== 'Geographic'" translate>
-				You could try expanding the search to a <a ui-sref="subject.search({broad:true})">broad search</a>.
-			</span>
-			<span ng-if="vm.broadSearch && vm.selectedInstitution && vm.subject.type !== 'Geographic'" translate>
-				You could try expanding the search to <a ui-sref="subject.search({library:null})">all libraries</a>.
-			</span>
-		</p>
+		<div ng-if="!vm.busy && !vm.error && !vm.total_results && vm.subject.type !== 'KnuteTerm'">
+			<p class="bg-danger">
+				<span translate>
+		            Ouch, not a single document was found.
+				</span>
+				<span ng-if="!vm.broadSearch && vm.subject.type !== 'Geographic'" translate>
+					You could try expanding the search to a <a ui-sref="subject.search({broad:true})">broad search</a>.
+				</span>
+				<span ng-if="vm.broadSearch && vm.selectedInstitution && vm.subject.type !== 'Geographic'" translate>
+					You could try expanding the search to <a ui-sref="subject.search({library:null})">all libraries</a>.
+				</span>
+			</p>
+			<app-child-list uri="vm.subject.uri"></app-child-list>
+		</div>
 
 		<p ng-if="vm.subject.type == 'Geographic'" class="text-muted">
 			The broad/narrow filter is not available for geographical names.
-		</p>
-
-		<p ng-if="vm.subject.type == 'KnuteTerm'" class="bg-warning">
-			This concept is a “KnuteTerm”, so there should not be any search results.
 		</p>
 	</div>
 
