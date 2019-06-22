@@ -6,6 +6,8 @@ import mrtermer from './mrtermer.html';
 import realfagstermer from './realfagstermer.html';
 import tekord from './tekord.html';
 import usvd from './usvd.html';
+import mscUbo from './msc-ubo.html';
+import acmCcsUbo from './acm-ccs-ubo.html';
 
 const templates = {
     humord,
@@ -13,6 +15,8 @@ const templates = {
     realfagstermer,
     tekord,
     usvd,
+    'msc-ubo': mscUbo,
+    'acm-ccs-ubo': acmCcsUbo,
 };
 
 export const vocabularyInfoComponentName = 'appVocabularyInfo';
