@@ -29,9 +29,11 @@ function AuthorityViewController($scope, $state, $stateParams, $timeout, $rootSc
     function activate() {
         vm.history = AuthorityService.history;
         vm.currentSubject = AuthorityService.currentSubject;
+        AuthorityService.currentSubject.sortLabels();
         AuthorityService.onSubject($scope, function () {
             vm.history = AuthorityService.history;
             vm.currentSubject = AuthorityService.currentSubject;
+            AuthorityService.currentSubject.sortLabels();
         });
     }
 }

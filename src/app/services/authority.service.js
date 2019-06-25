@@ -1,6 +1,8 @@
 import angular from 'angular';
 import configModule from './config.service';
+import {cloneDeep} from 'lodash/lang';
 import {get} from 'lodash/object';
+import {sortBy} from 'lodash/collection';
 import * as log from 'loglevel';
 
 const moduleName = 'app.services.authority';
@@ -46,7 +48,13 @@ class Subject {
 
         ['_components', 'broader', 'narrower', 'related'].forEach((prop) => {
             if (data[prop] !== undefined) {
-                this[prop] = (get(data, prop) || []).map((res) => new Subject(Config, langService, res));
+                this[prop] = (get(data, prop) || []).map((res) => {
+
+                    // Assume concepts follow the same scheme (would be better if the server response told us explicitly though)
+                    res.inScheme = cloneDeep(data.inScheme);
+
+                    return new Subject(Config, langService, res);
+                });
             }
         });
 
@@ -106,6 +114,15 @@ class Subject {
         this.vocab = this.vocabulary.code; // for backwards compat
 
         this.data = data; // Keep a copy
+    }
+
+    sortLabels() {
+        // Sorting will depend on selected language, so we cannot just sort in the constructor.
+        ['_components', 'broader', 'narrower', 'related'].forEach((prop) => {
+            if (this[prop] !== undefined) {
+                this[prop] = sortBy(this[prop], [x => x.getPrefLabel()]);
+            }
+        });
     }
 
     get(key, def = null) {
