@@ -185,7 +185,7 @@ export const pnxRecordService = /* @ngInject */ function(
             for (let voc in this.subjects) {
                 if (vocabularies.hasOwnProperty(voc) && [vocabularies[voc].primo_index, 'lsr17', 'lsr46'].indexOf(vocab) !== -1) {
                     for (let subject of this.subjects[voc]) {
-                        let subParts = subject.term.split(':').map(x => x.trim().toLowerCase());
+                        let subParts = subject.term.split(' : ').map(x => x.trim().toLowerCase());
                         for (let subPart of subParts) {
                             for (let termPart of termParts) {
                                 if (termPart == subPart) {
