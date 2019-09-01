@@ -13,7 +13,7 @@ var transifex = new TransifexApi({
 transifex.baseUrl = `https://www.transifex.com/api/2/project/subject-search`;
 
 let resource = 'emnesok'
-let resourceSlug = `${resource}pot`;
+let resourceSlug = `master`;
 let languages = ['nb', 'nn'];
 let poDir = path.join(__dirname, '../src/po/');
 let potFile = path.join(poDir, `${resource}.pot`);
@@ -27,6 +27,9 @@ function pull() {
                     let poFile = path.join(poDir, `${lang}/${resource}.po`);
                     fs.writeFileSync(poFile, poData);
                     console.log(`Wrote ${poFile}`);
+                })
+                .catch(err => {
+                    console.error(err)
                 })
         )
     )
