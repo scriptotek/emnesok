@@ -72,13 +72,13 @@ function configure($stateProvider, $urlRouterProvider) {
                     var deferred = $q.defer();
 
                     if (!$stateParams.term && !$stateParams.id && !$stateParams.uri) {
-                        return
+                        return;
                     }
 
                     if ($stateParams.vocab == 'ubo') {
 
                         AuthorityService.lookupUboClassification($stateParams.term)
-                           .then(
+                            .then(
                                 result => {
                                     $state.go('subject.search', {
                                         vocab: result.vocab,
@@ -91,7 +91,7 @@ function configure($stateProvider, $urlRouterProvider) {
                                     return deferred.reject('Redirecting');
                                 }
                             )
-                           .catch(err => deferred.reject(`The classification code ${$stateParams.term} was not found in any of the supported classification schemes.`));
+                            .catch(err => deferred.reject(`The classification code ${$stateParams.term} was not found in any of the supported classification schemes.`));
 
                     } else {
 
@@ -103,7 +103,7 @@ function configure($stateProvider, $urlRouterProvider) {
                                 } else {
                                     deferred.reject('The search term was not found in this vocabulary.');
                                 }
-                            })
+                            });
 
                     }
                     return deferred.promise;
@@ -145,7 +145,7 @@ function run($rootScope, $state, $transitions, AuthorityService, TitleService) {
                 $state.get('error').message = error.message;
             }
         } else if (angular.isObject(error)) {
-            console.log('Trans error', error.type, error.message)
+            console.log('Trans error', error.type, error.message);
             if (error.type == 5) {
                 // No transition was necessary, this is fine.
                 return;

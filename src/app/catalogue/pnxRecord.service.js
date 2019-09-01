@@ -128,7 +128,7 @@ export const pnxRecordService = /* @ngInject */ function(
         this.links = {};
         if (this.type == 'group') {
             this.links.primo = `https://bibsys-almaprimo.hosted.exlibrisgroup.com/primo-explore/search?vid=${vid}&query=any,contains,${encodeURIComponent(this.title)}&facet=frbrgroupid,include,${this.group_id}`;
-                             // https://bibsys-almaprimo.hosted.exlibrisgroup.com/primo-explore/search?query=any,contains,whatever&vid=UIO&facet=frbrgroupid,include,209044763
+            // https://bibsys-almaprimo.hosted.exlibrisgroup.com/primo-explore/search?query=any,contains,whatever&vid=UIO&facet=frbrgroupid,include,209044763
         } else {
             this.links.primo = `https://bibsys-almaprimo.hosted.exlibrisgroup.com/primo-explore/fulldisplay?vid=${vid}&docid=${this.id}`;
         }
@@ -166,7 +166,7 @@ export const pnxRecordService = /* @ngInject */ function(
                 if (genres.indexOf(x.term) !== -1) x.type = 'genre';
 
                 return x;
-            })
+            });
     }
 
     PnxRecord.prototype.matchesQuery = function(params, vocabularies) {
