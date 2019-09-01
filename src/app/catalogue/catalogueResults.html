@@ -77,7 +77,7 @@
 		<div ng-show="vm.busy" class="loader" style="margin-bottom: 1.2em"></div>
 
 		<div ng-show="vm.start && vm.offset != vm.total_results" translate style="padding-bottom: 1.2em">
-			Loaded {{ vm.results.length }} records so far, about {{ vm.total_results - vm.offset }} left, hold on…
+			Showing {{ vm.results.length }} of {{ vm.offset }} results, about {{ vm.total_results - vm.offset }} left to check…
 		</div>
 
 		<div class="panel panel-default" ng-show="vm.start && vm.offset == vm.total_results && vm.total_results != 0 && !vm.broadSearch && vm.subject.type !== 'Geographic'" style="margin-bottom: 1.2em">

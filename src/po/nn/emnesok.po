@@ -1,4 +1,4 @@
-#
+# 
 # Translators:
 # Dan Michael O. Heggø <danmichaelo@gmail.com>, 2015-2017,2019
 # Eva Holthe Enoksen <e.h.enoksen@ub.uio.no>, 2015-2016
@@ -6,21 +6,17 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Subject Search\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: 2019-05-31 13:43+0200\n"
+"PO-Revision-Date: 2019-09-01 16:14+0000\n"
 "Last-Translator: Dan Michael O. Heggø <danmichaelo@gmail.com>\n"
-"Language-Team: Norwegian Nynorsk (http://www.transifex.com/university-of-"
-"oslo-library/subject-search/language/nn/)\n"
-"Language: nn\n"
-"MIME-Version: 1.0\n"
+"Language-Team: Norwegian Nynorsk (http://www.transifex.com/university-of-oslo-library/subject-search/language/nn/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: nn\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.2.3\n"
 
-#: src/app/catalogue/availability.html:18
-msgid "(no access)"
-msgstr "(ingen tilgang)"
+#: src/app/pages/vocabularyInfo/acm-ccs-ubo.html:2
+msgid "ACM Computing Classification System"
+msgstr ""
 
 #: src/app/layout/header.html:24 src/app/pages/about.html:2
 msgid "About"
@@ -34,24 +30,20 @@ msgstr "Alle avdelingar"
 msgid "All libraries"
 msgstr "Alle bibliotek"
 
-#: src/app/pages/error.js:19
-msgid "An unknown error occured."
-msgstr "Det oppsto ein ukjend feil."
+#: src/app/pages/error.js:16
+msgid "An unknown error occured"
+msgstr ""
 
-#: src/app/authority/wikidata.html:18
+#: src/app/authority/wikidata.html:20
 msgid "Article suggestion"
-msgstr "Artikkelforslag"
+msgstr "Artikkelforslag:"
 
 #: src/app/pages/about.html:29
 msgid ""
 "As an experiment we've disabled all GA cookies. While we need some "
 "statistics on visits and usage, we believe that tracking <em>users</em> is "
 "not really needed for this tool. Users tracking also has a lot of flaws."
-msgstr ""
-"Som eit eksperiment har vi slått av GA informasjonskapslar. Trass i at vi "
-"treng statistikk for vitjingar og bruk meiner vi ikkje at det er naudsynt å "
-"spore <em>brukarar</em> av dette verktøyet. Brukarsporing har i tillegg "
-"mange manglar."
+msgstr "Som eit eksperiment har vi slått av GA informasjonskapslar. Trass i at vi treng statistikk for vitjingar og bruk meiner vi ikkje at det er naudsynt å spore <em>brukarar</em> av dette verktøyet. Brukarsporing har i tillegg mange manglar."
 
 #: src/app/search/searchBox.html:65
 msgid "Broad"
@@ -61,11 +53,19 @@ msgstr "Breitt"
 msgid "Broader:"
 msgstr "Overordna:"
 
+#: src/app/authority/childList/childList.html:2
+msgid "Browse"
+msgstr ""
+
 #: src/app/authority/authorityRecord.html:9
 msgid "Chemical element"
 msgstr "Grunnstoff"
 
-#: src/app/search/searchBox.js:60
+#: src/app/pages/home.html:70
+msgid "Computing Classification System"
+msgstr ""
+
+#: src/app/search/searchBox.js:61
 msgid "Containing"
 msgstr "Inneheld"
 
@@ -73,12 +73,15 @@ msgstr "Inneheld"
 msgid "Definition:"
 msgstr "Definisjon:"
 
-#: src/app/catalogue/availability.html:18
-#: src/app/catalogue/pnxRecord.service.js:290
+#: src/app/catalogue/pnxRecord.service.js:302
 msgid "E-book"
 msgstr "E-bok"
 
-#: src/app/search/searchBox.js:61
+#: src/app/catalogue/availability.html:19
+msgid "E-book not available"
+msgstr ""
+
+#: src/app/search/searchBox.js:62
 msgid "Ends with"
 msgstr "Sluttar med"
 
@@ -86,17 +89,17 @@ msgstr "Sluttar med"
 msgid "Enter a subject"
 msgstr "Søk etter emne"
 
-#: src/app/search/searchBox.js:62
+#: src/app/search/searchBox.js:63
 msgid "Exact match"
 msgstr "Eksakt lik"
 
-#: src/app/catalogue/catalogueResults.html:79
+#: src/app/catalogue/catalogueResults.html:86
 msgid "Expand to broad search"
 msgstr "Utvid til breitt søk"
 
 #: src/app/catalogue/catalogueResult.js:87
 msgid "Failed to fetch list of editions."
-msgstr "Klarte ikkje hente liste over utgåver."
+msgstr "Klarte ikkje å hente liste over utgåver"
 
 #: src/app/catalogue/catalogueResult.html:46
 msgid "Fetching editions…"
@@ -108,68 +111,76 @@ msgid ""
 "we were persuaded into using Google Analytics which is pervasive at the "
 "university. Note that two extra steps have been taken to protect your "
 "privacy:"
-msgstr ""
-"For statistikk planla vi opphaveleg å bruke open kjeldekode-verktøyet Piwik, "
-"men vi vart overtalde til å bruke Google Analytics, som er gjennomgripande "
-"på universitetet. Merk at to ekstra tiltak er sette i verk av omsyn til "
-"personvernet ditt:"
+msgstr "For statistikk planla vi opphaveleg å bruke open kjeldekode-verktøyet Piwik, men vi vart overtalde til å bruke Google Analytics, som er gjennomgripande på universitetet. Merk at to ekstra tiltak er sette i verk av omsyn til personvernet ditt."
 
 #: src/app/pages/about.html:10
 msgid ""
-"For information about the subject vocabularies, see the <a ui-sref="
-"\"home({lang: vm.lang})\">start page</a>."
-msgstr ""
-"For informasjon om ordtilfanga, gå til <a ui-sref=\"home({lang: vm."
-"lang})\">heimesida</a>."
+"For information about the subject vocabularies, see the <a ui-"
+"sref=\"home({lang: vm.lang})\">start page</a>."
+msgstr "For informasjon om ordtilfanga, gå til <a ui-sref=\"home({lang: vm.lang})\">heimesida</a>."
 
-#: src/app/catalogue/catalogueResults.html:67
+#: src/app/pages/home.html:39
+msgid "For librarians:"
+msgstr ""
+
+#: src/app/catalogue/catalogueResults.html:74
 msgid ""
-"Found {{ vm.results.length }} documents about this topic using {{vm."
-"searchType}}."
-msgstr ""
-"Fann {{ vm.results.length }} dokument om dette emnet med {{vm.searchType}}."
+"Found {{ vm.results.length }} documents about this topic using "
+"{{vm.searchType}}."
+msgstr "Fann {{vm.total_results}} dokument om dette emnet med {{vm.searchType}}."
 
-#: src/app/authority/wikidata.html:40
+#: src/app/authority/wikidata.html:42
 msgid "GBIF:"
-msgstr "GBIF:"
+msgstr ""
 
 #: src/app/catalogue/catalogueResult.html:97
-#: src/app/services/authority.service.js:173
+#: src/app/services/authority.service.js:195
 msgid "GenreForm"
 msgstr "Sjanger/form"
 
 #: src/app/catalogue/catalogueResult.html:92
-#: src/app/services/authority.service.js:172
+#: src/app/services/authority.service.js:194
 msgid "Geographic"
 msgstr "Stad"
 
-#: src/app/pages/home.html:31
-msgid "Human rights (Human Rights terms)"
-msgstr "Menneskerettar (Menneskerettstermar)"
+#: src/app/pages/home.html:46
+msgid "Human Rights Terms (–2018)"
+msgstr ""
 
-#: src/app/pages/home.html:13
+#: src/app/pages/home.html:14
 msgid "Humanities and social sciences (Humord)"
 msgstr "Humaniora og samfunnsfag (Humord)"
 
-#: src/app/pages/home.html:5
+#: src/app/pages/home.html:7
 msgid "I would like to find books about:"
 msgstr "Eg ynskjer å finne bøker om:"
 
-#: src/app/authority/wikidata.html:35
+#: src/app/authority/wikidata.html:37
 msgid "ITIS TSN:"
-msgstr "ITIS TSN:"
+msgstr ""
 
-#: src/app/catalogue/catalogueResults.html:78
+#: src/app/pages/vocabularyInfo/mrtermer.html:8
+msgid ""
+"Indexing using this vocabulary ceased in 2018 when the collection moved to the Law Library. For newer human rights literature, please try searching\n"
+"\t\t<a href=\"https://app.uio.no/ub/ujur/l-skjema/\" class=\"external\">L-skjema</a> (Law) or <a ui-sref=\"subject.search({vocab:'humord', lang: vm.lang})\">Humord</a> (Humanities and Social Sciences)."
+msgstr ""
+
+#: src/app/catalogue/catalogueResults.html:85
 msgid "Interested in more results?"
 msgstr "Interessert i fleire resultat?"
 
-#: src/app/services/authority.service.js:174
+#: src/app/services/authority.service.js:196
 msgid "KnuteTerm"
 msgstr "knuteterm"
 
-#: src/app/pages/home.html:37
+#: src/app/pages/home.html:32
 msgid "Law (L scheme)"
 msgstr "Jus (L-skjema)"
+
+#: src/app/pages/vocabularyInfo/acm-ccs-ubo.html:5
+#: src/app/pages/vocabularyInfo/msc-ubo.html:5
+msgid "Learn more"
+msgstr ""
 
 #: src/app/pages/vocabularyInfo/humord.html:5
 #: src/app/pages/vocabularyInfo/mrtermer.html:5
@@ -177,17 +188,17 @@ msgstr "Jus (L-skjema)"
 msgid "Learn more about the vocabulary"
 msgstr "Les meir om vokabularet"
 
-#: src/app/catalogue/catalogueResults.html:72
-msgid ""
-"Loaded {{ vm.results.length }} records so far, about {{ vm.total_results - "
-"vm.offset }} left, hold on…"
-msgstr ""
-"Henta {{ vm.results.length }} poster så langt, {{ vm.total_results - vm."
-"offset }} står att, vi skundar oss sakte…"
-
 #: src/app/search/searchBox.html:34
 msgid "Looking…"
-msgstr "Leitar…"
+msgstr "Leitar..."
+
+#: src/app/pages/vocabularyInfo/msc-ubo.html:2
+msgid "MSC/UBO shelving scheme"
+msgstr ""
+
+#: src/app/pages/home.html:64
+msgid "Mathematical Subject Classification"
+msgstr ""
 
 #: src/app/search/searchBox.html:66
 msgid "Narrow"
@@ -197,44 +208,48 @@ msgstr "Snevert"
 msgid "Narrower:"
 msgstr "Underordna:"
 
-#: src/app/pages/vocabularyNav/humord_nav.html:2
-msgid "Navigate the vocabulary"
-msgstr "Naviger i vokabularet"
-
 #: src/app/search/searchBox.html:33
 msgid "No hits :("
 msgstr "Ingen treff :("
 
-#: src/app/search/searchBox.js:260
+#: src/app/search/searchBox.js:265
 msgid "No network connection"
 msgstr "Inkje nettverkssamband"
+
+#: src/app/pages/home.html:52
+msgid "Norwegian WebDewey"
+msgstr ""
 
 #: src/app/search/searchBox.html:80
 msgid "Note: Results from a single branch will not include e-books."
 msgstr "Merk: Resultat frå berre ei avdeling vil ikkje inkludere e-bøkar."
 
-#: src/app/catalogue/catalogueResults.html:25
+#: src/app/catalogue/catalogueResults.html:34
 msgid "Ouch, not a single document was found."
 msgstr "Beklagar, vi fann ikkje eit einaste dokument."
 
-#: src/app/catalogue/pnxRecord.service.js:273
+#: src/app/catalogue/pnxRecord.service.js:285
 msgid "Print copy at {{institutions}} and {{count}} more libraries."
 msgstr "Trykt utgåve ved {{institutions}} og {{count}} andre bibliotek."
 
-#: src/app/catalogue/pnxRecord.service.js:267
+#: src/app/catalogue/pnxRecord.service.js:279
 msgid "Print copy at {{institutions}} and {{lastInstitution}}."
 msgstr "Trykt utgåve ved {{institutions}} og {{lastInstitution}}."
 
-#: src/app/catalogue/pnxRecord.service.js:248
+#: src/app/catalogue/pnxRecord.service.js:260
 msgid "Print copy at {{library}} and one other library."
 msgid_plural "Print copy at {{library}} and {{$count}} other libraries."
 msgstr[0] "Trykt utgåve ved {{library}} og eit anna bibliotek."
 msgstr[1] "Trykt utgåve ved {{library}} og {{$count}} andre bibliotek."
 
-#: src/app/catalogue/pnxRecord.service.js:255
-#: src/app/catalogue/pnxRecord.service.js:261
+#: src/app/catalogue/pnxRecord.service.js:267
+#: src/app/catalogue/pnxRecord.service.js:273
 msgid "Print copy at {{library}}."
 msgstr "Trykt utgåve ved {{library}}."
+
+#: src/app/catalogue/availability.html:21
+msgid "Print copy not available at any library"
+msgstr ""
 
 #: src/app/pages/about.html:14
 msgid "Privacy"
@@ -246,25 +261,25 @@ msgstr "Les meir i {{external.name}}"
 
 #: src/app/authority/authorityRecord.html:83
 msgid "Related concepts in other vocabularies:"
-msgstr "Beslekta omgrep frå andre vokabular:"
+msgstr ""
 
-#: src/app/pages/home.html:19
+#: src/app/pages/home.html:20
 msgid "Science (Realfagstermer)"
 msgstr "Realfag (Realfagstermar)"
 
-#: src/app/authority/wikidata.html:30
+#: src/app/authority/wikidata.html:32
 msgid "Scientific name:"
-msgstr "Vitskapeleg namn:"
+msgstr ""
 
 #: src/app/search/searchBox.html:66
 msgid "Search '+vm.vocab+' only"
-msgstr "Søk berre i '+vm.vocab+'"
+msgstr "Søk berre i '+vm.vocab+' "
 
 #: src/app/search/searchBox.html:65
 msgid "Search all subject vocabularies"
 msgstr "Søk i alle emneordtilfang"
 
-#: src/app/authority/wikidata.html:48
+#: src/app/authority/wikidata.html:50
 msgid "Search for «{{ vm.subject.getPrefLabel() }}» in Wikipedia"
 msgstr "Søk etter «{{ vm.subject.getPrefLabel() }}» på Wikipedia"
 
@@ -276,14 +291,36 @@ msgstr "Søkehistorikk"
 msgid "Search in {{external.name}}"
 msgstr "Søk i {{external.name}}"
 
+#: src/app/pages/vocabularyInfo/acm-ccs-ubo.html:4
+msgid ""
+"Search the ACM Computing Classification System (CCS) used at the University "
+"of Oslo Informatics Library, which is based on the ACM CCS 1998 edition, "
+"with a small add-on for cybernetics (part Ø)."
+msgstr ""
+
+#: src/app/pages/vocabularyInfo/mrtermer.html:4
+msgid ""
+"Search the Center for Human Rights collection of the University of Oslo "
+"Library until 2018, using English search terms from a small vocabulary "
+"designed for this collection."
+msgstr ""
+
+#: src/app/pages/vocabularyInfo/usvd.html:4
+msgid "Search the University of Oslo Library subject index to Dewey."
+msgstr ""
+
 #: src/app/pages/vocabularyInfo/realfagstermer.html:4
 msgid ""
 "Search the science, technology and mathematics collections of University of "
 "Oslo and Bergen using Norwegian Bokmål, Nynorsk, English or the scientific "
 "names of species."
+msgstr "Søk i realfagssamlingane til universitetsbiblioteka i Oslo og Bergen med søkjeord på bokmål, nynorsk, engelsk eller med vitskapelege namn på artar."
+
+#: src/app/pages/vocabularyInfo/msc-ubo.html:4
+msgid ""
+"Search the shelving scheme for the old mathematics collection (–2011) in the"
+" University of Oslo Science Library, which is based on MSC 1970."
 msgstr ""
-"Søk i realfagssamlingane til universitetsbiblioteka i Oslo og Bergen med "
-"søkjeord på bokmål, nynorsk, engelsk eller med vitskapelege namn på artar."
 
 #: src/app/authority/authorityRecord.html:39
 msgid "See also:"
@@ -297,27 +334,27 @@ msgstr "Serie"
 msgid ""
 "Several fantastic pieces of free and open-source software have been used to "
 "build this search. A list is provided below together with their licenses."
+msgstr "Ei rekkje supre open kjelde-komponentar er nytta for å byggje opp emneordsøket. Desse er lista opp saman med lisensane dei er underlagde. "
+
+#: src/app/catalogue/catalogueResults.html:79
+msgid ""
+"Showing {{ vm.results.length }} of {{ vm.offset }} results, about {{ "
+"vm.total_results - vm.offset }} left to check…"
 msgstr ""
-"Ei rekkje supre open kjelde-komponentar er nytta for å byggje opp "
-"emneordsøket. Desse er lista opp saman med lisensane dei er underlagde."
 
 #: src/app/pages/about.html:16
 msgid ""
-"So far we're not using cookies or localStorage at all. If we introduce login "
-"or user preferences in the future, we will need storage, but we will always "
-"limit usage to a minimum."
-msgstr ""
-"Enn så lenge nyttar vi ikkje informasjonskapslar eller lokal lagring i det "
-"heile. Viss vi ein gong i framtida kjem til å introdusere innlogging eller "
-"brukarinnstillingar vil vi trenge lagring, men vi vil alltid avgrense det "
-"til eit minimum."
+"So far we're not using cookies or localStorage at all. If we introduce login"
+" or user preferences in the future, we will need storage, but we will always"
+" limit usage to a minimum."
+msgstr "Enn så lenge nyttar vi ikkje informasjonskapslar eller lokal lagring i det heile. Viss vi ein gong i framtida kjem til å introdusere innlogging eller brukarinnstillingar vil vi trenge lagring, men vi vil alltid avgrense det til eit minimum."
 
 #: src/app/catalogue/catalogueResult.js:57
 msgid ""
 "Sorry, the subject \"{{subject}}\" was not found in the current vocabulary."
 msgstr "Orsak, emnet «{{subject}}» vart ikkje funne i dette ordtilfanget."
 
-#: src/app/search/searchBox.js:59
+#: src/app/search/searchBox.js:60
 msgid "Starting with"
 msgstr "Startar med"
 
@@ -327,7 +364,7 @@ msgstr "Emnesøk"
 
 #: src/app/pages/home.html:3
 msgid "Subject search"
-msgstr "Emnesøk"
+msgstr ""
 
 #: src/app/pages/vocabularyInfo/tekord.html:4
 msgid ""
@@ -335,10 +372,7 @@ msgid ""
 "provided by Tekord. Search is only available in Norwegian Bokmål, but terms "
 "are mapped to UDC, providing possibilities for multilingual search in the "
 "future."
-msgstr ""
-"Emnesøk i den tekniske litteraturen til NTNU er tilgjengeleg via Tekord. Søk "
-"er kun tilgjengeleg på bokmål, men termane er kobla til UDK, så det kan åpne "
-"for fleirspråkleg søk i framtida."
+msgstr "Emnesøk i den tekniske litteraturen til NTNU er tilgjengeleg via Tekord. Søk er kun tilgjengeleg på bokmål, men termane er kobla til UDK, så det kan åpne for fleirspråkleg søk i framtida."
 
 #: src/app/pages/vocabularyInfo/mrtermer.html:2
 msgid "Subject search using Human Rights Terms"
@@ -356,89 +390,76 @@ msgstr "Emnesøk med Realfagstermar"
 msgid "Subject search using Tekord"
 msgstr "Emnesøk med Tekord"
 
-#: src/app/pages/home.html:25
+#: src/app/pages/home.html:26
 msgid "Technology and engineering (Tekord)"
 msgstr "Teknologi/ingeniørfag (Tekord)"
 
-#: src/app/services/authority.service.js:171
+#: src/app/services/authority.service.js:193
 msgid "Temporal"
 msgstr "Tid"
 
 #: src/app/pages/about.html:7
 msgid ""
-"The Subject Search is <a href=\"https://github.com/scriptotek/emnesok\">open "
-"source</a> and licensed under the <a href=\"https://github.com/scriptotek/"
-"emnesok/blob/master/LICENSE\">MIT license</a>."
-msgstr ""
-"Emnesøket er <a href=\"https://github.com/scriptotek/emnesok\">open "
-"kjeldekode</a> lisensisert under <a href=\"https://github.com/scriptotek/"
-"emnesok/blob/master/LICENSE\">MIT-lisensen</a>."
+"The Subject Search is <a href=\"https://github.com/scriptotek/emnesok\">open"
+" source</a> and licensed under the <a "
+"href=\"https://github.com/scriptotek/emnesok/blob/master/LICENSE\">MIT "
+"license</a>."
+msgstr "Emnesøket er <a href=\"https://github.com/scriptotek/emnesok\">open kjeldekode</a> lisensisert under <a href=\"https://github.com/scriptotek/emnesok/blob/master/LICENSE\">MIT-lisensen</a>."
 
 #: src/app/pages/about.html:4
 msgid ""
 "The Subject Search is developed by the University of Oslo Science Library. "
-"Vocabulary search and retrieval is powered by a <a href=\"http://skosmos.org/"
-"\">Skosmos</a> instance using data from <a href=\"http://data.ub.uio.no"
-"\">data.ub.uio.no</a>, while library catalogue search and retrieval is "
-"powered by <a href=\"https://developers.exlibrisgroup.com/primo/apis/"
-"webservices/xservices/search/briefsearch\">Primo</a> through <a href="
-"\"https://github.com/scriptotek/lsm\">a locally developed middleware</a>."
-msgstr ""
-"Emnesøket er utvikla av UiO Realfagsbiblioteket. Søk i emneordtilfanget vert "
-"drivne av ein <a href=\"http://skosmos.org/\">Skosmos</a>-instans med data "
-"frå <a href=\"http://data.ub.uio.no\">data.ub.uio.no</a>, medan søk i "
-"bibliotekskatalogen vert drivne av <a href=\"https://developers."
-"exlibrisgroup.com/primo/apis/webservices/xservices/search/briefsearch"
-"\">Primo</a> via <a href=\"https://github.com/scriptotek/lsm\">ein lokalt "
-"utvikla mellomvare</a>."
-
-#: src/app/pages/vocabularyInfo/mrtermer.html:4
-msgid ""
-"The University of Oslo Library has a small vocabulary to search its human "
-"rights collections. This vocabulary is only available in English."
-msgstr ""
-"Universitetsbiblioteket i Oslo har eit lite vokabular for "
-"mennnesketrettsamlingene. Vokabularet er kun tilgjengeleg på engelsk."
+"Vocabulary search and retrieval is powered by a <a "
+"href=\"http://skosmos.org/\">Skosmos</a> instance using data from <a "
+"href=\"http://data.ub.uio.no\">data.ub.uio.no</a>, while library catalogue "
+"search and retrieval is powered by <a "
+"href=\"https://developers.exlibrisgroup.com/primo/apis/webservices/xservices/search/briefsearch\">Primo</a>"
+" through <a href=\"https://github.com/scriptotek/lsm\">a locally developed "
+"middleware</a>."
+msgstr "Emnesøket er utvikla av UiO Realfagsbiblioteket. Søk i emneordtilfanget vert drivne av ein <a href=\"http://skosmos.org/\">Skosmos</a>-instans med data frå <a href=\"http://data.ub.uio.no\">data.ub.uio.no</a>, medan søk i bibliotekskatalogen vert drivne av <a href=\"https://developers.exlibrisgroup.com/primo/apis/webservices/xservices/search/briefsearch\">Primo</a> via <a href=\"https://github.com/scriptotek/lsm\">ein lokalt utvikla mellomvare</a>."
 
 #: src/app/search/searchBox.html:94
 msgid "The search went out in error:"
-msgstr "Søket gjekk ut i feil:"
+msgstr "Søket gjekk ut i feil"
 
 #: src/app/pages/vocabularyInfo/humord.html:4
 msgid ""
 "The university libraries of Oslo, Bergen, Trondheim and Tromsø collaborate "
 "on the Humord vocabulary to provide multilingual (Norwegian Bokmål and "
 "English) subject search to their humanities and social science collections."
-msgstr ""
-"Universitetsbiblioteka i Oslo, Bergen, Trondheim og Tromsø samarbeider om "
-"Humord-vokabularet for å tilby flerspråkleg (bokmål og engelsk) emnesøk i "
-"samlingene for humaniora og samfunnsvitskap."
+msgstr "Universitetsbiblioteka i Oslo, Bergen, Trondheim og Tromsø samarbeider om Humord-vokabularet for å tilby flerspråkleg (bokmål og engelsk) emnesøk i samlingene for humaniora og samfunnsvitskap."
 
 #: src/app/pages/about.html:32
 msgid "Third party licenses"
 msgstr "Tredjepartslisensar"
 
-#: src/app/catalogue/catalogueResults.js:74
+#: src/app/catalogue/catalogueResults.js:79
 msgid "This concept has been deprecated"
-msgstr "Dette omgrepet er tatt ut av bruk"
+msgstr "Dette omgrepet er tatt ut av bruk."
 
-#: src/app/catalogue/catalogueResults.js:65
+#: src/app/catalogue/catalogueResults.js:70
 msgid "This concept has been replaced by {{subject}}"
 msgstr "Dette omgrepet har vorte erstatta av {{subject}}"
 
 #: src/app/catalogue/catalogueResult.html:87
 msgid ""
-"This is a subject from another vocabulary. It might not exist in the current "
-"vocabulary."
-msgstr ""
-"Dette er eit emne frå eit anna ordtilfang. Det er ikkje sikkert det finns i "
-"det aktive ordtilfanget."
+"This is a subject from another vocabulary. It might not exist in the current"
+" vocabulary."
+msgstr "Dette er eit emne frå eit anna ordtilfang. Det er ikkje sikkert det finns i det aktive ordtilfanget."
 
-#: src/app/services/authority.service.js:175
+#: src/app/services/authority.service.js:197
 msgid "Topic"
 msgstr "Emne"
 
-#: src/app/catalogue/catalogueResults.js:221
+#: src/app/pages/home.html:58
+msgid "UBO subject index for Dewey (USVD)"
+msgstr ""
+
+#: src/app/pages/vocabularyInfo/usvd.html:2
+msgid "UBO subject index to Dewey (USVD)"
+msgstr ""
+
+#: src/app/catalogue/catalogueResults.js:226
 msgid "Uh oh, some kind of server error occured."
 msgstr "Orsak, det oppsto ein serverfeil."
 
@@ -446,7 +467,7 @@ msgstr "Orsak, det oppsto ein serverfeil."
 msgid "Used for:"
 msgstr "Nytta for:"
 
-#: src/app/authority/wikidata.html:17
+#: src/app/authority/wikidata.html:19
 msgid "Verified match"
 msgstr "Bekrefta betyding"
 
@@ -456,31 +477,25 @@ msgstr "Vi nyttar https for å sikre anonyme søk."
 
 #: src/app/pages/about.html:28
 msgid ""
-"We're proxying all data through <a href=\"https://github.com/unioslo/ipproxy"
-"\">ipproxy</a>, which masks the last part of your IP address, meaning that "
-"your full IP address is never sent to any third party (Google)."
-msgstr ""
-"Vi sender all data gjennom <a href=\"https://github.com/unioslo/ipproxy"
-"\">ipproxy</a>, som maskerer siste delen av IP-adressa di. Det betyr at "
-"ingen tredjepart (Google) kan sjå heile IP-adressa di."
+"We're proxying all data through <a "
+"href=\"https://github.com/unioslo/ipproxy\">ipproxy</a>, which masks the "
+"last part of your IP address, meaning that your full IP address is never "
+"sent to any third party (Google)."
+msgstr "Vi sender all data gjennom <a href=\"https://github.com/unioslo/ipproxy\">ipproxy</a>, som maskerer siste delen av IP-adressa di. Det betyr at ingen tredjepart (Google) kan sjå heile IP-adressa di. "
 
-#: src/app/catalogue/catalogueResults.html:31
+#: src/app/catalogue/catalogueResults.html:40
 msgid ""
-"You could try expanding the search to <a ui-sref=\"subject.search({library:"
-"null})\">all libraries</a>."
-msgstr ""
-"Prøv gjerne å utvide søket til <a ui-sref=\"subject.search({library:"
-"null})\">alle bibliotek</a>."
+"You could try expanding the search to <a ui-"
+"sref=\"subject.search({library:null})\">all libraries</a>."
+msgstr "Prøv gjerne å utvide søket til <a ui-sref=\"subject.search({library:null})\">alle bibliotek</a>."
 
-#: src/app/catalogue/catalogueResults.html:28
+#: src/app/catalogue/catalogueResults.html:37
 msgid ""
-"You could try expanding the search to a <a ui-sref=\"subject.search({broad:"
-"true})\">broad search</a>."
-msgstr ""
-"Prøv gjerne å utvide søket til eit <a ui-sref=\"subject.search({broad:"
-"true})\">breitt søk</a>."
+"You could try expanding the search to a <a ui-"
+"sref=\"subject.search({broad:true})\">broad search</a>."
+msgstr "Prøv gjerne å utvide søket til eit <a ui-sref=\"subject.search({broad:true})\">breitt søk</a>."
 
-#: src/app/catalogue/catalogueResults.js:50 src/app/search/searchBox.js:80
+#: src/app/catalogue/catalogueResults.js:50 src/app/search/searchBox.js:81
 msgid "broad search"
 msgstr "breitt søk"
 
@@ -488,7 +503,7 @@ msgstr "breitt søk"
 msgid "in"
 msgstr "i"
 
-#: src/app/catalogue/catalogueResults.js:51 src/app/search/searchBox.js:81
+#: src/app/catalogue/catalogueResults.js:51 src/app/search/searchBox.js:82
 msgid "narrow search"
 msgstr "snevert søk"
 
@@ -507,141 +522,3 @@ msgstr "» Meld frå om problem"
 #: src/app/authority/authorityRecord.html:95
 msgid "» View in Skosmos"
 msgstr "» Vis i Skosmos"
-
-#~ msgid "Search it"
-#~ msgstr "Søk"
-
-#~ msgid "The subject was not found. It might have been deleted."
-#~ msgstr "Emnet vart ikkje funne. Det kan ha blitt sletta."
-
-#~ msgid ""
-#~ "<a href=\"http://www.bibsys.no/files/out/humord/\" target=\"external"
-#~ "\">Learn more about the vocabulary</a>"
-#~ msgstr ""
-#~ "<a href=\"http://www.bibsys.no/files/out/humord/\" target=\"external"
-#~ "\">Lær meir om ordtilfanget</a>"
-
-#~ msgid ""
-#~ "<a href=\"https://www.ub.uio.no/english/using/search-the-library/subject-"
-#~ "search-terms/science-subject-terms.html\">Learn more about the "
-#~ "vocabulary</a>"
-#~ msgstr ""
-#~ "<a href=\"https://www.ub.uio.no/bruk/sok-i-hele-biblioteket/beskrivelser-"
-#~ "av-termer/realfagstermer.html\" target=\"external\">Lær meir om "
-#~ "ordtilfanget</a>"
-
-#~ msgid ""
-#~ "<a href=\"https://www.ub.uio.no/om/tjenester/emneord/"
-#~ "menneskerettighetstermer.html\" target=\"external\">Learn more about the "
-#~ "vocabulary</a>"
-#~ msgstr ""
-#~ "<a href=\"https://www.ub.uio.no/om/tjenester/emneord/"
-#~ "menneskerettighetstermer.html\" target=\"external\">Lær meir om "
-#~ "ordtilfanget</a>"
-
-#~ msgid "Documents"
-#~ msgstr "Dokument"
-
-#~ msgid ""
-#~ "Find books and other material about a specific topic in the collections "
-#~ "of Norwegian academic libraries. Start by choosing a vocabulary from the "
-#~ "list below. A vocabulary is a controlled set of topics. Searching all "
-#~ "vocabularies at the same time isn't yet supported, but definitely "
-#~ "something we would like to add support for in the future."
-#~ msgstr ""
-#~ "Finn bøker og meir om eit gitt emne i samlingane til norske fag- og "
-#~ "forskingsbibliotek. Start med å velje eit emneordtilfang frå lista under. "
-#~ "Eit emneordtilfang er eit kontrollert sett av emneord. Søk i alle "
-#~ "ordtilfanga samstundes er førebels ikkje støtta, men vi vonar det skal "
-#~ "vere mogleg i framtida."
-
-#~ msgid "Human rights"
-#~ msgstr "Menneskerettar"
-
-#~ msgid ""
-#~ "Humord is the best portal to the humanities and social sciences. The "
-#~ "vocabulary also has a relatively large amount of interdisciplinary "
-#~ "subject headings. This vocabulary has only Norwegian Bokmål terms."
-#~ msgstr ""
-#~ "Humord gjev den beste inngangen til humaniora og samfunnsfag. "
-#~ "Ordtilfanget har også ei stor mengd tverrfaglege termar. Dette "
-#~ "ordtilfanget har berre emneord på bokmål. "
-
-#~ msgid ""
-#~ "Once in, you can toggle between <em>broad</em> and <em>narrow</em> "
-#~ "search. With <em>narrow</em> search, you will only get highly relevant "
-#~ "results carefully indexed by librarians and subject specialists. By "
-#~ "switching to <em>broad</em> search, you will get more results, but "
-#~ "without the same level of precision."
-#~ msgstr ""
-#~ "Så fort du er inne kan du velje mellom <em> breitt </em> og <em> snevert "
-#~ "</em> søk. Med <em> snevert </em> søk vil du berre få relevante resultat "
-#~ "utvald av bibliotekarar og fagfolk som har brukt det valde ordtilfanget. "
-#~ "<em> Breitt </em> søk gjev fleir resultat, men ikkje med same "
-#~ "presisjonsnivå."
-
-#~ msgid "Other terms:"
-#~ msgstr "Andre termar:"
-
-#~ msgid "Science, technology, engineering and mathematics (Science Terms)"
-#~ msgstr "Realfag (Realfagstermar)"
-
-#~ msgid ""
-#~ "Search for scientific concepts. <em>Realfagstermer</em> is a controlled "
-#~ "vocabulary maintained by the science libraries at the University at Oslo "
-#~ "and Bergen, and is the best portal to our collections. Realfagstermer is "
-#~ "a multilingual vocabulary that can be searched in Bokmål, Nynorsk "
-#~ "(translation in progress), English (translation in progress) and Latin "
-#~ "(scientific names)."
-#~ msgstr ""
-#~ "Søk etter realfaglege omgrep. <em>Realfagstermar</em> er eit kontrollert "
-#~ "ordtilfang som vert halde ved like av realfagsbiblioteka ved UiO og UiB. "
-#~ "Dette er den beste inngangen til samlingane våre. Realfagstermar er eit "
-#~ "fleirspråkleg ordtilfang der du kan søke på både bokmål, nynorsk "
-#~ "(omsetjing under utarbeiding), engelsk (omsetjing under utarbeiding) og "
-#~ "latin (vitskapelege namn). "
-
-#~ msgid ""
-#~ "Tekord is a vocabulary created at NTNU (Norwegian University of Science "
-#~ "and Technology). It is an especially useful search portal to technical "
-#~ "and engineering literature. This vocabulary has only Norwegian Bokmål "
-#~ "terms."
-#~ msgstr ""
-#~ "Tekord er eit ordtilfang utvikla ved NTNU. Det er særleg ein god "
-#~ "søkeinngang til teknisk faglitteratur ved NTNU. Tekord inneheld berre "
-#~ "emneord på bokmål. "
-
-#~ msgid ""
-#~ "The Human Rights Terms vocabulary was initially developed in 1991 by the "
-#~ "Human Rights Research and Education Centre of the University of Ottawa, "
-#~ "Canada. In the late 1990s it was adopted by the Norwegian Centre for "
-#~ "Human Rights (SMR), who has since adjusted and expanded the vocabulary in "
-#~ "order to provide a great entry to the SMR library collections."
-#~ msgstr ""
-#~ "Menneskerettsordtilfanget vart opphaveleg utvikla i 1991 av Human Rights "
-#~ "Research and Education Centre ved Universitetet i Ottawa, Canada. På "
-#~ "slutten av 1990-talet vart det teke i bruk av Norsk senter for "
-#~ "menneskerettigheter (SMR), som sidan har utvikla og utvida vokabularet "
-#~ "for å gjere det til ein god inngangsport til boksamlinga til SMR."
-
-#~ msgid ""
-#~ "The collections of the University of Oslo Law Library can be searched and "
-#~ "navigated using a special classification scheme."
-#~ msgstr ""
-#~ "Samlingene til UiO Juridisk bibliotek kan søkast i med eit eget "
-#~ "klassifikasjonsskjema."
-
-#~ msgid ""
-#~ "The vocabulary contains {{ vm.topicCount }} subjects, {{ vm.genreCount }} "
-#~ "form/genres, {{ vm.timeCount }} time periods, {{ vm.placeCount }} "
-#~ "geographic names or features, {{ vm.compoundConceptCount }} compound "
-#~ "concepts and {{ vm.virtualCompoundConceptCount }} virtual compound "
-#~ "concepts."
-#~ msgstr ""
-#~ "Ordtilfanget inneheld {{ vm.topicCount }} emne, {{ vm.genreCount }} "
-#~ "former/sjangrar, {{ vm.timeCount }} tidsperiodar, {{ vm.placeCount }} "
-#~ "geografiske namn, {{ vm.compoundConceptCount }} emnestrengar og {{ vm."
-#~ "virtualCompoundConceptCount }} virtuelle emnestrengar."
-
-#~ msgid "The vocabulary contains {{ vm.topicCount }} subjects."
-#~ msgstr "Vokabularet inneheld {{ vm.topicCount }} emne."

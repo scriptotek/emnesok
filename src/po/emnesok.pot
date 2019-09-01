@@ -4,8 +4,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: \n"
 
-#: src/app/catalogue/availability.html:18
-msgid "(no access)"
+#: src/app/pages/vocabularyInfo/acm-ccs-ubo.html:2
+msgid "ACM Computing Classification System"
 msgstr ""
 
 #: src/app/layout/header.html:24
@@ -21,11 +21,11 @@ msgstr ""
 msgid "All libraries"
 msgstr ""
 
-#: src/app/pages/error.js:19
-msgid "An unknown error occured."
+#: src/app/pages/error.js:16
+msgid "An unknown error occured"
 msgstr ""
 
-#: src/app/authority/wikidata.html:18
+#: src/app/authority/wikidata.html:20
 msgid "Article suggestion"
 msgstr ""
 
@@ -41,11 +41,19 @@ msgstr ""
 msgid "Broader:"
 msgstr ""
 
+#: src/app/authority/childList/childList.html:2
+msgid "Browse"
+msgstr ""
+
 #: src/app/authority/authorityRecord.html:9
 msgid "Chemical element"
 msgstr ""
 
-#: src/app/search/searchBox.js:60
+#: src/app/pages/home.html:70
+msgid "Computing Classification System"
+msgstr ""
+
+#: src/app/search/searchBox.js:61
 msgid "Containing"
 msgstr ""
 
@@ -53,12 +61,15 @@ msgstr ""
 msgid "Definition:"
 msgstr ""
 
-#: src/app/catalogue/availability.html:18
-#: src/app/catalogue/pnxRecord.service.js:290
+#: src/app/catalogue/pnxRecord.service.js:302
 msgid "E-book"
 msgstr ""
 
-#: src/app/search/searchBox.js:61
+#: src/app/catalogue/availability.html:19
+msgid "E-book not available"
+msgstr ""
+
+#: src/app/search/searchBox.js:62
 msgid "Ends with"
 msgstr ""
 
@@ -66,11 +77,11 @@ msgstr ""
 msgid "Enter a subject"
 msgstr ""
 
-#: src/app/search/searchBox.js:62
+#: src/app/search/searchBox.js:63
 msgid "Exact match"
 msgstr ""
 
-#: src/app/catalogue/catalogueResults.html:79
+#: src/app/catalogue/catalogueResults.html:86
 msgid "Expand to broad search"
 msgstr ""
 
@@ -90,50 +101,65 @@ msgstr ""
 msgid "For information about the subject vocabularies, see the <a ui-sref=\"home({lang: vm.lang})\">start page</a>."
 msgstr ""
 
-#: src/app/catalogue/catalogueResults.html:67
+#: src/app/pages/home.html:39
+msgid "For librarians:"
+msgstr ""
+
+#: src/app/catalogue/catalogueResults.html:74
 msgid "Found {{ vm.results.length }} documents about this topic using {{vm.searchType}}."
 msgstr ""
 
-#: src/app/authority/wikidata.html:40
+#: src/app/authority/wikidata.html:42
 msgid "GBIF:"
 msgstr ""
 
 #: src/app/catalogue/catalogueResult.html:97
-#: src/app/services/authority.service.js:173
+#: src/app/services/authority.service.js:195
 msgid "GenreForm"
 msgstr ""
 
 #: src/app/catalogue/catalogueResult.html:92
-#: src/app/services/authority.service.js:172
+#: src/app/services/authority.service.js:194
 msgid "Geographic"
 msgstr ""
 
-#: src/app/pages/home.html:31
-msgid "Human rights (Human Rights terms)"
+#: src/app/pages/home.html:46
+msgid "Human Rights Terms (–2018)"
 msgstr ""
 
-#: src/app/pages/home.html:13
+#: src/app/pages/home.html:14
 msgid "Humanities and social sciences (Humord)"
 msgstr ""
 
-#: src/app/pages/home.html:5
+#: src/app/pages/home.html:7
 msgid "I would like to find books about:"
 msgstr ""
 
-#: src/app/authority/wikidata.html:35
+#: src/app/authority/wikidata.html:37
 msgid "ITIS TSN:"
 msgstr ""
 
-#: src/app/catalogue/catalogueResults.html:78
+#: src/app/pages/vocabularyInfo/mrtermer.html:8
+msgid ""
+"Indexing using this vocabulary ceased in 2018 when the collection moved to the Law Library. For newer human rights literature, please try searching\n"
+"\t\t<a href=\"https://app.uio.no/ub/ujur/l-skjema/\" class=\"external\">L-skjema</a> (Law) or <a ui-sref=\"subject.search({vocab:'humord', lang: vm.lang})\">Humord</a> (Humanities and Social Sciences)."
+msgstr ""
+
+#: src/app/catalogue/catalogueResults.html:85
 msgid "Interested in more results?"
 msgstr ""
 
-#: src/app/services/authority.service.js:174
+#: src/app/services/authority.service.js:196
 msgid "KnuteTerm"
 msgstr ""
 
-#: src/app/pages/home.html:37
+#: src/app/pages/home.html:32
 msgid "Law (L scheme)"
+msgstr ""
+
+#: src/app/pages/vocabularyInfo/acm-ccs-ubo.html:5
+#: src/app/pages/vocabularyInfo/msc-ubo.html:5
+msgid "Learn more"
 msgstr ""
 
 #: src/app/pages/vocabularyInfo/humord.html:5
@@ -142,12 +168,16 @@ msgstr ""
 msgid "Learn more about the vocabulary"
 msgstr ""
 
-#: src/app/catalogue/catalogueResults.html:72
-msgid "Loaded {{ vm.results.length }} records so far, about {{ vm.total_results - vm.offset }} left, hold on…"
-msgstr ""
-
 #: src/app/search/searchBox.html:34
 msgid "Looking…"
+msgstr ""
+
+#: src/app/pages/vocabularyInfo/msc-ubo.html:2
+msgid "MSC/UBO shelving scheme"
+msgstr ""
+
+#: src/app/pages/home.html:64
+msgid "Mathematical Subject Classification"
 msgstr ""
 
 #: src/app/search/searchBox.html:66
@@ -158,43 +188,47 @@ msgstr ""
 msgid "Narrower:"
 msgstr ""
 
-#: src/app/pages/vocabularyNav/humord_nav.html:2
-msgid "Navigate the vocabulary"
-msgstr ""
-
 #: src/app/search/searchBox.html:33
 msgid "No hits :("
 msgstr ""
 
-#: src/app/search/searchBox.js:260
+#: src/app/search/searchBox.js:265
 msgid "No network connection"
+msgstr ""
+
+#: src/app/pages/home.html:52
+msgid "Norwegian WebDewey"
 msgstr ""
 
 #: src/app/search/searchBox.html:80
 msgid "Note: Results from a single branch will not include e-books."
 msgstr ""
 
-#: src/app/catalogue/catalogueResults.html:25
+#: src/app/catalogue/catalogueResults.html:34
 msgid "Ouch, not a single document was found."
 msgstr ""
 
-#: src/app/catalogue/pnxRecord.service.js:273
+#: src/app/catalogue/pnxRecord.service.js:285
 msgid "Print copy at {{institutions}} and {{count}} more libraries."
 msgstr ""
 
-#: src/app/catalogue/pnxRecord.service.js:267
+#: src/app/catalogue/pnxRecord.service.js:279
 msgid "Print copy at {{institutions}} and {{lastInstitution}}."
 msgstr ""
 
-#: src/app/catalogue/pnxRecord.service.js:248
+#: src/app/catalogue/pnxRecord.service.js:260
 msgid "Print copy at {{library}} and one other library."
 msgid_plural "Print copy at {{library}} and {{$count}} other libraries."
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/app/catalogue/pnxRecord.service.js:255
-#: src/app/catalogue/pnxRecord.service.js:261
+#: src/app/catalogue/pnxRecord.service.js:267
+#: src/app/catalogue/pnxRecord.service.js:273
 msgid "Print copy at {{library}}."
+msgstr ""
+
+#: src/app/catalogue/availability.html:21
+msgid "Print copy not available at any library"
 msgstr ""
 
 #: src/app/pages/about.html:14
@@ -209,11 +243,11 @@ msgstr ""
 msgid "Related concepts in other vocabularies:"
 msgstr ""
 
-#: src/app/pages/home.html:19
+#: src/app/pages/home.html:20
 msgid "Science (Realfagstermer)"
 msgstr ""
 
-#: src/app/authority/wikidata.html:30
+#: src/app/authority/wikidata.html:32
 msgid "Scientific name:"
 msgstr ""
 
@@ -225,7 +259,7 @@ msgstr ""
 msgid "Search all subject vocabularies"
 msgstr ""
 
-#: src/app/authority/wikidata.html:48
+#: src/app/authority/wikidata.html:50
 msgid "Search for «{{ vm.subject.getPrefLabel() }}» in Wikipedia"
 msgstr ""
 
@@ -237,8 +271,24 @@ msgstr ""
 msgid "Search in {{external.name}}"
 msgstr ""
 
+#: src/app/pages/vocabularyInfo/acm-ccs-ubo.html:4
+msgid "Search the ACM Computing Classification System (CCS) used at the University of Oslo Informatics Library, which is based on the ACM CCS 1998 edition, with a small add-on for cybernetics (part Ø)."
+msgstr ""
+
+#: src/app/pages/vocabularyInfo/mrtermer.html:4
+msgid "Search the Center for Human Rights collection of the University of Oslo Library until 2018, using English search terms from a small vocabulary designed for this collection."
+msgstr ""
+
+#: src/app/pages/vocabularyInfo/usvd.html:4
+msgid "Search the University of Oslo Library subject index to Dewey."
+msgstr ""
+
 #: src/app/pages/vocabularyInfo/realfagstermer.html:4
 msgid "Search the science, technology and mathematics collections of University of Oslo and Bergen using Norwegian Bokmål, Nynorsk, English or the scientific names of species."
+msgstr ""
+
+#: src/app/pages/vocabularyInfo/msc-ubo.html:4
+msgid "Search the shelving scheme for the old mathematics collection (–2011) in the University of Oslo Science Library, which is based on MSC 1970."
 msgstr ""
 
 #: src/app/authority/authorityRecord.html:39
@@ -253,6 +303,10 @@ msgstr ""
 msgid "Several fantastic pieces of free and open-source software have been used to build this search. A list is provided below together with their licenses."
 msgstr ""
 
+#: src/app/catalogue/catalogueResults.html:79
+msgid "Showing {{ vm.results.length }} of {{ vm.offset }} results, about {{ vm.total_results - vm.offset }} left to check…"
+msgstr ""
+
 #: src/app/pages/about.html:16
 msgid "So far we're not using cookies or localStorage at all. If we introduce login or user preferences in the future, we will need storage, but we will always limit usage to a minimum."
 msgstr ""
@@ -261,7 +315,7 @@ msgstr ""
 msgid "Sorry, the subject \"{{subject}}\" was not found in the current vocabulary."
 msgstr ""
 
-#: src/app/search/searchBox.js:59
+#: src/app/search/searchBox.js:60
 msgid "Starting with"
 msgstr ""
 
@@ -294,11 +348,11 @@ msgstr ""
 msgid "Subject search using Tekord"
 msgstr ""
 
-#: src/app/pages/home.html:25
+#: src/app/pages/home.html:26
 msgid "Technology and engineering (Tekord)"
 msgstr ""
 
-#: src/app/services/authority.service.js:171
+#: src/app/services/authority.service.js:193
 msgid "Temporal"
 msgstr ""
 
@@ -308,10 +362,6 @@ msgstr ""
 
 #: src/app/pages/about.html:4
 msgid "The Subject Search is developed by the University of Oslo Science Library. Vocabulary search and retrieval is powered by a <a href=\"http://skosmos.org/\">Skosmos</a> instance using data from <a href=\"http://data.ub.uio.no\">data.ub.uio.no</a>, while library catalogue search and retrieval is powered by <a href=\"https://developers.exlibrisgroup.com/primo/apis/webservices/xservices/search/briefsearch\">Primo</a> through <a href=\"https://github.com/scriptotek/lsm\">a locally developed middleware</a>."
-msgstr ""
-
-#: src/app/pages/vocabularyInfo/mrtermer.html:4
-msgid "The University of Oslo Library has a small vocabulary to search its human rights collections. This vocabulary is only available in English."
 msgstr ""
 
 #: src/app/search/searchBox.html:94
@@ -326,11 +376,11 @@ msgstr ""
 msgid "Third party licenses"
 msgstr ""
 
-#: src/app/catalogue/catalogueResults.js:74
+#: src/app/catalogue/catalogueResults.js:79
 msgid "This concept has been deprecated"
 msgstr ""
 
-#: src/app/catalogue/catalogueResults.js:65
+#: src/app/catalogue/catalogueResults.js:70
 msgid "This concept has been replaced by {{subject}}"
 msgstr ""
 
@@ -338,11 +388,19 @@ msgstr ""
 msgid "This is a subject from another vocabulary. It might not exist in the current vocabulary."
 msgstr ""
 
-#: src/app/services/authority.service.js:175
+#: src/app/services/authority.service.js:197
 msgid "Topic"
 msgstr ""
 
-#: src/app/catalogue/catalogueResults.js:221
+#: src/app/pages/home.html:58
+msgid "UBO subject index for Dewey (USVD)"
+msgstr ""
+
+#: src/app/pages/vocabularyInfo/usvd.html:2
+msgid "UBO subject index to Dewey (USVD)"
+msgstr ""
+
+#: src/app/catalogue/catalogueResults.js:226
 msgid "Uh oh, some kind of server error occured."
 msgstr ""
 
@@ -350,7 +408,7 @@ msgstr ""
 msgid "Used for:"
 msgstr ""
 
-#: src/app/authority/wikidata.html:17
+#: src/app/authority/wikidata.html:19
 msgid "Verified match"
 msgstr ""
 
@@ -362,16 +420,16 @@ msgstr ""
 msgid "We're proxying all data through <a href=\"https://github.com/unioslo/ipproxy\">ipproxy</a>, which masks the last part of your IP address, meaning that your full IP address is never sent to any third party (Google)."
 msgstr ""
 
-#: src/app/catalogue/catalogueResults.html:31
+#: src/app/catalogue/catalogueResults.html:40
 msgid "You could try expanding the search to <a ui-sref=\"subject.search({library:null})\">all libraries</a>."
 msgstr ""
 
-#: src/app/catalogue/catalogueResults.html:28
+#: src/app/catalogue/catalogueResults.html:37
 msgid "You could try expanding the search to a <a ui-sref=\"subject.search({broad:true})\">broad search</a>."
 msgstr ""
 
 #: src/app/catalogue/catalogueResults.js:50
-#: src/app/search/searchBox.js:80
+#: src/app/search/searchBox.js:81
 msgid "broad search"
 msgstr ""
 
@@ -380,7 +438,7 @@ msgid "in"
 msgstr ""
 
 #: src/app/catalogue/catalogueResults.js:51
-#: src/app/search/searchBox.js:81
+#: src/app/search/searchBox.js:82
 msgid "narrow search"
 msgstr ""
 
