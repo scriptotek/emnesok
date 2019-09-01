@@ -2,7 +2,7 @@
 require('dotenv').config();
 
 const path = require('path');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
@@ -26,11 +26,17 @@ module.exports = {
         },
     },
     output: {
+        /**
+         * With zero configuration,
+         *   clean-webpack-plugin will remove files inside the directory below
+         */
         path: dest,
         filename: '[name].[chunkhash].bundle.js',
     },
     plugins: [
-        new CleanWebpackPlugin([dest], { root: path.resolve(__dirname, '..') }),
+        new CleanWebpackPlugin({
+            root: path.resolve(__dirname, '..'),
+        }),
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, '../src/app/index.ejs'),
             base: process.env.BASE_HREF,
