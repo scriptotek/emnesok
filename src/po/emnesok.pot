@@ -369,7 +369,7 @@ msgid "The search went out in error:"
 msgstr ""
 
 #: src/app/pages/vocabularyInfo/humord.html:4
-msgid "The university libraries of Oslo, Bergen, Trondheim and Tromsø collaborate on the Humord vocabulary to provide multilingual (Norwegian Bokmål and English) subject search to their humanities and social science collections."
+msgid "The university libraries of Oslo, Bergen and Tromsø collaborate on the Humord vocabulary to provide multilingual (Norwegian Bokmål and English) subject search to their humanities and social science collections."
 msgstr ""
 
 #: src/app/pages/about.html:32
