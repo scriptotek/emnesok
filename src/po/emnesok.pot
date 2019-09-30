@@ -13,11 +13,11 @@ msgstr ""
 msgid "About"
 msgstr ""
 
-#: src/app/search/searchBox.html:85
+#: src/app/search/searchBox.html:89
 msgid "All branches"
 msgstr ""
 
-#: src/app/search/searchBox.html:74
+#: src/app/search/searchBox.html:78
 msgid "All libraries"
 msgstr ""
 
@@ -33,7 +33,7 @@ msgstr ""
 msgid "As an experiment we've disabled all GA cookies. While we need some statistics on visits and usage, we believe that tracking <em>users</em> is not really needed for this tool. Users tracking also has a lot of flaws."
 msgstr ""
 
-#: src/app/search/searchBox.html:65
+#: src/app/search/searchBox.html:69
 msgid "Broad"
 msgstr ""
 
@@ -149,10 +149,6 @@ msgstr ""
 msgid "Interested in more results?"
 msgstr ""
 
-#: src/app/services/authority.service.js:196
-msgid "KnuteTerm"
-msgstr ""
-
 #: src/app/pages/home.html:32
 msgid "Law (L scheme)"
 msgstr ""
@@ -168,6 +164,10 @@ msgstr ""
 msgid "Learn more about the vocabulary"
 msgstr ""
 
+#: src/app/services/authority.service.js:196
+msgid "LinkingTerm"
+msgstr ""
+
 #: src/app/search/searchBox.html:34
 msgid "Looking…"
 msgstr ""
@@ -180,7 +180,7 @@ msgstr ""
 msgid "Mathematical Subject Classification"
 msgstr ""
 
-#: src/app/search/searchBox.html:66
+#: src/app/search/searchBox.html:70
 msgid "Narrow"
 msgstr ""
 
@@ -192,7 +192,7 @@ msgstr ""
 msgid "No hits :("
 msgstr ""
 
-#: src/app/search/searchBox.js:265
+#: src/app/search/searchBox.js:273
 msgid "No network connection"
 msgstr ""
 
@@ -200,7 +200,7 @@ msgstr ""
 msgid "Norwegian WebDewey"
 msgstr ""
 
-#: src/app/search/searchBox.html:80
+#: src/app/search/searchBox.html:84
 msgid "Note: Results from a single branch will not include e-books."
 msgstr ""
 
@@ -251,11 +251,11 @@ msgstr ""
 msgid "Scientific name:"
 msgstr ""
 
-#: src/app/search/searchBox.html:66
+#: src/app/search/searchBox.html:70
 msgid "Search '+vm.vocab+' only"
 msgstr ""
 
-#: src/app/search/searchBox.html:65
+#: src/app/search/searchBox.html:69
 msgid "Search all subject vocabularies"
 msgstr ""
 
@@ -364,7 +364,7 @@ msgstr ""
 msgid "The Subject Search is developed by the University of Oslo Science Library. Vocabulary search and retrieval is powered by a <a href=\"http://skosmos.org/\">Skosmos</a> instance using data from <a href=\"http://data.ub.uio.no\">data.ub.uio.no</a>, while library catalogue search and retrieval is powered by <a href=\"https://developers.exlibrisgroup.com/primo/apis/webservices/xservices/search/briefsearch\">Primo</a> through <a href=\"https://github.com/scriptotek/lsm\">a locally developed middleware</a>."
 msgstr ""
 
-#: src/app/search/searchBox.html:94
+#: src/app/search/searchBox.html:98
 msgid "The search went out in error:"
 msgstr ""
 
@@ -400,7 +400,7 @@ msgstr ""
 msgid "UBO subject index to Dewey (USVD)"
 msgstr ""
 
-#: src/app/catalogue/catalogueResults.js:226
+#: src/app/catalogue/catalogueResults.js:232
 msgid "Uh oh, some kind of server error occured."
 msgstr ""
 

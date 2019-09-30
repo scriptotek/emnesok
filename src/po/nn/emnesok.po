@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Subject Search\n"
-"PO-Revision-Date: 2019-09-26 08:04+0000\n"
+"PO-Revision-Date: 2019-09-30 16:50+0000\n"
 "Last-Translator: Dan Michael O. Heggø <danmichaelo@gmail.com>\n"
 "Language-Team: Norwegian Nynorsk (http://www.transifex.com/university-of-oslo-library/subject-search/language/nn/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,11 +22,11 @@ msgstr ""
 msgid "About"
 msgstr "Om"
 
-#: src/app/search/searchBox.html:85
+#: src/app/search/searchBox.html:89
 msgid "All branches"
 msgstr "Alle avdelingar"
 
-#: src/app/search/searchBox.html:74
+#: src/app/search/searchBox.html:78
 msgid "All libraries"
 msgstr "Alle bibliotek"
 
@@ -45,7 +45,7 @@ msgid ""
 "not really needed for this tool. Users tracking also has a lot of flaws."
 msgstr "Som eit eksperiment har vi slått av GA informasjonskapslar. Trass i at vi treng statistikk for vitjingar og bruk meiner vi ikkje at det er naudsynt å spore <em>brukarar</em> av dette verktøyet. Brukarsporing har i tillegg mange manglar."
 
-#: src/app/search/searchBox.html:65
+#: src/app/search/searchBox.html:69
 msgid "Broad"
 msgstr "Breitt"
 
@@ -169,10 +169,6 @@ msgstr ""
 msgid "Interested in more results?"
 msgstr "Interessert i fleire resultat?"
 
-#: src/app/services/authority.service.js:196
-msgid "KnuteTerm"
-msgstr "knuteterm"
-
 #: src/app/pages/home.html:32
 msgid "Law (L scheme)"
 msgstr "Jus (L-skjema)"
@@ -188,6 +184,10 @@ msgstr ""
 msgid "Learn more about the vocabulary"
 msgstr "Les meir om vokabularet"
 
+#: src/app/services/authority.service.js:196
+msgid "LinkingTerm"
+msgstr ""
+
 #: src/app/search/searchBox.html:34
 msgid "Looking…"
 msgstr "Leitar..."
@@ -200,7 +200,7 @@ msgstr ""
 msgid "Mathematical Subject Classification"
 msgstr ""
 
-#: src/app/search/searchBox.html:66
+#: src/app/search/searchBox.html:70
 msgid "Narrow"
 msgstr "Snevert"
 
@@ -212,7 +212,7 @@ msgstr "Underordna:"
 msgid "No hits :("
 msgstr "Ingen treff :("
 
-#: src/app/search/searchBox.js:265
+#: src/app/search/searchBox.js:273
 msgid "No network connection"
 msgstr "Inkje nettverkssamband"
 
@@ -220,7 +220,7 @@ msgstr "Inkje nettverkssamband"
 msgid "Norwegian WebDewey"
 msgstr ""
 
-#: src/app/search/searchBox.html:80
+#: src/app/search/searchBox.html:84
 msgid "Note: Results from a single branch will not include e-books."
 msgstr "Merk: Resultat frå berre ei avdeling vil ikkje inkludere e-bøkar."
 
@@ -271,11 +271,11 @@ msgstr "Realfag (Realfagstermar)"
 msgid "Scientific name:"
 msgstr ""
 
-#: src/app/search/searchBox.html:66
+#: src/app/search/searchBox.html:70
 msgid "Search '+vm.vocab+' only"
 msgstr "Søk berre i '+vm.vocab+' "
 
-#: src/app/search/searchBox.html:65
+#: src/app/search/searchBox.html:69
 msgid "Search all subject vocabularies"
 msgstr "Søk i alle emneordtilfang"
 
@@ -418,7 +418,7 @@ msgid ""
 "middleware</a>."
 msgstr "Emnesøket er utvikla av UiO Realfagsbiblioteket. Søk i emneordtilfanget vert drivne av ein <a href=\"http://skosmos.org/\">Skosmos</a>-instans med data frå <a href=\"http://data.ub.uio.no\">data.ub.uio.no</a>, medan søk i bibliotekskatalogen vert drivne av <a href=\"https://developers.exlibrisgroup.com/primo/apis/webservices/xservices/search/briefsearch\">Primo</a> via <a href=\"https://github.com/scriptotek/lsm\">ein lokalt utvikla mellomvare</a>."
 
-#: src/app/search/searchBox.html:94
+#: src/app/search/searchBox.html:98
 msgid "The search went out in error:"
 msgstr "Søket gjekk ut i feil"
 
@@ -459,7 +459,7 @@ msgstr ""
 msgid "UBO subject index to Dewey (USVD)"
 msgstr ""
 
-#: src/app/catalogue/catalogueResults.js:226
+#: src/app/catalogue/catalogueResults.js:232
 msgid "Uh oh, some kind of server error occured."
 msgstr "Orsak, det oppsto ein serverfeil."
 

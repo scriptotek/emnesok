@@ -193,7 +193,7 @@ function AuthorityService($http, $stateParams, $filter, $q, $rootScope, gettext,
         gettext('Temporal');
         gettext('Geographic');
         gettext('GenreForm');
-        gettext('KnuteTerm');
+        gettext('LinkingTerm');
         gettext('Topic');
 
         service.history = JSON.parse(sessionStorage.getItem('emnesok-history') || '[]').map(historyItem => ({
