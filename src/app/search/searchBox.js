@@ -230,9 +230,10 @@ function SearchBoxController(
             resultType = resultType.split('#').pop();
 
             var icons = {
-                'Place': 'glyphicon-map-marker',
-                'Time': 'glyphicon-time',
+                'Geographic': 'glyphicon-map-marker',
+                'Temporal': 'glyphicon-time',
                 'GenreForm': 'glyphicon-list-alt',
+                'LinkingTerm': 'glyphicon-link',
             };
 
             if (icons[resultType]) {

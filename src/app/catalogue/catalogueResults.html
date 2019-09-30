@@ -6,7 +6,7 @@
 		<div ng-if="!vm.subject" class="fade-x" style="clear:both;">
 			<app-child-list top-concepts="true"></app-child-list>
 		</div>
-		<div ng-if="vm.subject && vm.subject.type == 'KnuteTerm'" class="fade-x" style="clear:both;">
+		<div ng-if="vm.subject && vm.subject.type == 'LinkingTerm'" class="fade-x" style="clear:both;">
 			<app-child-list uri="vm.subject.uri"></app-child-list>
 		</div>
 
@@ -29,7 +29,7 @@
 
 		<div style="clear:both;"></div>
 
-		<div ng-if="!vm.busy && !vm.error && !vm.total_results && vm.subject.type !== 'KnuteTerm'">
+		<div ng-if="!vm.busy && !vm.error && !vm.total_results && vm.subject.type !== 'LinkingTerm'">
 			<p class="bg-danger">
 				<span translate>
 		            Ouch, not a single document was found.

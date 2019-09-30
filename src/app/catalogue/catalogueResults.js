@@ -57,7 +57,7 @@ function CatalogueResultsController(
             return;
         }
 
-        if (vm.subject.type == 'KnuteTerm') {
+        if (vm.subject.type == 'LinkingTerm') {
             vm.busy = false;
             return;
         }
@@ -213,7 +213,7 @@ function CatalogueResultsController(
             });
         }
 
-        query.where('facet_local4', inst)
+        query.where('facet_local4', inst);
 
         lib.forEach(libPart => {
             query.multiFacets.push(['facet_library', 'include', libPart])

@@ -18,17 +18,17 @@ export default moduleName;
 /////
 
 function preferredRdfType(types) {
-    if (types.indexOf('http://data.ub.uio.no/onto#Place') !== -1) {
+    if (types.indexOf('http://data.ub.uio.no/onto#Geographic') !== -1) {
         return 'Geographic';
     }
-    if (types.indexOf('http://data.ub.uio.no/onto#Time') !== -1) {
+    if (types.indexOf('http://data.ub.uio.no/onto#Temporal') !== -1) {
         return 'Temporal';
     }
     if (types.indexOf('http://data.ub.uio.no/onto#GenreForm') !== -1) {
         return 'GenreForm';
     }
-    if (types.indexOf('http://data.ub.uio.no/onto#KnuteTerm') !== -1) {
-        return 'KnuteTerm';
+    if (types.indexOf('http://data.ub.uio.no/onto#LinkingTerm') !== -1) {
+        return 'LinkingTerm';
     }
 
     return 'Topic'; //     gettext('Topic');
