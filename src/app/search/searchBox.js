@@ -205,7 +205,7 @@ function SearchBoxController(
             if (vocabulary.notationSearch && result.notation) label.push(result.notation);
             if (result.prefLabel) label.push(result.prefLabel);
             result.prefLabel = label.join(' ');
-
+            result.description = ''
             if (!matchResult(result.prefLabel, query)) {
                 // If we don't have a match on prefLabel in the current language,
                 // we should show matchedPrefLabel or altLabel
@@ -220,6 +220,13 @@ function SearchBoxController(
             // Add icon
             result.searchListIcon = getSearchListIcon(result);
         });
+
+        // Re-sort
+        results.sort(function(a, b) {
+            let sa = a.description + a.prefLabel,
+                sb = b.description + b.prefLabel;
+            return sa.localeCompare(sb);
+        })
 
         return results;
     }
