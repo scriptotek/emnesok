@@ -180,7 +180,10 @@ function CatalogueResultsController(
 
     function search() {
         var inst = vm.selectedInstitution ? vm.selectedInstitution : null;
-        var lib = vm.selectedLibrary ? vm.selectedInstitution + vm.selectedLibrary : null;
+        var lib = [];
+        if (vm.selectedLibrary) {
+            lib = vm.selectedLibrary.split(',').map(x => inst + x)
+        }
 
         var query = (new QueryBuilder({}, vm.broadSearch, langService.defaultLanguage))
             .whereSubject(vm.subject);
@@ -207,11 +210,14 @@ function CatalogueResultsController(
                 query.orWhere(vocab.primo_index, 'exact', value);
                 // TODO: Make a repr() method on the model instead
                 mapping.to.repr = `«${value}» i ${vocab.name}`;
-            });   
+            });
         }
-        
+
         query.where('facet_local4', inst)
-            .where('facet_library', lib);
+
+        lib.forEach(libPart => {
+            query.multiFacets.push(['facet_library', 'include', libPart])
+        })
 
         console.log('QUERY:', query);
 

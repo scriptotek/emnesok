@@ -14,6 +14,7 @@ export const queryBuilderService = /* @ngInject */ function(
         this.lang = lang;
         this.q = get(data, 'q', []);
         this.qInclude = get(data, 'qInclude', []);
+        this.multiFacets = get(data, 'multifacets', []);
     }
 
     QueryBuilder.prototype.whereSubject = function(subject) {
@@ -115,6 +116,7 @@ export const queryBuilderService = /* @ngInject */ function(
         return {
             q: this.q.map(x => x.join(',')).join(';') || null,
             qInclude: this.qInclude.map(x => x.join(',')) || null,
+            multiFacets: this.multiFacets.map(x => x.join(',')) || null,
         };
     };
 

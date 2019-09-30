@@ -29,6 +29,7 @@ export const catalogueService = /* @ngInject */ function CatalogueService(
                 sort: 'date',
                 q: query.q,
                 qInclude: query.qInclude,
+                multiFacets: query.multiFacets,
             };
 
         if (offset) {
@@ -41,8 +42,10 @@ export const catalogueService = /* @ngInject */ function CatalogueService(
             params.qInclude.push(`facet_local4,exact,${selectedInstitution.id}`);
         }
         if (library) {
-            params.qInclude.push(`facet_library,exact,${library}`);
+            params.multiFacets.push(['facet_library','include',library]);
         }
+
+        params.multiFacets = params.multiFacets.join('|,|');
 
         return $http({
             method: 'GET',
