@@ -81,8 +81,8 @@ function ConfigService() {
                 primo_index: 'lsr20',
                 concept_types: [
                     'http://data.ub.uio.no/onto#Topic',
-                    'http://data.ub.uio.no/onto#Place',
-                    'http://data.ub.uio.no/onto#Time',
+                    'http://data.ub.uio.no/onto#Geographic',
+                    'http://data.ub.uio.no/onto#Temporal',
                     'http://data.ub.uio.no/onto#GenreForm',
                     'http://data.ub.uio.no/onto#ComplexConcept',
                 ],
