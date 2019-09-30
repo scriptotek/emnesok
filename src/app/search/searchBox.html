@@ -46,11 +46,15 @@
              <div ng-if="!result.image && result.image != ''" class="angucomplete-image-default"></div>
            </div>
 
-           <div class="angucomplete-title" ng-if="matchClass" ng-bind-html="result.title"></div>
-
-		   <span ng-bind-html="result.originalObject.searchListIcon" class="angucomplete-description"></span>
-
-           <div ng-if="matchClass && result.description && result.description != ''" class="angucomplete-description" ng-bind-html="result.description"></div>
+           <div class="angucomplete-title">
+	           	<span
+	           		class="angucomplete-matched"
+	           		ng-if="matchClass && result.description && result.description != ''"
+	           		ng-bind-html="result.description"
+	           	></span>
+           		<span ng-if="matchClass" ng-bind-html="result.title"></span>
+			   <span ng-bind-html="result.originalObject.searchListIcon" class="angucomplete-type"></span>
+           	</div>
 
          </div>
        </div>

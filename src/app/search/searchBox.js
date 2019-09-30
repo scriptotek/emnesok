@@ -210,10 +210,10 @@ function SearchBoxController(
                 // If we don't have a match on prefLabel in the current language,
                 // we should show matchedPrefLabel or altLabel
                 if (result.matchedPrefLabel) {
-                    result.description = '(' + result.matchedPrefLabel + ')';
+                    result.description = result.matchedPrefLabel;
                 }
                 if (result.altLabel) {
-                    result.description = '(' + result.altLabel + ')';
+                    result.description = result.altLabel;
                 }
             }
 

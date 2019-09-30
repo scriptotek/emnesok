@@ -208,6 +208,20 @@ li.noaccess:before {
   margin-bottom: 2px !important;
 }
 
+.angucomplete-matched {
+  font-style: italic;
+  color: #999;
+}
+.angucomplete-matched::after {
+  content: " → ";
+}
+.angucomplete-type {
+  font-size: 85% !important;
+  color:#777777 !important;
+  font-style: italic !important;
+  margin-left: 1.2em;
+}
+
 .angucomplete-title{
   float:none !important;
   color:#5D5D5D;
@@ -228,7 +242,7 @@ li.noaccess:before {
 #searchbox_dropdown {
   margin-top: 32px !important;
   max-height:50vh;
-  width:80%;
+  width:100%;
   overflow-y: auto;
   background:white;
   cursor:pointer;
