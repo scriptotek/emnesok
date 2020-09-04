@@ -97,7 +97,7 @@
     "loglevel": "^1.6.1",
     "mini-css-extract-plugin": "^0.8.0",
     "ng-annotate-loader": "^0.6.1",
-    "node-sass": "^4.11.0",
+    "node-sass": "^4.13.1",
     "sass-loader": "^8.0.0",
     "style-loader": "^1.0.0",
     "transifex-api-es6": "^0.2.3",
