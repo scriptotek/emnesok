@@ -243,7 +243,7 @@ export const pnxRecordService = /* @ngInject */ function(
         var printInstitutions = [];
         if (this.holdings) {
             this.holdings.forEach(function(holding) {
-                var library = holding.library.replace(/[0-9]+/, '');
+                var library = holding.library ? holding.library.replace(/[0-9]+/, '') : '';
                 // console.log(holding.library);
                 if (printInstitutions.indexOf(library) === -1 && library) {
                     printInstitutions.push(library);
