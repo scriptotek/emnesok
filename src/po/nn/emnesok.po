@@ -1,12 +1,12 @@
 # 
 # Translators:
-# Dan Michael O. Heggø <danmichaelo@gmail.com>, 2015-2017,2019
+# Dan Michael O. Heggø <danmichaelo@gmail.com>, 2015-2017,2019,2021-2022
 # Eva Holthe Enoksen <e.h.enoksen@ub.uio.no>, 2015-2016
 # Kyrre Traavik Låberg <k.t.laberg@ub.uio.no>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Subject Search\n"
-"PO-Revision-Date: 2019-09-30 16:50+0000\n"
+"PO-Revision-Date: 2022-01-10 11:43+0000\n"
 "Last-Translator: Dan Michael O. Heggø <danmichaelo@gmail.com>\n"
 "Language-Team: Norwegian Nynorsk (http://www.transifex.com/university-of-oslo-library/subject-search/language/nn/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,9 +18,13 @@ msgstr ""
 msgid "ACM Computing Classification System"
 msgstr ""
 
-#: src/app/layout/header.html:24 src/app/pages/about.html:2
+#: src/app/layout/header.html:24
 msgid "About"
 msgstr "Om"
+
+#: src/app/pages/about.html:2
+msgid "About Subject Search"
+msgstr "Om Emnesøk"
 
 #: src/app/search/searchBox.html:89
 msgid "All branches"
@@ -32,13 +36,13 @@ msgstr "Alle bibliotek"
 
 #: src/app/pages/error.js:16
 msgid "An unknown error occured"
-msgstr ""
+msgstr "Det oppsto ei ukjend feil"
 
 #: src/app/authority/wikidata.html:20
 msgid "Article suggestion"
 msgstr "Artikkelforslag:"
 
-#: src/app/pages/about.html:29
+#: src/app/pages/about.html:25
 msgid ""
 "As an experiment we've disabled all GA cookies. While we need some "
 "statistics on visits and usage, we believe that tracking <em>users</em> is "
@@ -55,7 +59,7 @@ msgstr "Overordna:"
 
 #: src/app/authority/childList/childList.html:2
 msgid "Browse"
-msgstr ""
+msgstr "Navigér"
 
 #: src/app/authority/authorityRecord.html:9
 msgid "Chemical element"
@@ -64,6 +68,12 @@ msgstr "Grunnstoff"
 #: src/app/pages/home.html:70
 msgid "Computing Classification System"
 msgstr ""
+
+#: src/app/pages/about.html:7
+msgid ""
+"Contact us at <a "
+"href=\"mailto:emnedatahenvendelser@ub.uio.no\">emnedatahenvendelser@ub.uio.no</a>."
+msgstr "Kontakt oss på <a href=\"mailto:emnedatahenvendelser@ub.uio.no\">emnedatahenvendelser@ub.uio.no</a>."
 
 #: src/app/search/searchBox.js:61
 msgid "Containing"
@@ -79,7 +89,7 @@ msgstr "E-bok"
 
 #: src/app/catalogue/availability.html:19
 msgid "E-book not available"
-msgstr ""
+msgstr "E-bok ikkje tilgjengeleg"
 
 #: src/app/search/searchBox.js:62
 msgid "Ends with"
@@ -93,7 +103,7 @@ msgstr "Søk etter emne"
 msgid "Exact match"
 msgstr "Eksakt lik"
 
-#: src/app/catalogue/catalogueResults.html:86
+#: src/app/catalogue/catalogueResults.html:95
 msgid "Expand to broad search"
 msgstr "Utvid til breitt søk"
 
@@ -105,7 +115,7 @@ msgstr "Klarte ikkje å hente liste over utgåver"
 msgid "Fetching editions…"
 msgstr "Hentar utgåver…"
 
-#: src/app/pages/about.html:24
+#: src/app/pages/about.html:20
 msgid ""
 "For analytics, our initial plan was to use the open source tool Piwik, but "
 "we were persuaded into using Google Analytics which is pervasive at the "
@@ -113,17 +123,11 @@ msgid ""
 "privacy:"
 msgstr "For statistikk planla vi opphaveleg å bruke open kjeldekode-verktøyet Piwik, men vi vart overtalde til å bruke Google Analytics, som er gjennomgripande på universitetet. Merk at to ekstra tiltak er sette i verk av omsyn til personvernet ditt."
 
-#: src/app/pages/about.html:10
-msgid ""
-"For information about the subject vocabularies, see the <a ui-"
-"sref=\"home({lang: vm.lang})\">start page</a>."
-msgstr "For informasjon om ordtilfanga, gå til <a ui-sref=\"home({lang: vm.lang})\">heimesida</a>."
-
 #: src/app/pages/home.html:39
 msgid "For librarians:"
-msgstr ""
+msgstr "For bibliotekarar:"
 
-#: src/app/catalogue/catalogueResults.html:74
+#: src/app/catalogue/catalogueResults.html:83
 msgid ""
 "Found {{ vm.results.length }} documents about this topic using "
 "{{vm.searchType}}."
@@ -131,15 +135,15 @@ msgstr "Fann {{vm.total_results}} dokument om dette emnet med {{vm.searchType}}.
 
 #: src/app/authority/wikidata.html:42
 msgid "GBIF:"
-msgstr ""
+msgstr "GBIF:"
 
 #: src/app/catalogue/catalogueResult.html:97
-#: src/app/services/authority.service.js:195
+#: src/app/services/authority.service.js:201
 msgid "GenreForm"
 msgstr "Sjanger/form"
 
 #: src/app/catalogue/catalogueResult.html:92
-#: src/app/services/authority.service.js:194
+#: src/app/services/authority.service.js:200
 msgid "Geographic"
 msgstr "Stad"
 
@@ -165,7 +169,7 @@ msgid ""
 "\t\t<a href=\"https://app.uio.no/ub/ujur/l-skjema/\" class=\"external\">L-skjema</a> (Law) or <a ui-sref=\"subject.search({vocab:'humord', lang: vm.lang})\">Humord</a> (Humanities and Social Sciences)."
 msgstr ""
 
-#: src/app/catalogue/catalogueResults.html:85
+#: src/app/catalogue/catalogueResults.html:94
 msgid "Interested in more results?"
 msgstr "Interessert i fleire resultat?"
 
@@ -176,7 +180,7 @@ msgstr "Jus (L-skjema)"
 #: src/app/pages/vocabularyInfo/acm-ccs-ubo.html:5
 #: src/app/pages/vocabularyInfo/msc-ubo.html:5
 msgid "Learn more"
-msgstr ""
+msgstr "Les mer"
 
 #: src/app/pages/vocabularyInfo/humord.html:5
 #: src/app/pages/vocabularyInfo/mrtermer.html:5
@@ -184,9 +188,9 @@ msgstr ""
 msgid "Learn more about the vocabulary"
 msgstr "Les meir om vokabularet"
 
-#: src/app/services/authority.service.js:196
+#: src/app/services/authority.service.js:202
 msgid "LinkingTerm"
-msgstr ""
+msgstr "Knuteterm"
 
 #: src/app/search/searchBox.html:34
 msgid "Looking…"
@@ -212,19 +216,19 @@ msgstr "Underordna:"
 msgid "No hits :("
 msgstr "Ingen treff :("
 
-#: src/app/search/searchBox.js:273
+#: src/app/search/searchBox.js:275
 msgid "No network connection"
 msgstr "Inkje nettverkssamband"
 
 #: src/app/pages/home.html:52
 msgid "Norwegian WebDewey"
-msgstr ""
+msgstr "Norsk WebDewey"
 
 #: src/app/search/searchBox.html:84
 msgid "Note: Results from a single branch will not include e-books."
 msgstr "Merk: Resultat frå berre ei avdeling vil ikkje inkludere e-bøkar."
 
-#: src/app/catalogue/catalogueResults.html:34
+#: src/app/catalogue/catalogueResults.html:43
 msgid "Ouch, not a single document was found."
 msgstr "Beklagar, vi fann ikkje eit einaste dokument."
 
@@ -249,9 +253,9 @@ msgstr "Trykt utgåve ved {{library}}."
 
 #: src/app/catalogue/availability.html:21
 msgid "Print copy not available at any library"
-msgstr ""
+msgstr "Trykt kopi ikkje tilgjengeleg ved noko bibliotek"
 
-#: src/app/pages/about.html:14
+#: src/app/pages/about.html:10
 msgid "Privacy"
 msgstr "Personvern"
 
@@ -261,7 +265,7 @@ msgstr "Les meir i {{external.name}}"
 
 #: src/app/authority/authorityRecord.html:83
 msgid "Related concepts in other vocabularies:"
-msgstr ""
+msgstr "Liknande omgrep i andre vokabular:"
 
 #: src/app/pages/home.html:20
 msgid "Science (Realfagstermer)"
@@ -269,7 +273,7 @@ msgstr "Realfag (Realfagstermar)"
 
 #: src/app/authority/wikidata.html:32
 msgid "Scientific name:"
-msgstr ""
+msgstr "Vitskapeleg namn:"
 
 #: src/app/search/searchBox.html:70
 msgid "Search '+vm.vocab+' only"
@@ -330,19 +334,13 @@ msgstr "Sjå også:"
 msgid "Series"
 msgstr "Serie"
 
-#: src/app/pages/about.html:34
-msgid ""
-"Several fantastic pieces of free and open-source software have been used to "
-"build this search. A list is provided below together with their licenses."
-msgstr "Ei rekkje supre open kjelde-komponentar er nytta for å byggje opp emneordsøket. Desse er lista opp saman med lisensane dei er underlagde. "
-
-#: src/app/catalogue/catalogueResults.html:79
+#: src/app/catalogue/catalogueResults.html:88
 msgid ""
 "Showing {{ vm.results.length }} of {{ vm.offset }} results, about {{ "
 "vm.total_results - vm.offset }} left to check…"
-msgstr ""
+msgstr "Viser {{ vm.results.length }} av {{ vm.offset }} resultat, omtrent {{ vm.total_results - vm.offset }} att å sjekke…"
 
-#: src/app/pages/about.html:16
+#: src/app/pages/about.html:12
 msgid ""
 "So far we're not using cookies or localStorage at all. If we introduce login"
 " or user preferences in the future, we will need storage, but we will always"
@@ -354,6 +352,10 @@ msgid ""
 "Sorry, the subject \"{{subject}}\" was not found in the current vocabulary."
 msgstr "Orsak, emnet «{{subject}}» vart ikkje funne i dette ordtilfanget."
 
+#: src/app/services/authority.service.js:203
+msgid "SplitNonPreferredTerm"
+msgstr ""
+
 #: src/app/search/searchBox.js:60
 msgid "Starting with"
 msgstr "Startar med"
@@ -362,9 +364,23 @@ msgstr "Startar med"
 msgid "Subject Search"
 msgstr "Emnesøk"
 
+#: src/app/pages/about.html:4
+msgid ""
+"Subject Search is a service from the University of Oslo Library using data "
+"from <a href=\"http://data.ub.uio.no\">data.ub.uio.no</a> and <a "
+"href=\"https://ub-lsm.uio.no\">ub-lsm.uio.no</a>."
+msgstr "Emnesøk er ei teneste frå Universitetsbiblioteket i Oslo basert på data frå <a href=\"http://data.ub.uio.no\">data.ub.uio.no</a> og <a href=\"https://ub-lsm.uio.no\">ub-lsm.uio.no</a>."
+
+#: src/app/pages/about.html:30
+msgid ""
+"Subject Search is licensed under the <a href=\"https://github.com/scriptotek/emnesok/blob/master/LICENSE\">MIT license</a>, with \n"
+"\t\t<a href=\"https://github.com/scriptotek/emnesok\">source code at GitHub</a>.\n"
+"\t\tSeveral fantastic pieces of free and open-source software have been used in the application. A list is provided below together with their licenses."
+msgstr "Emnesøk er lisensiert under<a href=\"https://github.com/scriptotek/emnesok/blob/master/LICENSE\">MIT-lisensen</a>, med \n\t\t<a href=\"https://github.com/scriptotek/emnesok\">kildekode på GitHub</a>.\n\t\tEi rekkje supre open kjelde-komponentar er nytta for å byggje opp emneordsøket. Desse er lista opp saman med lisensane dei er underlagde."
+
 #: src/app/pages/home.html:3
 msgid "Subject search"
-msgstr ""
+msgstr "Emnesøk"
 
 #: src/app/pages/vocabularyInfo/tekord.html:4
 msgid ""
@@ -394,29 +410,9 @@ msgstr "Emnesøk med Tekord"
 msgid "Technology and engineering (Tekord)"
 msgstr "Teknologi/ingeniørfag (Tekord)"
 
-#: src/app/services/authority.service.js:193
+#: src/app/services/authority.service.js:199
 msgid "Temporal"
 msgstr "Tid"
-
-#: src/app/pages/about.html:7
-msgid ""
-"The Subject Search is <a href=\"https://github.com/scriptotek/emnesok\">open"
-" source</a> and licensed under the <a "
-"href=\"https://github.com/scriptotek/emnesok/blob/master/LICENSE\">MIT "
-"license</a>."
-msgstr "Emnesøket er <a href=\"https://github.com/scriptotek/emnesok\">open kjeldekode</a> lisensisert under <a href=\"https://github.com/scriptotek/emnesok/blob/master/LICENSE\">MIT-lisensen</a>."
-
-#: src/app/pages/about.html:4
-msgid ""
-"The Subject Search is developed by the University of Oslo Science Library. "
-"Vocabulary search and retrieval is powered by a <a "
-"href=\"http://skosmos.org/\">Skosmos</a> instance using data from <a "
-"href=\"http://data.ub.uio.no\">data.ub.uio.no</a>, while library catalogue "
-"search and retrieval is powered by <a "
-"href=\"https://developers.exlibrisgroup.com/primo/apis/webservices/xservices/search/briefsearch\">Primo</a>"
-" through <a href=\"https://github.com/scriptotek/lsm\">a locally developed "
-"middleware</a>."
-msgstr "Emnesøket er utvikla av UiO Realfagsbiblioteket. Søk i emneordtilfanget vert drivne av ein <a href=\"http://skosmos.org/\">Skosmos</a>-instans med data frå <a href=\"http://data.ub.uio.no\">data.ub.uio.no</a>, medan søk i bibliotekskatalogen vert drivne av <a href=\"https://developers.exlibrisgroup.com/primo/apis/webservices/xservices/search/briefsearch\">Primo</a> via <a href=\"https://github.com/scriptotek/lsm\">ein lokalt utvikla mellomvare</a>."
 
 #: src/app/search/searchBox.html:98
 msgid "The search went out in error:"
@@ -429,17 +425,22 @@ msgid ""
 "subject search to their humanities and social science collections."
 msgstr "Universitetsbiblioteka i Oslo, Bergen og Tromsø samarbeider om Humord-vokabularet for å tilby flerspråkleg (bokmål og engelsk) emnesøk i samlingene for humaniora og samfunnsvitskap."
 
-#: src/app/pages/about.html:32
+#: src/app/pages/about.html:28
 msgid "Third party licenses"
 msgstr "Tredjepartslisensar"
 
 #: src/app/catalogue/catalogueResults.js:79
 msgid "This concept has been deprecated"
-msgstr "Dette omgrepet er tatt ut av bruk."
+msgstr "Dette omgrepet er tatt ut av bruk"
 
 #: src/app/catalogue/catalogueResults.js:70
 msgid "This concept has been replaced by {{subject}}"
 msgstr "Dette omgrepet har vorte erstatta av {{subject}}"
+
+#: src/app/catalogue/catalogueResults.html:30
+#: src/app/catalogue/catalogueResults.html:36
+msgid "This concept type is not supported yet."
+msgstr ""
 
 #: src/app/catalogue/catalogueResult.html:87
 msgid ""
@@ -447,7 +448,7 @@ msgid ""
 " vocabulary."
 msgstr "Dette er eit emne frå eit anna ordtilfang. Det er ikkje sikkert det finns i det aktive ordtilfanget."
 
-#: src/app/services/authority.service.js:197
+#: src/app/services/authority.service.js:204
 msgid "Topic"
 msgstr "Emne"
 
@@ -471,11 +472,11 @@ msgstr "Nytta for:"
 msgid "Verified match"
 msgstr "Bekrefta betyding"
 
-#: src/app/pages/about.html:20
+#: src/app/pages/about.html:16
 msgid "We use https to ensure anonymous searching."
 msgstr "Vi nyttar https for å sikre anonyme søk."
 
-#: src/app/pages/about.html:28
+#: src/app/pages/about.html:24
 msgid ""
 "We're proxying all data through <a "
 "href=\"https://github.com/unioslo/ipproxy\">ipproxy</a>, which masks the "
@@ -483,13 +484,13 @@ msgid ""
 "sent to any third party (Google)."
 msgstr "Vi sender all data gjennom <a href=\"https://github.com/unioslo/ipproxy\">ipproxy</a>, som maskerer siste delen av IP-adressa di. Det betyr at ingen tredjepart (Google) kan sjå heile IP-adressa di. "
 
-#: src/app/catalogue/catalogueResults.html:40
+#: src/app/catalogue/catalogueResults.html:49
 msgid ""
 "You could try expanding the search to <a ui-"
 "sref=\"subject.search({library:null})\">all libraries</a>."
 msgstr "Prøv gjerne å utvide søket til <a ui-sref=\"subject.search({library:null})\">alle bibliotek</a>."
 
-#: src/app/catalogue/catalogueResults.html:37
+#: src/app/catalogue/catalogueResults.html:46
 msgid ""
 "You could try expanding the search to a <a ui-"
 "sref=\"subject.search({broad:true})\">broad search</a>."
