@@ -57,7 +57,7 @@ function CatalogueResultsController(
             return;
         }
 
-        if (vm.subject.type == 'LinkingTerm') {
+        if (['LinkingTerm', 'SplitNonPreferredTerm', 'Collection'].indexOf(vm.subject.type) !== -1) {
             vm.busy = false;
             return;
         }

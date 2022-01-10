@@ -241,6 +241,8 @@ function SearchBoxController(
                 'Temporal': 'glyphicon-time',
                 'GenreForm': 'glyphicon-list-alt',
                 'LinkingTerm': 'glyphicon-link',
+                'SplitNonPreferredTerm': 'glyphicon-link',
+                'Collection': 'glyphicon-link',
             };
 
             if (icons[resultType]) {

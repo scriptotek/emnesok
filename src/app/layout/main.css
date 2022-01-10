@@ -2,6 +2,8 @@
  * General
  *****************************************/
 
+html, body { height: 100%;}
+
 body {
   /* Prevents stuff from jumping around */
   overflow-y: scroll;
@@ -377,4 +379,27 @@ li.noaccess:before {
     transform: translate3d(0, 0, 0);
     opacity: 0;
   }
+}
+
+
+/*****************************************
+ * Footer
+ *****************************************/
+
+footer {
+  background: #000 ;
+  position: sticky;
+  padding: 12px 0 12px 20px;
+  color: white;
+  top: 100vh;
+  text-align: right;
+}
+footer > div {
+  background: url(https://www.ub.uio.no/vrtx/decorating/resources/dist/src2/images/footer/uio-logo-no.svg) bottom left no-repeat ;
+  background-size: contain;
+  padding: 10px 30px 30px 30px;
+}
+
+footer a:link, footer a:visited {
+  color: white;
 }

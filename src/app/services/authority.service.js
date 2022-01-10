@@ -30,6 +30,12 @@ function preferredRdfType(types) {
     if (types.indexOf('http://data.ub.uio.no/onto#LinkingTerm') !== -1) {
         return 'LinkingTerm';
     }
+    if (types.indexOf('http://data.ub.uio.no/onto#Collection') !== -1) {
+        return 'Collection';
+    }
+    if (types.indexOf('http://data.ub.uio.no/onto#SplitNonPreferredTerm') !== -1) {
+        return 'SplitNonPreferredTerm';
+    }
 
     return 'Topic'; //     gettext('Topic');
 }
@@ -194,6 +200,7 @@ function AuthorityService($http, $stateParams, $filter, $q, $rootScope, gettext,
         gettext('Geographic');
         gettext('GenreForm');
         gettext('LinkingTerm');
+        gettext('SplitNonPreferredTerm');
         gettext('Topic');
 
         service.history = JSON.parse(sessionStorage.getItem('emnesok-history') || '[]').map(historyItem => ({
