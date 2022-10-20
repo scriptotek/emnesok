@@ -49,7 +49,7 @@ msgid ""
 "not really needed for this tool. Users tracking also has a lot of flaws."
 msgstr "Som eit eksperiment har vi slått av GA informasjonskapslar. Trass i at vi treng statistikk for vitjingar og bruk meiner vi ikkje at det er naudsynt å spore <em>brukarar</em> av dette verktøyet. Brukarsporing har i tillegg mange manglar."
 
-#: src/app/pages/home.html:21 src/app/pages/home.html:28
+#: src/app/pages/home.html:23 src/app/pages/home.html:30
 msgid "Blurb"
 msgstr ""
 
@@ -83,7 +83,7 @@ msgstr "Inneheld"
 msgid "Definition:"
 msgstr "Definisjon:"
 
-#: src/app/pages/home.html:26
+#: src/app/pages/home.html:28
 msgid "Dewey subject index (oria.no)"
 msgstr ""
 
@@ -165,7 +165,7 @@ msgstr ""
 msgid "Interested in more results?"
 msgstr "Interessert i fleire resultat?"
 
-#: src/app/pages/home.html:19
+#: src/app/pages/home.html:21
 msgid "L scheme"
 msgstr ""
 
@@ -174,7 +174,7 @@ msgstr ""
 msgid "Learn more"
 msgstr "Les mer"
 
-#: src/app/pages/vocabularyInfo/humord.html:5
+#: src/app/pages/home.html:7 src/app/pages/vocabularyInfo/humord.html:5
 #: src/app/pages/vocabularyInfo/mrtermer.html:5
 #: src/app/pages/vocabularyInfo/realfagstermer.html:4
 msgid "Learn more about the vocabulary"
@@ -247,7 +247,7 @@ msgstr "Personvern"
 msgid "Read more in {{external.name}}"
 msgstr "Les meir i {{external.name}}"
 
-#: src/app/pages/home.html:11
+#: src/app/pages/home.html:12
 msgid "Realfagstermer"
 msgstr "Realfagstermer"
 
@@ -303,7 +303,7 @@ msgid ""
 "thesaurus. The vocabulary is accessible in Norwegian and English."
 msgstr "Humord-tesaurusen tilbyr fleirspråkleg emnesøk (bokmål og engelsk) i samlingane for humaniora og samfunnsvitskap."
 
-#: src/app/pages/home.html:13
+#: src/app/pages/home.html:14
 msgid ""
 "Search the science, technology and mathematics collections . The vocabulary "
 "is accessible in Norwegian (bokmål and nynorsk), English or the scientific "
@@ -488,6 +488,18 @@ msgstr "Prøv gjerne å utvide søket til eit <a ui-sref=\"subject.search({broad
 #: src/app/catalogue/catalogueResults.js:50 src/app/search/searchBox.js:81
 msgid "broad search"
 msgstr "breitt søk"
+
+#: src/app/pages/home.html:7
+msgid ""
+"https://www.ub.uio.no/bruk/sok-i-hele-biblioteket/emneord/humord/facts-in-"
+"english.html"
+msgstr "https://www.ub.uio.no/bruk/sok-i-hele-biblioteket/emneord/humord/"
+
+#: src/app/pages/home.html:15
+msgid ""
+"https://www.ub.uio.no/english/using/search-the-library/subject-search-"
+"terms/science-subject-terms.html"
+msgstr "https://www.ub.uio.no/bruk/sok-i-hele-biblioteket/emneord/realfagstermer/"
 
 #: src/app/authority/authorityRecord.html:90
 msgid "in"
