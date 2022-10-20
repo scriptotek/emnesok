@@ -384,7 +384,7 @@ msgstr "Emnesøk i den tekniske litteraturen til NTNU er tilgjengelig gjennom Te
 
 #: src/app/pages/home.html:2
 msgid "Subject search in University of Oslo Library"
-msgstr ""
+msgstr "Emnesøk i Universitetsbiblioteket i Oslo"
 
 #: src/app/pages/vocabularyInfo/mrtermer.html:2
 msgid "Subject search using Human Rights Terms"
