@@ -4,7 +4,7 @@
 # UiO Library Subject Search
 
 Frontend for subject search against the vocabularies
-Realfagstermer (Bokmål, Nynorsk, English), Humord (Bokmål), Tekord (Bokmål) and Menneskerettighetstermer (English).
+Realfagstermer (Bokmål, Nynorsk, English) and Humord (Bokmål).
 
 The frontend uses a [Skosmos](https://github.com/NatLibFi/Skosmos) instance to query for subjects, and the Primo Search API through [LSM](https://github.com/scriptotek/lsm) to query for catalogue records.
 

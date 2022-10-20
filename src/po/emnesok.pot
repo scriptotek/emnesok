@@ -36,6 +36,11 @@ msgstr ""
 msgid "As an experiment we've disabled all GA cookies. While we need some statistics on visits and usage, we believe that tracking <em>users</em> is not really needed for this tool. Users tracking also has a lot of flaws."
 msgstr ""
 
+#: src/app/pages/home.html:21
+#: src/app/pages/home.html:28
+msgid "Blurb"
+msgstr ""
+
 #: src/app/search/searchBox.html:69
 msgid "Broad"
 msgstr ""
@@ -52,10 +57,6 @@ msgstr ""
 msgid "Chemical element"
 msgstr ""
 
-#: src/app/pages/home.html:70
-msgid "Computing Classification System"
-msgstr ""
-
 #: src/app/pages/about.html:7
 msgid "Contact us at <a href=\"mailto:emnedatahenvendelser@ub.uio.no\">emnedatahenvendelser@ub.uio.no</a>."
 msgstr ""
@@ -66,6 +67,10 @@ msgstr ""
 
 #: src/app/authority/authorityRecord.html:17
 msgid "Definition:"
+msgstr ""
+
+#: src/app/pages/home.html:26
+msgid "Dewey subject index (oria.no)"
 msgstr ""
 
 #: src/app/catalogue/pnxRecord.service.js:302
@@ -104,10 +109,6 @@ msgstr ""
 msgid "For analytics, our initial plan was to use the open source tool Piwik, but we were persuaded into using Google Analytics which is pervasive at the university. Note that two extra steps have been taken to protect your privacy:"
 msgstr ""
 
-#: src/app/pages/home.html:39
-msgid "For librarians:"
-msgstr ""
-
 #: src/app/catalogue/catalogueResults.html:83
 msgid "Found {{ vm.results.length }} documents about this topic using {{vm.searchType}}."
 msgstr ""
@@ -126,16 +127,8 @@ msgstr ""
 msgid "Geographic"
 msgstr ""
 
-#: src/app/pages/home.html:46
-msgid "Human Rights Terms (–2018)"
-msgstr ""
-
-#: src/app/pages/home.html:14
-msgid "Humanities and social sciences (Humord)"
-msgstr ""
-
-#: src/app/pages/home.html:7
-msgid "I would like to find books about:"
+#: src/app/pages/home.html:5
+msgid "Humord"
 msgstr ""
 
 #: src/app/authority/wikidata.html:37
@@ -152,8 +145,8 @@ msgstr ""
 msgid "Interested in more results?"
 msgstr ""
 
-#: src/app/pages/home.html:32
-msgid "Law (L scheme)"
+#: src/app/pages/home.html:19
+msgid "L scheme"
 msgstr ""
 
 #: src/app/pages/vocabularyInfo/acm-ccs-ubo.html:5
@@ -179,10 +172,6 @@ msgstr ""
 msgid "MSC/UBO shelving scheme"
 msgstr ""
 
-#: src/app/pages/home.html:64
-msgid "Mathematical Subject Classification"
-msgstr ""
-
 #: src/app/search/searchBox.html:70
 msgid "Narrow"
 msgstr ""
@@ -197,10 +186,6 @@ msgstr ""
 
 #: src/app/search/searchBox.js:275
 msgid "No network connection"
-msgstr ""
-
-#: src/app/pages/home.html:52
-msgid "Norwegian WebDewey"
 msgstr ""
 
 #: src/app/search/searchBox.html:84
@@ -242,12 +227,12 @@ msgstr ""
 msgid "Read more in {{external.name}}"
 msgstr ""
 
-#: src/app/authority/authorityRecord.html:83
-msgid "Related concepts in other vocabularies:"
+#: src/app/pages/home.html:11
+msgid "Realfagstermer"
 msgstr ""
 
-#: src/app/pages/home.html:20
-msgid "Science (Realfagstermer)"
+#: src/app/authority/authorityRecord.html:83
+msgid "Related concepts in other vocabularies:"
 msgstr ""
 
 #: src/app/authority/wikidata.html:32
@@ -284,6 +269,14 @@ msgstr ""
 
 #: src/app/pages/vocabularyInfo/usvd.html:4
 msgid "Search the University of Oslo Library subject index to Dewey."
+msgstr ""
+
+#: src/app/pages/home.html:6
+msgid "Search the humanities and social sciences collections using the Humord thesaurus. The vocabulary is accessible in Norwegian and English."
+msgstr ""
+
+#: src/app/pages/home.html:13
+msgid "Search the science, technology and mathematics collections . The vocabulary is accessible in Norwegian (bokmål and nynorsk), English or the scientific names of species."
 msgstr ""
 
 #: src/app/pages/vocabularyInfo/realfagstermer.html:4
@@ -338,12 +331,12 @@ msgid ""
 "\t\tSeveral fantastic pieces of free and open-source software have been used in the application. A list is provided below together with their licenses."
 msgstr ""
 
-#: src/app/pages/home.html:3
-msgid "Subject search"
-msgstr ""
-
 #: src/app/pages/vocabularyInfo/tekord.html:4
 msgid "Subject search for the technical and engineering literature of NTNU is provided by Tekord. Search is only available in Norwegian Bokmål, but terms are mapped to UDC, providing possibilities for multilingual search in the future."
+msgstr ""
+
+#: src/app/pages/home.html:2
+msgid "Subject search in University of Oslo Library"
 msgstr ""
 
 #: src/app/pages/vocabularyInfo/mrtermer.html:2
@@ -360,10 +353,6 @@ msgstr ""
 
 #: src/app/pages/vocabularyInfo/tekord.html:2
 msgid "Subject search using Tekord"
-msgstr ""
-
-#: src/app/pages/home.html:26
-msgid "Technology and engineering (Tekord)"
 msgstr ""
 
 #: src/app/services/authority.service.js:199
@@ -401,10 +390,6 @@ msgstr ""
 
 #: src/app/services/authority.service.js:204
 msgid "Topic"
-msgstr ""
-
-#: src/app/pages/home.html:58
-msgid "UBO subject index for Dewey (USVD)"
 msgstr ""
 
 #: src/app/pages/vocabularyInfo/usvd.html:2

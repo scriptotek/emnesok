@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Subject Search\n"
-"PO-Revision-Date: 2022-01-10 11:36+0000\n"
-"Last-Translator: Dan Michael O. Heggø <danmichaelo@gmail.com>\n"
+"PO-Revision-Date: 2015-12-17 09:53+0000\n"
+"Last-Translator: Dan Michael O. Heggø <danmichaelo@gmail.com>, 2015-2019,2021-2022\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/university-of-oslo-library/subject-search/language/nb/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -48,6 +48,10 @@ msgid ""
 "not really needed for this tool. Users tracking also has a lot of flaws."
 msgstr "Som et eksperiment har vi skrudd av alle GA-informasjonskapsler. Vi trenger statistikk om besøk og bruk, men vi tror at vi klarer oss fint uten sporing av <em>brukere</em>. Brukersporing har uansett en del svakheter."
 
+#: src/app/pages/home.html:21 src/app/pages/home.html:28
+msgid "Blurb"
+msgstr ""
+
 #: src/app/search/searchBox.html:69
 msgid "Broad"
 msgstr "Bredt"
@@ -64,10 +68,6 @@ msgstr "Navigér"
 msgid "Chemical element"
 msgstr "Grunnstoff"
 
-#: src/app/pages/home.html:70
-msgid "Computing Classification System"
-msgstr ""
-
 #: src/app/pages/about.html:7
 msgid ""
 "Contact us at <a "
@@ -81,6 +81,10 @@ msgstr "Inneholder"
 #: src/app/authority/authorityRecord.html:17
 msgid "Definition:"
 msgstr "Definisjon:"
+
+#: src/app/pages/home.html:26
+msgid "Dewey subject index (oria.no)"
+msgstr ""
 
 #: src/app/catalogue/pnxRecord.service.js:302
 msgid "E-book"
@@ -122,10 +126,6 @@ msgid ""
 "privacy:"
 msgstr "For bruksstatistikk var planen vår opprinnelig å bruke Piwik, men vi ble overtalt til å bruke Google Analytics som er i utstrakt bruk på universitetet ellers. Merk at vi har tatt to ekstra forholdsregler for å sikre personvernet:"
 
-#: src/app/pages/home.html:39
-msgid "For librarians:"
-msgstr "For bibliotekarer:"
-
 #: src/app/catalogue/catalogueResults.html:83
 msgid ""
 "Found {{ vm.results.length }} documents about this topic using "
@@ -146,17 +146,9 @@ msgstr "Sjanger/form"
 msgid "Geographic"
 msgstr "Geografisk navn"
 
-#: src/app/pages/home.html:46
-msgid "Human Rights Terms (–2018)"
-msgstr "Menneskerettighetstermer (–2018)"
-
-#: src/app/pages/home.html:14
-msgid "Humanities and social sciences (Humord)"
-msgstr "Humaniora og samfunnsvitenskap (Humord)"
-
-#: src/app/pages/home.html:7
-msgid "I would like to find books about:"
-msgstr "Jeg ønsker å finne bøker om:"
+#: src/app/pages/home.html:5
+msgid "Humord"
+msgstr "Humord"
 
 #: src/app/authority/wikidata.html:37
 msgid "ITIS TSN:"
@@ -172,9 +164,9 @@ msgstr ""
 msgid "Interested in more results?"
 msgstr "Interessert i flere treff?"
 
-#: src/app/pages/home.html:32
-msgid "Law (L scheme)"
-msgstr "Jus (L-skjema)"
+#: src/app/pages/home.html:19
+msgid "L scheme"
+msgstr ""
 
 #: src/app/pages/vocabularyInfo/acm-ccs-ubo.html:5
 #: src/app/pages/vocabularyInfo/msc-ubo.html:5
@@ -199,10 +191,6 @@ msgstr "Leter…"
 msgid "MSC/UBO shelving scheme"
 msgstr "MSC/UBO-oppstillingsskjema"
 
-#: src/app/pages/home.html:64
-msgid "Mathematical Subject Classification"
-msgstr ""
-
 #: src/app/search/searchBox.html:70
 msgid "Narrow"
 msgstr "Snevert"
@@ -218,10 +206,6 @@ msgstr "Ingen treff :("
 #: src/app/search/searchBox.js:275
 msgid "No network connection"
 msgstr "Ingen nettverksforbindelse"
-
-#: src/app/pages/home.html:52
-msgid "Norwegian WebDewey"
-msgstr "Norsk WebDewey"
 
 #: src/app/search/searchBox.html:84
 msgid "Note: Results from a single branch will not include e-books."
@@ -262,13 +246,13 @@ msgstr "Personvern"
 msgid "Read more in {{external.name}}"
 msgstr "Les mer i {{external.name}}"
 
+#: src/app/pages/home.html:11
+msgid "Realfagstermer"
+msgstr "Realfagstermer"
+
 #: src/app/authority/authorityRecord.html:83
 msgid "Related concepts in other vocabularies:"
 msgstr "Beslektede begreper fra andre vokabular:"
-
-#: src/app/pages/home.html:20
-msgid "Science (Realfagstermer)"
-msgstr "Realfag (Realfagstermer)"
 
 #: src/app/authority/wikidata.html:32
 msgid "Scientific name:"
@@ -311,6 +295,19 @@ msgstr ""
 #: src/app/pages/vocabularyInfo/usvd.html:4
 msgid "Search the University of Oslo Library subject index to Dewey."
 msgstr ""
+
+#: src/app/pages/home.html:6
+msgid ""
+"Search the humanities and social sciences collections using the Humord "
+"thesaurus. The vocabulary is accessible in Norwegian and English."
+msgstr "Humord-tesaurusen tilbyr flerspråklig emnesøk (bokmål og engelsk) i samlingene for humaniora og samfunnsvitenskap."
+
+#: src/app/pages/home.html:13
+msgid ""
+"Search the science, technology and mathematics collections . The vocabulary "
+"is accessible in Norwegian (bokmål and nynorsk), English or the scientific "
+"names of species."
+msgstr "Realfagstermer tilbyr flerpråklig emnesøk (bokmål, nynorsk og engelsk samt vitenskapelige navn på arter) i samlingene for realfag."
 
 #: src/app/pages/vocabularyInfo/realfagstermer.html:4
 msgid ""
@@ -377,10 +374,6 @@ msgid ""
 "\t\tSeveral fantastic pieces of free and open-source software have been used in the application. A list is provided below together with their licenses."
 msgstr "Emnesøk er lisensiert under <a href=\"https://github.com/scriptotek/emnesok/blob/master/LICENSE\">MIT-lisensen</a>, og har \n\t\t<a href=\"https://github.com/scriptotek/emnesok\">kildekode på GitHub</a>.\n\t\tEn rekke supre åpen kilde-komponenter er brukt for å bygge emnesøket. De er listet opp under sammen med lisensene de er underlagt."
 
-#: src/app/pages/home.html:3
-msgid "Subject search"
-msgstr "Emnesøk"
-
 #: src/app/pages/vocabularyInfo/tekord.html:4
 msgid ""
 "Subject search for the technical and engineering literature of NTNU is "
@@ -388,6 +381,10 @@ msgid ""
 "are mapped to UDC, providing possibilities for multilingual search in the "
 "future."
 msgstr "Emnesøk i den tekniske litteraturen til NTNU er tilgjengelig gjennom Tekord. Søk er kun tilgjengelig på norsk bokmål, men termene er koblet til UDC, noe som kan åpne for flerspråklig søk i fremtiden."
+
+#: src/app/pages/home.html:2
+msgid "Subject search in University of Oslo Library"
+msgstr ""
 
 #: src/app/pages/vocabularyInfo/mrtermer.html:2
 msgid "Subject search using Human Rights Terms"
@@ -404,10 +401,6 @@ msgstr "Emnesøk med Realfagstermer"
 #: src/app/pages/vocabularyInfo/tekord.html:2
 msgid "Subject search using Tekord"
 msgstr "Emnesøk med Tekord"
-
-#: src/app/pages/home.html:26
-msgid "Technology and engineering (Tekord)"
-msgstr "Teknologi og ingeniørfag (Tekord)"
 
 #: src/app/services/authority.service.js:199
 msgid "Temporal"
@@ -450,10 +443,6 @@ msgstr "Dette er et emne fra et annet vokabular. Det er ikke sikkert det finnes 
 #: src/app/services/authority.service.js:204
 msgid "Topic"
 msgstr "Emneord"
-
-#: src/app/pages/home.html:58
-msgid "UBO subject index for Dewey (USVD)"
-msgstr "UBOs emneregister til Dewey (USVD)"
 
 #: src/app/pages/vocabularyInfo/usvd.html:2
 msgid "UBO subject index to Dewey (USVD)"

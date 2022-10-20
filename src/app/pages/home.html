@@ -1,76 +1,31 @@
 <div class="landing_page">
+	<h3 translate>Subject search in University of Oslo Library</h3>
 
-	<h2 translate>Subject search</h2>
-
-	<p style="margin-top: 2em">
-		<span class="glyphicon glyphicon-chevron-right" aria-hidden="true" style="transform: rotate(90deg);"></span>
-		{{ 'I would like to find books about:' | translate }}
+	<p style="margin-bottom: 24px">
+		<h4 style="margin: 0"><a ui-sref="subject.search({vocab:'humord', lang: vm.lang})">{{ 'Humord' | translate }}</a></h4>
+		{{ 'Search the humanities and social sciences collections using the Humord thesaurus. The vocabulary is accessible in Norwegian and English.' | translate }}
 	</p>
 
-	<ul>
-		<li>
-			<a ui-sref="subject.search({vocab:'humord', lang: vm.lang})">
-				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-				{{ 'Humanities and social sciences (Humord)' | translate }}
-			</a>
-		</li>
-		<li>
-			<a ui-sref="subject.search({vocab:'realfagstermer', lang: vm.lang})">
-				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-				{{ 'Science (Realfagstermer)' | translate }}
-			</a>
-		</li>
-		<li>
-			<a ui-sref="subject.search({vocab:'tekord', lang: vm.lang})">
-				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-				{{ 'Technology and engineering (Tekord)' | translate }}
-			</a>
-		</li>
-		<li>
-			<a href="https://app.uio.no/ub/ujur/l-skjema/">
-				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-				{{ 'Law (L scheme)' | translate }}
-			</a>
-		</li>
-	</ul>
-
-	<p style="margin-top: 2em">
-		<span class="glyphicon glyphicon-chevron-right" aria-hidden="true" style="transform: rotate(90deg);"></span>
-		{{ 'For librarians:' | translate }}
+	<p style="margin-bottom: 24px">
+		<h4 style="margin: 0"><a ui-sref="subject.search({vocab:'realfagstermer', lang: vm.lang})">
+			{{ 'Realfagstermer' | translate }}
+		</a></h4>
+		{{ 'Search the science, technology and mathematics collections . The vocabulary is accessible in Norwegian (bokmål and nynorsk), English or the scientific names of species.' | translate }}
 	</p>
 
-	<ul>
-		<li>
-			<a ui-sref="subject.search({vocab:'mrtermer', lang: vm.lang})">
-				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-				{{ 'Human Rights Terms (–2018)' | translate }}
-			</a>
-		</li>
-		<li>
-			<a ui-sref="subject.search({vocab:'ddc', lang: vm.lang})">
-				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-				{{ 'Norwegian WebDewey' | translate }}
-			</a>
-		</li>
-		<li>
-			<a ui-sref="subject.search({vocab:'usvd', lang: vm.lang})">
-				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-				{{ 'UBO subject index for Dewey (USVD)' | translate }}
-			</a>
-		</li>
-		<li>
-			<a ui-sref="subject.search({vocab:'msc-ubo', lang: vm.lang})">
-				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-				{{ 'Mathematical Subject Classification' | translate }}
-			</a>
-		</li>
-		<li>
-			<a ui-sref="subject.search({vocab:'acm-ccs-ubo', lang: vm.lang})">
-				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-				{{ 'Computing Classification System' | translate }}
-			</a>
-		</li>
-	</ul>
+<!--
+	<p style="margin-bottom: 24px">
+		<h4 style="margin: 0"><a href="https://app.uio.no/ub/ujur/l-skjema/">
+			{{ 'L scheme' | translate }}
+		</a></h4>
+		{{ 'Blurb' | translate }}
+	</p>
 
-
+	<p style="margin-bottom: 24px">
+		<h4 style="margin: 0"><a href="https://www.oria.no/dewey/">
+			{{ 'Dewey subject index (oria.no)' | translate }}
+		</a></h4>
+		{{ 'Blurb' | translate }}
+	</p>
 </div>
+-->
