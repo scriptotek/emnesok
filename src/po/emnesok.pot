@@ -427,10 +427,12 @@ msgid "broad search"
 msgstr ""
 
 #: src/app/pages/home.html:7
+#: src/app/pages/vocabularyInfo/humord.html:4
 msgid "https://www.ub.uio.no/bruk/sok-i-hele-biblioteket/emneord/humord/facts-in-english.html"
 msgstr ""
 
 #: src/app/pages/home.html:15
+#: src/app/pages/vocabularyInfo/realfagstermer.html:4
 msgid "https://www.ub.uio.no/english/using/search-the-library/subject-search-terms/science-subject-terms.html"
 msgstr ""
 
