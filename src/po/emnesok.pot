@@ -36,7 +36,6 @@ msgstr ""
 msgid "As an experiment we've disabled all GA cookies. While we need some statistics on visits and usage, we believe that tracking <em>users</em> is not really needed for this tool. Users tracking also has a lot of flaws."
 msgstr ""
 
-#: src/app/pages/home.html:23
 #: src/app/pages/home.html:30
 msgid "Blurb"
 msgstr ""
@@ -145,8 +144,8 @@ msgstr ""
 msgid "Interested in more results?"
 msgstr ""
 
-#: src/app/pages/home.html:21
-msgid "L scheme"
+#: src/app/pages/home.html:20
+msgid "Juridiske emneord (L-skjema)"
 msgstr ""
 
 #: src/app/pages/vocabularyInfo/acm-ccs-ubo.html:5
@@ -154,8 +153,9 @@ msgstr ""
 msgid "Learn more"
 msgstr ""
 
+#: src/app/pages/home.html:15
 #: src/app/pages/home.html:7
-#: src/app/pages/vocabularyInfo/humord.html:5
+#: src/app/pages/vocabularyInfo/humord.html:4
 #: src/app/pages/vocabularyInfo/mrtermer.html:5
 #: src/app/pages/vocabularyInfo/realfagstermer.html:4
 msgid "Learn more about the vocabulary"
@@ -280,10 +280,6 @@ msgstr ""
 msgid "Search the science, technology and mathematics collections . The vocabulary is accessible in Norwegian (bokmål and nynorsk), English or the scientific names of species."
 msgstr ""
 
-#: src/app/pages/vocabularyInfo/realfagstermer.html:4
-msgid "Search the science, technology and mathematics collections of University of Oslo and Bergen using Norwegian Bokmål, Nynorsk, English or the scientific names of species."
-msgstr ""
-
 #: src/app/pages/vocabularyInfo/msc-ubo.html:4
 msgid "Search the shelving scheme for the old mathematics collection (–2011) in the University of Oslo Science Library, which is based on MSC 1970."
 msgstr ""
@@ -360,12 +356,12 @@ msgstr ""
 msgid "Temporal"
 msgstr ""
 
-#: src/app/search/searchBox.html:98
-msgid "The search went out in error:"
+#: src/app/pages/home.html:22
+msgid "The locally made classification  system, L-skjema. provides subject access to the collection of the Law Library."
 msgstr ""
 
-#: src/app/pages/vocabularyInfo/humord.html:4
-msgid "The university libraries of Oslo, Bergen and Tromsø collaborate on the Humord vocabulary to provide multilingual (Norwegian Bokmål and English) subject search to their humanities and social science collections."
+#: src/app/search/searchBox.html:98
+msgid "The search went out in error:"
 msgstr ""
 
 #: src/app/pages/about.html:28

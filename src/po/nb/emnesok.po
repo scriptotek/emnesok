@@ -48,7 +48,7 @@ msgid ""
 "not really needed for this tool. Users tracking also has a lot of flaws."
 msgstr "Som et eksperiment har vi skrudd av alle GA-informasjonskapsler. Vi trenger statistikk om besøk og bruk, men vi tror at vi klarer oss fint uten sporing av <em>brukere</em>. Brukersporing har uansett en del svakheter."
 
-#: src/app/pages/home.html:23 src/app/pages/home.html:30
+#: src/app/pages/home.html:30
 msgid "Blurb"
 msgstr ""
 
@@ -164,8 +164,8 @@ msgstr ""
 msgid "Interested in more results?"
 msgstr "Interessert i flere treff?"
 
-#: src/app/pages/home.html:21
-msgid "L scheme"
+#: src/app/pages/home.html:20
+msgid "Juridiske emneord (L-skjema)"
 msgstr ""
 
 #: src/app/pages/vocabularyInfo/acm-ccs-ubo.html:5
@@ -173,7 +173,8 @@ msgstr ""
 msgid "Learn more"
 msgstr "Les mer"
 
-#: src/app/pages/home.html:7 src/app/pages/vocabularyInfo/humord.html:5
+#: src/app/pages/home.html:15 src/app/pages/home.html:7
+#: src/app/pages/vocabularyInfo/humord.html:4
 #: src/app/pages/vocabularyInfo/mrtermer.html:5
 #: src/app/pages/vocabularyInfo/realfagstermer.html:4
 msgid "Learn more about the vocabulary"
@@ -309,13 +310,6 @@ msgid ""
 "names of species."
 msgstr "Realfagstermer tilbyr flerpråklig emnesøk (bokmål, nynorsk og engelsk samt vitenskapelige navn på arter) i samlingene for realfag."
 
-#: src/app/pages/vocabularyInfo/realfagstermer.html:4
-msgid ""
-"Search the science, technology and mathematics collections of University of "
-"Oslo and Bergen using Norwegian Bokmål, Nynorsk, English or the scientific "
-"names of species."
-msgstr "Søk i realfagslitteraturen til universitetsbibliotekene i Oslo og Bergen med Realfagstermer. Du kan søke på norsk bokmål, nynorsk, engelsk eller med vitenskapelige navn på arter."
-
 #: src/app/pages/vocabularyInfo/msc-ubo.html:4
 msgid ""
 "Search the shelving scheme for the old mathematics collection (–2011) in the"
@@ -406,16 +400,15 @@ msgstr "Emnesøk med Tekord"
 msgid "Temporal"
 msgstr "Kronologisk term"
 
+#: src/app/pages/home.html:22
+msgid ""
+"The locally made classification  system, L-skjema. provides subject access "
+"to the collection of the Law Library."
+msgstr "Bøkene ved Det juridiske fakultetsbibliotek er systematisert etter et klassifikasjonssystem for rettsvitenskap, L-skjema. Hvert emneområde har ett eller flere L-nummer. Med utgangspunkt i dette registeret er det mulig å søke på L-nummer i Oria. Man kan også søke på emneord ordnet systematisk eller alfabetisk."
+
 #: src/app/search/searchBox.html:98
 msgid "The search went out in error:"
 msgstr "Søket gikk ut i feil"
-
-#: src/app/pages/vocabularyInfo/humord.html:4
-msgid ""
-"The university libraries of Oslo, Bergen and Tromsø collaborate on the "
-"Humord vocabulary to provide multilingual (Norwegian Bokmål and English) "
-"subject search to their humanities and social science collections."
-msgstr "Universitetsbibliotekene i Oslo, Bergen og Tromsø samarbeider om Humord-vokabularet for å tilby flerspråklig emnesøk (norsk bokmål og engelsk) i samlingene for humaniora og samfunnsvitenskap."
 
 #: src/app/pages/about.html:28
 msgid "Third party licenses"
